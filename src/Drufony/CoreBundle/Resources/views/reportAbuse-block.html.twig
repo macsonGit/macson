@@ -1,0 +1,9 @@
+{% if widgets.reportAbuse is defined %}
+<div class="report-abuse">
+    <a href="{{ path('drufony_report_abuse', {
+    'nid' : contentData.nid,
+    'lang' : lang,
+    'destination' : app.request.PathInfo
+    }) }}">{{ "Report abuse" | t }}</a>
+</div>
+{% endif %}

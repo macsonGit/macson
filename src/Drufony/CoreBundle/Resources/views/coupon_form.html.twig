@@ -1,0 +1,31 @@
+<html>
+<head></head>
+<body>
+    <h1>{{ "Coupon Form" | t }}</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="form-item">
+            {{ form_row(form.typeChoice) }}
+        </div>
+        <div class="form-item">
+            {{ form_label(form.startDate, 'Start date') }}
+            {{ form_widget(form.startDate.day) }}
+            {{ form_widget(form.startDate.month) }}
+            {{ form_widget(form.startDate.year) }}
+        </div>
+        <div class="form-item">
+            {{ form_label(form.expirationDate, 'Expiration date') }}
+            {{ form_widget(form.expirationDate.day) }}
+            {{ form_widget(form.expirationDate.month) }}
+            {{ form_widget(form.expirationDate.year) }}
+        </div>
+        <div class="form-item">
+            {{ form_row(form.isPercentage) }}
+        </div>
+        <div class="form-item">
+            {{ form_row(form.value) }}
+        </div>
+        {{ form_end(form) }}
+        <p> <a href='{{ path('drufony_coupons_list', {'lang': lang})}}'>{{ "Cancel" | t }}</a> </p>
+    </body>
+</html>

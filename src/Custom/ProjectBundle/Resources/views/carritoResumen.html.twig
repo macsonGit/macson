@@ -1,0 +1,97 @@
+
+<script>
+	var removeText="{{'Remove'|t}}";
+	var noProductCartText="{{'There is no product added to the Cart'|t}}";
+	var imageThumbPath =" {{asset('bundles/customproject/images/Product/Thumb/')}}";
+	var route = "{{ path('macson_chart', { 'ope':'PLACEHOLDER1','pid': 'PLACEHOLDER2' , 'vid':'PLACEHOLDER3' }) }}";
+	var imageCarrito =" {{asset('bundles/customproject/images/carrito.png')}}";
+	var lang="{{ lang }}";
+</script>
+
+<div id="carrito">
+
+{% set sumPrice= 0 %}
+
+{% if products[0] is defined  %}
+
+		<div class="inline width85  pad5 alignleft"></div>
+		<div class="inline width100 pad5"></div>
+		<div class="inline width25 pad5">{{'Size'|t}}</div>
+		<div class="inline width50 pad5">{{ 'Price'|t }} €</div>
+		<div class="inline width25 pad5">{{ 'Units'|t }}</div>
+
+	<div class="inline">
+
+	<ul id="listaCarritoResumen">
+
+	{% set sumPrice=0 %}
+
+	{% for item in products %}
+
+		<li class="height102 pad5 border">
+				<div class="inline">
+					<a href={{ path('drufony_general_url',{'url' : item.product.target, 'lang': lang} ) }}>
+						<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
+					</a>
+				</div>		
+				<div class="inline width100  pad5 alignleft">
+				{{ item.product.title }}<br> ref.{{ item.product.sgu  }}
+				</div>
+				<div class="inline width25 pad5">{{ item.product.size }}</div>
+				<div class="inline width50 pad5">{{ item.product.pricePVP }} €</div>
+				<div class="inline width25 pad5">{{ item.count }}</div>
+				<div class="inline pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div>
+</div>
+				{% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
+		</li>
+		<br>
+
+	{% endfor %}
+
+	</ul>
+
+	</div>
+
+
+	<div class="inline pad5"></div>
+	<div class="inline height102 width180 pad5  border">
+		<div>
+			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
+		</div>
+		<div class="pad5">
+			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
+				<input type="submit" class="okButton width150" value="{{ 'Proceed to check out'|t }}">				
+			</form>
+			<div class="height3"></div>	
+			<button id="continue" class="cancelButton width150">{{'Continue Shopping'|t}}</button>		
+		</div>
+	</div>
+
+
+{% else  %}
+
+	<ul id="listaCarritoResumen" class="inline">
+		<li>
+{{ 'There is no product added to the Cart'|t }}
+		</li>
+	</ul>
+
+	<div class="inline">
+	<div class="inline pad5"></div>
+	<div class="inline height102 width180 pad5  border">
+		<div>
+			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
+		</div>
+		<div class="pad5">
+			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
+				<input type="submit" class="okButton width150" value="{{ 'Proceed to check out'|t }}">				
+			</form>
+			<div class="height3"></div>	
+			<button id="continue" class="cancelButton width150">{{'Continue Shopping'|t}}</button>		
+		</div>
+	</div>
+	</div>
+
+
+{% endif %}
+</div>

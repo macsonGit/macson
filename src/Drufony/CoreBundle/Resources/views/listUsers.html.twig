@@ -1,0 +1,80 @@
+<!-- row -->
+<div class="row row-app">
+    <!-- col -->
+    <div class="col-md-12">
+        <!-- col-separator -->
+        <div class="col-separator col-separator-first col-unscrollable bg-none">
+            <!-- col-table -->
+            <div class="col-table">
+                <!-- heading -->
+                <div class="innerTB">
+                    <h3 class="margin-none pull-left">
+                        {{ titleSection }} &nbsp;<i class="fa fa-fw fa-pencil text-muted"></i>
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- // END heading -->
+                <div class="col-separator-h"></div>
+                <!-- col-table-row -->
+                <div class="col-table-row">
+                    <!-- col-app.col-unscrollable -->
+                    <div class="col-app col-unscrollable">
+                        <!-- col-app -->
+                        <div class="col-app">
+                            <!-- content -->
+                            <div class="row row-app">
+                                <div class="col-md-12">
+                                    <!-- Widget -->
+                                    <div class="widget">
+                                        <div class="widget-body innerAll inner-2x">
+                                            <!-- Table -->
+                                            <table class="dynamicTable colVis table" style="width:100%">
+                                                <!-- Table heading -->
+                                                <thead class="bg-gray">
+                                                    <tr>
+                                                        <th>User Name</th>
+                                                        <th>Email</th>
+                                                        <th>Roles</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- // Table heading END -->
+                                                <!-- Table body -->
+                                                <tbody>
+                                                    <!-- Table row -->
+                                                    {% for user in users %}
+                                                    <tr class="gradeX">
+                                                        <td>{{ user['username'] }}</td>
+                                                        <td>{{ user['email'] }}</td>
+                                                        <td>{{ user['role'] }}</td>
+                                                        <td>
+                                                            <a href="#" class="fa fa-edit" title="Edit"></a>
+                                                            <a href="#" class="fa fa-trash-o" title="Remove"></a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                    <!-- // Table row END -->
+                                                </tbody>
+                                                <!-- // Table body END -->
+                                            </table>
+                                            <!-- // Table END -->
+                                        </div>
+                                    </div>
+                                    <!-- // Widget END -->
+                                </div>
+                            </div>
+                            <!-- // END content -->
+                        </div>
+                        <!-- // END col-app -->
+                    </div>
+                    <!-- // END col-app.col-unscrollable -->
+                </div>
+                <!-- // END col-table-row -->
+            </div>
+            <!-- // END col-table -->
+        </div>
+        <!-- // END col-separator -->
+    </div>
+    <!-- // END col -->
+</div>
+<!-- // END row -->

@@ -1,0 +1,101 @@
+  <section class="checkout-progress fr wd25 bb mg-bottom20 mg-right3">
+    <header>{{'YOUR PROGRESS' |t}}</header>
+<!-- Cart -->
+
+
+    <dl>
+    <dt class="filled">{{'Order Review' |t}} <a href='{{ path('drufony_cart_view', { 'lang' : lang})}}'>{{'Edit' |t}}</a></dt>
+      <dd>
+          <table class="wd100">
+            <tbody>
+
+            {% for item in progress.cartItems%}
+                <tr>
+                    <td class="wd75"> {{ item.product.title }} </td>
+                    <td class="wd25 align-right"> {{ item.subtotal | number_format(2) }}€</td>
+                </tr>
+            {% endfor %}
+              {% set discountClarification = '' %}
+              {% if (progress.discount > 0 and progress.discountType == 1) %}
+                {% set discountClarification = '(' ~ progress.couponDiscount ~ '%' ~ ')'  %}
+              {% endif %}
+              <tr>
+                <td class="wd75">{{ "Disccount" | t }}:</td>
+                <td class="wd25 align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</td>
+              </tr>
+              <tr>
+                <td>{{ "Subtotal" | t }}:</td>
+                <td>{{ progress.subtotalProductsDisc | number_format(2) }}€</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="wd100">
+              <tr>
+                <td colspan="2">
+                <span id="toggleTotal" style="text-decoration:underline">{{ "View total" | t}}</span>
+                <table id="viewTotal" class="wd100">
+                <tr>
+                  <td>{{ "Taxes" | t }}:</td>
+                  <td class="align-right">{{ progress.tax | number_format(2) }}€</td>
+                </tr>
+                <tr>
+                  <td class="wd75">{{ "Shipping cost" | t }}:</td>
+                  <td class="wd25 align-right">{{ progress.shippingFee | number_format(2) }}€</td>
+                </tr>
+                <tr>
+                  <td>{{ "Total" | t }}:</td>
+                  <td class="align-right">{{ progress.totalDiscounted | number_format(2) }}€</td>
+                </tr>
+                </table>
+                </td>
+            </table>
+      </dd>
+    </dt>
+    </dl>
+<!--/ cart -->
+
+    <dl>
+      {% if progress.shippingInfo is not empty %}
+        <dt class="filled">Shipping Info <a href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</a></dt>
+          <dd>
+              {{progress.shippingInfo.name}}<br>
+              {{progress.shippingInfo.countryName}}, {{progress.shippingInfo.provinceName}}<br>
+              {{progress.shippingInfo.city}}, {{progress.shippingInfo.postalCode}}<br>
+              T: {{progress.shippingInfo.phone}}
+          </dd>
+        </dt>
+      {% endif %}
+
+      {% if progress.billingInfo is not empty %}
+        <dt class="filled">Billing Info <a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</a></dt>
+          <dd>
+            {{progress.billingInfo.name}}<br>
+            {{progress.billingInfo.countryName}}, {{progress.billingInfo.provinceName}}<br>
+            {{progress.billingInfo.city}}, {{progress.billingInfo.postalCode}}<br>
+            T: {{progress.billingInfo.phone}}
+          </dd>
+        </dt>
+      {% endif %}
+
+
+      {% if progress.shippingMethod is not empty %}
+        <dt class="filled">Shipping Method  <a href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>{{'Edit' |t}}</a></dt>
+          <dd>
+            {{progress.shippingMethod.title}}
+          </dd>
+        </dt>
+      {% endif %}
+     </dl>
+  </section>
+
+  <script>
+    $(function(){
+      $('#viewTotal').hide();
+      $('#toggleTotal').click(function(){
+        var text =$('#viewTotal').is(':visible') ? 'Show Total' : 'Hide Total';
+
+        $('#toggleTotal').text(text);
+        $('#viewTotal').slideToggle();
+      });
+    });
+  </script>

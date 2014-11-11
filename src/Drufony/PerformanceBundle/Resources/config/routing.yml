@@ -1,0 +1,3 @@
+crono_profiler_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PerformanceBundle:Default:index }

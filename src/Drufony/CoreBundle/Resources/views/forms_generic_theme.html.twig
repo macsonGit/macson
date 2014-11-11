@@ -1,0 +1,12 @@
+<!-- Block for errors -->
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="has-error">
+        {% for error in errors %}
+            <li class="help-block">{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

@@ -1,0 +1,82 @@
+{# Facebook button #}
+
+{% if widgets.social.facebookShare is defined or widgets.social.facebookLike is defined %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      {% if lang == 'en' %} //FIXME delete this by ISO lang code
+          js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+      {% elseif lang == 'es' %}
+          js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+      {% endif %}
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+{% endif %}
+
+{% if widgets.social.facebookShare is defined %}
+    <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button_count"></div>
+{% endif %}
+
+{# Google+ share #}
+
+{% if widgets.social.googleShare is defined %}
+    <!-- Place this tag where you want the share button to render. -->
+    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+{% endif %}
+
+{# Twitter share #}
+
+{% if widgets.social.twitterShare is defined %}
+    <div class="twitter-share">
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <script>!function(d,s,id){var
+    js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,
+    'script', 'twitter-wjs');</script>
+    </div>
+{% endif %}
+
+{# Facebook like #}
+
+{% if widgets.social.facebookLike is defined %}
+
+<div class="fb-like" data-href="{{ app.request.uri }}" data-layout="button_count" 
+data-action="like" data-show-faces="false" data-share="false"></div>
+
+{% endif %}
+
+{# Google like #}
+
+{% if widgets.social.googleLike is defined %}
+
+    <!-- Place this tag where you want the +1 button to render. -->
+    <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+
+{% endif %}
+
+{% if widgets.social.googleShare is defined or widgets.social.googleLike is defined %}
+    <!-- Place this tag after the last share tag. -->
+    <script type="text/javascript">
+      {% if lang == 'en' %} //FIXME delete this by ISO lang code
+          window.___gcfg = {lang: 'en-GB'};
+      {% elseif lang == 'es' %}
+          window.___gcfg = {lang: 'es-ES'};
+      {% endif %}
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+{% endif %}

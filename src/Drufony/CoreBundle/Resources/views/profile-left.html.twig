@@ -1,0 +1,20 @@
+<p><span>{{ "User name" | t }}: {{ user.username }}</p>
+<ul>
+    <h3>{{ "Account config" | t }}</h3>
+    <li class="first"><a href="{{path('drufony_profile_edit', {'lang': lang}) }}" >{{ "Edit profile" | t }}</a></li>
+    <li class="second"><a href="{{path('drufony_account_edit', {'lang': lang}) }}">{{ "Account" | t }}</a></li>
+    <li class="third"><a href="{{path('drufony_profile_address_edit', {'lang': lang}) }}">{{ "Addresses" | t }}</a></li>
+    <li class="fourth">
+        <p>{{ "Your language" | t }}:</p>
+        <select name="language" id="profile-language-selector">
+        {% for langKey, langName in languages %}
+            <option value="{{ langKey }}"
+            {% if langKey == lang %}
+                selected="true"
+            {% endif %}
+            >{{ langName }}</option>
+        {% endfor %}
+        </select>
+    </li>
+
+</ul>

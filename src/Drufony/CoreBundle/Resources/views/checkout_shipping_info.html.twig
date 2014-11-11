@@ -1,0 +1,114 @@
+      <label class="label">
+        {{ form_label(form.name) }}
+        {% if form.name.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+      {{ form_errors(form.name) }}
+      <label class="input">
+        {{ form_widget(form.name) }}
+      </label>
+
+    <label class="label">
+      {{ form_label(form.address) }}
+      {% if form.address.vars.required %}
+        <span>*</span>
+      {% endif %}
+    </label>
+    {{ form_errors(form.address) }}
+    <label class="input">
+      {{ form_widget(form.address) }}
+    </label>
+
+    <div class="clearfix">
+      <div class="col">
+      <label class="label">
+        {{ form_label(form.countryId) }}
+        {% if form.countryId.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+        {{ form_errors(form.countryId) }}
+      <label class="select">
+        {{ form_widget(form.countryId) }}
+      </label>
+
+      <label class="label">
+        {{ form_label(form.city) }}
+        {% if form.city.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+      {{ form_errors(form.city) }}
+      <label class="input">
+        {{ form_widget(form.city) }}
+      </label>
+
+      <label class="label">
+        {{ form_label(form.phone) }}
+        {% if form.phone.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+      {{ form_errors(form.phone) }}
+      <label class="input">
+        {{ form_widget(form.phone) }}
+      </label>
+
+      </div>
+
+      <div class="col">
+
+      <label class="label">
+        {{ form_label(form.province) }}
+        {% if form.province.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+      {{ form_errors(form.province) }}
+      <label class="select">
+        {{ form_widget(form.province) }}
+      </label>
+
+      <label class="label">
+        {{ form_label(form.postalCode) }}
+        {% if form.postalCode.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+      {{ form_errors(form.postalCode) }}
+      <label class="input">
+        {{ form_widget(form.postalCode) }}
+      </label>
+
+      <label class="label">
+        {{ form_label(form.email) }}
+        {% if form.email.vars.required %}
+          <span>*</span>
+        {% endif %}
+      </label>
+      {{ form_errors(form.email) }}
+      <label class="input">
+        {{ form_widget(form.email) }}
+      </label>
+
+      </div>
+      <footer>
+      {{ form_row(form.send, {'attr': {'class': 'button button-ok'}} ) }}
+      </footer>
+    </div>
+
+
+    {% if addresses|length > 0 %}
+        {% if shipping %}
+            {% set userAddressUrl = 'drufony_checkout_shipping_user_address' %}
+        {% else %}
+            {% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
+        {% endif%}
+    <div>
+        <p>{{ "User addresses" | t }}</p>
+        {% for address in addresses %}
+        <p>{{address.name}}, {{address.address}} | <a href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
+        {% endfor %}
+    </div>
+    {% endif %}

@@ -1,0 +1,28 @@
+<div id="menu">
+	<div id="menutitle">Menu</div>
+	<ul>
+
+{% set selected=menu.selected|split('-') %}
+{% for item in menu[0].items %}
+	{% if menu[item.tid].items is defined %}
+		{% for item2 in menu[item.tid].items if menu[item.tid].show == 'TRUE' %}
+		<a href='http://localhost/Symfony/web/app_dev.php/category/{{item2.name}}-{{item2.description|toUrl}}'><li class='item2'>{{item2.description}}</li></a>
+			{% if selected[0] is defined%}
+				{% if menu[item2.tid].items is defined and selected[0] == item2.description|toUrl%}
+					{% for item3 in menu[item2.tid].items %}
+				<a href='http://localhost/Symfony/web/app_dev.php/category/{{item3.name}}-{{item2.description|toUrl}}-{{item3.description|toUrl}}'><li class='item3'>{{item3.description}}</li></a>
+						{% if selected[1] is defined%}
+							{% if menu[item3.tid].items is defined and selected[1] == item3.description|toUrl %}
+								{% for item4 in menu[item3.tid].items %}
+						<a href='http://localhost/Symfony/web/app_dev.php/category/{{item4.name}}-{{item2.description|toUrl}}-{{item3.description|toUrl}}-{{item4.description|toUrl}}'><li class='item4'>{{item4.description}}</li></a>	
+								{% endfor %}
+							{% endif %}		
+						{% endif %}		
+					{% endfor %}
+				{% endif %}	
+			{% endif %}			
+		{% endfor %}
+	{% endif %}
+{% endfor %}
+	</ul>
+</div>

@@ -1,0 +1,31 @@
+{% include "MacsonProjectBundle:Default:base.html.twig" %}
+
+<body>
+{% include "MacsonProjectBundle:Default:header.html.twig" %}
+
+<div id="zoomContainer"></div>
+
+
+
+{% if view == 'home' %}
+    {% include "MacsonProjectBundle:Default:home.html.twig" %}
+{% endif %}
+
+{% if view == 'product' %}
+	<div id="logo"><img src='{{ asset('bundles/macsonproject/images/LogoMacson.png') }}'>	</div> 
+    {% include "MacsonProjectBundle:Default:product.html.twig" %}
+{% endif %}
+
+{% if view == 'category' %}
+	<div id="logo"><img src='{{ asset('bundles/macsonproject/images/LogoMacson.png') }}'>	</div> 
+    {% include "MacsonProjectBundle:Default:category.html.twig" %}
+{% endif %}
+
+
+
+
+
+{% include "MacsonProjectBundle:Default:footer.html.twig" %}
+</body>
+
+</html>

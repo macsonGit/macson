@@ -1,0 +1,88 @@
+{# For theming customization #}
+{% form_theme registerForm 'DrufonyCoreBundle::forms_generic_theme.html.twig' %}
+{% form_theme loginForm 'DrufonyCoreBundle::forms_generic_theme.html.twig' %}
+
+<div id="" class="layout960">
+{% set highlightLogin = '' %}
+{% set highlightRegistration = '' %}
+{% if isLoginPath %}
+  {% set highlightLogin = 'border-gray' %}
+{% else %}
+  {% set highlightRegistration = 'border-gray' %}
+{% endif %}
+
+  <div class="wd100 oh mg-vertical20">
+
+    <div class="first-column bb fl wd30 mg-vertical15 mg-right3 pad15">
+        <h2>{{ "Enter by Facebook" | t }}</h2>
+        <span>{{ 'Quick and easy' |t }}</span>
+        <div class="wd100 mg-vertical10">
+          <a href="{{ fbLoginUrl }}" class="action-button" id="loginFacebookButton">{{ "Enter by Facebook" | t }}</a>
+        </div>
+        <span>{{ 'Never post on your wall for you' |t }}</span>
+    </div>
+    <div class="second-column bb fl wd30 mg-vertical10 mg-right3 pad15 border5 radius5 {{highlightRegistration}}">
+        <div class="signin-block">
+            <h2>{{ "Create new account" | t }}</h2>
+            <span>{{ 'Create your user account to continue' |t }}</span>
+            {{ form_start(registerForm) }}
+            {{ form_errors(registerForm) }}
+
+                <div class="mg-bottom10">
+                  {{ form_label(registerForm.email) }}
+                </div>
+                {{ form_errors(registerForm.email) }}
+                {{ form_widget(registerForm.email, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your email'|t } } ) }}
+
+                <div class="mg-bottom10">
+                  {{ form_label(registerForm.password) }}
+                </div>
+                {{ form_errors(registerForm.password) }}
+                {{ form_widget(registerForm.password, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your password'|t } } ) }}
+
+
+                {{ form_widget(registerForm.acceptTerms) }}
+                {{ registerForm.acceptTerms.vars.label | raw }}
+
+                <div class="wd100 mg-vertical10">
+                  {{ form_widget(registerForm.register, { 'attr': {'class': 'action-button' }}) }}
+                </div>
+            {{ form_end(registerForm) }}
+        </div>
+    </div>
+    <div class="third-column bb fl wd30 mg-vertical10 mg-right3 pad15 border5 radius5 {{highlightLogin}}">
+        <div class="login-block">
+            <h2 class="block-title">{{ "Login with existent account" | t }}</h2>
+            {{ form_start(loginForm) }}
+            {{ form_errors(loginForm) }}
+
+                <div class="mg-bottom10">
+                  {{ form_label(loginForm.username) }}
+                </div>
+                {{ form_errors(loginForm.username, {'attr': {'class' : 'wd100 show-form-error'} }) }}
+                {{ form_widget(loginForm.username, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your email'|t } } ) }}
+
+                <div class="mg-bottom10">
+                  {{ form_label(loginForm.password) }}
+                </div>
+                {{ form_errors(loginForm.password) }}
+                {{ form_widget(loginForm.password, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your password'|t } } ) }}
+
+                <div class="mg-bottom10">
+                  {{ form_errors(loginForm.rememberme) }}
+                  {{ form_widget(loginForm.rememberme ) }}
+                  {{ form_label(loginForm.rememberme) }}
+                </div>
+
+                <a href="{{ path('drufony_user_request_forgot_pass', {'lang' : lang }) }}">{{ "Forgot password" | t }}</a>
+
+                <div class="wd100 mg-vertical10">
+                  {{ form_widget(loginForm.login, { 'attr': {'class': 'action-button' }}) }}
+                </div>
+
+            {{ form_end(loginForm) }}
+        </div>
+    </div>
+  </div>
+
+</div>

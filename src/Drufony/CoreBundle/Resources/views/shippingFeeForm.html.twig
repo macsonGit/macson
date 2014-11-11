@@ -1,0 +1,19 @@
+<html>
+<body>
+<h1>{{ "Shipping fee form" | t }}</h1>
+{{ form_start(form) }}
+<div class="form-item">
+{{ form_row(form.title) }}
+</div>
+<div class="form-item">
+{{ form_row(form.description) }}
+</div>
+<div class="form-item">
+{{ form_row(form.freeThreshold) }}
+</div>
+<div class="form-item">
+{{ form_row(form.price) }}
+</div>
+{{ form_end(form) }}
+</body>
+</html>

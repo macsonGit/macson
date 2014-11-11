@@ -1,0 +1,168 @@
+<!-- Block textarea -->
+{% block textarea_widget %}
+{% spaceless %}
+    <textarea class="wysihtml5 form-control" rows="5" 
+    {{ block('widget_attributes') }}>{{ value }}</textarea>
+{% endspaceless %}
+{% endblock textarea_widget %}
+
+<!-- Macro DateTime -->
+{% macro datePicker(name, formName, required, value, id) %}
+    {% set inputName = formName ~ '[' ~ name ~ ']' %}
+    <div class="input-group date" id="datepicker{{id}}">
+      <input class="form-control" name="{{inputName}}" type="text" />
+      <span class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </span>
+   </div>
+{% endmacro %}
+
+<!-- Block DateTime -->
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+      <div {{ block('widget_container_attributes') }} >
+          {{ form_errors(form.date) }}
+          {{ form_errors(form.time) }}
+          <div style="width:50%; float: left;">
+            {{"Date"|t}} {{ form_widget(form.date, { 'attr': { 'class': 'form-control' } } ) }}
+         </div>
+           <div style="width: 45%; float: left;">
+            {{"Time"|t}} {{ form_widget(form.time, { 'attr': { 'class': 'form-control' } } ) }}
+          </div>
+        <div style="clear:both"></div>
+      </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+<!-- Block date -->
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        <div class="clase-date" {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+<!-- Block time -->
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        {% set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_widget(form.hour, vars) }}{% if with_minutes %}:{{ form_widget(form.minute, vars) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, vars) }}{% endif %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
+<!-- Block checkbox -->
+{% block checkbox_widget %}
+{% spaceless %}
+    <div class="checkbox">
+      <label class="checkbox-custom">
+      <input type="checkbox" {{ block('widget_attributes') }}
+        {% if value is defined %} value="{{ value }}"
+        {% endif %}{% if checked %} checked="checked"{% endif %}
+      />
+      <i class="fa fa-fw fa-square-o"></i> {% if label != 1 %} {{label}} {% endif %}
+      </label>
+    </div>
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+<!-- Block choice collapsed -->
+{% block choice_widget_collapsed %}
+{% spaceless %}
+    {% if required and empty_value is none and not empty_value_in_choices %}
+        {% set required = false %}
+    {% endif %}
+    <select class="form-control" {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('choice_widget_options') }}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('choice_widget_options') }}
+    </select>
+{% endspaceless %}
+{% endblock choice_widget_collapsed %}
+
+<!-- Block choice expanded -->
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+    <span class="strong">{{label}}</span>
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+<!-- Macro upload files -->
+{% macro uploadFile(name, title, description, alt, url) %}
+  <div class="fileupload fileupload-new margin-none" data-provides="fileupload">
+  <div class="input-group">
+    <div class="form-control col-md3">
+      <i class="fa fa-file fileupload-exists"></i>
+      <span class="fileupload-preview"></span>
+    </div>
+    <span class="input-group-btn">
+      <span class="btn btn-default btn-file">
+        <span class="fileupload-new">Select file</span>
+        <span class="fileupload-exists">Change</span>
+        <input type="file" class="margin-none" name="{{name}}">
+     </span>
+      <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+    </span>
+    </div>
+ </div> 
+{% endmacro %}
+
+<!-- Block upload files -->
+{% block file_widget %}
+    {% spaceless %}
+    <div class="fileupload fileupload-new margin-none" data-provides="fileupload">{% set type = type|default('file') %}
+        <span class="btn btn-default btn-file">
+          <span class="fileupload-new">Select file</span>
+          <span class="fileupload-exists">Change</span>
+          <input type="{{ type }}" class="margin-none" {{ block('widget_attributes') }} />
+        </span>
+        <span class="fileupload-preview"></span>
+        <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+    </div>
+    {% endspaceless %}
+{% endblock file_widget %}
+
+<!-- Block for errors -->
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="has-error">
+        {% for error in errors %}
+            <li class="help-block">{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

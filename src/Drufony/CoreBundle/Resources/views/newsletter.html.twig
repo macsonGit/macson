@@ -1,0 +1,118 @@
+
+
+
+<!-- row -->
+<div class="row row-app order-view">
+  <!-- col -->
+  <div class="col-md-12">
+    <!-- col-separator -->
+    <div class="col-separator col-separator-first col-unscrollable bg-none">
+      <!-- col-table -->
+      <div class="col-table">
+        <!-- heading -->
+        <div class="innerTB">
+          <h3 class="margin-none pull-left">
+            {{ title }} &nbsp;
+          </h3>
+          <div class="btn-group pull-right">
+            {% if viewRange == 'pending' %}
+              <a href="/orders/pending" class="btn btn-primary"><i class="fa fa-fw fa-clock-o"></i>
+                Pending</a>
+            {% endif %}
+
+            {% if viewRange == 'paid' %}
+              <a href="/orders/paid" class="btn btn-primary"><i class="fa fa-fw fa-check"></i> Paid</a>
+            {% endif %}
+
+            {% if viewRange == 'shipped' %}
+              <a href="/orders/shipped" class="btn btn-primary"><i class="fa fa-fw fa-archive"></i>
+               Shipped</a>
+            {% endif %}
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <!-- // END heading -->
+
+        <div class="col-separator-h"></div>
+        <!-- col-table-row -->
+        <div class="col-table-row">
+          <!-- col-app.col-unscrollable -->
+          <div class="col-app col-unscrollable">
+            <!-- col-app -->
+            <div class="col-app">
+              <!-- content -->
+              <div class="row row-app">
+
+
+
+</div>
+<!-- // Media item END -->
+
+
+
+                <div class="col-md-8">
+
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-body innerAll inner-2x">
+
+{{ tableNewsletter | raw }}
+
+                </div>
+              </div>
+              <!-- // Widget END -->
+
+                <!-- Media Widgets -->
+ 
+                <div class="innerTB" style="overflow: hidden">
+
+
+</div>
+
+
+
+<!-- End buttons row -->
+</div>
+
+              <div class="col-md-4">
+
+                  <!-- Widget -->
+                  <div class="widget">
+                    <!-- Widget heading -->
+                    <div class="widget-head">
+                      <h4 class="heading">Suscribers</h4>
+                    </div>
+                    <!-- // Widget heading END -->
+                    <div class="widget-body innerAll inner-2x">
+                      <!-- Table -->
+                      
+{{ tableSuscribers | raw }}
+
+
+                      <!-- // Table END -->
+                    </div>
+                  </div>
+                  <!-- // Widget END -->
+
+
+              </div>
+
+</div>
+
+
+              </div>
+              <!-- // END content -->
+            </div>
+            <!-- // END col-app -->
+          </div>
+          <!-- // END col-app.col-unscrollable -->
+        </div>
+        <!-- // END col-table-row -->
+      </div>
+      <!-- // END col-table -->
+    </div>
+    <!-- // END col-separator -->
+  </div>
+  <!-- // END col -->
+</div>
+<!-- // END row -->

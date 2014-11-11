@@ -1,0 +1,60 @@
+{# For theming customization #}
+{% form_theme accessesForm 'DrufonyCoreBundle::forms.html.twig' %}
+
+{% block content %}
+
+{{ form_start(accessesForm) }}
+{{ form_errors(accessesForm) }}
+
+<div class="row row-app">
+  <div class="col-md-12 animated fadeInDown">
+    <div class="col-separator bg-none box col-separator-first">
+      <div class="col-table">
+        <div class="col-separator-h"></div>
+        <div class="col-table-row">
+            <div class="widget widget-row">
+                <div class="widget-body innerAll inner-2x">
+                    <div class="row">
+
+                            <table id="accesses" class="colVis table list-content-table2">
+                                <thead>
+                                    <tr>
+                                      <th></th>
+                                      {% for role in roles %}
+                                        <th class="align-center">{{ role }}</th>
+                                      {% endfor %}
+                                    </tr>
+                                </thead>
+                                    {% set currentModule = '' %}
+
+                                {% for perm in accessesForm.children %}
+                                    {% if perm.vars.name != '_token' and perm.vars.name != 'modules' and perm.vars.name !=
+                                    'save' %}
+                                    {% if currentModule != modules[perm.vars.name] %}
+                                        <tr><td colspan="4" class="module bg-gray">{{modules[perm.vars.name]|capitalize}}</td></tr>
+                                        {% set currentModule = modules[perm.vars.name] %}
+                                    {% endif %}
+                                    {% set currentModule = modules[perm.vars.name] %}
+                                    <tr>
+                                        <td>{{ form_label(perm) }}</td>
+                                        {% for permRole in perm.children %}
+                                            <td class="align-center">{{ form_widget(permRole) }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="4" class="align-right collection-type">{{ form_widget(accessesForm.save, {'attr': {'class': ''} }) }}</td>
+                                    </tr>
+                            </table>
+                            {{ form_end(accessesForm) }}
+                            </div>
+                         </div>
+                </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

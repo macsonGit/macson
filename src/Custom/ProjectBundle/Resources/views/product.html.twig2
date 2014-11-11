@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <h1>{{ contentData.Title }}</h1>
+        <h2>{{ contentData.Teaser }}</h2>
+        <h3>{{ contentData.Description }}</h3>
+        <p>{{ contentData.Summary}}</p>
+        <p>{{ contentData.Body }}</p>
+        <p>{{ contentData.price }}€</p>
+
+        {% if contentData.getStock() < 6 %}
+            <p> Sólo quedan {{contentData.getStock()}} en stock </p>
+        {% endif %}
+        <p>Varieties: {% for varietie in contentData.getVarieties() %} {{varietie}} {% endfor %}</p>
+
+        {% include 'DrufonyCoreBundle::content_common_fields.html.twig' %}
+
+        {% include 'DrufonyCoreBundle::comments.html.twig' %}
+        {% include 'DrufonyCoreBundle::social-block.html.twig' %}
+
+    </body>
+    {% include 'DrufonyCoreBundle::script-analytics.html.twig' %}
+    {% include 'DrufonyCoreBundle::block-cookie.html.twig' %}
+</html>

@@ -1,0 +1,17 @@
+<div>
+    <p>{{
+          'Function %function called with the text %text' |
+          t({'%function' : customParams.function, '%text' : customParams.text }, customParams.lang)
+    }}</p>
+    <p>
+        {{ '%file, in line %line' | t({'%file' : customParams.file, '%line' : customParams.line}, customParams.lang) }}
+    </p>
+    {% if customParams.args is not empty %}
+        <p>
+            {{ 'Arguments:' | t(0, customParams.lang) }}
+            {% for arg in customParams.args %}
+                <span>{{ arg }}</span>
+            {% endfor %}
+        </p>
+    {% endif %}
+</div>

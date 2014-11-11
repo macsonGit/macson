@@ -1,0 +1,4 @@
+{% include "CustomProjectBundle::header.html.twig" %}
+hola
+{% include "CustomProjectBundle::footer.html.twig" %}
+

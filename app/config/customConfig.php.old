@@ -1,0 +1,234 @@
+<?php
+//Nombre de la página web
+define('PROJECT_NAME', 'Macson');
+
+//Sesión y cookies
+define('COOKIE_DOMAIN', 'www.macson.es'); //dominio de las cookies
+define('LANGUAGE_COOKIE', 'drufonylang'); //nombre de la cookie de idioma
+define('EXPIRY_TIME_COOKIE', 1); //tiempo de vida predeterminado de las cookies
+
+//FIXME: You need to set your own salt
+define('DRUFONY_SALT', 'tp3lpv2gpzk8g88sgwwk44kgcok4k04'); //Se obtiene ejecutando base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+
+// Cookie policy
+// Values:
+//    - 1: desactivado
+//    - 2: modo aceptacion si usuario continua navegando
+//    - 3: modo aceptacion si usuario hace click en boton aceptar
+define('COOKIE_MODE', 3);
+
+// IDIOMAS
+define('DEFAULT_LANGUAGE','en');
+
+// Fechas
+define('DEFAULT_PUBLICATION_DATE_FORMAT','Y-m-d H:i:s');
+
+// TRADUCCIONES
+//Activa/Desactiva transaciones desde MO files
+define('USE_MO_FILE_TRANSLATIONS', 1);
+define('PROJECT_LOCALE_NAME', 'drufony');
+# locale directory must exist as a child of Symfony root path
+define('LOCALE_PATH', '/../locale');
+define('SEND_MO_TRANSLATION_NOT_FOUND_EMAIL', 1);
+
+//REGISTER AND LOGIN
+//Only accepts path names defined in routing.yml
+define('PATH_AFTER_REGISTRATION', 'drufony_home_url');
+define('PATH_AFTER_LOGIN', 'drufony_home_url');
+
+//FACEBOOK API
+//FIXME: You need to set your own keys
+define('FACEBOOK_PRIVATE_KEY','XXXXXXXXXXXXXXXXXXXXXX');
+define('FACEBOOK_API_KEY','XXXXXXXXXXXXXXXXXX');
+
+// CONTENTS
+define('CONTENT_HOME_DEFAULT_URL','index');//Url a home. Se usa en los breadcrumbs.
+define('ITEMS_PER_PAGE', 20);//número de elementos por defecto a mostrar en cada listado
+
+// COMMENTS
+define('COMMENT_ALL', 0);
+define('COMMENT_ONLY_APPROVED', 1);
+define('COMMENT_SHOW_DEFAULT_STATE', COMMENT_ONLY_APPROVED);
+define('COMMENT_IS_NOT_A_REPLY', 0);
+define('COMMENT_SUBJECT_MAX_LENGHT', 64);
+define('COMMENT_DEFAULT_LANGUAGE', 'und');
+define('COMMENT_DEFAULT_FORMAT', 'filtered_html');
+define('COMMENT_DEFAULT_DELETED', 0);
+define('COMMENT_BUNDLE', 'comment_node_group');
+define('COMMENT_ENTITY_TYPE', 'comment');
+
+/** Para definir los modos de comentarios, hemos de realizar la suma de los estados 
+ *  activados.
+ *  Los valores son:
+ *      CLOSED = 1
+ *      OPENED = 2
+ *      PREMODERATED = 4
+ *      POSTMODERATED = 8
+ */
+define('COMMENT_STATUS_MODE', 1);
+define('COMMENT_DEFAULT_STATUS', 1);
+
+// GOOGLE ANALYTICS
+// define('GOOGLE_ANALYTIC_CODE','THECODEHERE'); //descomentar en caso de usarse
+
+//CORREOS ELECTRÓNICOS
+define ('DEFAULT_EMAIL_ADDRESS','gfuset@macson.es');
+//email base template
+define ('DRUFONY_EMAIL_TEMPLATENAME','email-base-template.html.twig');
+// USER CONFIGURATION
+define('USER_DEFAULT_TIME_ZONE','Europe/Madrid');
+//prefijo que se incluirá para su inserción url_alias.
+define('USER_URL_ALIAS_PREFIX','user/');
+//Ruta en routing.yml que define el enlace para validad email (donde pinchará el usuario).
+define('USER_VALIDATE_EMAIL_ROUTER_NAME','drufony_user_validate_email');
+//Ruta en routing.yml que define el enlace para recuperar la clave (donde pinchará el usuario).
+define('USER_PASS_RECOVERY_ROUTER_NAME','drufony_user_forgot_pass');
+// Sets the default user status when created:
+// Values:
+//   - 0: blocked
+//   - 1: active
+//
+// Default: 1
+define('USER_DEFAULT_STATUS', 1);
+
+//Formats are defined on the IANA website
+define('ALLOWED_IMAGE_FORMATS', serialize(array('image/png', 'image/jpg', 'image/jpeg', 'image/gif')));
+
+//Example 5M for 5MB, 200k for 200KB
+define('MAX_IMAGE_FILE_SIZE', '20M');
+define('MAX_ATTACHMENT_FILE_SIZE', '20M');
+
+define('DEFAULT_COMMENT_STATUS', 1);
+
+//For fields visibility form definition
+define('FIELDS_ITEM_HIDE', serialize(array()));
+define('FIELDS_SECTION_HIDE', serialize(array()));
+define('FIELDS_PAGE_HIDE', serialize(array()));
+define('FIELDS_PRODUCT_HIDE', serialize(array('priceVatPercentage', 'currency')));
+
+//Required fields
+define('FIELDS_REQUIRED_ITEM', serialize(array('title')));
+define('FIELDS_REQUIRED_SECTION', serialize(array('title')));
+define('FIELDS_REQUIRED_PAGE', serialize(array('title')));
+define('FIELDS_REQUIRED_PRODUCT', serialize(array('title', 'stock')));
+
+//Files
+define('FILES_BASE', 'bundles/drufonycore/files/');
+define('FILE_PREPATH_DEPTH', 2); //Directory nesting level for node files
+define('SUBPATH_IMAGES', 'images/');
+define('SUBPATH_PROFILE_IMAGES', 'profiles/images/');
+define('SUBPATH_ATTACHMENTS', 'attachments/');
+define('SUBPATH_TEMPORARY_VIDEOS', 'videos/');
+define('SUBPATH_CSV', 'csv/');
+define('SUBPATH_CONTACT_ATTACHMENTS', 'contact-attachments');
+
+//Images effects
+define('IMAGE_EFFECTS', serialize(array(
+    'style200x200' => array(
+        'effects' => array(
+            'scaleAndCrop' => array(
+                'info' => array('width' => 200, 'height' => 200)
+    )))
+)));
+
+
+define('DEFAULT_CURRENCY', 'EUR');
+
+//TPV
+define('TPV_GATEWAY', 'Stripe');
+
+//STRIPE
+//FIXME: You need to set your own keys
+define('STRIPE_PRIVATE_KEY',            'sk_test_XXXXXXXXXXXXXXXXXXXXXXXX');
+define('STRIPE_PUBLIC_KEY',             'pk_test_XXXXXXXXXXXXXXXXXXXXXXXX');
+define('STRIPE_CARD_DECLINED_ERROR',      1);
+define('STRIPE_CUSTOMER_NOT_FOUND_ERROR', 2);
+define('STRIPE_NETWORK_ERROR',            3);
+define('STRIPE_API_ERROR',                4);
+define('STRIPE_INVALID_KEY_ERROR',        5);
+define('STRIPE_INVALID_REQUEST_ERROR',    6);
+define('STRIPE_GENERIC_ERROR',            7);
+define('MAIL_ON_STRIPE_CARD_USER_ERROR',  1);
+define('STRIPE_DEBUG_MAIL', 'tests+stripe@example.com');
+define('STRIPE_ERROR_ADDRESS', STRIPE_DEBUG_MAIL);
+//define('STRIPE_ERROR_ADDRESS', DEFAULT_EMAIL_ADDRESS);
+
+//STRIPE ERRORS
+define('STRIPE_CARD_DECLINED', 'card_declined');
+define('STRIPE_INCORRECT_CVC', 'incorrect_cvc');
+define('STRIPE_EXPIRED_CARD', 'expired_card');
+define('STRIPE_PROCESSING_ERROR', 'processing_error');
+
+#Log levels
+define('ERROR', 'err');
+define('WARNING', 'warn');
+define('INFO', 'info');
+define('DEBUG', 'debug');
+
+//Videos
+//Default provider
+//FIXME: You need to set your own keys
+define('VIDEO_PROVIDER',        'Vimeo');
+define('VIMEO_CONSUMER_KEY',    'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+define('VIMEO_CONSUMER_SECRET', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+define('VIMEO_ACCESS_TOKEN',    'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+define('VIMEO_ACCESS_SECRET',   'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
+//Order status
+define('ORDER_STATUS_NEW', 1);
+define('ORDER_STATUS_ISSUE', 2);
+define('ORDER_STATUS_PREPARATION', 3);
+define('ORDER_STATUS_READY_TO_SEND', 4);
+define('ORDER_STATUS_SHIPPED', 5);
+define('ORDER_STATUS_ISSUE_ON_RECEPTION', 6);
+define('ORDER_STATUS_RECEPTION_CONFIRMED', 7);
+define('ORDER_STATUS_CUSTOMER_SEND_BACK', 8);
+define('ORDER_STATUS_RETURNED', 9);
+
+//Payment status
+define('PAYMENT_STATUS_PENDING', 1);
+define('PAYMENT_STATUS_PAID', 2);
+define('PAYMENT_STATUS_REFUND', 3);
+define('PAYMENT_STATUS_DISPUTE', 4);
+define('PAYMENT_STATUS_CHARGEBACK', 5);
+
+//Menu types
+define('MENU_TYPE_HEADER', '1');
+define('MENU_TYPE_FOOTER', '2');
+define('MENU_TYPE_OPTIONS', serialize(array(MENU_TYPE_HEADER => 'Header', MENU_TYPE_FOOTER => 'Footer')));
+
+//Coupons constants
+define('COUPON_UNIQUE', '1');
+define('COUPON_MULTIUSER', '2');
+define('COUPON_TYPE_OPTIONS', serialize(array(COUPON_UNIQUE => 'Unique', COUPON_MULTIUSER => 'Multiuser')));
+define('COUPON_ENABLED', '1');
+define('COUPON_DISABLED', '0');
+define('COUPON_EXPIRED', '2');
+define('COUPON_VALID', '3');
+define('COUPON_USED', '4');
+define('COUPON_NONEXISTENT', '5');
+define('COUPON_NONACTIVE', '6');
+
+// Mandrill
+//FIXME: You need to set your own keys
+define('MANDRILL_SMTP_ADDRESS', 'smtp.mandrillapp.com');
+define('MANDRILL_SMTP_PORT', 587);
+define('MANDRILL_SMTP_USERNAME', 'tests@example.com');
+define('MANDRILL_SMTP_PASSWORD', 'XXXXXXXXXXXXXXXXXXXXXX');
+
+//Batch
+define('BATCH_BLOCK_SIZE', 50);
+
+//Url redirect validity in days
+define('URL_REDIRECT_VALIDITY', 10);
+
+//Contents that can have geo position
+define('CONTENTS_GEO_POSITION', serialize(array('item', 'page')));
+
+//Types of VAT
+defined('DEFAULT_VAT') or define('DEFAULT_VAT', 0.21);
+define('VAT_TYPES', serialize(array('1' => 0, '2' => 0.10, '3' => 0.21)));
+define('DEFAULT_VAT_TYPE', '3');
+
+//Free tags, vocabulary name
+define('FREE_TAGS', 'freeTags');

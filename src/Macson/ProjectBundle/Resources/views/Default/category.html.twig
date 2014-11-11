@@ -1,0 +1,50 @@
+<div id="tipoPagina">cat</div>
+<div id="contenedor1">	
+	<div id="fotoRow">	
+		<div class="foto">
+{% include "MacsonProjectBundle:Default:login.html.twig" %}				
+			<img src='{{ asset('bundles/macsonproject/images/espacio.png') }}'>
+{% include "MacsonProjectBundle:Default:menu.html.twig" %}
+		</div>
+{% for product in ball %}
+		<div class="foto">
+			<a href={{ path('macson_product',{'lang' : lang , 'product' :product.reference, 'category' :menu.selected|toUrl, 'productname':product.title|toUrl} ) }}>
+					<img class="fotoImg" src="{{ asset('bundles/macsonproject/images/Product/Standard/'~product.reference~'_1.jpg') }}" 
+					data-alt-src="{{ asset('bundles/macsonproject/images/Product/Standard/'~product.reference~'_2.jpg') }}"  alt="{{ product.title }}" /></a>
+
+	{% if product.productSize == 'AGOTADO'%}		
+			<div id="tagAgotado">AGOTADO</div>
+	{% endif %}
+			<div id="tagName">
+				{{product.title}}
+			</div>
+			<div id="tagPrice">
+	{% if product.price == product.priceOffer%}		
+				{{ product.price }} €
+	{% else %}
+			<a class="tachado">{{ product.price }} €</a>    {{product.priceOffer}} €
+	{%endif%}
+			</div>
+		</div>
+	{% if loop.last %}
+		{%if (loop.index)%3 == 0 %}
+		<div class="foto">
+			<img src='{{ asset('bundles/macsonproject/images/espacio.png') }}'>	
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/macsonproject/images/espacio.png') }}'>
+		</div>		
+		{% endif %}
+		{%if (loop.index)%3 == 1 %}	
+		<div class="foto">
+			<img src='{{ asset('bundles/macsonproject/images/espacio.png') }}'>	
+		</div>	
+		{% endif %}
+	{% endif %}	
+	{%if (loop.index-2)%3 == 0 %}
+	</div>
+	<div id="fotoRow">
+	{% endif %}			
+{% endfor %}
+	</div>	
+</div>	

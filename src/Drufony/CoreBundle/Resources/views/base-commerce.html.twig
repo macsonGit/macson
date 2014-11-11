@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Caprese</title>
+    
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024">
+    <meta name="description" content="Page description">
+    <!--/ metas -->
+    
+    <!-- styles -->
+    <link rel="stylesheet" href="/bundles/drufonycore/caprese/version1.0.1/css/main.css">
+    <link rel="stylesheet" href="/bundles/drufonycore/caprese/version1.0.1/css/jquery.pretty.photo.css">
+    <link rel="shortcut icon" href="/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico">
+    <link rel="stylesheet" href="/bundles/drufonycore/assets/css/generic-styles.css">
+    <!--/ styles -->
+    
+    <!-- scripts -->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery.isotope.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery.nivo.slider.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery.pretty.photo.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/main.js"></script>
+    <!--/ scripts -->
+
+    <style type="text/css">
+      .checkout-process-wrapper {overflow: hidden; position: relative;}
+      .checkout-process-wrapper .checkout {position: relative;}
+      .checkout-process-wrapper .input {border-bottom: none}
+      .checkout-process-wrapper form { overflow:hidden; display:block !important;}
+      .checkout-process-wrapper .checkout h2 { cursor: inherit; }
+    </style>
+  </head>
+  
+  <body onunload="">
+    <div class="body">
+      <!-- stiches -->
+      <div class="stiches">
+      
+          <header class="page-header-top">
+            <!-- help -->
+            <section id="help" class="help">
+              <dl>
+                <dt>Help</dt>
+                <dd>
+                  <div class="phone">
+                    <p>{{ 'Feel free to call us'|t }} </p>
+                    <p>+34 93 237 86 86</p>
+                    <i class="icon-comment"></i>
+                  </div>
+                  <div class="finder">
+                    <a href="#">Store finder</a>
+                  </div>
+                  <ul>
+                    <li>General</li>
+                    <li><a href="{{ path('drufony_general_url',{ 'lang': lang , 'url':lang~'-page-conditions-and-terms'} ) }}">{{ 'Size chart'|t }}</a></li>
+                    <li><a href="{{ path('drufony_general_url',{ 'lang': lang , 'url':lang~'-page-conditions-and-terms'} ) }}">{{ 'Conditions and terms'|t }}</a></li>
+                  </ul>
+                </dd>
+              </dl>
+            </section>
+            <!--/ help -->
+        </header>
+
+
+<!-- Flash messages -->
+
+      {% for type, flashMessages in app.session.flashbag.all() %}
+          {% set flashClass = '' %}
+          {% if type == constant('INFO') %}
+            {% set flashClass = "flash-ok" %}
+          {% endif %}
+          {% if type == constant('ERROR') %}
+            {% set flashClass = "flash-error" %}
+          {% endif %}
+          {% for message in flashMessages %}
+            <div class="wd100">
+              <div class="{{flashClass}}">
+                <button type="button" class="close fr" data-dismiss="alert">×</button>
+                {{ message }}
+              </div>
+            </div>
+          {% endfor %}
+      {% endfor %}
+<!--/ Flash messages -->
+
+<!-- Main content -->
+        {% include mainContent %}
+<!--/ Main content -->
+
+      </div>
+
+      <!-- footer -->
+      <footer class="page-footer">
+        <div class="col">
+          <!-- secondary phone -->
+          <div class="secondary-phone">
+            <p>{{ 'Feel free to call us'|t }}</p>
+            <p>+34 93 237 86 86</p>
+            <i class="icon-comment"></i>
+          </div>          
+          <!--/ secondary phone -->
+          
+        </div>
+        
+        
+        
+        <div class="col fr">
+          
+          <!-- payment nav -->
+          <ul class="payment-nav" style="margin-top:19px">
+            <li>Payment</li>
+            <li><a href="#"><img src="/bundles/drufonycore/caprese/version1.0.1/img/payment-nav/mc.png" width="27" height="17" alt="MasterCard"></a></li>
+            <li><a href="#"><img src="/bundles/drufonycore/caprese/version1.0.1/img/payment-nav/maestro.png" width="27" height="17" alt="Maestro"></a></li>
+            <li><a href="#"><img src="/bundles/drufonycore/caprese/version1.0.1/img/payment-nav/visa.png" width="27" height="17" alt="Visa"></a></li>
+            <li><a href="#"><img src="/bundles/drufonycore/caprese/version1.0.1/img/payment-nav/amex.png" width="16" height="17" alt="AmEx"></a></li>
+            <li><a href="#"><img src="/bundles/drufonycore/caprese/version1.0.1/img/payment-nav/paypal.png" width="43" height="17" alt="PayPal"></a></li>
+          </ul>
+          <!--/ payment nav -->
+        </div>
+      </footer>
+      <!--/ footer -->
+    </div>
+  <script>
+    $(function(){
+      $('.close').click(function() {
+        $(this).parent().remove();
+      });
+    });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<div class="clearfix">
+  <div class="col">
+
+      <div class="login-block" style="overflow:hidden">
+          <h3>{{ "Login with existent account" | t }}</h3>
+          {{ form_start(form, {'attr': { 'class': 'col' }}) }}
+          {{ form_errors(form) }}
+              <label class="label" style="margin-bottom:10px">
+                {{ form_label(form.username) }}
+                {% if form.username.vars.required %}
+                  <span>*</span>
+                {% endif %}
+              </label>
+              {{ form_errors(form.username) }}
+              <label class="input" style="margin-bottom:18px">
+                {{ form_widget(form.username, { 'attr': { 'class': 'form-control' } }) }}
+              </label>
+              <label class="label" style="margin-bottom:10px">
+                {{ form_label(form.password) }}
+                {% if form.password.vars.required %}
+                  <span>*</span>
+                {% endif %}
+              </label>
+              {{ form_errors(form.password) }}
+              <label class="input" style="margin-bottom:18px">
+                {{ form_widget(form.password, { 'attr': { 'class': 'form-control' } }) }}
+              </label>
+              
+              {{ form_errors(form.rememberme) }}
+              {{ form_widget(form.rememberme) }}
+              <div class="wd50 fl">
+                {{ form_row(form.login, {'attr': {'class': 'button button-ok'}} ) }}
+              </div>
+        <div class="wd100 oh">
+          <a href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}' class="fl-link-secondary">{{ "Continue without login" | t }}</a>
+        </div>
+
+      </div>
+  </div>
+
+  </div>

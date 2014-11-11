@@ -1,0 +1,18 @@
+{% if comments is not null %}
+    <h3>{{ commentsCount }} {% if commentsCount == 1 %} {{
+    "comment" | t }} {% else %} {{ "comments" | t }} {% endif %}</h3>
+    <div class="comment-list">
+    {% for comment in comments %}
+        <div class="comment-item depth-{{ comment.depth }}">
+            <p class="subject">{{ comment.subject }}</p>
+            <p class="body">{{ comment.body }}</p>
+            <a href="#">{{ "Reply" | t }}</a>
+            {{ form(commentsForm[comment.cid]) }}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+{% if commentsForm is not null %}
+    <h3>{{ "New comment"|t }}</h3>
+    {{ form(commentsForm.new) }}
+{% endif %}

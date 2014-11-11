@@ -1,0 +1,23 @@
+<html>
+<body>
+{% if error %}
+    <div>{{ error.message | t }}</div>
+{% endif %}
+
+<form action="{{ path('drufony_login_check', {'lang': lang }) }}" method="post">
+    <label for="username">{{ "User" | t }}:</label>
+    <input type="text" id="username" name="_username" value="{{ lastUsername }}" />
+
+    <label for="passwd">{{ "Password" | t }} </label>
+    <input type="password" id="passwd" name="_password" />
+
+    <label for="remember_me">{{ "Keep me logged in" | t }}</label>
+    <input type="checkbox" id="remember_me" name="_remember_me" checked />
+
+    <input type="hidden" name="_target_path" value="{{ path('drufony_home_url', { 'lang': lang }) }}" />
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <input type="submit" name="login" value="{{ "Login" | t }}" />
+</form>
+</body>
+</html>

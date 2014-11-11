@@ -1,0 +1,58 @@
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="contenedor1">	
+
+<div id="" class="layout960 maxW960p wd98 oh pad10 align-left">
+    {% include 'DrufonyCoreBundle::user_config_menu.html.twig' %}
+    {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
+    <div class="fl wd65 oh bb column-info">
+      {{ form_start(accountForm) }}
+      {{ form_errors(accountForm) }}
+
+      {{ form_errors(accountForm.email) }}
+      <div class="disIB wd28 mg-right2">
+        {{ form_label(accountForm.email) }}
+      </div>
+      {{ form_widget(accountForm.email, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
+
+      {% if accountForm.password is defined %}
+      {{ form_errors(accountForm.password) }}
+      <div class="disIB wd28 mg-right2">
+        {{ form_label(accountForm.password) }}
+      </div>
+      {{ form_widget(accountForm.password, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
+      {% endif %}
+
+      {% for passwordField in accountForm.newPassword %}
+          <div class="disIB wd28 mg-right2">
+            {{ form_label(passwordField, null, { 'attr': {'class': ''} }) }}
+          </div>
+              {{ form_widget(passwordField, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
+      {% endfor %}
+
+    <div class="wd100 mg-vertical10 align-right">
+      {{ form_widget(accountForm.save, { 'attr': {'class': 'action-button' }}) }}
+    </div>
+
+      {{ form_end(accountForm) }}
+      <div class="wd100">
+        <a rel="delete" href="{{ path('drufony_users_delete', {'lang': lang, 'id' : user.uid}) }}">Delete account</a>
+      </div>
+    </div>
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('a[rel="delete"]').click(function(e) {
+        var resp = confirm('{{ "Are you sure you want to delete this content?" | t }}');
+        if (!resp) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+    });
+});
+
+</script>
+{% include "CustomProjectBundle::footer.html.twig" %}

@@ -1,0 +1,44 @@
+<style> {# FIXME delete for real projects #}
+    .checked a { color: red }
+</style>
+
+{% if widgets.rate is defined %}
+    <h4>{{ "Rate this content" | t }}</h4>
+    <div class="rating-block" date-nid="{{ contentData.nid }}"
+    date-rate-path="{{ path('drufony_rate_content', {'nid': contentData.nid }) }}">
+        <div class="rating-votes">
+            <p><strong><span id="numRates">{{ widgets.rate.numRates }}</span> {{ "votes" | t }}</strong></p>
+        </div>
+        <div class="rating-icons">
+            {% for count in 1 .. 5 %}
+                <div class="rating-star-icon {% if loop.index <= widgets.rate.rateValue %} checked {% endif %}">
+                    <a data-rate={{ loop.index }} href="#">{{ loop.index }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<script src="/bundles/drufonycore/assets/components/library/jquery/jquery.min.js?v=v1.9.5"></script>
+<script>
+    $(document).ready(function() {
+        $('.rating-star-icon a').click(function(e) {
+            var rate = $(this).attr('data-rate');
+            $('.rating-star-icon').removeClass('checked');
+            $('.rating-star-icon:lt(' + rate + ')').addClass('checked');
+            $.ajax({
+                url: $('.rating-block').attr('date-rate-path'),
+                timeout: 10000,
+                method: 'POST',
+                data: {
+                    value: rate,
+                },
+                success: function(data) {
+                    $('#numRates').html(data.numRates);
+                }
+            });
+
+            e.preventDefault();
+        });
+    });
+</script>

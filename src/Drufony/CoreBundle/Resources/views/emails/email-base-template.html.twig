@@ -1,0 +1,11 @@
+<div>
+    {% if subject is defined %}
+        <p>{{ subject | raw }}</p>
+    {% endif %}
+
+    <p>{{ body | raw }}</p>
+
+    {% if sign is defined %}
+        {{ sign | raw }}
+    {% endif %}
+</div>

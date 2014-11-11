@@ -1,0 +1,44 @@
+<html>
+<body>
+    <h1>{{ "Tasks" | t }}</h1>
+
+    <a href="{{ path('drufony_tasks_add', { 'lang': lang }) }}">{{ "Add new task" | t }}</a>
+
+    {% if tasks is not empty %}
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ "Task" | t }}</th>
+                    <th>{{ "Date" | t }}</th>
+                    <th>{{ "Status" | t }} </th>
+                    <th>{{ "Assigned" | t }} </th>
+                    <th>{{ "Level" | t }} </th>
+                    <th>{{ "Operations" | t }} </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('drufony_tasks_view', { 'lang': lang, 'id' : task.id }) }}">{{ task.title }}</a>
+                        </td>
+                        <td>{{ task.creationDate }}</td>
+                        <td>{{ task.statusName }}</td>
+                        <td>{{ task.userName | default('-') }}</td>
+                        <td>{{ task.levelName }}</td>
+                        <td>
+                            <a href="{{ path('drufony_tasks_edit', { 'lang': lang, 'id': task.id }) }}">{{ "Edit" | t }}</a>
+                            <a  href="{{ path('drufony_tasks_delete', { 'lang': lang, 'id': task.id }) }}"
+                                onclick="return confirm('{{ "Are you sure you want to delete this task" | t }}')">
+                                {{ "Delete" | t }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{{ "No pending tasks" | t }}</p>
+    {% endif %}
+</body>
+</html>

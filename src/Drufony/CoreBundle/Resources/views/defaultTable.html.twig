@@ -1,0 +1,47 @@
+{% if tableRows is not empty %}
+    <table class="{{ tableClass }}">
+    <!-- Table heading -->
+        <thead class="bg-gray">
+            <tr>
+                {# Print cols to show #}
+                {% for keyCol in tableCols %}
+                <th {% if keyCol.class is defined %} class="{{ keyCol.class}}" {% endif %} >{{ keyCol.label }}</th>
+                {% endfor %}
+                {% if actions is defined and actions is not empty %}
+                    <th {% if keyCol.class is defined %} class="{{ keyCol.class}}" {% endif %} >{{ "Actions"|t }}</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <!-- // Table heading END -->
+        <!-- Table body -->
+        <tbody>
+            {# Print listed content #}
+            {% for row in tableRows %}
+            <!-- Table row -->
+            <tr class="gradeX">
+                {% for keyCol in tableCols %}
+                <td>
+                    {% if keyCol.link is defined %}
+                        <a href="{{ path(keyCol.link, {'lang' : lang}) }}">{{ row[keyCol.name] }}</a>
+                    {% else %}
+                        {{ row[keyCol.name] }}
+                    {% endif %}
+                </td>
+                {% if actions is defined and actions is not empty %}
+                    <td>
+                        {% for buttons in actions %}
+                          <a href="{{ path(buttons.link, { 'lang': lang, 'id': row[buttons.id] }) }}" class="{{ buttons.icon }}" title="{{ buttons.label }}"></a>
+                        {% endfor %}
+                    </td>
+                  {% endif %}
+                {% endfor %}
+            </tr>
+            <!-- // Table row END -->
+            {% endfor %}
+        </tbody>
+        <!-- // Table body END -->
+    </table>
+    <!-- // Table END -->
+    {% else %}
+    <p>{{ "There are no entries"|t }}</p>
+{% endif %}

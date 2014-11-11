@@ -1,0 +1,50 @@
+<html>
+<body>
+<h1>{{ "User details" | t }}</h1>
+{{ user.username }}
+
+{% if currentUser is not null and currentUser.uid != user.uid %}
+<div class="follow {% if isFollowing %} following {% endif %}" data-change-text="{% if  isFollowing %} {{ "Follow" | t }} {% else %} {{ "Unfollow" | t }} {% endif %}" data-follow-path="{{ path('drufony_follow_user', {
+    'action' : 'add',
+    'uid' : user.uid }) }}"
+    data-unfollow-path="{{ path('drufony_follow_user', {
+    'action': 'remove',
+    'uid' : user.uid }) }}">
+    <p><a href="#">{% if  isFollowing %} {{ "Unfollow" | t }} {% else %} {{ "Follow" | t }} {% endif %}</a></p>
+</div>
+{% endif %}
+<script src="/bundles/drufonycore/assets/components/library/jquery/jquery.min.js?v=v1.9.5"></script>
+<script>
+    $(document).ready(function() {
+        $('.follow a').click(function(e) {
+            if ($(".follow").hasClass("following")) {
+                url = $(".follow").attr('data-unfollow-path');
+            }
+            else {
+                url = $(".follow").attr('data-follow-path');
+            }
+            $.ajax({
+                url: url,
+                timeout: 10000,
+                method: 'GET',
+                success: function(data) {
+                    if (data.status == 'ok') {
+                        var oldText = $('.follow a').text();
+                        $('.follow a').text($('.follow').attr('data-change-text'));
+                        $('.follow').attr('data-change-text', oldText);
+                        if ($('.follow').hasClass('following')) {
+                            $('.follow').removeClass('following');
+                        }
+                        else {
+                            $('.follow').addClass('following');
+                        }
+                    }
+                }
+            });
+
+            e.preventDefault();
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<div class="row row-app">
+    <div class="col-md-12 animated fadeInDown">
+        <div class="col-separator bg-none box col-separator-first">
+            <div class="col-table">
+                <div class="col-separator-h"></div>
+                    <div class="col-table-row">
+                        <h3>{{ "Translate overview" | t }}</h1>
+                            <div class="widget widget-heading-simple widget-body-white">
+                                <div class="widget-head">
+                                    <h4 class="heading glyphicons show_thumbnails">{{ "Content
+                                    percentage" | t }}</h4>
+                                </div>
+                                <div class="widget-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="shortRight">{{"Language" | t }}</th>
+                                                <th>{{"Percentage" | t }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for langKey, percentage in contentPercentage %}
+                                                {% if percentage < 50 %}
+                                                    {% set barClass="danger" %}
+                                                {% elseif percentage > 50 and percentage < 75 %}
+                                                    {% set barClass="primary" %}
+                                                {% else %}
+                                                    {% set barClass="success" %}
+                                                {% endif %}
+                                                <tr>
+                                                    <td class="shortRight">
+                                                        {{ languages[langKey] | t }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-{{ barClass }}"
+                                                            style="width: {{ percentage
+                                                            }}%"><strong>{{ percentage }}%</strong></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-separator-h"></div>
+                            <div class="widget widget-heading-simple widget-body-white">
+                                <div class="widget-head">
+                                    <h4 class="heading glyphicons show_thumbnails">{{ "Interface percentage" | t }}</h4>
+                                </div>
+                                <div class="widget-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="shortRight">{{"Language" | t }}</th>
+                                                <th>{{"Percentage" | t }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for langKey, percentage in interfacePercentage %}
+                                                {% if percentage < 50 %}
+                                                    {% set barClass="danger" %}
+                                                {% elseif percentage > 50 and percentage < 75 %}
+                                                    {% set barClass="primary" %}
+                                                {% else %}
+                                                    {% set barClass="success" %}
+                                                {% endif %}
+                                                <tr>
+                                                    <td class="shortRight">
+                                                        {{ languages[langKey] | t }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-{{ barClass }}"
+                                                            style="width: {{ percentage }}%"><strong>{{ percentage }}%</strong></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

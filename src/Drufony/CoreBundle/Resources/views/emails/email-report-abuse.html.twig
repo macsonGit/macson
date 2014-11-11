@@ -1,0 +1,13 @@
+<div>
+    {% if subject is defined %}
+        <p>{{ subject | raw }}</p>
+    {% endif %}
+
+    <p>{{ 'Hello, a user has reported an abuse for content' | t }}
+        <a href="{{ customParams.pathToReport }}">{{ customParams.pathToReport }}</a>
+    </p>
+
+    {% if sign is defined %}
+        {{ sign | raw }}
+    {% endif %}
+</div>

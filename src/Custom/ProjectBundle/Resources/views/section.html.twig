@@ -1,0 +1,52 @@
+<html>
+    <body>
+        {% set breadCrumb = contentData.getBreadCrumb() %}
+        {% for title, url in breadCrumb %}
+          {% if loop.index != breadCrumb|length %}
+              <a href="{{ path('drufony_general_url', { 'lang': lang, 'url': url }) }}">{{ title }}</a>
+          {% else %}
+            {{ title }}
+          {% endif %}
+        {% endfor %}
+        <h1>{{ contentData.Title }}</h1>
+        <h2>{{ contentData.Teaser | raw }}</h2>
+        <h3>{{ contentData.Description | raw }}</h3>
+        <p>{{ contentData.Body | raw }}</p>
+        <h4>Children:</h4>
+        <div>
+        <ul>
+        {% for child in contentData.getChildren() %}
+            {% if child.published == 1 %}
+                <li>
+                    <a href="{{ path('drufony_general_url', { 'lang': lang, 'url': child.Url }) }}">{{ child.Title }}</a>
+                    {{ child.Teaser | raw }}
+                    {% if child.getMainImage() is not null %}
+                        <img src="{{ child.getMainImage().uri|thumbnail('style200x200') }}" alt='{{ child.getMainImage().alt }}' height='110'>
+                    {% endif %}
+                 </li>
+            {% endif %}
+        {% else %}
+            <li>No child</li>
+        {% endfor %}
+        </div>
+        </ul>
+
+        {% include 'DrufonyCoreBundle::content_common_fields.html.twig' %}
+
+        {% include 'DrufonyCoreBundle::comments.html.twig' %}
+        <ul>
+            {% for oneContent in contents %}
+                <li>
+                    <a href="{{ path('drufony_general_url', { 'lang': lang, 'url': oneContent.Url }) }}">{{ oneContent.Title }}</a>
+                    (<strong>{{ oneContent.AuthorName }}</strong> - {{ oneContent.PublicationDate }})
+                 </li>
+            {% else %}
+                <p>{{ 'No content' | t }}</p>
+            {% endfor %}
+        </ul>
+        {% include 'DrufonyCoreBundle::social-block.html.twig' %}
+    </body>
+    {% include 'DrufonyCoreBundle::script-analytics.html.twig' %}
+    {% include 'DrufonyCoreBundle::block-cookie.html.twig' %}
+</html>
+

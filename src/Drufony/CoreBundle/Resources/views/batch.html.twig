@@ -1,0 +1,55 @@
+<head>
+<link rel="stylesheet" href="/bundles/drufonycore/assets/components/library/jquery-ui/css/jquery-ui.min.css" />
+</head>
+<h1>{{ "Processing..." | t }}</h1>
+
+<div id="progressbar"></div>
+
+<div class="batch">
+<p>{{ "Processed" | t }} <span id="offset">{{ offset }}</span> / <span id="total">{{ numElements }}</span></p>
+</div>
+
+<div id="route" class="hidden" style="display:none">{{ request.getUri() }}</div>
+<div id="page"  class="hidden" style="display:none">{{ page }}</div>
+<div id="file"  class="hidden" style="display:none">{{ file }}</div>
+
+<script src="/bundles/drufonycore/assets/components/library/jquery/jquery.min.js?v=v1.9.5"></script>
+<script src="/bundles/drufonycore/assets/components/library/jquery-ui/js/jquery-ui.min.js"></script>
+
+<script>
+    var elementsProcessed = parseInt($('#offset').html());
+    var total = parseInt($('#total').html());
+    var page = parseInt($('#page').html());
+    $('#progressbar').progressbar({
+        value: false,
+        max: total
+    });
+    $(document).ready(function() {
+        doRequest(elementsProcessed);
+    });
+    function doRequest(elementsProcessed) {
+        if (elementsProcessed < total) {
+            $.ajax({
+                url: $('#route').html(),
+                timeout: 10000,
+                data: {
+                    file: $('#file').html(),
+                    offset: $('#offset').html(),
+                    page: $('#page').html(),
+                    batchProcessing: 1,
+                },
+                success: function (data) {
+                    if (data.status == 'OK' && data.elementsProcessed != 0) {
+                        elementsProcessed += data.elementsProcessed;
+                        $('#offset').html(elementsProcessed);
+                        $('#progressbar').progressbar('option', 'value', elementsProcessed);
+                        doRequest(elementsProcessed);
+                    }
+                }
+            });
+        }
+        else {
+            location.reload();
+        }
+    }
+</script>

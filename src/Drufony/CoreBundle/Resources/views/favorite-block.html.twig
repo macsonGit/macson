@@ -1,0 +1,36 @@
+{% if widgets.favorite is defined %}
+    <div class="favorite {% if widgets.favorite.isFavorited %} favorited {% endif %}" data-add-path="{{ path('drufony_favorite_content', {
+        action : 'add',
+        nid : contentData.nid }) }}" data-remove-path="{{ path('drufony_favorite_content', {
+        action : 'remove',
+        nid : contentData.nid }) }}">
+        <a href="#">{{ "Add to your favourites" | t }}</a>
+    </div>
+<script src="/bundles/drufonycore/assets/components/library/jquery/jquery.min.js?v=v1.9.5"></script>
+<script>
+    $('.favorite a').click(function(e) {
+        if ($(this).parent().hasClass('favorited')) {
+            url = $('.favorite').attr('data-remove-path');
+        }
+        else {
+            url = $('.favorite').attr('data-add-path');
+        }
+        $.ajax({
+            url: url,
+            timeout: 1000,
+            success: function(data) {
+                if (data.status == 'ok') {
+                    if ($('.favorite').hasClass('favorited')) {
+                        $('.favorite').removeClass('favorited');
+                    }
+                    else {
+                        $('.favorite').addClass('favorited');
+                    }
+                }
+            }
+        });
+
+        e.preventDefault();
+    });
+</script>
+{% endif %}

@@ -1,0 +1,49 @@
+{% include "CustomProjectBundle::base.html.twig" %}
+
+{% set sumItems= 0 %}
+{% for item in products %}
+	{% set sumItems= sumItems + item.count %}
+{% endfor %}
+
+<body>
+
+	<div id='header' class="sinEfectos">
+	<ul>
+            <li id="loginMenu">
+{% if app.user is not null %}
+   		{{app.user.username}} |
+{% else %}
+		{{ 'login'|t }} |
+{% endif %}
+	    </li>
+
+{% if sumItems  %}
+            <li id="carritoResumen"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'></li>
+ 	    <li id="sumItems">
+	    	({{ sumItems }}) |
+	    </li>
+{% else %}
+            <li id="carritoResumen"></li>
+ 	    <li id="sumItems">
+	    </li>
+{% endif %}		
+            <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
+		{{'shops'|t}} | </a>
+	    </li>
+{% if lang == 'es' %}
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> english<a><li>  
+{% endif %}
+{% if lang == 'en' %}
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> español<a><li>  
+{% endif %}
+        </ul>
+	</div>
+
+{% if homePage is defined %}
+<div id="logo"><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'></div> 
+{% else %}
+<div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
+{% endif %}
+
+
+<div id="mascara"></div>

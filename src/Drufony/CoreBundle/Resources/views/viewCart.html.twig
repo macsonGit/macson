@@ -1,0 +1,79 @@
+<!-- page title -->
+<h1 class="page-title">{{pageTitle}} </h1>
+<!--/ page title -->
+
+<!-- cart -->
+<section class="cart">
+  <p>{{ "Cart" | t }}: <a href="{{ path('drufony_cart_view', { 'lang' : lang })}}"> {{itemsCount}} {{ "items" | t}} </a> </p>
+  <table>
+    <thead>
+      <tr>
+        <td>&nbsp;</td>
+        <td><strong>{{ "Product name" | t }}</strong></td>
+        <td><strong>{{ "Unit price" | t }}</strong></td>
+        <td><strong>{{ "Amount" | t }}</strong></td>
+        <td><strong>{{ "Price" | t }}</strong></td>
+        <td><strong>{{ "Actions" | t }}</strong></td>
+      
+	</tr>
+    </thead>
+    <tbody>
+
+    {% for item in items%}
+        <tr>
+            <td>
+                {% if item.product.getMainImage() is not null %}
+                    <a href='#' class='pic'><img src="{{ item.product.getMainImage().uri|thumbnail('style200x200') }}" height='110px'></a>
+                {% else %}
+                  <a href="#" class="pic"><img src="http://placehold.it/110x110" alt=""></a>
+                {% endif %}
+            </td>
+            <td> {{ item.product.getTitle() }} </td>
+            <td> {{ item.product.__get('priceSubtotalNoVat') | number_format(2) }} </td>
+            <td> {{ item.count }} </td>
+            <td> {{ item.subtotal | number_format(2) }} </td>
+            <td>
+                <a href="{{path('drufony_cart_update', { 'lang' : lang, 'product': item.product.nid, 'value': item.count + 1 }) }}">+</a>
+                <a href="{{path('drufony_cart_update', { 'lang' : lang, 'product': item.product.nid, 'value': item.count - 1 }) }}">-</a>
+                <a href="{{path('drufony_cart_remove', { 'lang' : lang, 'product': item.product.nid }) }}">Remove</a>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
+  {% set discountClarification = '' %}
+  {% if (discount > 0 and discountType == 1) %}
+    {% set discountClarification = '(' ~ couponDiscount ~ '%' ~ ')'  %}
+  {% endif %}
+  <form method='GET'>
+    <div class="clearfix">
+      <div class="right-col">
+        <dl>
+          <dt> {{ subtotal | number_format(2) }} €</dt>
+          <dd>{{ "Subtotal" | t }}:</dd>
+          <dt class="discount">{{ discount | number_format(2) }} {{ discountClarification }} €</dt>
+          <dd>
+            <label class="input"><input type="text" name='couponCode' id='couponCode' placeholder="Enter coupon code here" value='{{ couponCode }}'/></label>
+          </dd>
+          {% if discount > 0 %}
+              <dt> {{ total | number_format(2) }} €</dt>
+              <dd>{{ "Total before discount" | t }}:</dd>
+          {% endif %}
+          <dt> {{ tax | number_format(2) }} €</dt>
+          <dd>{{ "Taxes" | t }}:</dd>
+        </dl>
+        <div class="total">{{ "Total" | t }}: {{ totalDiscounted | number_format(2) }} €</div>
+      </div>
+    </div>
+    <footer>
+      <a href='{{path('drufony_product_list', { 'lang' : lang}) }}' class="fl-link-secondary"> {{ "Continue shopping" | t }}</a>
+      {% if itemsCount == 0 %}
+        <label class="button button-disabled">{{ "Proceed to checkout" | t }}</label>
+        {% else %}
+        <input type='submit' class="button button-ok" value="{{ "Proceed to checkout" | t }}">
+      {% endif %}
+    </footer>
+  </form>
+</section>
+<!--/ cart -->

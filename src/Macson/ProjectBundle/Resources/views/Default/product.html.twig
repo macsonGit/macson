@@ -1,0 +1,89 @@
+
+<script>
+	var urlImg1 = "{{ asset('bundles/macsonproject/images/Product/Original/'~product[0].reference~'_1.jpg') }}";
+	var urlImg2 = "{{ asset('bundles/macsonproject/images/Product/Original/'~product[0].reference~'_2.jpg') }}";
+	var urlImg3 = "{{ asset('bundles/macsonproject/images/Product/Original/'~product[0].reference~'_3.jpg') }}";
+</script>
+
+{% if not numImages.im2 %}
+			<div id="tipoPagina">prod1</div>
+{% else %}
+	{% if not numImages.im3 %}
+		<div id="tipoPagina">prod2</div>
+	{% else %}
+		<div id="tipoPagina">prod</div>
+	{% endif %}	
+{% endif %}	
+<div id="contenedor1">	
+	<div id="fotoRow">
+		<div class="foto">
+{% include "MacsonProjectBundle:Default:login.html.twig" %}		
+{%if product[0].productSize!= 'AGOTADO'%}
+			<div id="tallas">
+				<ul id="listaTallas">
+	{% for size in product if size.productSize!= 'AGOTADO' %}	
+		{%if loop.first%}
+			{%if product|length > 1%}
+					<li>Selecciona Talla:</li>
+			{% else %}
+					<li>Sólo disponible en talla:</li>
+			{% endif %}
+		{%endif%}			
+					<li>{{size.productSize}}</li>							
+	{% endfor %}
+				</ul>		
+				<div id="buyBoton">								
+					<button id="boton1">COMPRA</button>		
+				</div>
+			</div>
+{%endif%}			
+			<div id="tituloCat">
+				+ Menu
+			</div>	
+{% include "MacsonProjectBundle:Default:menu.html.twig" %}
+{% if not numImages.im2 %}		
+			<img src='{{ asset('bundles/macsonproject/images/espacio.png') }}'>		
+{% else %}
+			<img class="fotoImg1" src='{{ asset('bundles/macsonproject/images/Product/Standard/'~product[0].reference~'_1.jpg') }}'>
+{% endif %}	
+		</div>
+		<div class="foto">
+{% if not numImages.im2 %}
+			<img class="fotoImg1" src='{{ asset('bundles/macsonproject/images/Product/Standard/'~product[0].reference~'_1.jpg') }}'>
+{% else %}
+			<img class="fotoImg2" src='{{ asset('bundles/macsonproject/images/Product/Standard/'~product[0].reference~'_2.jpg') }}'>	
+{% endif %}		
+{% if product[0].productSize == 'AGOTADO'%}		
+			<div id="tagAgotado">AGOTADO</div>
+{% endif %}
+			<div id="tagPriceProducto">
+{% if product[0].price == product[0].priceOffer%}		
+			{{ product[0].price }} €
+{% else %}
+			<a class="tachado">{{ product[0].price }} €</a>    {{product[0].priceOffer}} €
+{%endif%}
+			</div>			
+		</div>
+		<div class="foto">
+			<div id="infoPanel">
+				<div class="texto">{{product[0].longDescription}}</div>
+				-
+				<div class="texto">{{product[0].color}}</div>
+				-
+				<div class="texto">{{product[0].composition}}</div>		
+				<div id="cuidados">
+					<img src='{{ asset('bundles/macsonproject/images/Cares/cuidado'~product[0].cares~'.jpg') }}'>
+				</div>
+				<div class="ref">ref. {{product[0].reference}}</div>	
+			</div>	
+{% if not numImages.im3 %}
+			<img src='{{ asset('bundles/macsonproject/images/espacio.png') }}'>	
+{% else %}
+			<img class="fotoImg3" src='{{ asset('bundles/macsonproject/images/Product/Standard/'~product[0].reference~'_3.jpg') }}'>
+{% endif %}	
+			<div id="titulo">
+				<div class="h2">{{product[0].title}} | <div id="masInfo">+ Info</div></div>  	
+			</div>		
+		</div>		
+	</div>
+</div>

@@ -1,0 +1,18 @@
+macson_project:
+    resource: "@MacsonProjectBundle/Resources/config/routing.yml"
+    prefix:   /
+
+drufony_core:
+    resource: "@DrufonyCoreBundle/Resources/config/routing.yml"
+    prefix:   /{lang}
+    defaults: { lang: %locale% }
+    requirements:
+        lang: %allowed_locales%
+
+drufony_core_no_lang:
+    path: /{route}{trailingSlash}
+    defaults:
+        _controller: DrufonyCoreBundle:Content:locale
+    requirements:
+        route: ".+"
+        trailingSlash: "\/?"

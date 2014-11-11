@@ -1,0 +1,34 @@
+<html>
+    <body>
+        <h1>{{ contentData.Title }}</h1>
+        <h2>{{ contentData.Teaser }}</h2>
+        <h3>{{ contentData.Description }}</h3>
+        <p>{{ contentData.Body | raw }}</p>
+        <a href="{{ path('drufony_content_actions', {
+            'lang' : lang,
+            'action' : 'create',
+            'contentType' : 'item'
+            }) }}">{{ "Create new topic" | t }}</a>
+        <ul>
+            {% for oneContent in topics %}
+                <li><a href="{{ oneContent.Url}}">{{ oneContent.Title }}</a></li>
+            {% else %}
+                <p>{{ 'No content' | t }}</p>
+            {% endfor %}
+        </ul>
+        {% include 'DrufonyCoreBundle::comments.html.twig' %}
+
+
+        {% include 'DrufonyCoreBundle::rate-block.html.twig' %}
+        {% include 'DrufonyCoreBundle::favorite-block.html.twig' %}
+        {% include 'DrufonyCoreBundle::print-block.html.twig' %}
+        {% include 'DrufonyCoreBundle::reportAbuse-block.html.twig' %}
+        {% include 'DrufonyCoreBundle::social-block.html.twig' %}
+
+
+    </body>
+    {% include 'DrufonyCoreBundle::script-analytics.html.twig' %}
+    {% include 'DrufonyCoreBundle::block-cookie.html.twig' %}
+
+</html>
+

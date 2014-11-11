@@ -1,0 +1,30 @@
+   
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+        <h2>{{ contentData.Teaser | raw }}</h2>
+        <h3>{{ contentData.Description | raw }}</h3>
+
+<div id="contenedor1">
+
+	<div id="fotoRow">
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
+{% include "CustomProjectBundle::login.html.twig" %}		
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}		
+     			<div class="contenido">
+				<h1>{{ contentData.Title }}</h1>
+        			<p>{{ contentData.Body | raw}}</p>
+			</div>
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
+		</div>
+	</div>
+</div>
+
+
+{% include "CustomProjectBundle::footer.html.twig" %}

@@ -1,0 +1,41 @@
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="tipoPagina">sto</div>
+<div id="contenedor1">	
+	<div id="fotoRow">	
+		<div class="foto border">
+{% include "CustomProjectBundle::login.html.twig" %}			
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}			
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+{% for store in ball %}
+			<div id="infoStore" class="pad5">
+				{{store.bou_provincia}}
+			</div>
+		</div>
+	{%if (loop.index)%3 == 0 %}
+	</div>
+	<div id="fotoRow">
+	{% endif %}			
+	{% if loop.last %}
+		{%if (loop.index)%3 == 1 %}
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+		</div>		
+		{% endif %}
+		{%if (loop.index)%3 == 2 %}	
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>	
+		{% endif %}
+	{% else %}
+		<div class="foto border">	
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+	{% endif %}	
+{% endfor %}
+	</div>	
+</div>	
+
+{% include "CustomProjectBundle::footer.html.twig" %}

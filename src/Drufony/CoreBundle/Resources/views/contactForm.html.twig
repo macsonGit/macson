@@ -1,0 +1,22 @@
+<html>
+<body>
+<h1>{{ "Contact form" | t }}</h1>
+{{ form_start(form) }}
+<div class="form-item">
+{{ form_row(form.name) }}
+</div>
+<div class="form-item">
+{{ form_row(form.email) }}
+</div>
+<div class="form-item">
+{{ form_row(form.phone) }}
+</div>
+<div class="form-item">
+{{ form_row(form.message) }}
+</div>
+<div class="form-item">
+{{ form_row(form.attachment) }}
+</div>
+{{ form_end(form) }}
+</body>
+</html>

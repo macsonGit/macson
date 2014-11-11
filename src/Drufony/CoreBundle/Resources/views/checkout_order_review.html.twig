@@ -1,0 +1,201 @@
+
+  <div id="formErrors" class="error-message wd100">
+    {{ form_errors(form) }}
+  </div>
+
+  <div class="clearfix" style="border-top:0;padding-top:0;margin-top:0">
+    {% if "hidden" not in form.storedMethod.vars.block_prefixes %}
+      <div class="wd100 oh">
+          <label class="label">
+          {{ form_label(form.storedMethod) }}
+          {% if form.storedMethod.vars.required %}
+            <span>*</span>
+          {% endif %}
+          </label>
+          <label class="select select-month">
+            {{ form_widget(form.storedMethod) }}
+            <i></i>
+          </label>
+      </div>
+    {% endif %}
+    <div class="wd100 oh" id="creditCard-fields-wrapper">
+      <div class="col">
+          <label class="label">
+            {{ form_label(form.cardHoldername) }}
+            {% if form.cardHoldername.vars.required %}
+              <span>*</span>
+            {% endif %}
+          </label>
+          {{ form_errors(form.cardHoldername) }}
+          <label class="input">
+          {{ form_widget(form.cardHoldername) }}
+          </label>
+
+          <label class="label">
+          {{ form_label(form.expirationMonth) }}
+          {% if form.expirationMonth.vars.required %}
+            <span>*</span>
+          {% endif %}
+          </label>
+          <label class="select select-month">
+            {{ form_widget(form.expirationMonth) }}
+            <i></i>
+          </label>
+          <label class="select select-year">
+            {{ form_widget(form.expirationYear) }}
+            <i></i>
+          </label>
+      </div>
+      <div class="col">
+          <label class="label">
+            {{ form_label(form.cardNumber) }}
+            {% if form.cardNumber.vars.required %}
+              <span>*</span>
+            {% endif %}
+          </label>
+          {{ form_errors(form.cardNumber) }}
+          <label class="input">
+            {{ form_widget(form.cardNumber) }}
+          </label>
+          <label class="label">
+            {{ form_label(form.cardVerificationNumber) }}
+            {% if form.cardVerificationNumber.vars.required %}
+              <span>*</span>
+            {% endif %}
+          </label>
+          {{ form_errors(form.cardVerificationNumber) }}
+          <label class="input">
+            {{ form_widget(form.cardVerificationNumber) }}
+          </label>
+      </div>
+    </div>
+
+
+      {{ form_widget(form.send, { 'attr':{ 'class': 'button button-ok' }} ) }}
+  </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+{# Include stripe js library #}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<script type="text/javascript">
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('{{ stripe_public_key }}');
+  // ...
+</script>
+
+{# Create a single use token #}
+<script type="text/javascript">
+jQuery(function($) {
+  $('#creditCard-fields-wrapper').show();
+  $('#storedMethod').change(function(event) {
+      var storedMethod = $('#storedMethod').val();
+
+      if (storedMethod.length > 0) {
+          $('#creditCard-fields-wrapper').hide("fast");
+          $('#cardNumber').prop('disabled', true);
+          $('#cardVerificationNumber').prop('disabled', true);
+          $('#cardHoldername').prop('disabled', true);
+          $('#expirationMonth').prop('disabled', true);
+          $('#expirationYear').prop('disabled', true);
+      }
+      else {
+          $('#creditCard-fields-wrapper').show("fast");
+          $('#cardNumber').prop('disabled', false);
+          $('#cardVerificationNumber').prop('disabled', false);
+          $('#cardHoldername').prop('disabled', false);
+          $('#expirationMonth').prop('disabled', false);
+          $('#expirationYear').prop('disabled', false);
+      }
+  });
+
+  $('#paymentForm').submit(function(event) {
+    var storedMethod = $('#storedMethod').val();
+    //var storedMethod = [];
+    if (storedMethod.length == 0) {
+        $('#formErrors').hide();
+        var $form = $(this);
+
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+
+        var success = true;
+        var errorMsg = [];
+
+        // optional
+        console.log($('#cardNumber').val());
+        var checkNumber = Stripe.card.validateCardNumber($('#cardNumber').val());
+        if (!checkNumber) {
+            errorMsg.push("{{ 'Invalid card number'|t }}");
+            success = false;
+        }
+
+        var checkExpiry = Stripe.card.validateExpiry($('#expirationMonth').val(), $('#expirationYear').val());
+        if (!checkExpiry) {
+            success = false;
+            errorMsg.push("{{ 'Invalid card expiry date'|t }}");
+        }
+        $('#selectedPrevious').val(0);
+
+        var checkCVC = Stripe.card.validateCVC($('#cardVerificationNumber').val()); // some banks may accept charges with wrong cvc
+        if (!checkCVC) {
+            success = false;
+            errorMsg.push("{{ 'Invalid card CVC number'|t }}");
+        }
+
+        if (success) {
+            Stripe.card.createToken($form, stripeResponseHandler);
+        } else {
+            var index;
+            var text = "<p>{{ 'There has been an error:'|t }}</p>";
+            var text = text + "\n<ul>";
+            for (index = 0; index < errorMsg.length; ++index) {
+                text = text + '<li>' + errorMsg[index] + '</li>';
+            }
+            var text = text + "\n</ul>";
+            $('#formErrors').html(text);
+            $('#formErrors').show();
+            // Enable the submit button
+            $form.find('button').prop('disabled', false);
+        }
+
+        // Prevent the form from submitting with the default action
+        return false;
+    } else {
+        var cardLastDigits = $('#storedMethod option:selected').text();
+        $('#token').val(storedMethod);
+        $('#cardLastDigits').val(cardLastDigits);
+        $('#selectedPrevious').val(1);
+        //// submit
+        $form.get(0).submit();
+        return false;
+    }
+  });
+
+    var stripeResponseHandler = function(status, response) {
+        var $form = $('#paymentForm');
+        if (response.error) {
+            // Show the errors on the form
+            $('#formErrors').html("{{ 'An error ocurred. Please try again later' |t }}");
+            $('#formErrors').show();
+            $form.find('button').prop('disabled', false);
+        } else {
+            // token contains id, last4, and card type
+            var token = response.id;
+            var cardNumber = $('#cardNumber').val();
+            var cardLastDigits = cardNumber.substr(cardNumber.length - 4);
+            // Insert the token into the form so it gets submitted to the server
+            $('#token').val(token);
+            $('#cardLastDigits').val(cardLastDigits);
+            // Prevent critical data to pass through our server
+            $('#cardNumber').prop('disabled', true);
+            $('#cardVerificationNumber').prop('disabled', true);
+            $('#expirationMonth').prop('disabled', true);
+            $('#expirationYear').prop('disabled', true);
+            // submit
+            $form.get(0).submit();
+        }
+    };
+});
+</script>

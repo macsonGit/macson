@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>{{ "Header Menu" | t }}</h1>
+{{ (headerParents|formatedMenu(headerChildren))|raw }}
+<h1>{{ "Footer Menu" | t }}</h1>
+{{ (footerParents|formatedMenu(footerChildren))|raw }}
+<h1>{{ "Item menu list" | t }}</h1>
+    <a href='{{ path('drufony_menu_add', {'lang': lang})}}'>{{ "Add menu" | t }}</a>
+{% for menu in menus %}
+    <p>
+        {{menu.itemId}} {{menu.parentId}} {{ menu.title }}
+        <a href='{{ path('drufony_menu_edit', {'lang': lang, 'id': menu.itemId})}}'>{{ "Edit" | t }}</a>
+        <a href='{{ path('drufony_menu_delete', {'lang': lang, 'id': menu.itemId})}}' rel='delete'>{{ "delete" | t }}</a>
+        <a href='{{ path('drufony_menu_add_child', {'lang': lang, 'parentId': menu.itemId})}}'>{{ "Add child" | t }}</a>
+    </p>
+{% else %}
+    <p>{{ "No menu found" | t }}</p>
+{% endfor%}
+
+<!--FIXME: remove line below once this is adapted to base twig-->
+<script src="/bundles/drufonycore/assets/components/library/jquery/jquery.min.js?v=v1.9.5"></script>
+<script>
+
+$(document).ready(function() {
+
+    $('a[rel="delete"]').click(function(e) {
+        var resp = confirm('{{ "Are you sure you want to delete this menu?, It will delete all its children" | t }}');
+        if (!resp) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+    });
+
+});
+
+</script>
+</body>
+</html>

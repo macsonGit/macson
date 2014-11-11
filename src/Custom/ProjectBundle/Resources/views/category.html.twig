@@ -1,0 +1,55 @@
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="tipoPagina">cat</div>
+<div id="contenedor1">	
+	<div id="fotoRow">	
+		<div class="foto">
+{% include "CustomProjectBundle::login.html.twig" %}			
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}			
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+{% include "CustomProjectBundle::menu.html.twig" %}
+		</div>
+{% for product in ball %}
+		<div class="foto">
+			<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
+					<img class="fotoImg" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" 
+					data-alt-src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}"  alt="{{ product.title }}" /></a>
+
+	{% if product.value == 'AGOTADO'%}		
+			<div id="tagAgotado">{{'OUT OF STOCK'|t}}</div>
+	{% endif %}
+			<div id="tagName">
+				{{product.title}}
+			</div>
+			<div id="tagPrice">
+	{% if product.pricePVP == product.firstPrice %}		
+				{{ product.pricePVP | round(2,'common')}} <font size="2">€</font>
+	{% else %}
+			<a class="tachado">{{ product.firstPrice  | round(2,'common')}} €</a>    {{product.pricePVP | round(2,'common')}} <font size="2">€</font>
+	{%endif%}
+			</div>
+		</div>
+	{% if loop.last %}
+		{%if (loop.index)%3 == 0 %}
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+		</div>		
+		{% endif %}
+		{%if (loop.index)%3 == 1 %}	
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>	
+		{% endif %}
+	{% endif %}	
+	{%if (loop.index-2)%3 == 0 %}
+	</div>
+	<div id="fotoRow">
+	{% endif %}			
+{% endfor %}
+	</div>	
+</div>	
+
+{% include "CustomProjectBundle::footer.html.twig" %}

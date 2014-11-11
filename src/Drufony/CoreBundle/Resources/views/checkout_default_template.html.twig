@@ -1,0 +1,184 @@
+{# For theming customization #}
+{% form_theme form 'DrufonyCoreBundle::form_theme_checkout.html.twig' %}
+
+<!-- page title -->
+<h1 class="page-title">{{'Checkout' |t}} </h1>
+<!--/ page title -->
+
+<div class="checkout-process-wrapper">
+
+{% set step = 1 %}
+
+{# Checkout Method #}
+<section class="checkout wd100 bb">
+  {% if userLogged != true %}
+      {% set step = step + 1 %}
+      {% if checkoutStep == 'checkoutMethod' %}
+        <div class="fl wd70 bb">
+          <h2 class="active"><span>1</span>Checkout method</h2>
+          {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+          {% include 'DrufonyCoreBundle::checkout_login_method.html.twig' %}
+          {{ form_end(form) }}
+        </div>
+        {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+      {% else  %}
+        <div class="fl wd70 bb">
+          <a href='{{ path('drufony_checkout_login', { 'lang' : lang})}}'>
+            <h2><span>1</span>Checkout method</h2>
+          </a>
+        </div>
+      {% endif %}
+  {% else %}
+    {% set step = step + 1 %}
+    <div class="fl wd70 bb">
+      <h2 style="color:#BFBFBF"><span>&#10003;</span>Checkout method</h2> 
+    </div>
+  {% endif %}
+</section>
+
+
+{# Shipping Information #}
+<section class="checkout wd100 bb">
+  {% if checkoutStep == 'shippingInformation' %}
+    {% set step = step + 1 %}
+    <div class="fl wd70 bb">
+      <h2 class="active"><span>2</span>Shipping information</h2>
+      {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+      {% include 'DrufonyCoreBundle::checkout_shipping_info.html.twig' %}
+      {{ form_end(form) }}
+    </div>
+    {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+  {% else %}
+    {% set step = step + 1 %}
+    <div class="fl wd70 bb">
+      {% if checkoutMethodCompleted %}
+      <a href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>
+        <h2><span>2</span>Shipping information</h2>
+      </a>
+      {% else %}
+        <h2><span>2</span>Shipping information</h2>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+
+{# Billing Information #}
+<section class="checkout wd100 bb">
+  {% if checkoutStep == 'billingInformation' %}
+    <div class="fl wd70 bb">
+      <h2 class="active"><span>3</span>Billing Information</h2>
+      {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+      {% include 'DrufonyCoreBundle::checkout_billing_info.html.twig' %}
+      {{ form_end(form) }}
+    </div>
+    {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+  {% else %}
+    <div class="fl wd70 bb">
+      {% if checkoutMethodCompleted %}
+      <a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>
+        <h2><span>3</span>Billing Information</h2>
+      </a>
+      {% else %}
+        <h2><span>3</span>Billing Information</h2>
+      {% endif %}
+    </div>
+  {% endif %}
+ </section>
+{# Shipping Method #}
+<section class="checkout wd100 bb">
+  {% if checkoutStep == 'shippingMethod' %}
+    {% set step = step + 1 %}
+    <div class="fl wd70 bb">
+      <h2 class="active"><span>4</span>Shipping method</h2>
+      {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+      {% include 'DrufonyCoreBundle::checkout_shipping_method.html.twig' %}
+      {{ form_end(form) }}
+    </div>
+      {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+  {% else %}
+    {% set step = step + 1 %}
+    <div class="fl wd70 bb">
+      {% if checkoutMethodCompleted %}
+      <a href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>
+        <h2><span>4</span>Shipping method</h2>
+      </a>
+      {% else %}
+        <h2><span>4</span>Shipping method</h2>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+{# Select Payment Method #}
+{% if checkoutStep != 'paymentMethod' %}
+    <section class="checkout checkout-cart wd100 bb" style="margin-bottom:18px">
+      {% if checkoutStep == 'selectPaymentMethod' %}
+        {% set step = step + 1 %}
+        <div class="fl wd70 bb">
+          <h2 class="active"><span>5</span>Select Payment method</h2>
+          {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form cart' } }) }}
+
+            <div class="section" style="overflow: hidden">
+                <label class="label">
+                  {{ form_label(form.method) }}
+                  {% if form.method.vars.required %}
+                    <span>*</span>
+                  {% endif %}
+                </label>
+                {{ form_errors(form.method) }}
+                <label class="select">
+                  {{ form_widget(form.method) }}
+                </label>
+            </div>
+
+            <footer>
+            {{ form_row(form.submit, {'attr': {'class': 'button button-ok'}} ) }}
+            </footer>
+
+          {{ form_end(form) }}
+        </div>
+          {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+     {% else %}
+        {% set step = step + 1 %}
+        <div class="fl wd70 bb">
+          {% if checkoutMethodCompleted %}
+          <a href='{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}'>
+            <h2><span>5</span>Select payment method</h2>
+          </a>
+          {% else %}
+            <h2><span>5</span>Select payment method</h2>
+          {% endif %}
+        </div>
+      {% endif %}
+    </section>
+{% endif %}
+
+{# Payment Method #}
+{% if checkoutStep == 'paymentMethod' %}
+    <section class="checkout checkout-cart wd100 bb" style="margin-bottom:18px">
+        {% set step = step + 1 %}
+        <div class="fl wd70 bb">
+          <h2 class="active"><span>5</span>Payment</h2>
+          {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form cart' } }) }}
+          {% include 'DrufonyCoreBundle::checkout_order_review.html.twig' %}
+          {{ form_end(form) }}
+        </div>
+          {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+      {#
+        {% else %}
+        {% set step = step + 1 %}
+        <div class="fl wd70 bb">
+          {% if checkoutMethodCompleted %}
+          <a href='{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}'>
+            <h2><span>5</span>Payment method</h2>
+          </a>
+          {% else %}
+            <h2><span>5</span>Payment method</h2>
+          {% endif %}
+        </div>
+        #}
+    </section>
+{% endif %}
+
+
+</div>
+<div style="clear:both"></div>

@@ -1,0 +1,18 @@
+parameters:
+    performance.collector.class: Drufony\PerformanceBundle\DataCollector\PerformanceCollector
+    performance.warning.memory: 200
+    performance.warning.query_count: 1000
+    performance.warning.query_time: 1
+    performance.error.memory: 256
+    performance.error.query_count: 2000
+    performance.error.query_time: 2
+    performance.curl.enable: 0
+    performance.curl.path: "https://api.crononauta.net/drufony_devel"
+
+services:
+    data_collector.performance:
+        class: %performance.collector.class%
+        calls: 
+            - [setContainer, ["@service_container"]]
+        tags:
+            - { name: data_collector, template: "PerformanceBundle:Collector:profilerTemplate", id: "performance" }

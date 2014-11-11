@@ -1,0 +1,188 @@
+{# For theming customization #}
+{% form_theme settings 'DrufonyCoreBundle::forms.html.twig' %}
+
+<!-- row -->
+<div class="row row-app">
+  <!-- col -->
+  <div class="col-md-12">
+    <!-- col-separator -->
+    <div class="col-separator col-separator-first col-unscrollable bg-none">
+      <!-- col-table -->
+      <div class="col-table">
+        <!-- heading -->
+        <div class="innerTB">
+          <h3 class="margin-none pull-left">
+            {{ titleSection }} &nbsp;
+          </h3>
+          <div class="clearfix"></div>
+        </div>
+        <!-- // END heading -->
+
+        <div class="col-separator-h"></div>
+        <!-- col-table-row -->
+        <div class="col-table-row">
+          <!-- col-app.col-unscrollable -->
+          <div class="col-app col-unscrollable">
+            <!-- col-app -->
+            <div class="col-app">
+              <!-- content -->
+              <div class="row row-app">
+
+
+                <!-- Tabs -->
+<div class="relativeWrap">
+  <div class="widget widget-tabs widget-tabs-double-2 widget-tabs-responsive">
+
+    <!-- Tabs Heading -->
+    <div class="widget-head">
+      <ul>
+        <li class="active"><a class="glyphicons envelope" href="#tabAccount" data-toggle="tab"><i></i><span>{{ "Content settings"|t }}</span></a></li>
+        <li><a class="glyphicons inbox_in" href="#tabPayments" data-toggle="tab"><i></i><span>{{ "Commerce" | t }}</span></a></li>
+      </ul>
+    </div>
+    <!-- // Tabs Heading END -->
+
+    <div class="widget-body">
+        <form class="form-horizontal" role="form" method="POST">
+      <div class="tab-content">
+
+        <!-- Tab content -->
+        <div id="tabAccount" class="settings-view tab-pane active widget-body-regular">
+
+            {% for item in settings %}
+                    {% if item.vars.name == 'emailCommerceNotifications' %}
+                        </div>
+                        <!-- // Tab content END -->
+
+                        <!-- Tab content -->
+                        <div id="tabPayments" class="settings-view tab-pane widget-body-regular">
+
+                        {% endif %}
+
+                        {# set type of each item #}
+                        {% set type = item.vars.block_prefixes[1] %}
+
+                        {# For difference between input and textarea, we get the second value #}
+                        {% if item.vars.block_prefixes[2] is defined %}
+                          {% set type2 = item.vars.block_prefixes[2] %}
+                        {% else %}
+                          {% set type2 = 'false' %}
+                        {% endif %}
+
+                          {# Print input #}
+                          {% if (type == "text" or type == "money" or type == "percent") and type2 != 'textarea' %}
+                                {{ form_label(item) }}
+                                {{ form_errors(item) }}
+                                {{ form_widget(item, { 'attr': { 'class': 'form-control' } }) }}
+                                {# macroforms.inputLabel(item.vars.name, form.vars.name, item.vars.required) #}
+                          {% endif %}
+
+                          {# Print textarea #}
+                          {% if type == 'text' and type2 == 'textarea' %}
+                                {{ form_label(item) }}
+                                {{ form_errors(item) }}
+                                {{ form_widget(item) }}
+                              {# macroforms.label(item.vars.name, item.vars.label) #}
+                              {# macroforms.textarea(item.vars.name, form.vars.name, item.vars.required, '1') #}
+                          {% endif %}
+
+                          {# Print check #}
+                          {% if type == 'checkbox' %}
+                            {# macroforms.checkBox(item.vars.name, form.vars.name, '', item.vars.label) #}
+                            {{ form_errors(item) }}
+                            {{ form_widget(item) }}
+                          {% endif %}
+
+                          {# Print choices #}
+                          {% if type == 'choice' %}
+                          {% set expanded = item.vars.expanded %}
+                                {% if expanded != true %}
+                                  {{ form_label(item) }}
+                                  {{ form_errors(item) }}
+                                  {{ form_widget(item, { 'attr': { 'class': 'form-control' } }) }}
+                                {% else %}
+                                  {% set currentType = '' %}
+                                  <span class="strong">{{ form.varieties.vars.label }}</span>
+                                  <div class="separator bottom"></div>
+                                  {% for key, variety in form.varieties.children %}
+                                      {% for type, variet in form.varieties.vars.choices %}
+                                          {% if variet[key] is defined and currentType != type %}
+                                              <p>{{ type|t }}</p>
+                                              {% set currentType = type %}
+                                          {% endif %}
+                                      {% endfor %}
+                                          {{ form_widget(variety) }}
+                                  {% endfor %}
+                                {% endif %}
+                            {# macroforms.label(item.vars.name, item.vars.label) #}
+                            {# macroforms.select(item.vars.name, item.vars.choices) #}
+                          {% endif %}
+
+                          {# Print add buttons #}
+                          {% if type matches '{Form_add*}' %}
+                            <div class="widget-body">
+                              {{ form_row(attribute(form, item.vars.name)) }}
+                            </div>
+                          {% endif %}
+
+                          {# Print datePicker #}
+                          {% if type == 'datetime' %}
+                            {{ form_label(item) }}
+                            {{ form_errors(item) }}
+                            {{ form_widget(item) }}
+                            {# macroforms.label(item.vars.name, item.vars.label) #}
+                            {# macroforms.datePicker(item.vars.name, form.vars.name, item.vars.required, item.vars.value) #}
+                          {% endif %}
+
+                          {# Print Collections #}
+                          {% if type == 'collection' %}
+                            <div class="form-item collection-type">
+                                {{ form_row(item, { 'attr': {'class': 'collection-type widget-body'} } ) }}
+                            </div>
+                          {% endif %}
+
+                          <div class="separator bottom"></div>
+                          {% if item.vars.name == 'emailContentNotifications' or item.vars.name == 'emailCommerceNotifications'%}
+                              <p><strong>{{ "Receive notifications when:" | t }}</strong></p>
+                          {% endif %}
+                {% endfor %}
+
+        </div>
+        <!-- // Tab content END -->
+              <!-- Row for buttons -->
+                        <div class="row collection-type align-right" style="padding: 10px">
+                          <div class="form-item">
+                              {{ form_row(settings.save) }}
+                          </div>
+                        </div>
+              <!-- End buttons row -->
+        {{ form_end(settings) }}
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // Tabs END -->
+
+
+
+
+
+                </div>
+
+              </div>
+              <!-- // END content -->
+            </div>
+            <!-- // END col-app -->
+          </div>
+          <!-- // END col-app.col-unscrollable -->
+        </div>
+        <!-- // END col-table-row -->
+      </div>
+      <!-- // END col-table -->
+    </div>
+    <!-- // END col-separator -->
+  </div>
+  <!-- // END col -->
+</div>
+<!-- // END row -->

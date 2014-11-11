@@ -1,0 +1,23 @@
+<html>
+<head></head>
+<body>
+<div>
+
+<p>{{ "Cart" | t }}: <a href="{{ path('drufony_cart_view', { 'lang' : lang })}}"> {{itemsCount}} {{ "items" | t}} </a> </p>
+<table>
+<tr>
+    <td> {{ "Name" | t }}</td>
+    <td> {{ "Price" | t }}</td>
+    <td> {{ "Options" | t }}</td>
+<tr>
+{% for product in products %}
+<tr>
+    <td> {{ product.getTitle() }}</td>
+    <td> {{ product.getPrice() | number_format(2) }}</td>
+    <td> <a href='{{ path('drufony_cart_add', { 'lang' : lang, 'product': product.nid, 'value': 1})}}'> {{ "Add to chart" | t }} </a> </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+</body>
+</html>

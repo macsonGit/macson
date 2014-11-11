@@ -1,0 +1,71 @@
+
+<!-- row -->
+<div class="row row-app">
+  <!-- col -->
+  <div class="col-md-12">
+    <!-- col-separator -->
+    <div class="col-separator col-separator-first col-unscrollable bg-none">
+      <!-- col-table -->
+      <div class="col-table">
+        <!-- heading -->
+        <div class="innerTB">
+          <h3 class="margin-none pull-left">{{ title }} &nbsp;</h3>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        <!-- // END heading -->
+
+        <div class="col-separator-h"></div>
+        <!-- col-table-row -->
+        <div class="col-table-row">
+          <!-- col-app.col-unscrollable -->
+          <div class="col-app col-unscrollable">
+            <!-- col-app -->
+            <div class="col-app">
+              <!-- content -->
+              <div class="row row-app">
+                <div class="col-md-12">
+
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-body innerAll inner-2x">
+                  <!-- Table -->
+                    <p>Welcome to Drufony Dashboard!</p>
+                </div>
+              </div>
+              <!-- // Widget END -->
+
+
+                </div>
+
+              </div>
+              <!-- // END content -->
+            </div>
+            <!-- // END col-app -->
+          </div>
+          <!-- // END col-app.col-unscrollable -->
+        </div>
+        <!-- // END col-table-row -->
+      </div>
+      <!-- // END col-table -->
+    </div>
+    <!-- // END col-separator -->
+  </div>
+  <!-- // END col -->
+</div>
+<!-- // END row -->
+
+{# FIXME place in general javascript #}
+
+<script>
+$(document).ready(function() {
+    $('a[rel="delete"]').click(function(e) {
+        e.preventDefault();
+        var resp = confirm('{{ "Are you sure you want to delete this content?" | t }}');
+        if (!resp) {
+            e.stopImmediatePropagation();
+        }
+    });
+});
+
+</script>

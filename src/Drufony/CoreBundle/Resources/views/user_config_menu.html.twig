@@ -1,0 +1,38 @@
+{% set activeProfile = '' %}
+{% set activeAccount = '' %}
+{% set activeAddress = '' %}
+{% if itemConfigMenu == 'profile' %}
+  {% set activeProfile = 'bg-active' %}
+{% endif %}
+{% if itemConfigMenu == 'account' %}
+  {% set activeAccount = 'bg-active' %}
+{% endif %}
+{% if itemConfigMenu == 'address' %}
+  {% set activeAddress = 'bg-active' %}
+{% endif %}
+
+<aside class="column-menu wd25 fl bb mg-right5 radius5 pad10">
+  <p><span>{{ "User name" | t }}: {{ user.username }}</p>
+  <ul id="configMenu">
+
+      <h3 class="pad-horizontal10 mg-vertical10">{{ "Account config" | t }}</h3>
+
+      <li class="first"><a href="{{path('drufony_profile_edit', {'lang': lang, 'id': id}) }}" class="{{activeProfile}}" >{{ "Edit profile" | t }}</a></li>
+      <li class="second"><a href="{{path('drufony_account_edit', {'lang': lang, 'id': id}) }}" class="{{activeAccount}}" >{{ "Account" | t }}</a></li>
+      <li class="third"><a href="{{path('drufony_profile_address_edit', {'lang': lang, 'id': id}) }}" class="{{activeAddress}}" >{{ "Addresses" | t }}</a></li>
+      <li class="fourth">
+          <div class="pad10">
+              <span>{{ "Your language" | t }}:</span>
+              <select name="language" id="profile-language-selector">
+              {% for langKey, langName in languages %}
+                  <option value="{{ langKey }}"
+                  {% if langKey == lang %}
+                      selected="true"
+                  {% endif %}
+                  >{{ langName }}</option>
+              {% endfor %}
+              </select>
+          </div>
+      </li>
+  </ul>
+</aside>

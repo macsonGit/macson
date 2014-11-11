@@ -1,0 +1,62 @@
+<!-- row -->
+<div class="row row-app">
+  <!-- col -->
+  <div class="col-md-12">
+    <!-- col-separator -->
+    <div class="col-separator col-separator-first col-unscrollable bg-none">
+      <!-- col-table -->
+      <div class="col-table">
+        <!-- heading -->
+        <div class="innerTB">
+          <h3 class="margin-none pull-left">{{ contentType }} &nbsp;</h3>
+          <div class="btn-group pull-right">
+              {% for button in actionButtons %}
+                <a href="{{ path( button.link, { 'lang': lang, 'contentType': button.contentType,
+                    'action': button.action }) }}" class="btn btn-default"><i class="{{ button.icon }}"></i>{{ button.label }}</a>
+              {% endfor %}
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <!-- // END heading -->
+
+        <div class="col-separator-h"></div>
+        <!-- col-table-row -->
+        <div class="col-table-row">
+          <!-- col-app.col-unscrollable -->
+          <div class="col-app col-unscrollable">
+            <!-- col-app -->
+            <div class="col-app">
+              <!-- content -->
+              <div class="row row-app">
+                <div class="col-md-12">
+
+                    <!-- Column -->
+                    <div class="col-md-12">
+                      <!-- Widget -->
+                      <div class="widget schedule-list">
+                        <div class="widget-body">
+                          <div id="datepicker-inline"></div>
+
+                        </div>
+                      </div>
+                      <!-- // Widget END -->
+
+                    </div>
+                    <!-- // Column END -->
+
+              </div>
+              <!-- // END content -->
+            </div>
+            <!-- // END col-app -->
+          </div>
+          <!-- // END col-app.col-unscrollable -->
+        </div>
+        <!-- // END col-table-row -->
+      </div>
+      <!-- // END col-table -->
+    </div>
+    <!-- // END col-separator -->
+  </div>
+  <!-- // END col -->
+</div>
+<!-- // END row -->

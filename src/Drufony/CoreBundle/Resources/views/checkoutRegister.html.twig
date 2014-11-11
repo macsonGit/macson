@@ -1,0 +1,15 @@
+<html>
+<body>
+<div>
+    <div class="signin-block">
+        <h2 class="block-title">{{ "You need to register to complete the order" | t }}</h2>
+        {{ form_start(registerForm) }}
+            {{ form_row(registerForm.email) }}
+            {{ form_row(registerForm.password) }}
+            {{ registerForm.acceptTerms.vars.label | raw }}
+            {{ form_widget(registerForm.acceptTerms) }}
+        {{ form_end(registerForm) }}
+    </div>
+</div>
+</body>
+</html>

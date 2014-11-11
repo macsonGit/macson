@@ -1,0 +1,22 @@
+parameters:
+#    drufony_core.example.class: Drufony\CoreBundle\Example
+
+services:
+    drufony.twig.constant_extension:
+        class: Drufony\CoreBundle\Twig\ConstantExtension
+        tags:
+            - {name: twig.extension }
+    drufony.twig.thumbnail_extension:
+        class: Drufony\CoreBundle\Twig\ImageThumbnailsExtension
+        tags:
+            - {name: twig.extension }
+    drufony.twig.lang_extension:
+        class: Drufony\CoreBundle\Twig\LangExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [ '@service_container' ]
+
+    drufony.twig.menugenerator_extension:
+        class: Drufony\CoreBundle\Twig\MenuGeneratorExtension
+        tags:
+            - {name: twig.extension }

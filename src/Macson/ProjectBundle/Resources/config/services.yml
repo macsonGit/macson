@@ -1,0 +1,13 @@
+parameters:
+#    macson_project.example.class: Macson\ProjectBundle\Example
+
+services:
+#    macson_project.example:
+#        class: %macson_project.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+
+    url.twig.url_extension:
+        class: Macson\ProjectBundle\Twig\Extension\MacsonExtension
+        tags:
+            - { name: twig.extension }

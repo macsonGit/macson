@@ -1,0 +1,967 @@
+<?php
+
+namespace Drufony\CoreBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Form\FormError;
+
+
+use JMS\DiExtraBundle\Annotation as DI;
+use JMS\Payment\CoreBundle\Entity\Payment;
+use JMS\Payment\CoreBundle\PluginController\Result;
+use JMS\Payment\CoreBundle\Plugin\Exception\ActionRequiredException;
+use JMS\Payment\CoreBundle\Plugin\Exception\Action\VisitUrl;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Drufony\CoreBundle\Model\Sermepa;
+use Drufony\CoreBundle\Model\Order;
+use Drufony\CoreBundle\Model\CommerceUtils;
+use Drufony\CoreBundle\Model\UserUtils;
+use Drufony\CoreBundle\Model\TPV;
+use Drufony\CoreBundle\Model\Mailing;
+use Drufony\CoreBundle\Model\Drupal;
+use Drufony\CoreBundle\Model\Profile;
+use Drufony\CoreBundle\Entity\User;
+use Drufony\CoreBundle\Exception\StripeException;
+use Drufony\CoreBundle\Form\BillingInfoFormType;
+use Drufony\CoreBundle\Form\ShippingMethodFormType;
+use Drufony\CoreBundle\Form\PaymentMethodFormType;
+use Drufony\CoreBundle\Form\LoginFormType;
+use Drufony\CoreBundle\Form\RegisterFormType;
+
+defined('CHECKOUT_METHOD_NAME') or define('CHECKOUT_METHOD_NAME', 'checkoutMethod');
+defined('BILLING_INFO_NAME') or define('BILLING_INFO_NAME', 'billingInformation');
+defined('SHIPPING_INFO_NAME') or define('SHIPPING_INFO_NAME', 'shippingInformation');
+defined('SHIPPING_METHOD_NAME') or define('SHIPPING_METHOD_NAME', 'shippingMethod');
+defined('PAYMENT_METHOD_NAME') or define('PAYMENT_METHOD_NAME', 'paymentMethod');
+
+class CommerceController extends DrufonyController
+{
+    /** @DI\Inject */
+    protected $request;
+
+    /** @DI\Inject */
+    protected $router;
+
+    /** @DI\Inject("doctrine.orm.entity_manager") */
+    protected $em;
+
+    /** @DI\Inject("payment.plugin_controller") */
+    private $ppc;
+
+    /**
+     * @Route("/{orderNumber}/details", name = "payment_details")
+     * @Template
+     */
+  public function indexAction(Request $request, $lang) {
+
+      $response = new Response();
+
+      $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+        array('lang'=> $lang,
+              'mainContent' => 'DrufonyCoreBundle::viewCart.html.twig',
+        )
+      ));
+
+      return $response;
+  }
+    public function addToCartAction(Request $request, $lang, $product, $value) {
+        CommerceUtils::addToCart($product, $value);
+
+        return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+    }
+
+    public function removeFromCartAction(Request $request, $lang, $product) {
+        CommerceUtils::removeFromCart($product);
+        return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+    }
+
+    public function updateCartAction(Request $request, $lang, $product, $value) {
+        if($value > 0) {
+            CommerceUtils::updateCart($product, $value);
+        }
+        else {
+            CommerceUtils::removeFromCart($product);
+        }
+        return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+    }
+
+    public function viewCartAction(Request $request, $lang) {
+        $response = new Response();
+
+        $existsCoupon= CommerceUtils::existStep(COUPON);
+        $couponCodeSaved = '';
+        if($existsCoupon) {
+            $couponSaved = CommerceUtils::getStepData(COUPON);
+            $couponCodeSaved = $couponSaved['couponCode'];
+        }
+
+        $couponCode = $request->query->get('couponCode');
+        #If we recieve a coupon
+        if(!is_null($couponCode) && !empty($couponCode)) {
+
+            #Check it's a diferent code
+            if($couponCode != $couponCodeSaved) {
+                $couponStatus = CommerceUtils::getCouponStatus($couponCode);
+                $coupon = CommerceUtils::getCouponByCode($couponCode);
+                $startDate = ($couponStatus == COUPON_NONACTIVE) ? $coupon['startDate'] : null;
+                $message = CommerceUtils::getCouponStatusMessage($couponStatus, $startDate);
+
+                $messageType = INFO;
+                #Act according coupon status
+                if($couponStatus != COUPON_VALID) {
+                    $messageType = ERROR;
+                    if($existsCoupon) {
+                        $couponCodeSaved = '';
+                        CommerceUtils::deleteStep(COUPON);
+                    }
+                }
+                else {
+                    $this->get('session')->getFlashBag()->add($messageType, $message);
+                    CommerceUtils::saveStep(COUPON, array('couponCode' => $couponCode), $update = $existsCoupon);
+                    return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+                }
+                $this->get('session')->getFlashBag()->add($messageType, $message);
+            }
+            #If its the same code stored, go to the next checkout step
+            else {
+                return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
+            }
+        }
+        #If recieve an empty coupon, delete stored one if exists
+        else if(!is_null($couponCode) && empty($couponCode)){
+            if($existsCoupon) {
+                $this->get('session')->getFlashBag()->add(INFO, 'Coupon removed');
+                CommerceUtils::deleteStep(COUPON);
+                return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+            }
+            else {
+                return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
+            }
+        }
+
+        $cartInfo = CommerceUtils::getCartInfo();
+
+        /* Adds items for section breadcrumb*/
+        $breadCrumb = array(
+          'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
+          'shoping-cart' => array( 'label' => 'Shoping cart', 'url' => 'drufony_cart_add'),
+        );
+
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+                                                array('lang'=>$lang,
+                                                    'subtotal' => $cartInfo['subtotalProducts'],
+                                                    'discount' => $cartInfo['discount'],
+                                                    'couponDiscount' => $cartInfo['couponDiscount'],
+                                                    'discountType' => $cartInfo['discountType'],
+                                                    'tax' => $cartInfo['tax'],
+                                                    'items' => $cartInfo['cartItems'],
+                                                    'itemsCount' => $cartInfo['itemsCount'],
+                                                    'total' => $cartInfo['total'],
+                                                    'totalDiscounted' => $cartInfo['totalDiscounted'],
+                                                    'edit' => true,
+                                                    'couponCode' => $couponCodeSaved,
+                                                    'pageTitle' => t('View Cart'),
+                                                    'mainContent' => 'DrufonyCoreBundle::viewCart.html.twig',
+                                                    'breadCrumb' => $breadCrumb,
+                                                  )
+                                                ));
+        return $response;
+    }
+
+    //FIXME: refactor login code accoding to UserController
+    public function checkoutLoginAction(Request $request, $lang, $withoutlogin = false) {
+        $response = new Response();
+        $user = $this->getUser();
+        $uid = null;
+        $rememberme = FALSE;
+
+        $updateStep = CommerceUtils::existStep(CHECKOUT_METHOD);
+
+        if($withoutlogin == true) {
+            $data = array('logged' => false);
+            CommerceUtils::saveStep(CHECKOUT_METHOD, $data, $update = $updateStep);
+            return $this->redirect($this->generateUrl('drufony_checkout_shipping_info', array('lang' => $lang)));
+        }
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+
+        $userLogged = False;
+        if(!is_null($user)) {
+            $userLogged = True;
+            $data = array('logged' => true);
+            CommerceUtils::saveStep(CHECKOUT_METHOD, $data, $update = $updateStep);
+            return $this->redirect($this->generateUrl('drufony_checkout_load_previous_info', array('lang' => $lang)));
+        }
+
+        $loginForm = $this->createForm(new loginFormType());
+        if($request->getMethod() == 'POST') {
+            $loginForm->handleRequest($request);
+            if ($loginForm->isValid()) {
+                $data = $loginForm->getData();
+                $user = new User();
+                $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                $data['password'] = $encoder->encodePassword($data['password'], $user->getSalt());
+                $userId = UserUtils::getUidByUsername($data['username']);
+                if ($userId) {
+                    $user = new User($userId);
+                    if ($user->getPassword() == $data['password']) {
+                        $uid = $userId;
+                        if (!$data['rememberme']) {
+                            $rememberme = TRUE;
+                        }
+                    }
+                    else {
+                        l(WARNING, 'Log in attempt for user ' . $user->getUsername() . ': bad credentials');
+                        $loginForm->addError(new FormError(t('This email or password is invalid')));
+                    }
+
+                }
+                else {
+                    l(WARNING, 'Log in attempt for user ' . $data['username'] . ': user doesnt exist');
+                    $loginForm->addError(new FormError(t('This email or password is invalid')));
+                }
+            }
+        }
+
+        if ($request->query->get('code')) {
+            $userData = UserUtils::getUserDataByFacebook($request->query->get('code'));
+            if (!empty($userData)) {
+                if (empty($userData['uid'])) {
+                    //Register user
+                    $password = Drupal::user_password();
+                    $user = new User();
+                    $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                    $password = $encoder->encodePassword($password, $user->getSalt());
+                    $userRecord = array(
+                        'username' => $userData['email'],
+                        'email' => $userData['email'],
+                        'password' => $password,
+                        'roles' => array(User::ROLE_FOR_NEW_USERS),
+                    );
+                    $uid = User::save($userRecord);
+                }
+                else {
+                    $uid = $userData['uid'];
+                }
+            }
+        }
+        if ($uid) {
+            // User login
+            if (!$rememberme) {
+                $token = new UsernamePasswordToken($user, $user->getPassword(), 'user', $user->getRoles());
+            }
+            else {
+                $key = $this->container->getParameter('secret');
+                $token = new RememberMeToken($user, 'user', $key);
+            }
+            $this->container->get('security.context')->setToken($token);
+            $event = new InteractiveLoginEvent($this->getRequest(),$token);
+            $this->get('event_dispatcher')->dispatch('security.interactive_login', $event);
+            UserUtils::updateLoginDate($user->getUid());
+            l(INFO, 'User ' . $user->getUsername() . ' logged in successfully');
+
+            $data = array('logged' => true);
+            CommerceUtils::saveStep(CHECKOUT_METHOD, $data, $update=$updateStep);
+
+            return $this->redirect($this->generateUrl('drufony_checkout_load_previous_info', array('lang' => $lang)));
+        }
+
+        $checkoutProgress = CommerceUtils::getCheckoutProgress();
+
+        /* Adds items for section breadcrumb*/
+        $breadCrumb = array(
+          'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
+        );
+
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig', array(
+            'lang'        => $lang,
+            'fbLoginUrl'  => UserUtils::getFBUrlForLogin(),
+            'form'   => $loginForm->createView(),
+            'progress'    => $checkoutProgress,
+            'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
+            'checkoutStep' => CHECKOUT_METHOD_NAME,
+            'userLogged' => $userLogged,
+            'checkoutMethodCompleted'=> CommerceUtils::existStep(CHECKOUT_METHOD),
+            'breadCrumb'  => $breadCrumb,
+        )));
+
+        return $response;
+    }
+
+    public function checkoutLoadPreviousInfoAction(Request $request, $lang) {
+        $user = $this->getUser();
+        $userAddresses = array();
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+
+        if(!is_null($user)) {
+            $profile = new Profile($user->getUid());
+            $userAddresses = $profile->getAddresses();
+            $existBilling = false;
+            $existShipping = false;
+            $existShippingMethod = false;
+
+            //Load user address
+            if($userAddresses) {
+                //TODO: replace this with default address once its been implemented
+                $latestAddressId = max(array_keys($userAddresses));
+                $latestAddress = $profile->getAddress($latestAddressId);
+
+                $existBilling = CommerceUtils::existStep(BILLING_INFO);
+                $existShipping = CommerceUtils::existStep(SHIPPING_INFO);
+                $latestAddress['email'] = $user->getEmail();
+
+                if(!$existBilling) {
+                    CommerceUtils::saveStep(BILLING_INFO, $latestAddress);
+                    $existBilling = true;
+                }
+                if(!$existShipping) {
+                    CommerceUtils::saveStep(SHIPPING_INFO, $latestAddress);
+                    $existShipping = true;
+                }
+            }
+
+            $lastOrder = CommerceUtils::getLastUserOrder($user->getUid());
+            $existShippingMethod = CommerceUtils::existStep(SHIPPING_METHOD);
+            if($lastOrder && !$existShippingMethod) {
+                $shippingMethodInfo = array('shipping' => $lastOrder['shippingId'], 'comments' => $lastOrder['comments']);
+                CommerceUtils::saveStep(SHIPPING_METHOD, $shippingMethodInfo);
+                $existShippingMethod = True;
+            }
+
+            $existCheckoutMethod = CommerceUtils::existStep(CHECKOUT_METHOD);
+            if($existBilling && $existShipping) {
+                if(!$existCheckoutMethod) {
+                    return $this->redirect($this->generateUrl('drufony_checkout_login' ,array('lang' => $lang)));
+                }
+                else if($existShippingMethod) {
+                    return $this->redirect($this->generateUrl('drufony_checkout_review_payment' ,array('lang' => $lang)));
+                }
+                else {
+                    return $this->redirect($this->generateUrl('drufony_checkout_shipping_method' ,array('lang' => $lang)));
+                }
+            }
+            else {
+                return $this->redirect($this->generateUrl('drufony_checkout_shipping_info' ,array('lang' => $lang)));
+            }
+        }
+
+        return $this->redirect($this->generateUrl('drufony_checkout_login' ,array('lang' => $lang)));
+    }
+
+    public function checkoutBillingInfoAction(Request $request, $lang) {
+        $response = new Response();
+        $checkoutMethodCompleted = CommerceUtils::existStep(CHECKOUT_METHOD);
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+        else if(!$checkoutMethodCompleted) {
+            $this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
+            return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
+        }
+
+        $formFields = null;
+        if(CommerceUtils::existStep(BILLING_INFO)) {
+            $formFields = CommerceUtils::getStepData(BILLING_INFO);
+        }
+
+        $existsShipping = CommerceUtils::existStep(SHIPPING_INFO);
+        if($existsShipping && !$formFields) {
+            $formFields = CommerceUtils::getStepData(SHIPPING_INFO);
+        }
+
+        $billingForm = $this->createForm(new BillingInfoFormType(), array('info' => $formFields));
+        if($request->getMethod() == 'POST') {
+            $billingForm->handleRequest($request);
+
+            if($billingForm->isValid()) {
+                $data = $billingForm->getData();
+
+                if(array_key_exists('info', $data)) {
+                    unset($data['info']);
+                }
+
+                $updateStep = CommerceUtils::existStep(BILLING_INFO);
+                CommerceUtils::saveStep(BILLING_INFO, $data, $update = $updateStep);
+
+                l(INFO, 'Billing info saved succesfully');
+
+                return $this->redirect($this->generateUrl('drufony_checkout_shipping_method', array('lang' => $lang)));
+            }
+        }
+
+        $user = $this->getUser();
+        $userAddresses = array();
+        $userLogged = False;
+        if(!is_null($user)) {
+            $profile = new Profile($user->getUid());
+            $userAddresses = $profile->getAddresses();
+            $userLogged = True;
+        }
+
+        $checkoutProgress = CommerceUtils::getCheckoutProgress();
+
+        /* Adds items for section breadcrumb*/
+        $breadCrumb = array(
+          'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
+        );
+
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+                                                array('form'  => $billingForm->createView(),
+                                                'lang'        => $lang,
+                                                'shipping'    => false,
+                                                'addresses'   => $userAddresses,
+                                                'progress'    => $checkoutProgress,
+                                                'userLogged'  => $userLogged,
+                                                'checkoutMethodCompleted'=> $checkoutMethodCompleted,
+                                                'existsShipping' => $existsShipping,
+                                                'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
+                                                'checkoutStep' => BILLING_INFO_NAME,
+                                                'breadCrumb'  => $breadCrumb,
+                                              )
+                                            ));
+        return $response;
+    }
+
+    public function checkoutBillingUserAddressAction(Request $request, $lang, $addressId) {
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+
+        $user = $this->getUser();
+
+        $profile = new Profile($user->getUid());
+        $addressInfo = $profile->getAddress($addressId);
+
+        $billingInfo = $addressInfo;
+        $billingInfo['email'] = $user->getUsername();
+
+        $update = CommerceUtils::existStep(BILLING_INFO);
+        CommerceUtils::saveStep(BILLING_INFO, $billingInfo, $update = $update);
+
+        l(INFO, 'Address ' . $addressId . ' as billing info for user ' . $user->getUid() . ' saved succesfully');
+
+        return $this->redirect($this->generateUrl('drufony_checkout_billing_info', array('lang' => $lang)));
+    }
+
+    public function checkoutBillingUseShippingAction(Request $request, $lang) {
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+
+        $update = CommerceUtils::existStep(BILLING_INFO);
+        $shippingInfo = CommerceUtils::getStepData(SHIPPING_INFO);
+        CommerceUtils::saveStep(BILLING_INFO, $shippingInfo, $update = $update);
+
+        l(INFO, 'Billing info saved as shipping info succesfully');
+
+        return $this->redirect($this->generateUrl('drufony_checkout_billing_info', array('lang' => $lang)));
+    }
+
+    public function checkoutShippingInfoAction(Request $request, $lang) {
+        $response = new Response();
+        $checkoutMethodCompleted = CommerceUtils::existStep(CHECKOUT_METHOD);
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+        else if(!$checkoutMethodCompleted) {
+            $this->get('session')->getFlashBag()->add(ERROR, t('Please, complete checkout method before continue'));
+            return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
+        }
+
+        $formFields = null;
+        if(CommerceUtils::existStep(SHIPPING_INFO)) {
+            $formFields = CommerceUtils::getStepData(SHIPPING_INFO);
+        }
+
+        $existsBilling = CommerceUtils::existStep(BILLING_INFO);
+        if($existsBilling && !$formFields) {
+            $formFields = CommerceUtils::getStepData(BILLING_INFO);
+        }
+
+        $shippingForm = $this->createForm(new BillingInfoFormType(), array('info' => $formFields, 'notNif' => true));
+
+        if($request->getMethod() == 'POST') {
+            $shippingForm->handleRequest($request);
+            if($shippingForm->isValid()) {
+                $data = $shippingForm->getData();
+
+                if(array_key_exists('info', $data)) {
+                    unset($data['info']);
+                }
+                unset($data['notNif']);
+
+                $updateStep = CommerceUtils::existStep(SHIPPING_INFO);
+                CommerceUtils::saveStep(SHIPPING_INFO, $data, $update = $updateStep);
+
+                l(INFO, 'Shipping info saved successfully');
+
+                return $this->redirect($this->generateUrl('drufony_checkout_billing_info', array('lang' => $lang)));
+            }
+        }
+
+        $user = $this->getUser();
+        $userAddresses = array();
+        $userLogged = false;
+        if(!is_null($user)) {
+            $profile = new Profile($user->getUid());
+            $userAddresses = $profile->getAddresses();
+            $userLogged = true;
+        }
+
+        $checkoutProgress = CommerceUtils::getCheckoutProgress();
+
+        /* Adds items for section breadcrumb*/
+        $breadCrumb = array(
+          'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
+        );
+
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+                                                array('form'  => $shippingForm->createView(),
+                                                'lang'        => $lang,
+                                                'addresses'   => $userAddresses,
+                                                'shipping'    => true,
+                                                'progress'    => $checkoutProgress,
+                                                'userLogged'  => $userLogged,
+                                                'checkoutMethodCompleted' => $checkoutMethodCompleted,
+                                                'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
+                                                'checkoutStep' => SHIPPING_INFO_NAME,
+                                                'breadCrumb'  => $breadCrumb,
+                                              )
+                                            ));
+        return $response;
+    }
+
+    public function checkoutShippingUserAddressAction(Request $request, $lang, $addressId) {
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+
+        $user = $this->getUser();
+
+        $profile = new Profile($user->getUid());
+        $addressInfo = $profile->getAddress($addressId);
+
+        $shippingInfo = $addressInfo;
+        $shippingInfo['email'] = $user->getUsername();
+        unset($shippingInfo['nif']);
+
+        $update = CommerceUtils::existStep(SHIPPING_INFO);
+        CommerceUtils::saveStep(SHIPPING_INFO, $shippingInfo, $update = $update);
+
+        l(INFO, 'Address ' . $addressId . ' as shipping info for user ' . $user->getUid() . ' saved succesfully');
+
+        return $this->redirect($this->generateUrl('drufony_checkout_shipping_info', array('lang' => $lang)));
+    }
+
+    public function checkoutShippingMethodAction(Request $request, $lang) {
+        $response = new Response();
+
+        $checkoutMethodCompleted = CommerceUtils::existStep(CHECKOUT_METHOD);
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+        else if(!$checkoutMethodCompleted) {
+            $this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
+            return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
+        }
+
+        $formFields = null;
+        if(CommerceUtils::existStep(SHIPPING_METHOD)) {
+            $formFields = CommerceUtils::getStepData(SHIPPING_METHOD);
+        }
+
+        $shippingMethodForm = $this->createForm(new ShippingMethodFormType(), array('info' => $formFields));
+        if($request->getMethod = 'POST') {
+	    $shippingMethodForm->handleRequest($request);
+            if($shippingMethodForm->isValid()) {
+                $data = $shippingMethodForm->getData();
+
+                if(array_key_exists('info', $data)) {
+                    unset($data['info']);
+                }
+
+                $updateStep = CommerceUtils::existStep(SHIPPING_METHOD);
+                CommerceUtils::saveStep(SHIPPING_METHOD, $data, $update = $updateStep);
+
+                l(INFO, 'Shipping method saved successfully');
+
+                return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
+            }
+        }
+
+        $userLogged = !is_null($this->getUser());
+
+        $checkoutProgress = CommerceUtils::getCheckoutProgress();
+
+        /* Adds items for section breadcrumb*/
+        $breadCrumb = array(
+          'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
+        );
+
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+                                                array('form' => $shippingMethodForm->createView(),
+                                                'lang' => $lang,
+                                                'progress'    => $checkoutProgress,
+                                                'userLogged'  => $userLogged,
+                                                'checkoutMethodCompleted'=> $checkoutMethodCompleted,
+                                                'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
+                                                'checkoutStep' => SHIPPING_METHOD_NAME,
+                                                'breadCrumb' => $breadCrumb,
+                                                )
+                                              ));
+        return $response;
+    }
+
+
+    //TODO: check if user already has credit card or token
+    //FIXME: prepare code to diferent payment methods
+
+
+    /**
+     * @Route("/{orderNumber}/details", name = "payment_details")
+     * @Template
+     */
+
+    public function checkoutReviewAndPaymentAction(Request $request, $lang) {
+
+
+
+        $response = new Response();
+        $checkoutMethodCompleted = CommerceUtils::existStep(CHECKOUT_METHOD);
+
+
+	$value=$request->get('Ds_Response');
+
+	if (isset($value)){
+	
+
+                l(INFO, 'POST SERMEPA');
+
+
+	}
+
+        else{ 
+
+		if(CommerceUtils::getCartItemsCount() == 0) {
+
+
+		    return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+		}
+
+		else if(!$checkoutMethodCompleted) {
+		
+		    $this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
+		    return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
+		}
+
+		$userLogged = !is_null($this->getUser());
+
+		$formFields = null;
+		$existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
+		if($existPaymentStep) {
+		    $formFields = CommerceUtils::getStepData(PAYMENT_METHOD);
+		}
+
+
+
+
+		$userCards = array();
+		//If user is logged, retrieve its cards
+		if($userLogged) {
+		    $tpv = TPV::getInstance();
+		    list($customer, $userCards) = $tpv->getStoredUserCards($this->getUser()->getUid());
+		    if(count($userCards)) {
+			$formFields['storedCards'] = $userCards;
+			$formFields['customer'] = $customer;
+		    }
+		}
+
+	}
+
+	
+	$amount=1;
+	$order='1022432343';
+	$currency='EUR';
+        $formData['amount'] = $amount;
+        $formData['currency'] = $currency;
+        $formData['default_method'] = 'payment_paypal';
+        $formData['predefined_data'] = array(
+                    'paypal_express_checkout' => array(
+                        'return_url' => $this->router->generate('drufony_order_submit', array(
+                            'lang' =>$lang
+                        ), true),
+                        'cancel_url' => $this->router->generate('conditions_and_terms', array(
+                            'lang' => $lang
+                        ), true),
+     		        'checkout_params' => array(
+			   'L_PAYMENTREQUEST_0_NAME0' => 'event',
+			   'L_PAYMENTREQUEST_0_DESC0' => 'some event that the user is trying to buy',
+			   'L_PAYMENTREQUEST_0_AMT0'=> 29.95 )
+		    ),
+                    'sermepa_express_checkout' => array(
+			
+                        'send_url' => $this->container->getParameter('payment.sermepa.debug') ? 'https://sis-t.redsys.es:25443/sis/realizarPago' : 'https://sis.sermepa.es/sis/realizarPago',
+                        'Order_Number' 		=> $order,
+			'Amount'		=> intval($amount*100),
+                        'currency' 		=> '978',
+			'Merchant_Data'		=> 'Tienda On-line Macson',
+			'Terminal'		=>$this->container->getParameter('payment.sermepa.terminal'),
+			'Transaction_Type' 	=> '0',
+			'Merchant_Code'		=> $this->container->getParameter('payment.sermepa.username'),
+			'Merchant_Signature'	=> strtoupper(sha1(intval($amount*100). $order . $this->container->getParameter('payment.sermepa.username') . '978' .'0'.'http://80.36.225.101:8085/app_dev.php/es/checkout/payment/method/'.$this->container->getParameter('payment.sermepa.password'))),
+			'return_url' => 'http://80.36.225.101:8085/app_dev.php/es/checkout/payment/method/',
+			'return_url_ok' => $this->router->generate('drufony_cart_view', array('lang' => $lang),true),
+                        'cancel_url' => $this->router->generate('conditions_and_terms', array(
+                            'lang' => $lang
+                        ), true)
+                    ));
+
+        $paymentMethodForm =$this->getFormFactory()->create('jms_choose_payment_method', null, $formData);
+
+
+
+ 
+        if ($request->getMethod() == 'POST') {
+
+	    $paymentMethodForm->handleRequest($request);
+ 
+    // Once the Form is validate, you update the order with payment instruction
+
+
+
+
+            if ($paymentMethodForm->isValid() || isset($value)) {
+
+                //Check checkouk it's completed
+                list($message, $target) = CommerceUtils::checkOrderStatus();
+                if(!is_null($message)) {
+                    $this->get('session')->getFlashBag()->add(ERROR, $message);
+                    return $this->redirect($this->generateUrl($target, array('lang' => $lang)));
+                }
+
+                //Check coupons again
+                if($coupon = CommerceUtils::getStepData(COUPON)) {
+                    $couponStatus = CommerceUtils::getCouponStatus($coupon['couponCode']);
+                    $message = CommerceUtils::getCouponStatusMessage($couponStatus);
+
+                    #Act according coupon status
+                    if($couponStatus != COUPON_VALID) {
+                        $this->get('session')->getFlashBag()->add(ERROR, $message);
+                        return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+                    }
+                }
+
+                $data = $paymentMethodForm->getData();
+
+
+                if(array_key_exists('info', $data)) {
+                    unset($data['info']);
+                }
+
+                $this->ppc->createPaymentInstruction($data);
+
+
+
+       	        $paymentMethodForm->handleRequest($request);
+                $paymentMethodForm =$this->getFormFactory()->create('jms_choose_payment_method', null, $formData);
+
+		$instruction = $data;
+		if (null === $pendingTransaction = $instruction->getPendingTransaction()) {
+		    $payment = $this->ppc->createPayment($instruction->getId(), $instruction->getAmount() - $instruction->getDepositedAmount());
+		} else {
+		    $payment = $pendingTransaction->getPayment();
+		}
+		//var_dump($this->ppc->getPaymentInstruction($data)->getPaymentSystemName());	
+		//$a=$a;
+	
+		$result = $this->ppc->approveAndDeposit($payment->getId(), $payment->getTargetAmount());
+
+
+		if (Result::STATUS_PENDING === $result->getStatus()) {
+		    $ex = $result->getPluginException();
+
+		    if ($ex instanceof ActionRequiredException) {
+			$action = $ex->getAction();
+
+			if ($action instanceof VisitUrl) {
+			    if($this->ppc->getPaymentInstruction($data)->getPaymentSystemName()=='paypal_express_checkout'){
+			    	return new RedirectResponse($action->getUrl());
+			    }
+			}
+
+			throw $ex;
+		    }
+		} else if (Result::STATUS_SUCCESS !== $result->getStatus()) {
+			throw new \RuntimeException('Transaction was not successful: '.$result->getReasonCode());
+		}
+
+
+                CommerceUtils::saveStep(PAYMENT_METHOD, $data, $existPaymentStep);
+
+                // now, let's redirect to payment_complete with the order id
+
+                l(INFO, 'Payment info saved successfully');
+
+
+
+                return new RedirectResponse($this->router->generate('drufony_cart_view', array('lang' => $lang)));
+
+
+            }
+        }
+
+
+        $checkoutProgress = CommerceUtils::getCheckoutProgress();
+
+        /* Adds items for section breadcrumb*/
+        $breadCrumb = array(
+          'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
+        );
+
+                l(INFO, 'Recibido POST SERMEPA 2');
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+                                                array('form'              => $paymentMethodForm->createView(),
+                                                      'lang'              => $lang,
+						      'data'		  => $formData,
+                                                      'progress'          => $checkoutProgress,
+                                                      'userLogged'        => $userLogged,
+                                                      'checkoutMethodCompleted'=> $checkoutMethodCompleted,
+                                                      'mainContent'       => 'DrufonyCoreBundle::checkout_default_template.html.twig',
+                                                      'checkoutStep'      => PAYMENT_METHOD_NAME,
+                                                      'breadCrumb'        => $breadCrumb,
+                                                      )
+                                                  ));
+        return $response;
+    
+    }
+
+    public function submitOrderAction(Request $request, $lang) {
+
+        if(CommerceUtils::getCartItemsCount() == 0) {
+            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+        }
+
+        //Check checkouk it's completed
+        list($message, $target) = CommerceUtils::checkOrderStatus();
+
+        if(!is_null($message)) {
+            $this->get('session')->getFlashBag()->add(ERROR, $message);
+            return $this->redirect($this->generateUrl($target, array('lang' => $lang)));
+        }
+
+        $billing = CommerceUtils::getStepData(BILLING_INFO);
+        $shipping = CommerceUtils::getStepData(SHIPPING_INFO);
+        $shippingMethod = CommerceUtils::getStepData(SHIPPING_METHOD);
+        $payment = CommerceUtils::getStepData(PAYMENT_METHOD);
+
+        $user = $this->getUser();
+
+        $uid = null;
+        //Register user if is not registered
+        if(is_null($user)) {
+            if (!UserUtils::getUidByEmail($shipping['email'])) {
+                $newUser = new User();
+                $encoder = $this->get('security.encoder_factory')->getEncoder($newUser);
+                $data['password'] = $encoder->encodePassword(Drupal::user_password(10), $newUser->getSalt());
+                $data['username'] = $shipping['email'];
+                $data['email'] = $shipping['email'];
+                $data['roles'] = array(User::ROLE_FOR_NEW_USERS);
+
+                $uid = User::save($data);
+                $user = new User($uid);
+                $token = new UsernamePasswordToken($user, $user->getPassword(), 'user', $user->getRoles());
+
+                $this->container->get('security.context')->setToken($token);
+                $event = new InteractiveLoginEvent($this->getRequest(),$token);
+                $this->get('event_dispatcher')->dispatch('security.interactive_login', $event);
+                UserUtils::updateLoginDate($user->getUid());
+                l(INFO, 'User ' . $user->getUsername() . ' registered and logged in successfully');
+
+                $this->get('session')->getFlashBag()->add(
+                    INFO,
+                    t('Your email has been registered, please check your email inbox')
+                );
+                Mailing::sendForgotPassword($shipping['email']);
+            }
+            else {
+                $this->get('session')->getFlashBag()->add(INFO, 'This email already exists');
+                return $this->redirect($this->generateUrl('drufony_checkout_shipping_info', array('lang' => $lang)));
+            }
+        }
+        else {
+            $uid = $user->getUid();
+        }
+
+        $shippingValue = CommerceUtils::getShippingInfo($shippingMethod['shipping']);
+
+        $cart = CommerceUtils::getCartInfo($shippingValue['price']);
+
+        $checkoutData = array('uid' => $uid, 'paymentMethod' => 'paypal',
+            'paymentStatus' => PAYMENT_STATUS_PENDING, 'discount' => 0,
+            'total' => $cart['total'], 'paymentPlataform' => 'paypal',
+            'shippingStatus' => ORDER_STATUS_NEW, 'billingInfo' => $billing,
+            'comments' => $shippingMethod['comments'], 'shippingInfo' => $shipping,
+            'subtotal_with_vat' => $cart['totalBeforeTaxes'], 'shippingValue' => $shippingValue['price'],
+            'shippingId' => $shippingMethod['shipping'], 'currency' => DEFAULT_CURRENCY,
+            'cardLastDigits' => '0000',
+            'cardCountry' => '', 'orderStatus' => ORDER_STATUS_NEW,
+            'cartItems' => $cart['cartItems'],
+        );
+
+        $tpv = TPV::getInstance();
+
+
+
+        l(INFO, 'Payment processed successfully');
+
+        $orderId = CommerceUtils::saveOrder($checkoutData);
+
+        l(INFO, 'Order saved successfully');
+
+        $coupon = CommerceUtils::getStepData(COUPON);
+        if($coupon) {
+            $order = new Order($orderId);
+            $couponData = CommerceUtils::getCouponByCode($coupon['couponCode']);
+            $order->applyCoupon($couponData['id']);
+            l(INFO, 'Coupon applied, successfully');
+        }
+
+        CommerceUtils::saveUserAddressIfNew($uid, $billing);
+        CommerceUtils::saveUserAddressIfNew($uid, $shipping);
+        CommerceUtils::emptyCart();
+
+
+
+        l(INFO, 'All cart products removed');
+
+        CommerceUtils::emptyCheckout();
+
+        l(INFO, 'All checkout steps removed');
+
+        //TODO: redirect to the proper place
+        $this->get('session')->getFlashBag()->add(INFO, t('Thanks for the purchase'));
+        return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+    }
+
+    /** @DI\LookupMethod("form.factory") */
+    protected function getFormFactory() { }
+}
+

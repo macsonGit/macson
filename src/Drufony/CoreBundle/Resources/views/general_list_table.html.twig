@@ -1,0 +1,159 @@
+
+{# For theming customization #}
+{% form_theme translateFormSearch 'DrufonyCoreBundle::forms.html.twig' %}
+
+<!-- row -->
+<div class="row row-app">
+  <!-- col -->
+  <div class="col-md-12">
+    <!-- col-separator -->
+    <div class="col-separator col-separator-first col-unscrollable bg-none">
+      <!-- col-table -->
+      <div class="col-table">
+        <!-- heading -->
+        <div class="innerTB">
+          <h3 class="margin-none pull-left">{{ title }} &nbsp;</h3>
+        </div>
+        <div class="clearfix"></div>
+        <div class="innerTB">
+          {% if actionButtons is defined %}
+          <div class="btn-group pull-right">
+              {% for button in actionButtons %}
+                <a href="{{ path( button.link, { 'lang': lang, 'contentType': button.contentType,
+                    'action': button.action }) }}" class="btn btn-default"><i class="{{ button.icon }}"></i>{{ button.label }}</a>
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% if languagesOptions is defined %}
+          <div class="btn-group pull-right">
+              <select class='form-control' onChange="window.location.href=this.value">
+                  <option value="#">{{ "Select po file language" | t }}</option>
+              {% for button in languagesOptions %}
+                  <option value="{{ path( button.link, { 'lang': lang, 'poLang': button.poLang}) }}">{{ button.languageLabel }}</option>
+              {% endfor %}
+              </select>
+          </div>
+          {% endif %}
+          <div class='pull-left'>
+          {% if translateFormSearch is defined %}
+            {{ form_start(translateFormSearch) }}
+            {{ form_errors(translateFormSearch) }}
+            <div class='fl'>{{ form_widget(translateFormSearch.search, { 'attr': { 'class': 'form-control' } }) }}</div>
+            <div class='fl'>{{ form_widget(translateFormSearch.language) }}</div>
+            <div class='fl mg-top5'>{{ form_widget(translateFormSearch.submit) }}</div>
+            {{ form_end(translateFormSearch) }}
+          {% endif %}
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- // END heading -->
+
+        <div class="col-separator-h"></div>
+        <!-- col-table-row -->
+        <div class="col-table-row">
+          <!-- col-app.col-unscrollable -->
+          <div class="col-app col-unscrollable">
+            <!-- col-app -->
+            <div class="col-app">
+              <!-- content -->
+              <div class="row row-app">
+                <div class="col-md-12">
+
+              <!-- Widget -->
+              <div class="widget">
+                <div class="widget-body innerAll inner-2x">
+                  <!-- Table -->
+
+{% if tableRows is not empty %}
+    <table class="colVis table">
+        <thead class="bg-gray"> <!-- Table heading -->
+            <tr>
+                {# Print cols to show #}
+                {% for keyCol in tableCols %}
+                    <th {% if keyCol.class is defined %} class="{{ keyCol.class}}" {% endif %}>{{ keyCol.label }}</th>
+                {% endfor %}
+                {% if tableActions is defined and tableActions is not empty %}
+                    <th {% if keyCol.class is defined %} class="{{ keyCol.class }}" {% endif %} >{{ "Actions"|t }}</th>
+                {% endif %}
+            </tr>
+        </thead> <!-- // Table heading END -->
+        <tbody> <!-- Table body -->
+
+        {% for row in tableRows %}
+            <tr class="gradeX">
+                {% for keyCol in tableCols %}
+                    {% if keyCol.icon is defined %}
+                        <td><span class="{{ attribute(row, keyCol.name) }}"></span></td>
+                    {% else %}
+                        <td>{{ attribute(row, keyCol.name) }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>
+                    {% for action in tableActions %}
+                        {% if action.label == 'delete' or action.label == 'approve' %}
+                            <a href="{{ path(action.link, {
+                                    'lang'          : lang,
+                                    'id'           : attribute(row, action.id),
+                                    'action'        : action.op
+                               }) }}"
+                               id="{{action.label}}-{{ attribute(row, action.id) }}"
+                               rel="{{ action.label }}"
+                               class="{{ action.icon }}"></a>
+                        {% else %}
+                            <a href="{{ path(action.link, {
+                                    'lang'        : lang,
+                                    'id'         : attribute(row, action.id),
+                                    'action'      : action.op
+                                }) }}"
+                                id="{{action.label}}-{{ attribute(row, action.id) }}"
+                                class="{{ action.icon }}"></a>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr> <!-- // Table row END -->
+       {% endfor %}
+
+      </tbody>  <!-- // Table body END -->
+    </table> <!-- // Table END -->
+{% else %}
+    <p>{{ "There are no entries"|t }}</p>
+{% endif %}
+
+                </div>
+              </div>
+              <!-- // Widget END -->
+
+
+                </div>
+
+              </div>
+              <!-- // END content -->
+            </div>
+            <!-- // END col-app -->
+          </div>
+          <!-- // END col-app.col-unscrollable -->
+        </div>
+        <!-- // END col-table-row -->
+      </div>
+      <!-- // END col-table -->
+    </div>
+    <!-- // END col-separator -->
+  </div>
+  <!-- // END col -->
+</div>
+<!-- // END row -->
+
+{# FIXME place in general javascript #}
+
+<script>
+$(document).ready(function() {
+    $('a[rel="delete"]').click(function(e) {
+        e.preventDefault();
+        var resp = confirm('{{ "Are you sure you want to delete this content?" | t }}');
+        if (!resp) {
+            e.stopImmediatePropagation();
+        }
+    });
+});
+
+</script>

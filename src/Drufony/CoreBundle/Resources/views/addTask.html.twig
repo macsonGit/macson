@@ -1,0 +1,25 @@
+<html>
+<body>
+<h1>{{ "Add new Task" | t }}</h1>
+{{ form_start(form) }}
+<div class="form-item">
+{{ form_row(form.title) }}
+</div>
+<div class="form-item">
+{{ form_row(form.status) }}
+</div>
+<div class="form-item">
+{{ form_row(form.assigned) }}
+</div>
+<div class="form-item">
+{{ form_row(form.level) }}
+</div>
+<div class="form-item">
+{{ form_row(form.description) }}
+</div>
+<div class="form-item">
+{{ form_row(form.save) }}
+</div>
+{{ form_end(form) }}
+</body>
+</html>

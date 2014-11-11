@@ -1,0 +1,28 @@
+{% set homePage=1 %}
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+
+<img id="portada" src='{{ asset('bundles/macsonproject/images/portada1.jpg') }}'/>
+<div id="tipoPagina">hom</div>
+<div id="contenedor1">	
+	<div id="fotoRow">
+		<div class="foto">
+{% include "CustomProjectBundle::login.html.twig" %}		
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}		
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+{% include "CustomProjectBundle::menu.html.twig" %}
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+
+	</div>		
+</div>	
+
+
+{% include "CustomProjectBundle::footer.html.twig" %}
+

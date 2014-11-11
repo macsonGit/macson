@@ -1,0 +1,87 @@
+<!-- Block text -->
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+  <label class="input">
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+  </label>
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+<!-- Block textarea -->
+{% block textarea_widget %}
+<label class="textarea">
+{% spaceless %}
+    <textarea rows="5" {{ block('widget_attributes') }}>{{ value }}</textarea>
+{% endspaceless %}
+</label>
+{% endblock textarea_widget %}
+
+<!-- Block choice (select) -->
+{% block choice_widget_collapsed %}
+{% spaceless %}
+    {% if required and empty_value is none and not empty_value_in_choices %}
+        {% set required = false %}
+    {% endif %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('choice_widget_options') }}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('choice_widget_options') }}
+    </select>
+{% endspaceless %}
+{% endblock choice_widget_collapsed %}
+
+<!-- Block choice expanded -->
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <label {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+    </label>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+<!-- Block radio widget -->
+{% block radio_widget %}
+<label class="radio">
+{% spaceless %}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{ label }}
+{% endspaceless %}
+    <i></i>
+</label>
+{% endblock radio_widget %}
+
+<!-- Block checkbox -->
+{% block checkbox_widget %}
+{% spaceless %}
+<label class="checkbox">
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    <i></i>
+    {{ label }}
+</label>
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+<!-- Block for errors -->
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="has-error">
+        {% for error in errors %}
+            <li class="help-block">{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

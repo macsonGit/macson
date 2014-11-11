@@ -1,0 +1,13 @@
+<html>
+<body>
+<h1>{{ "Task:" | t }} {{ task.title }}</h1>
+
+<p>{{ "Created time" | t }}: {{ task.creationDate }}</p>
+<p>{{ "Assigned" | t }}: {{ task.userName | default('--') }}</p>
+<p>{{ "Level" | t }}: {{ task.levelName }}</p>
+<p>{{ "Description" | t }}: </p><p>{{ task.description }}</p>
+<p><a href="{{ path('drufony_tasks_edit', { 'lang': lang, 'id': task.id }) }}">{{ "Edit task" | t }}</a></p>
+<p><a href="{{ path('drufony_tasks_list', { 'lang': lang }) }}">{{ "Return to list" | t }}</a></p>
+
+</body>
+</html>

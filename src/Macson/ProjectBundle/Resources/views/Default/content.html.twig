@@ -1,0 +1,33 @@
+<div id="contenedor1">	
+	<div id="logo"><img id="logo" src='{{ asset('bundles/project/images/LogoMacson.png') }}'/></div>
+
+	<div class="foto">
+		<img id="zoom_01" src='{{ asset('bundles/project/images/foto_1.jpg') }}' data-zoom-image='{{ asset('bundles/project/images/grande/foto_1.jpg') }}'/>
+{% include "MacsonProjectBundle:Default:menu.html.twig" %}
+	</div>
+	<div class="foto">
+		<div id="infoPanel">
+			<div class="h2">Blazer</div>
+			<div class="texto">Americana refinada de corte clásico y acabados de alta calidad. Confeccionado en una selecta mezcla de lana y poliéster. Incorpora un cierre a cremallera oculto por un cierre a botones. Posee dos bolsillos exteriores con solapa, uno convencional, otro monedero y tres interiores. Cuenta con doble abertura posterior y se completa con broche a la altura del cuello y forro interno.</div>
+			<div class="texto">50% Lana 50% Poliéster</div>
+			<div class="texto">Color: Azul</div>
+			<div class="ref">ref. 610725</div>
+			<img src='img/cuidado1.jpg'>
+
+
+		</div>
+		<img id="zoom_02" src='{{ asset('bundles/project/images/foto_2.jpg') }}' data-zoom-image='{{ asset('bundles/project/images/grande/foto_2.jpg') }}'/>
+	</div>
+	<div class="foto">
+		<img id="zoom_03" src='{{ asset('bundles/project/images/foto_3.jpg') }}' data-zoom-image='{{ asset('bundles/project/images/grande/foto_3.jpg') }}'/>
+		<div id="masInfo">
+			<button id="boton2">Más Info</button>		
+		</div>					
+		<div id="precio">
+			129,95 €	
+		</div>
+		<div id="tallasBoton">
+			<button id="boton1">COMPRA</button>		
+		</div>
+	</div>
+</div>

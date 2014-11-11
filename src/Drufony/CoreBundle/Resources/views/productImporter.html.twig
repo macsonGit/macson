@@ -1,0 +1,23 @@
+<html>
+<body>
+  {% for type, flashMessages in app.session.flashbag.all() %}
+      {% set flashClass = '' %}
+      {% if type == 'notice' %}
+        {% set flashClass = "alert alert-success" %}
+      {% endif %}
+      {% if type == 'error' %}
+        {% set flashClass = "alert alert-danger" %}
+      {% endif %}
+      {% for message in flashMessages %}
+        <div class="col-md-12">
+          <div class="flash-{{type}} {{flashClass}}" style="opacity: .8">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+              {{ message }}
+          </div>
+        </div>
+      {% endfor %}
+  {% endfor %}
+  <h1>{{ "Product Importer" | t }}</h1>
+  {{ form(form) }}
+</body>
+</html>

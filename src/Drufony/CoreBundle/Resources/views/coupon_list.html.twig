@@ -1,0 +1,69 @@
+<html>
+<head></head>
+<body>
+    <h1>{{ "Coupons" | t }}</h1>
+    <h2>{{ "Unique: " | t }}</h2>
+    <a href='{{ path('drufony_coupons_add', {'lang': lang, 'type': unique})}}'>{{ "Add new unique coupon" | t }}</a>
+    <table>
+        <tr>
+            <th>{{ "Code" | t }}</th>
+            <th>{{ "Start Date" | t }}</th>
+            <th>{{ "Expiration Date" | t }}</th>
+            <th>{{ "Value" | t }}</th>
+            <th>{{ "Used by users" | t }}</th>
+            <th>{{ "Actions" | t }}</th>
+        </tr>
+    {% for coupon in uniqueCoupons %}
+        <tr>
+            <td> {% for code in coupon.code %} {{ code }} {% endfor %}</td>
+            <td> {{ coupon.startDate }} </td>
+            <td> {{ coupon.expirationDate }} </td>
+            <td> {{ coupon.value }} {% if coupon.isPercentage == 1 %} % {% else %} {{currency}} {% endif %} </td>
+            <td> {{ coupon.count }} </td>
+            <td>
+                <a href='{{ path('drufony_coupons_edit', {'lang': lang, 'id': coupon.id, 'type': unique, 'duplicate': 0})}}'>{{ "Edit" | t }}</a>
+                {% if coupon.status == enable %}
+                    <a href='{{ path('drufony_coupons_status', {'lang': lang, 'id': coupon.id, 'type': unique, 'status': disable})}}'>{{ "Disable" | t }}</a>
+                {% else %}
+                    <a href='{{ path('drufony_coupons_status', {'lang': lang, 'id': coupon.id, 'type': unique, 'status': enable})}}'>{{ "Enable" | t }}</a>
+                {% endif %}
+                <a href='{{ path('drufony_coupons_edit', {'lang': lang, 'id': coupon.id, 'type': unique, 'duplicate': true})}}'>{{ "Create more" | t }}</a>
+            </td>
+        </tr>
+    {% else %}
+        <p> {{ "Not unique coupons" | t }}</p>
+    {% endfor %}
+    </table>
+    <table>
+        <tr>
+            <th>{{ "Code" | t }}</th>
+            <th>{{ "Start Date" | t }}</th>
+            <th>{{ "Expiration Date" | t }}</th>
+            <th>{{ "Value" | t }}</th>
+            <th>{{ "Times used" | t }}</th>
+            <th>{{ "Actions" | t }}</th>
+        </tr>
+    <h2>{{ "Multiuser: " | t }}</h2>
+    <a href='{{ path('drufony_coupons_add', {'lang': lang, 'type': multiuser})}}'>{{ "Add new multiuser coupon" | t }}</a>
+    {% for coupon in multiCoupons %}
+        <tr>
+            <td> {{ coupon.code }} </td>
+            <td> {{ coupon.startDate }} </td>
+            <td> {{ coupon.expirationDate }} </td>
+            <td> {{ coupon.value }} {% if coupon.isPercentage == 1 %} % {% else %} {{currency}} {% endif %} </td>
+            <td> {{ coupon.count }} </td>
+            <td>
+                <a href='{{ path('drufony_coupons_edit', {'lang': lang, 'id': coupon.id, 'type': multiuser, 'duplicate': 0})}}'>{{ "Edit" | t }}</a>
+                {% if coupon.status == enable %}
+                    <a href='{{ path('drufony_coupons_status', {'lang': lang, 'id': coupon.id, 'type': multiuser, 'status': disable})}}'>{{ "Disable" | t }}</a>
+                {% else %}
+                    <a href='{{ path('drufony_coupons_status', {'lang': lang, 'id': coupon.id, 'type': multiuser, 'status': enable})}}'>{{ "Enable" | t }}</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% else %}
+        <p> {{ "Not multiuser coupons" | t }}</p>
+    {% endfor %}
+    </table>
+</body>
+</html>

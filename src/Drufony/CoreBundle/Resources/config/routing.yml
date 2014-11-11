@@ -1,0 +1,435 @@
+macson_chart: 
+    pattern: /chart/{ope}-{pid}-{vid}
+    defaults: {_controller: CustomProjectBundle:CartOpe:index} 
+
+macson_importer:
+    pattern: /importer
+    defaults: {_controller: CustomProjectBundle:Importer:index}
+
+macson_category:
+    pattern:  /category/{category}-{categorynames}
+    defaults: { _controller: CustomProjectBundle:Category:index }
+
+macson_importeri_user:
+    pattern: /importeruser
+    defaults: {_controller: CustomProjectBundle:Importer:user}
+
+macson_stores:
+    pattern:  /stores
+    defaults: { _controller: CustomProjectBundle:Store:index }
+
+drufony_login:
+    pattern: /login
+    defaults: { _controller: DrufonyCoreBundle:User:loginRegister }
+
+drufony_register:
+    pattern: /register
+    defaults: { _controller: DrufonyCoreBundle:User:loginRegister }
+
+drufony_login_logout:
+    pattern: /logout
+
+drufony_user_public_view:
+    pattern: /user/{uid}
+    defaults: { _controller: DrufonyCoreBundle:User:userPublicView }
+    requirements:
+        uid: -?\d+
+
+drufony_profile_edit:
+    pattern: /profile/edit-profile/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:profile, id:null}
+
+drufony_account_edit:
+    pattern: /profile/edit-account/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:account, id:null }
+
+drufony_profile_address_edit:
+    pattern: /profile/edit-addresses/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:profileAddresses, id:null }
+
+drufony_home_dashboard:
+    pattern: /dashboard
+    defaults: { _controller: DrufonyCoreBundle:Admin:dashboardHome}
+
+drufony_accesses:
+    pattern:  /dashboard/people/accesses
+    defaults: { _controller: DrufonyCoreBundle:Admin:accesses }
+
+drufony_generate_po_files:
+    pattern:  /admin/config/regional/translate/generatepofiles/{poLang}
+    defaults: { _controller: DrufonyCoreBundle:Admin:generateTranslationFiles }
+    requirements:
+        poLang: %allowed_locales%
+
+drufony_translate_search_content:
+    pattern:  /admin/config/regional/translate/overview
+    defaults: { _controller: DrufonyCoreBundle:Admin:contentTranslateSearch }
+
+drufony_translate_search:
+    pattern:  /admin/config/regional/translate/translate
+    defaults: { _controller: DrufonyCoreBundle:Admin:translateSearch }
+
+drufony_translate_actions:
+    pattern:  /dashboard/translate/interface/{action}/{id}
+    requirements:
+        id: -?\d+
+        action: edit|delete
+    defaults: { _controller: DrufonyCoreBundle:Locale:translateInterface }
+
+drufony_translation_content:
+    pattern: /dashboard/translations/contents/{contentType}
+    defaults: { _controller: DrufonyCoreBundle:Admin:contentTranslationStatus, contentType: 'item'}
+
+drufony_translation_overview:
+    pattern: /dashboard/translations/overview
+    defaults: { _controller: DrufonyCoreBundle:Admin:translateOverview }
+
+drufony_translation_interface:
+    pattern: /dashboard/translations/interface
+    defaults: { _controller: DrufonyCoreBundle:Admin:translateSearch }
+
+drufony_manage_content:
+    pattern: /dashboard/manage/content/{feature}/{contentType}/{page}
+    defaults: { _controller: DrufonyCoreBundle:Admin:manageContent, feature:'latest', contentType: 'item', page: 1 }
+    requirements:
+        page: -?\d+
+
+drufony_report_abuse:
+    pattern: /report/abuse/{nid}
+    defaults: { _controller: DrufonyCoreBundle:Content:reportAbuse }
+    requirements:
+        nid: -?\d+
+
+drufony_follow_user:
+    pattern: /follow/{action}/user/{uid}
+    defaults: { _controller: DrufonyCoreBundle:User:follow }
+    requirements:
+        uid: -?\d+
+        action: add|remove
+
+drufony_rate_content:
+    pattern: /rate/content/{nid}
+    defaults: { _controller: DrufonyCoreBundle:Content:rateContent }
+    methods: [POST]
+    requirements:
+        nid: -?\d+
+
+drufony_favorite_content:
+    pattern: /favorite/{action}/content/{nid}
+    defaults: { _controller: DrufonyCoreBundle:Content:manageFavoriteContent }
+    requirements:
+        nid: -?\d+
+        action : add|remove
+
+drufony_tasks_list:
+    pattern: /dashboard/tasks/list/{page}
+    defaults: { _controller: DrufonyCoreBundle:Admin:tasks, page: 1 }
+    requirements:
+        page: -?\d+
+
+drufony_task_view:
+    pattern: /dashboard/tasks/view/{id}
+    requirements:
+        id: -?\d+
+    defaults: { _controller: DrufonyCoreBundle:Admin:viewTask }
+
+drufony_manage_path:
+    pattern: /dashboard/manage
+    defaults: { _controller: DrufonyCoreBundle:Content:managePath }
+
+drufony_commerce_path:
+    pattern: /dashboard/commerce
+    defaults: { _controller: DrufonyCoreBundle:Content:commercePath }
+
+drufony_translations_path:
+    pattern: /dashboard/translations
+    defaults: { _controller: DrufonyCoreBundle:Content:translationsPath }
+
+drufony_create_path:
+    pattern: /dashboard/create
+    defaults: { _controller: DrufonyCoreBundle:Content:createPath }
+
+drufony_newsletter_list:
+    pattern: /dashboard/newsletter
+    defaults: { _controller: DrufonyCoreBundle:User:newsletter}
+    requirements:
+        lang: %allowed_locales%
+
+drufony_order_list:
+    pattern: /dashboard/commerce/orders
+    defaults: { _controller: DrufonyCoreBundle:Content:createPath }
+
+drufony_customer_list:
+    pattern: /dashboard/commerce/customers
+    defaults: { _controller: DrufonyCoreBundle:Content:createPath }
+
+drufony_users_list:
+    pattern: /dashboard/users
+    defaults: { _controller: DrufonyCoreBundle:User:listUsers }
+
+drufony_users_edit:
+    pattern: /dashboard/edit/users
+    defaults: { _controller: DrufonyCoreBundle:User:listUsers }
+
+drufony_users_delete:
+    pattern: /profile/delete/user/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:deleteAccount }
+    requirements:
+        id: -?\d+
+
+drufony_settings:
+    pattern: /dashboard/settings
+    defaults: { _controller: DrufonyCoreBundle:Admin:settings }
+
+drufony_cookie_terms_url:
+    pattern:  /cookie-policy
+    defaults: { _controller: DrufonyCoreBundle:Static:cookiePolicy }
+
+drufony_user_validate_email:
+    pattern:  /user/validate/{uid}/{timestamp}/{hash}
+    defaults: { _controller: DrufonyCoreBundle:User:validateEmail }
+
+drufony_user_forgot_pass:
+    pattern:  /user/recovery/{uid}/{timestamp}/{hash}
+    defaults: { _controller: DrufonyCoreBundle:User:recoveryPassword }
+
+drufony_user_request_forgot_pass:
+    pattern:  /user/recovery-password
+    defaults: { _controller: DrufonyCoreBundle:User:requestRecoveryPassword }
+
+drufony_update_mailchimp:
+    pattern: /mailchimp/update/
+    defaults: {_controller: DrufonyCoreBundle:MailChimp:updateDatabase}
+
+drufony_vintage_event_edit:
+    pattern: /event/{id}/edit/{langToTranslate}
+    requirements:
+        langToTranslate: %allowed_locales%
+        id: -?\d+
+    defaults: { _controller: DrufonyCoreBundle:Content:eventAdd, langToTranslate: null }
+
+drufony_vintage_event_add:
+    pattern: /dashboard/schedule/event/add
+    defaults: { _controller: DrufonyCoreBundle:Content:eventAdd }
+
+drufony_content_actions:
+    pattern: /dashboard/{action}/{contentType}/{id}/{langToTranslate}
+    requirements:
+        langToTranslate: %allowed_locales%
+        id: -?\d+
+        action: edit|create|delete|approve
+    defaults: { _controller: DrufonyCoreBundle:Content:content, id: null, langToTranslate: null }
+
+drufony_vintage_post_add:
+    pattern: /post/add
+    defaults: { _controller: DrufonyCoreBundle:Content:postAdd }
+
+drufony_vintage_post_edit:
+    pattern: /post/{id}/edit/{langToTranslate}
+    requirements:
+        langToTranslate: %allowed_locales%
+        id: -?\d+
+    defaults: { _controller: DrufonyCoreBundle:Content:postAdd, langToTranslate: null }
+
+drufony_product_list:
+    pattern: /commerce/products
+    defaults: { _controller: DrufonyCoreBundle:Catalog:productList}
+
+commerce_home_path:
+    pattern: /ecommerce/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:index}
+
+drufony_cart_add:
+    pattern: /cart/add/{product}/{value}/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:addToCart}
+
+drufony_cart_update:
+    pattern: /cart/update/{product}/{value}
+    defaults: { _controller: DrufonyCoreBundle:Commerce:updateCart}
+
+drufony_cart_remove:
+    pattern: /cart/remove/{product}/{}
+    defaults: { _controller: DrufonyCoreBundle:Commerce:removeFromCart}
+
+drufony_cart_view:
+    pattern: /cart/view/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:viewCart}
+
+drufony_checkout_login:
+    pattern: /checkout/login/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutLogin}
+
+drufony_checkout_without_login:
+    pattern: /checkout/without/login/{withoutlogin}
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutLogin}
+
+drufony_checkout_load_previous_info:
+    pattern: /checkout/load/previous/info
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutLoadPreviousInfo}
+
+drufony_checkout_billing_info:
+    pattern: /checkout/billing/info/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutBillingInfo}
+
+drufony_checkout_billing_user_address:
+    pattern: /checkout/billing/user/address/{addressId}
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutBillingUserAddress}
+
+drufony_checkout_shipping_info:
+    pattern: /checkout/shipping/info/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutShippingInfo}
+
+drufony_checkout_shipping_user_address:
+    pattern: /checkout/shipping/user/address/{addressId}
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutShippingUserAddress}
+
+drufony_checkout_billing_use_shipping:
+    pattern: /checkout/shipping/use/billing
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutBillingUseShipping}
+
+drufony_checkout_shipping_method:
+    pattern: /checkout/shipping/method/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutShippingMethod}
+
+drufony_country_list_shipping:
+    pattern: /dashboard/country/list/shipping
+    defaults: { _controller: DrufonyCoreBundle:Admin:countryShippingList }
+
+drufony_country_shipping_cost:
+    pattern: /dashboard/country/list/shipping/{countryId}
+    defaults: { _controller: DrufonyCoreBundle:Admin:countryShippingCost }
+
+drufony_checkout_review_payment:
+    pattern: /checkout/payment/method/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutReviewAndPayment}
+
+drufony_payment_stripe:
+    pattern: /checkout/payment/stripe
+    defaults: { _controller: DrufonyCoreBundle:Commerce:stripePayment }
+
+drufony_payment_sermepa_success:
+    pattern: /checkout/payment/sermepa/success/{paymentHash}
+    defaults: { _controller: DrufonyCoreBundle:Commerce:sermepaPaymentSuccess }
+
+drufony_payment_sermepa_error:
+    pattern: /checkout/payment/sermepa/error
+    defaults: { _controller: DrufonyCoreBundle:Commerce:sermepaPaymentError }
+
+drufony_payment_paypal_success:
+    pattern: /checkout/payment/paypal/success
+    defaults: { _controller: DrufonyCoreBundle:Commerce:paypalPaymentSuccess }
+
+drufony_payment_paypal_error:
+    pattern: /checkout/payment/paypal/error
+    defaults: { _controller: DrufonyCoreBundle:Commerce:paypalPaymentError }
+
+drufony_order_submit:
+    pattern: /checkout/order/submit/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:submitOrder}
+
+drufony_provinces:
+    pattern: /provinces
+    defaults: { _controller: DrufonyCoreBundle:User:provincesByCountry}
+
+drufony_checkout_register:
+    pattern: /checkout/register/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutRegister}
+
+drufony_home_url:
+    path: /
+    defaults:
+        _controller: DrufonyCoreBundle:GeneralUrl:index
+        url: "index"
+
+drufony_shipping_add:
+    pattern: /dashboard/shipping/add
+    defaults: { _controller: DrufonyCoreBundle:Admin:addShippingFee }
+
+drufony_menu_add:
+    pattern: /dashboard/menu/add
+    defaults: { _controller: DrufonyCoreBundle:Admin:addMenu }
+
+drufony_menu_edit:
+    pattern: /dashboard/menu/edit/{id}
+    defaults: { _controller: DrufonyCoreBundle:Admin:addMenu }
+
+drufony_menu_add_child:
+    pattern: /dashboard/menu/add/child/{parentId}
+    defaults: { _controller: DrufonyCoreBundle:Admin:addMenu }
+
+drufony_menu_list:
+    pattern: /dashboard/menu/list/
+    defaults: { _controller: DrufonyCoreBundle:Admin:menuList }
+
+drufony_menu_delete:
+    pattern: /dashboard/menu/delete/{id}
+    defaults: { _controller: DrufonyCoreBundle:Admin:deleteMenu }
+
+drufony_schedule_calendar:
+    path: /dashboard/schedule
+    defaults: { _controller: DrufonyCoreBundle:Admin:events }
+
+drufony_contact:
+    pattern: /contact
+    defaults: { _controller: DrufonyCoreBundle:Contact:contactForm }
+
+drufony_stats_now:
+    pattern: /dashboard/stats/now
+    defaults: { _controller: DrufonyCoreBundle:Admin:nowStats }
+
+drufony_stats_now_request:
+    pattern: /dashboard/stats/now/request
+    defaults: { _controller: DrufonyCoreBundle:Admin:nowStatsAjaxRequest}
+
+drufony_category_add:
+    pattern: /dashboard/category/add/{vid}/{tid}/{parentId}
+    defaults: { _controller: DrufonyCoreBundle:Content:categoryAdd, tid: null, parentId: null }
+    requirements:
+        vid: \d+
+        tid: \d+
+        parentId: \d+
+
+drufony_coupons_list:
+    pattern: /dashboard/coupons
+    defaults: { _controller: DrufonyCoreBundle:Admin:couponsList }
+
+drufony_coupons_add:
+    pattern: /dashboard/coupons/add/{type}
+    defaults: { _controller: DrufonyCoreBundle:Admin:couponsForm }
+
+drufony_coupons_edit:
+    pattern: /dashboard/coupons/edit/{type}/{id}/{duplicate}
+    defaults: { _controller: DrufonyCoreBundle:Admin:couponsForm }
+
+drufony_coupons_status:
+    pattern: /dashboard/coupons/{status}/{id}/{type}
+    defaults: { _controller: DrufonyCoreBundle:Admin:couponsStatus }
+
+drufony_generate_rss:
+    pattern: /rss/{rssType}/{id}
+    defaults: { _controller: DrufonyCoreBundle:Content:generateRss, rssType: 'section'}
+
+drufony_cron_publish_content:
+    path: /cron/publish/content
+    defaults: { _controller: DrufonyCoreBundle:Content:publishContent }
+
+products_importer_exporter:
+    path: /admin/products/{action}
+    defaults: { _controller: DrufonyCoreBundle:Content:importExportProducts }
+    requirements:
+        action: import|export
+
+conditions_and_terms:
+    path: /
+    defaults:
+        _controller: DrufonyCoreBundle:GeneralUrl:index
+        url: "index"
+
+
+drufony_general_url:
+    path: /{url}{trailingSlash}
+    defaults: { _controller: DrufonyCoreBundle:GeneralUrl:index, url: "index", trailingSlash:"/" }
+    requirements:
+        url: ".+"
+        trailingSlash: "\/?"
+

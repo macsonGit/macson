@@ -1,0 +1,5 @@
+<p>{{ 'Hello' }},</p>
+<p>{{ 'The user @username order @orderId has been completed successfully and paid through @paymentPlataform with idetifier @paymentHash.'
+    | t({ '@username': customParams.username, '@orderId': customParams.orderId, '@paymentPlataform': customParams.paymentPlataform,
+    '@paymentHash': customParams.paymentHash }) }}
+</p>

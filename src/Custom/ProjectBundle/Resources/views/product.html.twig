@@ -1,0 +1,104 @@
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<script>
+	var urlImg1 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_1.jpg') }}";
+	var urlImg2 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_2.jpg') }}";
+	var urlImg3 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg') }}";
+	var product = {{contentData.__get('id')}};
+	var varieties = [ {% for size in contentData.varieties %}{% if loop.last %}{{size.varProdId}}]{% else %}{{size.varProdId}}, {% endif %}{% endfor %};
+	var varietiesVal = [ {% for size in contentData.varieties %}{% if loop.last %}'{{size.value}}']{% else %}'{{size.value}}', {% endif %}{% endfor %};
+	var sizeSelected = 0;	
+
+</script>
+
+<div id="zoomContainer"></div>
+
+{% if not numImages.im2 %}
+			<div id="tipoPagina">prod1</div>
+{% else %}
+	{% if not numImages.im3 %}
+		<div id="tipoPagina">prod2</div>
+	{% else %}
+		<div id="tipoPagina">prod</div>
+	{% endif %}	
+{% endif %}	
+<div id="contenedor1">	
+	<div id="fotoRow">
+		<div class="foto">
+{% include "CustomProjectBundle::login.html.twig" %}		
+{% include "CustomProjectBundle::menu.html.twig" %}
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}		
+			<div id="tallas">
+				<ul id="listaTallas">
+{%if contentData.varieties[0].value!= 'AGOTADO'%}
+	{% for size in contentData.varieties if size.stock > 0 %}	
+		{%if loop.first%}
+			{%if contentData.varieties|length > 1%}
+					<li>{{'Select Size'|t}}: |</li>
+			{% else %}
+					<li>{{'Only available in size'|t}}: |</li>
+			{% endif %}
+		{%endif%}			
+					<li class="itemTalla">{{size.value}}</li> |							
+	{% endfor %}
+{% endif %}
+				</ul>		
+				<div id="buyBoton">								
+					<button id="boton1">{{'BUY'|t}}</button>		
+				</div>
+			</div>
+			<div id="tituloCat">
+				+ {{ "Menu" | t}}
+			</div>	
+{% if not numImages.im2 %}		
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
+{% else %}
+			<img class="fotoImg1" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
+{% endif %}	
+		</div>
+		<div class="foto">
+{% if not numImages.im2 %}
+			<img class="fotoImg1" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
+{% else %}
+			<img class="fotoImg2" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg') }}'>	
+{% endif %}		
+			<div id="tagPriceProducto">
+{% if contentData.pricePVP == contentData.firstPrice%}		
+			{{ contentData.pricePVP | round (2,'common')}} <font size="2">€</font>
+{% else %}
+			<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(2,'common')}}  <font size="2">€ </font> 
+{%endif%}
+			</div>			
+		</div>
+		<div class="foto">
+			<div id="infoPanel" class="pad5 border">
+				<div class="texto borderBottom">{{contentData.body}}</div>
+				<div class="height3"></div>	
+				<div class="texto borderBottom pad5 borderBottom">{{contentData.color}}</div>
+				<div class="height3"></div>	
+				<div class="texto borderBottom">{{contentData.composition}}</div>		
+				<div class="height3"></div>	
+				<div id="cuidados">
+					<div class="texto">{{ "Cares"|t }}+</div>
+				</div>	
+				<div id="cuidadosPanel" class="border">
+					<div class="height3"></div>	
+					<img src='{{ asset('bundles/customproject/images/Cares/cuidado'~contentData.cares~'.jpg') }}'>
+				</div>
+				<div class="ref">ref. {{contentData.__get('sgu')}}</div>
+			</div>	
+{% if not numImages.im3 %}
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+{% else %}
+			<img class="fotoImg3" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
+{% endif %}	
+			<div id="titulo">
+				<div class="h2">{{contentData.title}}  <div id="masInfo"> + Info</div></div>  	
+			</div>		
+		</div>		
+	</div>
+</div>
+
+{% include "CustomProjectBundle::footer.html.twig" %}
+

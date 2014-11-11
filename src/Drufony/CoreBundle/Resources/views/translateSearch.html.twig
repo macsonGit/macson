@@ -1,0 +1,42 @@
+<html>
+ <body>
+ <h1>{{ "Translate interface" | t }}</h1>
+ {{ form_start(form) }}
+     {{ form_errors(form) }}
+
+     {{ form_row(form.search) }}
+ {{ form_end(form) }}
+
+ {% if translations is defined and translations is not empty %}
+   <table>
+   <tr>
+   <th> {{ "Source" | t }} </th>
+   <th> {{ "Languages" | t }} </th>
+   <th> {{ "Operations" | t}} </th>
+   </tr>
+   {% for translation in translations %}
+       <tr>
+<td>{{ translation.source }}<br><small>{{ translation.location }}</td>
+            <td>
+                {% for langKey, langName in languages %}
+                    {% if translation.language[langKey] is defined %}
+                        {{ langKey }} 
+                    {% else %}
+                        <del>{{ langKey }}</del> 
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{{ path('drufony_translate_edit', {'lang': lang ,'lid': translation.lid}) }}">{{ "Edit" | t }}</a>
+                <a href="{{ path('drufony_translate_delete', {'lang': lang ,'lid': translation.lid}) }}"
+                onclick="return confirm('{{"Are you sure you want to delete the string" | t }} {{translation.source}}?')">{{ "Delete" | t }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+  {% elseif searched %}
+      <p>{{ "Any translations has been found" | t }}</p>
+  {% endif %}
+  </body>
+</html>
+

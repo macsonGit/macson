@@ -1,0 +1,189 @@
+{% if itemMenu == 'users' %}
+{% set users = 'active' %}
+{% else %}
+{% set users = '' %}
+{% endif %}
+{% if itemMenu == 'settings' %}
+{% set settings = 'active' %}
+{% else %}
+{% set settings = '' %}
+{% endif %}
+{% if itemMenu == 'newsletter' %}
+{% set newsletter = 'active' %}
+{% else %}
+{% set newsletter = '' %}
+{% endif %}
+  
+      <!-- Main Sidebar Menu -->
+    <div id="menu" class="hidden-print hidden-xs sidebar-blue sidebar-brand-primary">
+
+      
+<div id="sidebar-fusion-wrapper">
+  <div id="brandWrapper">
+    <a href="/index.html"><span class="text">Drufony</span></a>
+  </div>
+  <div id="logoWrapper" style="height: 75px">
+    <div id="logo">
+      <a href="index.html?lang=en" class="btn btn-sm btn-inverse"><i class="fa fa-fw icon-home-fill-1"></i></a>
+      <a href="" class="btn btn-sm btn-inverse"><i class="fa fa-fw fa-envelope"></i><span class="badge pull-right badge-primary">2</span></a>
+
+      <!-- <div id="toggleNavbarColor" data-toggle="navbar-color">
+        <a href="" class="not-animated color color-blue active"></a>
+        <a href="" class="not-animated color color-white"></a>
+        <a href="" class="not-animated color bg-primary"></a>
+        <a href="" class="not-animated color color-inverse"></a>
+      </div> -->
+
+    </div>
+  </div>
+  <!-- <div id="logoWrapper">
+    <div id="logo">
+      <a href="index.html?lang=en" class="animated fadeInDown display-block-inline"><img src="../assets/images/logo/app-logo-style-default.png" alt=""></a>
+      <div class="innerAll">
+        <select name="" id="menu_switch" data-style="btn-inverse" id="" class="selectpicker dropdown-menu-light" data-container="body">
+          <option value="navigation_current_page">Components</option>
+          <option value="navigation_modules">Modules</option>                 </select>
+      </div>
+    </div>
+  </div> -->
+
+
+  <ul class="menu list-unstyled" id="navigation_current_page" style="top:134px">
+
+{% if itemMenu == 'Tasks' %}
+  <li class="active">
+{% else %}
+  <li>
+{% endif %}
+  <a href="{{ path('drufony_tasks_list', { 'lang': lang }) }}"><i class="fa fa-bell"></i> Tasks</a>
+</li>
+{% if itemMenu == 'Create' %}
+<li class="hasSubmenu active">
+{% else %}
+<li class="hasSubmenu">
+{% endif %}
+  <a href="#menu_tables" data-toggle="collapse"><span class="badge badge-primary pull-right">4</span><i class="fa fa-pencil"></i> {{ "Create" | t }}</a>
+
+{% if itemMenu == 'Create' %}
+  <ul class="collapse in" id="menu_tables">
+{% else %}
+  <ul class="collapse" id="menu_tables">
+{% endif %}
+    <li class=""><a  href="{{ path('drufony_content_actions', { 'lang': lang, 'action': 'create', 'contentType': 'item' }) }}">{{ "Add Item" | t }}</a></li>
+    <li class=""><a  href="{{ path('drufony_content_actions', { 'lang': lang, 'action': 'create', 'contentType': 'section' }) }}">{{ "Add Section" | t }}</a></li>
+    <li class=""><a  href="{{ path('drufony_content_actions', { 'lang': lang, 'action': 'create', 'contentType': 'product' }) }}">{{ "Add Product" | t }}</a></li>
+    <li class=""><a  href="{{ path('drufony_content_actions', { 'lang': lang, 'action': 'create', 'contentType': 'page' }) }}">{{"Add Page" | t }}</a></li>
+    <li class=""><a  href="{{ path('drufony_vintage_event_add', { 'lang': lang }) }}">{{ "Add event" | t }}</a></li>
+  </ul>
+</li>
+{% if itemMenu == 'Manage' %}
+<li class="hasSubmenu active">
+{% else %}
+<li class="hasSubmenu">
+{% endif %}
+  <a href="#menu_forms" data-toggle="collapse"><span class="badge badge-primary pull-right">7</span><i class="fa fa-folder"></i> Manage</a>
+{% if itemMenu == 'Manage' %}
+  <ul class="collapse in" id="menu_forms">
+{% else %}
+  <ul class="collapse" id="menu_forms">
+{% endif %}
+    <li class=""><a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'latest' }) }}">Content: Latest</a></li>
+    <li class=""><a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'promoted'}) }}">Content: Promoted</a></li>
+    <li class=""><a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'sticky' }) }}">Content: Sticky</a></li>
+    {% if itemMenu == 'unpublished' %}
+      <li class="active">
+      {% else %}
+      <li class="">
+    {% endif %}
+    <a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'unpublished' }) }}">Content: Unpublished</a></li>
+    <li class=""><a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'schedule' }) }}">Content: Schedule</a></li>
+
+    <li class=""><a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'comments' }) }}">Comments</a></li>
+    <li class=""><a  href="{{ path('drufony_manage_content', { 'lang': lang, 'feature': 'taxonomy' }) }}">Taxonomy</a></li>
+  </ul>
+</li>
+
+{% if itemMenu == 'Translation' %}
+<li class="hasSubmenu active">
+{% else %}
+<li class="hasSubmenu">
+{% endif %}
+  <a href="#menu_translations" data-toggle="collapse"><span class="badge badge-primary pull-right">2</span><i class="fa fa-file"></i> Translations</a>
+{% if itemMenu == 'Translation' %}
+  <ul class="collapse in" id="menu_translations">
+{% else %}
+  <ul class="collapse" id="menu_translations">
+{% endif %}
+    <li><a  href="{{ path('drufony_translation_overview', { 'lang': lang }) }}">Translation Overview</a></li>
+    <li><a  href="{{ path('drufony_translation_interface', { 'lang': lang }) }}">Interface Translation</a></li>
+    <li><a  href="{{ path('drufony_translation_content', { 'lang': lang }) }}">Content Translation</a></li>
+  </ul>
+</li>
+{% if itemMenu == 'Newsletter' %}
+<li class="active">
+{% else %}
+<li>
+{% endif %}
+  <a  href="{{ path('drufony_newsletter_list', { 'lang': lang }) }}"><i class="fa fa-envelope"></i> {{ 'Newsletter' |t }}</a>
+</li>
+
+
+{% if itemMenu == 'users' %}
+<li class="hasSubmenu active">
+{% else %}
+<li class="hasSubmenu">
+{% endif %}
+  <a href="#menu_users" data-toggle="collapse"><span class="badge badge-primary
+  pull-right">3</span><i class="fa fa-user"></i> {{ 'Users' |t }}</a>
+{% if itemMenu == 'users' %}
+  <ul class="collapse in" id="menu_users">
+{% else %}
+  <ul class="collapse" id="menu_users">
+{% endif %}
+<li class="">
+  <a href="{{ path('drufony_users_list', { 'lang' : lang}) }}"><i class="fa fa-user"></i><span
+  class="badge pull-right badge-primary">17</span><span>{{ 'Users list' |t }}</span></a>
+</li>
+<li class="">
+  <a href="{{ path('drufony_accesses', { 'lang' : lang}) }}"><i class="fa fa-user"></i><span>{{ 'Permissions' |t }}</span></a>
+</li>
+
+</ul>
+</li>
+
+<li class="{{ settings }}">
+  <a href="{{ path('drufony_settings', { 'lang' : lang}) }}"><i class="fa fa-cog"></i><span>{{ 'Settings' |t }}</span></a>
+</li>
+<li class="">
+  <a href="{{ path('drufony_menu_list', { 'lang' : lang}) }}"><i class="fa fa-cog"></i><span>{{ 'Menus' |t }}</span></a>
+</li>
+<li class="">
+  <a href="{{ path('drufony_schedule_calendar', { 'lang' : lang}) }}"><i class="fa
+  fa-cog"></i><span>{{ 'Calendar' |t }}</span></a>
+</li>
+
+{% if itemMenu == 'shop' %}
+<li class="hasSubmenu active">
+{% else %}
+<li class="hasSubmenu">
+{% endif %}
+  <a href="#menu_shop" data-toggle="collapse"><span class="badge badge-primary pull-right">5</span><i class="fa fa-shopping-cart"></i> {{ 'Commerce' |t }}</a>
+{% if itemMenu == 'shop' %}
+  <ul class="collapse in" id="menu_shop">
+{% else %}
+  <ul class="collapse" id="menu_shop">
+{% endif %}
+    <li><a  href="{{ path('drufony_order_list', { 'lang': lang }) }}">{{ 'Orders' |t}}</a></li>
+    <li><a  href="{{ path('drufony_customer_list', { 'lang': lang }) }}">{{ 'Customers' |t}}</a></li>
+    <li><a  href="{{ path('drufony_product_list', { 'lang': lang }) }}">{{ 'Products' |t}}</a></li>
+    <li><a  href="{{ path('drufony_coupons_list', { 'lang': lang }) }}">{{ 'Coupons' |t}}</a></li>
+    <li><a  href="{{ path('products_importer_exporter', { 'lang': lang, 'action' : 'import' }) }}">{{ 'Product importer' |t}}</a></li>
+    <li><a  href="{{ path('products_importer_exporter', { 'lang': lang, 'action' : 'export' }) }}">{{ 'Product exporter' |t}}</a></li>
+  </ul>
+</li>
+
+  </ul>
+</div>
+    </div>
+    <!-- // Main Sidebar Menu END -->
+
