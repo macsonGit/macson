@@ -722,7 +722,9 @@ class CommerceUtils
             $total     = $item['subtotal'] + $total_vat;
 
             $insertData = array(
-                'orderId'  => $orderId, 'nid' => $item['product']['nid'],
+                'orderId'  => $orderId,
+		 'nid' => $item['product']['nid'],
+		'varieties' => $item['product']['size'],
                 'quantity' => $item['count'], 'total' => $total,
                 'currency' => DEFAULT_CURRENCY, 'total_vat' => $total_vat,
                 'subtotal_without_vat' => $item['subtotal'], 'percentage_vat' => DEFAULT_VAT);
@@ -1537,6 +1539,29 @@ class CommerceUtils
         return $result;
     }
 
+    static public function getUserOrders($uid) {
+        $sql  = 'SELECT * ';
+        $sql .= 'FROM `order` ';
+        $sql .= 'WHERE uid = ? ';
+        $sql .= 'ORDER BY orderDate DESC ';
+
+        $result = db_fetchAll($sql, array($uid));
+
+        return $result;
+    }
+    
+    static public function getOrderProducts($id) {
+        $sql  = 'SELECT * ';
+        $sql .= 'FROM orders_by_product AS a '; 
+	$sql .= 'INNER JOIN product AS b ON a.nid=b.nid ';
+	$sql .= 'INNER JOIN url_friendly AS c ON b.id=c.oid ';
+        $sql .= 'WHERE a.orderId = ?';
+
+        $result = db_fetchAll($sql, array($id));
+
+
+        return $result;
+    }
     /**
      * Saves a new address in user profile.
      *

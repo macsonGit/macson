@@ -482,3 +482,62 @@
 [Tue Nov 11 12:33:38 2014] [error] [client 192.168.1.44] PHP Parse error:  syntax error, unexpected ';' in /var/www/Symfony/src/Custom/ProjectBundle/Controller/ProductController.php on line 58, referer: http://192.168.1.140/app_dev.php/es/category/2-pantalones-hombre
 [Tue Nov 11 13:56:38 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/613783_1.jpg, referer: http://192.168.1.140/app_dev.php/es/category/30-polos-camisetas-hombre
 [Tue Nov 11 13:56:38 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/613783_1.jpg, referer: http://192.168.1.140/app_dev.php/es/category/30-polos-camisetas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:28:19 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Tue Nov 11 17:39:59 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Tue Nov 11 17:40:00 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Tue Nov 11 18:44:47 2014] [error] [client 192.168.1.44] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 2356575 bytes) in /var/www/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Extension/CodeExtension.php on line 144
+[Tue Nov 11 18:45:29 2014] [error] [client 192.168.1.44] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 35 bytes) in /var/www/Symfony/vendor/symfony/symfony/src/Symfony/Component/Debug/Exception/FlattenException.php on line 264
+[Tue Nov 11 18:48:44 2014] [error] [client 192.168.1.44] PHP Fatal error:  Call to undefined method Drufony\\CoreBundle\\Entity\\User::getId() in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 320, referer: http://192.168.1.140/app_dev.php/
+[Tue Nov 11 18:54:11 2014] [error] [client 192.168.1.44] PHP Fatal error:  Call to a member function createView() on a non-object in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 327, referer: http://192.168.1.140/app_dev.php/
+[Tue Nov 11 19:05:01 2014] [error] [client 192.168.1.44] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /var/www/Symfony/vendor/symfony/symfony/src/Symfony/Component/Debug/Exception/FlattenException.php on line 264, referer: http://192.168.1.140/app_dev.php/es/
+[Wed Nov 12 09:33:34 2014] [error] [client 125.64.35.67] File does not exist: /var/www/Symfony/web/zc
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:54 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:28:55 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:29:05 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 12:31:26 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Wed Nov 12 13:09:00 2014] [error] [client 192.168.1.44] PHP Fatal error:  Call to undefined method Drufony\\CoreBundle\\Model\\CommerceUtils::getOrderProducts() in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 319
+[Wed Nov 12 13:25:51 2014] [error] [client 192.168.1.44] PHP Parse error:  syntax error, unexpected '=' in /var/www/Symfony/src/Drufony/CoreBundle/Model/CommerceUtils.php on line 1556
+[Wed Nov 12 13:26:22 2014] [error] [client 192.168.1.44] PHP Parse error:  syntax error, unexpected '=' in /var/www/Symfony/src/Drufony/CoreBundle/Model/CommerceUtils.php on line 1555
+[Wed Nov 12 13:34:25 2014] [error] [client 192.168.1.44] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 3355957 bytes) in /var/www/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/DataCollector/DataCollector.php on line 27

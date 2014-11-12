@@ -41,7 +41,6 @@
 				<div class="inline width50 pad5">{{ item.product.pricePVP }} €</div>
 				<div class="inline width25 pad5">{{ item.count }}</div>
 				<div class="inline pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div>
-</div>
 				{% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
 		</li>
 		<br>

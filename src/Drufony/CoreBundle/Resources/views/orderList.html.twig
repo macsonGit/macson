@@ -1,0 +1,60 @@
+
+{% set sumPrice= 0 %}
+{% set shippingcost='' %}
+{% set total_product_no_vat='' %}
+{% set total_no_vat='' %}
+{% set percentage_vat=0  %}
+{% set total=0  %}
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="contenedor1">	
+	<div id="" class="layout960 maxW960p wd98 oh pad10 align-left">
+{% include 'DrufonyCoreBundle::user_config_menu.html.twig' %}
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}		
+		<div id="orderList" class="inline column-menu fl bb mg-right5 radius5 pad5">
+			<ul>
+{% for order in orders %}
+	{% if id==order.orderId %}
+		{% set shippingcost=order.shippingValue %}
+		{% set total_product_no_vat=order.subtotal_with_vat %}
+		{% set total=order.total %}
+	{% endif %}
+				<li class="height25 pad5">
+					<div class="inline width25 pad5 aligncenter">{{ order.orderId }}</div>
+					<div class="inline width50 pad5 aligncenter">{{ order.orderDate|date('d/m/y') }}</div>
+					<div class="inline width50 pad5 aligncenter">{{ order.total }} €</div>
+					<a href={{ path('drufony_user_order_list',{'id' : order.orderId, 'lang': lang} ) }}>
+						<div class="inline width50 pad5 aligncenter">{{ 'Details'|t }}</div>
+					</a>
+				</li>
+{% endfor %}
+
+			</ul>
+		</div>
+
+{% if id %}
+		<div id="orderDetailList" class="inline column-menu width300 fl bb mg-right5 radius5 pad5">
+			<ul>
+	{% for item in orderProducts %}
+		{% set percentage_vat=item.percentage_vat  %}
+				<li class="pad5">
+						<div class="inline width100 pad5 aligncenter">{{ item.sgu  }}-{{item.varieties}}</div>
+						<div class="inline width50 pad5 aligncenter">{{ item.pricePVP }} €</div>
+						<div class="inline width50 pad5 aligncenter">{{ item.quantity }}</div>
+				</li>
+				<br>
+	{% endfor %}
+			</ul>
+	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
+			<div class="pad5 alignright">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
+			<div class="pad5 alignright">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
+			<div class="pad5 alignright">{{ 'Total'|t }}: {{ total|number_format(2) }} €</div>
+			<div class=" pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
+			<div class="pad5 alignright">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
+		
+		</div>
+{% endif %}
+	</div>
+</div>
+{% include "CustomProjectBundle::footer.html.twig" %}
+

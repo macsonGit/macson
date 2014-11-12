@@ -47,6 +47,10 @@ drufony_profile_address_edit:
     pattern: /profile/edit-addresses/{id}
     defaults: { _controller: DrufonyCoreBundle:User:profileAddresses, id:null }
 
+drufony_user_order_list:
+    pattern: /profile/user-list/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:orderHistory, id:null }
+
 drufony_home_dashboard:
     pattern: /dashboard
     defaults: { _controller: DrufonyCoreBundle:Admin:dashboardHome}

@@ -20,6 +20,7 @@ ul { list-style-type:none; }
 .ref {position:absolute; font-size: 15px; font-style:italic; bottom:8px; right:6px;}
 .inline { float:left; }
 .height102 {height:102px}
+.height25 {height:25px}
 .height405 {height:405px}
 .height408 {height:408px}
 .height900 {height:900px !important }
@@ -32,11 +33,14 @@ ul { list-style-type:none; }
 .width50 {width:50px}
 .width25 {width:25px}
 .width440 {width:440px}
+.width300 {width:300px}
 .pad15 {padding:15px}
 .padleft15{padding-left:15px}
 .border {border-style:solid;border-width:1px;border-color:gray}
 .borderBottom {  border-bottom-width:1px; border-bottom-color:gray; border-bottom-style: solid;}
 .alignleft {text-align:left}
+.alignright {text-align:right}
+.aligncenter {text-align:center}
 .invisible {visibility: hidden;}
 .dentroCuadro {position:absolute; top:0px; width:612px; height:381px;} 
 .zindex10{z-index:10}
