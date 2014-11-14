@@ -11,7 +11,7 @@
 	<ul>
             <li id="loginMenu">
 {% if app.user is not null %}
-   		{{app.user.username}} |
+   		{{app.user.profile.name}} |
 {% else %}
 		{{ 'login'|t }} |
 {% endif %}

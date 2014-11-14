@@ -249,16 +249,8 @@ class UserController extends DrufonyController
     function profileAction(Request $request, $lang, $id = null) {
         $response = new Response();
 
-        $user = null;
-        if (is_null($id)) {
             $user = $this->getUser();
-        }
-        else if ($this->get('security.context')->isGranted(User::ROLE_ADMIN)) {
-            $user = new User($id);
-        }
-        else {
-            throw new AccessDeniedException();
-        }
+
 
         $profile = new Profile($user->getUid());
         $languages = Locale::getAllLanguages();
@@ -307,7 +299,7 @@ class UserController extends DrufonyController
 	
 	$response = new Response();
 	
-        $user = $this->getUser();
+            $user = $this->getUser();
 	
 	$orders = CommerceUtils::getUserOrders($user->getUid());
 
@@ -333,6 +325,29 @@ class UserController extends DrufonyController
         return $response;
 
     }
+
+    public function createInvoiceAction($id,$lang)
+    {
+    	$facade = $this->get('ps_pdf.facade');
+    	$response = new Response();
+	$orderProducts = CommerceUtils::getOrderProducts($id);
+
+	$order= CommerceUtils::getOrder($id);
+	
+    	$this->render('DrufonyCoreBundle::invoice.pdf.twig', array(
+		"id" 		=> $id,
+		"orderProducts" => $orderProducts,	
+		"order"		=> $order,
+		"lang"		=> $lang
+	), $response);
+
+    	$xml = $response->getContent();
+
+
+    	$content = $facade->render($xml);
+
+    	return new Response($content, 200, array('content-type' => 'application/pdf'));
+    }   
 
 
     function accountAction (Request $request, $lang, $id) {

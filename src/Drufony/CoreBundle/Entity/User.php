@@ -457,7 +457,6 @@ class User implements UserInterface, \Serializable
                 'uid' => $uid,
                 'rid' => $rid,
             );
-
             db_insert('users_roles', $record);
         }
     }

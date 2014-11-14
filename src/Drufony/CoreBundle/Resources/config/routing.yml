@@ -51,6 +51,10 @@ drufony_user_order_list:
     pattern: /profile/user-list/{id}
     defaults: { _controller: DrufonyCoreBundle:User:orderHistory, id:null }
 
+drufony_user_invoice:
+    pattern: /profile/user-list/invoice/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:createInvoice, id:null }
+
 drufony_home_dashboard:
     pattern: /dashboard
     defaults: { _controller: DrufonyCoreBundle:Admin:dashboardHome}

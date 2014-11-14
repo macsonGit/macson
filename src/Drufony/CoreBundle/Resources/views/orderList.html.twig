@@ -33,24 +33,30 @@
 		</div>
 
 {% if id %}
-		<div id="orderDetailList" class="inline column-menu width300 fl bb mg-right5 radius5 pad5">
+		<div id="orderDetailList" class="inline column-menu fl bb mg-right5 radius5">
 			<ul>
 	{% for item in orderProducts %}
 		{% set percentage_vat=item.percentage_vat  %}
-				<li class="pad5">
-						<div class="inline width100 pad5 aligncenter">{{ item.sgu  }}-{{item.varieties}}</div>
-						<div class="inline width50 pad5 aligncenter">{{ item.pricePVP }} €</div>
+				<li>
 						<div class="inline width50 pad5 aligncenter">{{ item.quantity }}</div>
+						<div class="inline width100 pad5 aligncenter">{{ item.sgu  }}-{{item.varieties}}</div>
+						<div class="inline width50 pad5 alignright">{{ item.pricePVP }} €</div>
 				</li>
-				<br>
 	{% endfor %}
 			</ul>
+
+	<br>	
+	<br>	
+
 	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
 			<div class="pad5 alignright">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
 			<div class="pad5 alignright">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
 			<div class="pad5 alignright">{{ 'Total'|t }}: {{ total|number_format(2) }} €</div>
-			<div class=" pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
+			<div class="pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
 			<div class="pad5 alignright">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
+			<a href={{ path('drufony_user_invoice',{'id' : id, 'lang': lang} ) }}>
+				<div class="inline width50 pad5 aligncenter">{{ 'Invoice'|t }}</div>
+			</a>
 		
 		</div>
 {% endif %}

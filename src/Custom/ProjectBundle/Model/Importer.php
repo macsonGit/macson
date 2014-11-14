@@ -261,7 +261,7 @@ class Importer {
 		$queryAddress = db_fetchAll($sqlAddresses,array($user['id_customer']));
 
 
-		foreach ($queryAddress as $address){
+		/*foreach ($queryAddress as $address){
 			
 			$newaddress = array(
 
@@ -281,7 +281,7 @@ class Importer {
 			UserUtils::saveAddress($newaddress);
 
 		
-		}
+		}*/
 
 
 	}

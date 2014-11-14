@@ -541,3 +541,14 @@
 [Wed Nov 12 13:25:51 2014] [error] [client 192.168.1.44] PHP Parse error:  syntax error, unexpected '=' in /var/www/Symfony/src/Drufony/CoreBundle/Model/CommerceUtils.php on line 1556
 [Wed Nov 12 13:26:22 2014] [error] [client 192.168.1.44] PHP Parse error:  syntax error, unexpected '=' in /var/www/Symfony/src/Drufony/CoreBundle/Model/CommerceUtils.php on line 1555
 [Wed Nov 12 13:34:25 2014] [error] [client 192.168.1.44] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 3355957 bytes) in /var/www/Symfony/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/DataCollector/DataCollector.php on line 27
+[Thu Nov 13 09:04:03 2014] [error] [client 125.64.35.67] File does not exist: /var/www/Symfony/web/zc
+[Thu Nov 13 10:36:52 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Nov 13 10:36:52 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Nov 13 13:25:24 2014] [error] [client 192.168.1.44] PHP Fatal error:  Class 'Siphoc\\PdfBundle\\SiphocPdfBundle' not found in /var/www/Symfony/app/AppKernel.php on line 25, referer: http://192.168.1.140/app_dev.php/es/profile/user-list/77
+[Thu Nov 13 13:31:22 2014] [error] [client 192.168.1.44] PHP Fatal error:  Class 'Siphoc\\PdfBundle\\SiphocPdfBundle' not found in /var/www/Symfony/app/AppKernel.php on line 25, referer: http://192.168.1.140/app_dev.php/es/profile/user-list/77
+[Thu Nov 13 16:47:48 2014] [error] [client 192.168.1.44] PHP Fatal error:  Cannot use object of type Drufony\\CoreBundle\\Model\\Profile as array in /var/www/Symfony/src/Drufony/CoreBundle/Model/UserUtils.php on line 817, referer: http://192.168.1.140/app_dev.php/es/profile/edit-profile
+[Thu Nov 13 18:36:17 2014] [error] [client 192.168.1.44] PHP Fatal error:  Function name must be a string in /var/www/Symfony/src/Drufony/CoreBundle/Entity/User.php on line 460
+[Thu Nov 13 19:12:24 2014] [error] [client 192.168.1.44] PHP Fatal error:  Cannot use object of type Drufony\\CoreBundle\\Model\\Profile as array in /var/www/Symfony/src/Drufony/CoreBundle/Model/UserUtils.php on line 817, referer: http://192.168.1.140/app_dev.php/es/profile/edit-profile
+[Thu Nov 13 19:14:12 2014] [error] [client 192.168.1.44] PHP Fatal error:  Cannot use object of type Drufony\\CoreBundle\\Model\\Profile as array in /var/www/Symfony/src/Drufony/CoreBundle/Model/UserUtils.php on line 817, referer: http://192.168.1.140/app_dev.php/es/profile/edit-profile
+[Thu Nov 13 19:25:18 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Nov 13 19:25:18 2014] [error] [client 192.168.1.44] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico

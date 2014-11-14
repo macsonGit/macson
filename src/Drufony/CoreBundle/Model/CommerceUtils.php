@@ -1539,6 +1539,16 @@ class CommerceUtils
         return $result;
     }
 
+    static public function getOrder($id) {
+        $sql  = 'SELECT * ';
+        $sql .= 'FROM `order` ';
+        $sql .= 'WHERE orderId = ? ';
+
+        $result = db_fetchAssoc($sql, array($id));
+
+        return $result;
+    }
+
     static public function getUserOrders($uid) {
         $sql  = 'SELECT * ';
         $sql .= 'FROM `order` ';

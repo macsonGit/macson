@@ -1,0 +1,43 @@
+
+{% set shippingcost='' %}
+{% set total_product_no_vat='' %}
+{% set total_no_vat='' %}
+{% set percentage_vat=0  %}
+{% set total=0  %}
+
+		{% set shippingcost=order.shippingValue %}
+		{% set total_product_no_vat=order.subtotal_with_vat %}
+		{% set total=order.total %}
+<pdf>
+    <dynamic-page>
+        <!-- pdf_image('BundleName:image-name.extension') -->
+
+
+<div id="contenedor1">	
+  	<div id="orderDetailList" class="inline column-menu fl bb mg-right5 radius5">
+			<ul>
+	{% for item in orderProducts %}
+		{% set percentage_vat=item.percentage_vat  %}
+				<li>
+					<div class="inline width50 pad5 aligncenter">{{ item.quantity }}</div>
+					<div class="inline width100 pad5 aligncenter">{{ item.sgu  }}-{{item.varieties}}</div>
+					<div class="inline width50 pad5 alignright">{{ item.pricePVP }} €</div>
+				</li>
+	{% endfor %}
+			</ul>
+
+
+	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
+			<div class="pad5 alignright">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
+			<div class="pad5 alignright">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
+			<div class="pad5 alignright">{{ 'Total'|t }}: {{ total|number_format(2) }} €</div>
+			<div class="pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
+			<div class="pad5 alignright">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
+		
+	</div>
+</div>
+
+
+
+	</dynamic-page>
+</pdf>

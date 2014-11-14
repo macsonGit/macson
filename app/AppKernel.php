@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             //new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
             new ZfrMailChimpBundle\ZfrMailChimpBundle(),
 	    new Macson\ProjectBundle\MacsonProjectBundle(),
+	    new Ps\PdfBundle\PsPdfBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
