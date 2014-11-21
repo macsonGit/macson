@@ -14,6 +14,7 @@ ul { list-style-type:none; }
 #header li {display:inline;cursor: pointer;}
 #tipoPagina {color: white;}
 #portada {position: fixed;left:0px;top: 0px;z-index:0; width:100%;}
+#holamanola {}
 .h2 {font-size: 20px; }
 .texto{font-size: 12px; font-family: "arial";background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
 .tachado {text-decoration:line-through; font-size: 14px}

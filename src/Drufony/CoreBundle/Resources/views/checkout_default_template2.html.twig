@@ -1,0 +1,58 @@
+
+{# For theming customization #}
+{% form_theme form 'DrufonyCoreBundle::form_theme_checkout.html.twig' %}
+
+<!-- page title -->
+<h1 class="page-title">{{'Checkout' |t}} </h1>
+<!--/ page title -->
+
+<div class="checkout-process-wrapper">
+
+
+{# Pay Information #}
+<section class="checkout wd100 bb">
+    <div class="fl wd70 bb">
+      <h2 class="active"><span>2</span>Shipping information</h2>
+      {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+	{% if data is defined %}
+	<input type="hidden" name="Ds_Merchant_Amount" value="{{  data.predefined_data.sermepa_express_checkout.Amount}}" />
+	<input type="hidden" name="Ds_Merchant_Currency" value="{{data.predefined_data.sermepa_express_checkout.currency}}" />
+	<input type="hidden" name="Ds_Merchant_Order" value="{{data.predefined_data.sermepa_express_checkout.Order_Number}}" />
+	<input type="hidden" name="Ds_Merchant_MerchantData" value="{{data.predefined_data.sermepa_express_checkout.Merchant_Data}}" />
+	<input type="hidden" name="Ds_Merchant_MerchantCode" value="{{data.predefined_data.sermepa_express_checkout.Merchant_Code}}" />
+	<input type="hidden" name="Ds_Merchant_Terminal" value="{{data.predefined_data.sermepa_express_checkout.Terminal}}" />
+	<input type="hidden" name="Ds_Merchant_TransactionType" value="{{data.predefined_data.sermepa_express_checkout.Transaction_Type}}" />
+	<input type="hidden" name="Ds_Merchant_MerchantURL" value="{{data.predefined_data.sermepa_express_checkout.return_url}}" />
+	<input type="hidden" name="Ds_Merchant_MerchantSignature" value="{{data.predefined_data.sermepa_express_checkout.Merchant_Signature}}" /> 
+	<input type="hidden" name="Ds_Merchant_UrlOK" value="{{data.predefined_data.sermepa_express_checkout.return_url_ok}}" /> 
+	{% endif %}
+      {% include 'DrufonyCoreBundle::checkout_shipping_info.html.twig' %}
+      {{ form_end(form) }}
+    </div>
+    {% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
+</section>
+
+</div>
+<div style="clear:both"></div>
+{% if data is defined %}
+<script type="text/javascript">
+history.navigationMode = 'compatible';
+$(document).ready(function(){
+	alert("sometext");
+	$("#payment_options").submit(function(e) {		
+		e.preventDefault();
+    		url = "{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}";
+		var checked_site_radio = $("#jms_choose_payment_method_method_1:checked").val();
+		if(checked_site_radio=='sermepa_express_checkout'){
+			url = "{{data.predefined_data.sermepa_express_checkout.send_url}}";
+		}
+		form = $(this);
+		alert(form.serialize()); 
+		form.attr('action' ,url); //give it the action url ); 
+           	form.unbind('submit').submit(); //submit it...
+	
+	});
+});
+</script>
+{% endif %}
+

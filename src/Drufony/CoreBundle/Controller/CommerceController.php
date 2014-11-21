@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormError;
 
 use Drufony\CoreBundle\Model\Order;
 use Drufony\CoreBundle\Model\CommerceUtils;
+use Drufony\CoreBundle\Model\Product;
 use Drufony\CoreBundle\Model\UserUtils;
 use Drufony\CoreBundle\Model\TPV;
 use Drufony\CoreBundle\Model\Mailing;
@@ -42,7 +43,7 @@ class CommerceController extends DrufonyController
 
       $response = new Response();
 
-      $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+      $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
         array('lang'=> $lang,
               'mainContent' => 'DrufonyCoreBundle::viewCart.html.twig',
         )
@@ -133,7 +134,11 @@ class CommerceController extends DrufonyController
           'shoping-cart' => array( 'label' => 'Shoping cart', 'url' => 'drufony_cart_add'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('lang'=>$lang,
                                                     'subtotal' => $cartInfo['subtotalProducts'],
                                                     'discount' => $cartInfo['discount'],
@@ -149,6 +154,10 @@ class CommerceController extends DrufonyController
                                                     'pageTitle' => t('View Cart'),
                                                     'mainContent' => 'DrufonyCoreBundle::viewCart.html.twig',
                                                     'breadCrumb' => $breadCrumb,
+						    'products'=>$products,
+            					    'registerForm'  => $registerForm->createView(),
+            					    'loginForm'     => $loginForm->createView(),
+            					    'isLoginPath'   => FALSE,
                                                   )
                                                 ));
         return $response;
@@ -274,7 +283,11 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig', array(
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig', array(
             'lang'        => $lang,
             'fbLoginUrl'  => UserUtils::getFBUrlForLogin(),
             'form'   => $loginForm->createView(),
@@ -284,61 +297,66 @@ class CommerceController extends DrufonyController
             'userLogged' => $userLogged,
             'checkoutMethodCompleted'=> CommerceUtils::existStep(CHECKOUT_METHOD),
             'breadCrumb'  => $breadCrumb,
+	    'products' => $products,
+            'registerForm'  => $registerForm->createView(),
+            'loginForm'     => $loginForm->createView(),
+            'isLoginPath'   => FALSE,
         )));
 
+	$products=CommerceUtils::getCartItemsAJAX();
         return $response;
     }
 
     public function checkoutLoadPreviousInfoAction(Request $request, $lang) {
-        $user = $this->getUser();
-        $userAddresses = array();
+	    $user = $this->getUser();
+	    $userAddresses = array();
 
-        if(CommerceUtils::getCartItemsCount() == 0) {
-            return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
-        }
+	    if(CommerceUtils::getCartItemsCount() == 0) {
+		    return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
+	    }
 
-        if(!is_null($user)) {
-            $profile = new Profile($user->getUid());
-            $userAddresses = $profile->getAddresses();
-            $existBilling = false;
-            $existShipping = false;
+	    if(!is_null($user)) {
+		    $profile = new Profile($user->getUid());
+		    $userAddresses = $profile->getAddresses();
+		    $existBilling = false;
+		    $existShipping = false;
 
-            //Load user address
-            if($userAddresses) {
-                //TODO: replace this with default address once its been implemented
-                $latestAddressId = max(array_keys($userAddresses));
-                $latestAddress = $profile->getAddress($latestAddressId);
+		    //Load user address
+		    if($userAddresses) {
+			    //TODO: replace this with default address once its been implemented
+			    $latestAddressId = max(array_keys($userAddresses));
+			    $latestAddress = $profile->getAddress($latestAddressId);
 
-                $existBilling = CommerceUtils::existStep(BILLING_INFO);
-                $existShipping = CommerceUtils::existStep(SHIPPING_INFO);
-                $latestAddress['email'] = $user->getEmail();
+			    $existBilling = CommerceUtils::existStep(BILLING_INFO);
+			    $existShipping = CommerceUtils::existStep(SHIPPING_INFO);
+			    $latestAddress['email'] = $user->getEmail();
 
-                if(!$existBilling) {
-                    CommerceUtils::saveStep(BILLING_INFO, $latestAddress);
-                    $existBilling = true;
-                }
-                if(!$existShipping) {
-                    CommerceUtils::saveStep(SHIPPING_INFO, $latestAddress);
-                    $existShipping = true;
-                }
-            }
+			    if(!$existBilling) {
+				    CommerceUtils::saveStep(BILLING_INFO, $latestAddress);
+				    $existBilling = true;
+			    }
+			    if(!$existShipping) {
+				    CommerceUtils::saveStep(SHIPPING_INFO, $latestAddress);
+				    $existShipping = true;
+			    }
+		    }
 
 
-            $existCheckoutMethod = CommerceUtils::existStep(CHECKOUT_METHOD);
-            if($existBilling && $existShipping) {
-                if(!$existCheckoutMethod) {
-                    return $this->redirect($this->generateUrl('drufony_checkout_login' ,array('lang' => $lang)));
-                }
-                else {
-                    return $this->redirect($this->generateUrl('drufony_checkout_shipping_method' ,array('lang' => $lang)));
-                }
-            }
-            else {
-                return $this->redirect($this->generateUrl('drufony_checkout_shipping_info' ,array('lang' => $lang)));
-            }
-        }
+		    $existCheckoutMethod = CommerceUtils::existStep(CHECKOUT_METHOD);
+		    if($existBilling && $existShipping) {
+			    if(!$existCheckoutMethod) {
+				    return $this->redirect($this->generateUrl('drufony_checkout_login' ,array('lang' => $lang)));
+			    }
+			    else {
+				    return $this->redirect($this->generateUrl('drufony_checkout_shipping_method' ,array('lang' => $lang)));
+			    }
+		    }
+		    else {
+			    return $this->redirect($this->generateUrl('drufony_checkout_shipping_info' ,array('lang' => $lang)));
+		    }
+	    }
 
-        return $this->redirect($this->generateUrl('drufony_checkout_login' ,array('lang' => $lang)));
+	    return $this->redirect($this->generateUrl('drufony_checkout_login' ,array('lang' => $lang)));
     }
 
     public function checkoutBillingInfoAction(Request $request, $lang) {
@@ -399,7 +417,11 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('form'  => $billingForm->createView(),
                                                 'lang'        => $lang,
                                                 'shipping'    => false,
@@ -411,6 +433,10 @@ class CommerceController extends DrufonyController
                                                 'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
                                                 'checkoutStep' => BILLING_INFO_NAME,
                                                 'breadCrumb'  => $breadCrumb,
+						'products' => $products,
+            					'registerForm'  => $registerForm->createView(),
+            					'loginForm'     => $loginForm->createView(),
+            					'isLoginPath'   => FALSE,
                                               )
                                             ));
         return $response;
@@ -512,7 +538,11 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('form'  => $shippingForm->createView(),
                                                 'lang'        => $lang,
                                                 'addresses'   => $userAddresses,
@@ -523,6 +553,10 @@ class CommerceController extends DrufonyController
                                                 'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
                                                 'checkoutStep' => SHIPPING_INFO_NAME,
                                                 'breadCrumb'  => $breadCrumb,
+						'products'=>$products,
+            					'registerForm'  => $registerForm->createView(),
+            					'loginForm'     => $loginForm->createView(),
+            					'isLoginPath'   => FALSE,
                                               )
                                             ));
         return $response;
@@ -607,7 +641,8 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+	$products=CommerceUtils::getCartItemsAJAX();
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('form' => $shippingMethodForm->createView(),
                                                 'lang' => $lang,
                                                 'progress'    => $checkoutProgress,
@@ -617,6 +652,10 @@ class CommerceController extends DrufonyController
                                                 'checkoutStep' => SHIPPING_METHOD_NAME,
                                                 'breadCrumb' => $breadCrumb,
 						'info' => $info,
+						'products' => $products,
+            					'registerForm'  => $registerForm->createView(),
+            					'loginForm'     => $loginForm->createView(),
+            					'isLoginPath'   => FALSE,
                                                 )
                                               ));
         return $response;
@@ -685,7 +724,15 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+	
+	$products=CommerceUtils::getCartItemsAJAX();
+
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
+
+
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('lang' => $lang,
                                                 'progress'    => $checkoutProgress,
                                                 'userLogged'  => $userLogged,
@@ -694,6 +741,10 @@ class CommerceController extends DrufonyController
                                                 'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
                                                 'checkoutStep' => SELECT_PAYMENT_METHOD_NAME,
                                                 'breadCrumb' => $breadCrumb,
+						'products' => $products,
+            					'registerForm'  => $registerForm->createView(),
+            					'loginForm'     => $loginForm->createView(),
+            					'isLoginPath'   => FALSE,
                                                 )
                                               ));
 
@@ -977,7 +1028,11 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-commerce.html.twig',
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+        $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('form'              => $paymentMethodForm->createView(),
                                                       'stripe_public_key' => STRIPE_PUBLIC_KEY,
                                                       'lang'              => $lang,
@@ -987,6 +1042,10 @@ class CommerceController extends DrufonyController
                                                       'mainContent'       => 'DrufonyCoreBundle::checkout_default_template.html.twig',
                                                       'checkoutStep'      => PAYMENT_METHOD_NAME,
                                                       'breadCrumb'        => $breadCrumb,
+						      'products'	  => $products,
+            					      'registerForm'  => $registerForm->createView(),
+            					      'loginForm'     => $loginForm->createView(),
+            					      'isLoginPath'   => FALSE,
                                                       )
                                                   ));
         return $response;
@@ -1168,5 +1227,8 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 
 
     }
+
+
+
 
 }

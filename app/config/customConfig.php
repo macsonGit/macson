@@ -151,7 +151,7 @@ define('TPV_SERMEPA', 'Sermepa');
 define('TPV_PAYPAL', 'Paypal');
 define('TPV_GATEWAY', TPV_STRIPE);
 //Adds TPVs enabled to be used
-define('TPV_ENABLED', serialize(array(TPV_STRIPE, TPV_SERMEPA, TPV_PAYPAL)));
+define('TPV_ENABLED', serialize(array(TPV_SERMEPA, TPV_PAYPAL)));
 define ('COMMERCE_MANAGEMENT_EMAIL', "gfuset@macson.es");
 //SERMEPA
 //Replace this URL in production mode (test: https://sis-t.redsys.es:25443/sis/realizarPago, production: https://sis.redsys.es/sis/realizarPago)

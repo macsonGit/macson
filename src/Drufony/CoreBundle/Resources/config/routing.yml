@@ -283,6 +283,10 @@ drufony_checkout_billing_user_address:
     pattern: /checkout/billing/user/address/{addressId}
     defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutBillingUserAddress}
 
+drufony_checkout_payment_info:
+    pattern: /checkout/payment/info/
+    defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutPay}
+
 drufony_checkout_shipping_info:
     pattern: /checkout/shipping/info/
     defaults: { _controller: DrufonyCoreBundle:Commerce:checkoutShippingInfo}

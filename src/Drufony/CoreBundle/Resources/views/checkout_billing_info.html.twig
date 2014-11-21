@@ -1,8 +1,6 @@
-{% if existsShipping == true %}
 <div class="oh wd100 mg-bottom10">
   <a href='{{ path('drufony_checkout_billing_use_shipping', {'lang': lang})}}' class="fl-link-secondary">{{ "Use shipping address" | t }}</a>
 </div>
-{% endif %}
 
 <label class="label">
   {{ form_label(form.name) }}
