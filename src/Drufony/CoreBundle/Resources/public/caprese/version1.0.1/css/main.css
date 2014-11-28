@@ -1304,7 +1304,6 @@ a.fl-link-secondary:hover{
   width: 990px;
   margin: 0 auto;
   padding: 0 54px;
-  border: 1px dashed #bfbfbf;
   border-top: 0;
   border-radius: 0 0 20px 20px;
 }
@@ -4323,8 +4322,7 @@ a.fl-link-secondary:hover{
 /* checkout */
 /**/
 .checkout {
-  float: left;
-  width: 654px;
+  width: 100;
   margin-bottom: 18px;
   padding-left: 66px;
   border-bottom: 1px dashed #bfbfbf;

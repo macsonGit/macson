@@ -30,26 +30,34 @@
 {% include "CustomProjectBundle::menu.html.twig" %}
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
 			<div id="tallas">
-				<ul id="listaTallas">
+				<div class="h2 inline bold-text">{{contentData.title}} &nbsp;&nbsp; | &nbsp;&nbsp;       </div> 
+				<ul id="listaTallas" class="inline">
 {%if contentData.varieties[0].value!= 'AGOTADO'%}
 	{% for size in contentData.varieties if size.stock > 0 %}	
 		{%if loop.first%}
 			{%if contentData.varieties|length > 1%}
-					<li>{{'Select Size'|t}}: |</li>
+					<li>{{'Select Size'|t}}:</li>
 			{% else %}
-					<li>{{'Only available in size'|t}}: |</li>
+					<li>{{'Only available in size'|t}}: </li>
 			{% endif %}
 		{%endif%}			
 					<li class="itemTalla">{{size.value}}</li> |							
 	{% endfor %}
 {% endif %}
 				</ul>		
-				<div id="buyBoton">								
-					<button id="boton1">{{'BUY'|t}}</button>		
+				<div id="tagPriceProducto" class="inline bold-text">
+{% if contentData.pricePVP == contentData.firstPrice%}		
+					{{ contentData.pricePVP | round (2,'common')}} <font size="2">€</font>
+{% else %}
+					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(2,'common')}}  <font size="2">€ </font> 
+{%endif%}
+				</div>			
+				<div id="buyBoton" class="inline">								
+					<button id="boton1" class="bold-text">{{'BUY'|t}}</button>		
 				</div>
 			</div>
 			<div id="tituloCat">
-				+ {{ "Menu" | t}}
+				+ {{ "MENU" | t}}
 			</div>	
 {% if not numImages.im2 %}		
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
@@ -63,13 +71,6 @@
 {% else %}
 			<img class="fotoImg2" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg') }}'>	
 {% endif %}		
-			<div id="tagPriceProducto">
-{% if contentData.pricePVP == contentData.firstPrice%}		
-			{{ contentData.pricePVP | round (2,'common')}} <font size="2">€</font>
-{% else %}
-			<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(2,'common')}}  <font size="2">€ </font> 
-{%endif%}
-			</div>			
 		</div>
 		<div class="foto">
 			<div id="infoPanel" class="pad5 border">
@@ -94,7 +95,7 @@
 			<img class="fotoImg3" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
 {% endif %}	
 			<div id="titulo">
-				<div class="h2">{{contentData.title}}  <div id="masInfo"> + Info</div></div>  	
+			<div id="masInfo">PRODUCT INFO +</div>  	
 			</div>		
 		</div>		
 	</div>

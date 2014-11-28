@@ -1,10 +1,11 @@
 * { margin: 0; padding: 0; outline: 0;}
 body{
-font-size: 15px;
-font-family: "Times New Roman";
+font-size: 12px;
+font-family: "Times new roman";
 color: #000;
 min-width: 980px;
 background: none;
+letter-spacing:1.1px;
 }
 img {border:none;}
 html, body { height: 100%;text-align: center ;}
@@ -14,10 +15,10 @@ ul { list-style-type:none; }
 #header li {display:inline;cursor: pointer;}
 #tipoPagina {color: white;}
 #portada {position: fixed;left:0px;top: 0px;z-index:0; width:100%;}
-#holamanola {}
-.h2 {font-size: 20px; }
-.texto{font-size: 12px; font-family: "arial";background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
+.bold-text {font-weight : bold}
+.texto{font-size: 12px; background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
 .tachado {text-decoration:line-through; font-size: 14px}
+.hidden {visibility:hidden}
 .ref {position:absolute; font-size: 15px; font-style:italic; bottom:8px; right:6px;}
 .inline { float:left; }
 .height102 {height:102px}
@@ -52,18 +53,18 @@ ul { list-style-type:none; }
 #logo { position:relative;top: 40px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
-#login { position:absolute; top:0px; display: inline-block; width:642px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50; font-family: "Arial";background-color: white; }
-#carrito { position:absolute; top:0px; width:612px; height:381px; color:gray;top:0px;font-size: 12px ;z-index:50; font-family: "Arial";text.color: gray;background-color: white; overflow-y:auto ;padding:15px}
-.contenido{ position:absolute ;top:5px; width:960px; height: 405px ;font-family:"arial";font-size:12px; overflow-y: auto;text-align: left;z-index:5;}
+#login { position:absolute; top:0px; display: inline-block; width:642px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
+#carrito { position:absolute; top:0px; width:612px; height:381px; color:gray;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding:15px}
+.contenido{ position:absolute ;top:5px; width:960px; height: 405px ;font-size:12px; overflow-y: auto;text-align: left;z-index:5;}
 .borrarArticulo {color:red; text-decoration:none;cursor: pointer;}
 #menu {height: 411px}
-#menu ul {height: 408px; font-family: "Arial";background-image:url('../images/menuBackground.png')}
+#menu ul {height: 408px;background-image:url('../images/menuBackground.png')}
 #menu li:hover { color:black;cursor: pointer;}
 #menu a:link {text-decoration:none;color:black;}
 #menu a:visited {text-decoration:none; color:black;}
 #menu a:hover {text-decoration:none;color:black;}
 #menu a:active {text-decoration:none;color:black;}
-#menutitle{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; color:black; }
+#menutitle{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
 #item2 {padding-left:20px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
 #item2.selected{color:black; font-weight:bold}
 #item3 { padding-left:35px; font-size: 14px; padding-top: 2px; padding-bottom: 2px; }
@@ -72,19 +73,18 @@ ul { list-style-type:none; }
 #item4.selected{font-weight:bold; color:black;}
 #zoomContainer {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
 .foto { position:relative; top:3%; display: inline-block; width:320px; height:411px; }
-#tagPrice {position:absolute; bottom:0px; padding-top: 5px; padding-right: 10px; background-repeat: repeat; height: 30px; width: 310px;font-family: "Arial"; font-size: 20px ; font-style: bold;text-align: right; z-index:4; background-image:url('../images/menuBackground.png')}
-#tagName {position:absolute; bottom:0px; padding-top: 10px; padding-left: 10px; background-repeat: repeat; height: 25px; width: 250px;font-family: "Arial"; font-size: 12px ; font-style: bold;text-align: left; z-index:5}
-#tagPriceProducto {position:absolute; bottom:-40px;background-repeat: repeat; height: 35px; width: 320px;font-family: "Arial"; font-size: 20px ; font-style: bold;text-align: center;z-index:4}
-#tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 320px; background-image:url('../images/menuBackground.png');font-family: "Arial"; font-size: 20px ; font-style: bold;text-align: center;z-index:4}
-#infoStore {position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 315px; background-image:url('../images/menuBackground.png');font-family: "Arial"; font-size: 12px ;text-align: center;z-index:4}
+#tagPrice {position:absolute; bottom:0px; padding-top: 5px; padding-right: 10px; background-repeat: repeat; height: 30px; width: 310px; font-size: 20px ; font-style: bold;text-align: right; z-index:4; background-image:url('../images/menuBackground.png')}
+#tagName {position:absolute; bottom:0px; padding-top: 10px; padding-left: 10px; background-repeat: repeat; height: 25px; width: 250px; font-size: 12px ; font-style: bold;text-align: left; z-index:5}
+#tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
+#tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 320px; background-image:url('../images/menuBackground.png'); font-size: 20px ; font-style: bold;text-align: center;z-index:4}
+#infoStore {position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 315px; background-image:url('../images/menuBackground.png'); font-size: 12px ;text-align: center;z-index:4}
 #infoPanel {position: absolute; top:0px;width:310px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
 #cuidados {cursor: pointer;}
-#tallas{position:absolute; bottom:-40px ; left:0px; font-size: 16px ; font-family: arial;display:inline ; text-align: left; height: 40px;width:968px; background-image:url('../images/menuBackground.png');}
-#tallas ul{padding:10px;}
+#tallas{position:absolute; bottom:-40px ; left:0px; font-size: 16px; display:inline ; text-align: left; height: 20px;width:948px; background-image:url('../images/menuBackground.png');padding:10px}
 #tallas li {width:25px;}
-#tallas ul li { display: inline; padding-left: 2px; padding-right: 2px;}
+#tallas ul li { display: inline; padding-left: 2px; padding-right: 2px;font-size:12px}
 #tallas li:hover { background-color:#CCCCCC; cursor: pointer;}
-#tituloCat{position:absolute; top:-25px ; left:3px; font-size: 20px ; font-family: times; letter-spacing: 2px; cursor: pointer;}
+#tituloCat{position:absolute; top:-25px ; left:3px; font-size: 12px ; letter-spacing: 2px; cursor: pointer;color:gray}
 #buyBoton {position:absolute; right:4px; top:5px; }
 
 
@@ -107,7 +107,6 @@ ul { list-style-type:none; }
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:arial;
 	font-size:12px;
 	padding:4px 4px;
 	text-decoration:none;
@@ -148,7 +147,6 @@ ul { list-style-type:none; }
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:arial;
 	font-size:12px;
 	padding:4px 4px;
 	text-decoration:none;
@@ -172,8 +170,8 @@ ul { list-style-type:none; }
 
 
 
-#titulo {position:absolute; top: -25px; font-size: 20px ; right:0px; z-index:4; width: 700px; text-align:right;letter-spacing: 2px}	
-#masInfo {cursor: pointer; display: inline-block;}	
+#titulo {position:absolute; top: -25px; font-size: 12px ; color:gray; right:0px; z-index:4; width: 700px; text-align:right;letter-spacing: 2px}	
+#masInfo {cursor: pointer; display: inline-block;color:gray;font-size:12px}	
 #boton1 {width:100px;height:30px;z-index:4;}
 #footer { position:fixed ; width: 100%; bottom: 0px;padding-left: 5px; height: 20px;z-index:75; display:block;background-image:url('../images/menuBackground.png')}
 #footer li {display:inline;}

@@ -104,7 +104,7 @@ $(document).ready(function(){
 			if(showPanel){
 				$("#infoPanel").hide(350,
 					function(){
-						$("#masInfo").text("+ Info");
+						$("#masInfo").text("PRODUCT INFO +");
 						showPanel=false;
 					}
 				);
@@ -112,7 +112,7 @@ $(document).ready(function(){
 			else{
 				$("#infoPanel").show(350,
 					function(){
-						$("#masInfo").text("- Info");
+						$("#masInfo").text("PRODUCT INFO +");
 						showPanel=true;
 					}
 				);
@@ -235,13 +235,13 @@ $(document).ready(function(){
 		function showMenuA(){
 			if(showMenu){
 				showMenu=false;
-				$("#tituloCat").text("+ Menu");
+				$("#tituloCat").text("+ MENU");
 				$("#menu ul").hide(350);
 				$("#menu").height(23);
 			}
 			else{
 				showMenu=true;
-				$("#tituloCat").text("- Menu");
+				$("#tituloCat").text("- MENU");
 				$("#menu ul").show(350);
 
 				$("#menu").height(440);
@@ -256,12 +256,12 @@ $(document).ready(function(){
 
 		function shiftItem(){
 			$(this).animate({
-				'padding-left':"+=15"
+				'padding-left':"+=5"
 			 }, 250);
 		},
 		function shiftItem(){
 			$(this).animate({
-				'padding-left':"-=15"
+				'padding-left':"-=5"
 			 }, 350);
 
 		}

@@ -367,7 +367,7 @@ class CommerceController extends DrufonyController
             return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
         }
         else if(!$checkoutMethodCompleted) {
-            $this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
+            //$this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
             return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
         }
 
@@ -487,7 +487,7 @@ class CommerceController extends DrufonyController
             return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
         }
         else if(!$checkoutMethodCompleted) {
-            $this->get('session')->getFlashBag()->add(ERROR, t('Please, complete checkout method before continue'));
+            //$this->get('session')->getFlashBag()->add(ERROR, t('Please, complete checkout method before continue'));
             return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
         }
 
@@ -594,7 +594,7 @@ class CommerceController extends DrufonyController
             return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
         }
         else if (!$checkoutMethodCompleted) {
-            $this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
+            //$this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
             return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
         }
         $info = null;
@@ -641,6 +641,9 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
+        $registerForm = $this->_processRegisterForm($request);
+           
+        $loginForm = $this->_processLoginForm($request);
 	$products=CommerceUtils::getCartItemsAJAX();
         $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig',
                                                 array('form' => $shippingMethodForm->createView(),
@@ -951,7 +954,7 @@ class CommerceController extends DrufonyController
             return $this->redirect($this->generateUrl('drufony_cart_view', array('lang' => $lang)));
         }
         else if(!$checkoutMethodCompleted) {
-            $this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
+            //$this->get('session')->getFlashBag()->add(INFO, t('Please, complete checkout method before continue'));
             return $this->redirect($this->generateUrl('drufony_checkout_login', array('lang' => $lang)));
         }
         //Check checkouk it's completed

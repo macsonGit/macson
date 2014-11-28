@@ -37,7 +37,7 @@ class ShippingMethodFormType extends AbstractType
                 ));
             }
             $builder
-		->add('comments', 'ckeditor', array(
+		->add('comments', 'textarea', array(
                 'label' => t('Comments'),
                 'data' => (!empty($options['data']['info']['comments'])) ? $options['data']['info']['comments'] : '',
                 'required' => false,
