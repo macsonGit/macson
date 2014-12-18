@@ -10,15 +10,16 @@
 {% set step = 1 %}
 
 {# Checkout Method #}
-<section class="checkout">
+<section class="checkout wd90">
   {% if userLogged != true %}
       {% set step = step + 1 %}
       {% if checkoutStep == 'checkoutMethod' %}
-        <div class="wd90">
+        <div class="pad15">
           	<h2 class="active"><span>1</span>{{'Login'|t}}</h2>
 		<div class="pad15">
-			{{"Login to quick buy or"|t}} <a href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'">{{ "continue without login" | t }}</a>
+			{{ "Login to quick buy or"|t }} <a class="underline" href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'">{{ "continue without login" | t }}</a>
 		</div>
+	    <div class="wd40 center">
             {{ form_start(loginForm) }}
             {{ form_errors(loginForm) }}
               <label class="label" style="margin-bottom:10px">
@@ -43,11 +44,12 @@
               </label>
               {{ form_errors(loginForm.rememberme) }}
               {{ form_widget(loginForm.rememberme) }}
-                <a href="{{ path('drufony_user_request_forgot_pass', {'lang' : lang }) }}">{{ "Forgot password" | t }}</a>
-              <div class="wd90">
+                <a class="underline" href="{{ path('drufony_user_request_forgot_pass', {'lang' : lang }) }}">{{ "Forgot password" | t }}</a>
+              <div>
                 {{ form_row(loginForm.login, {'attr': {'class': 'button button-ok'}} ) }}
               </div>
             {{ form_end(loginForm) }}
+	    </div>
         </div>
       {% else  %}
         <div class="wd90">
@@ -59,7 +61,7 @@
   {% else %}
         <div class="wd90">
           <a href='{{ path('drufony_checkout_login', { 'lang' : lang})}}'>
-            <h2><span>1</span>{{'Login'|t}}</h2>
+            <h2><span>1</span>{{'Logged'|t}}</h2>
           </a>
         </div>
     {% set step = step + 1 %}
@@ -73,9 +75,11 @@
     {% set step = step + 1 %}
     <div class="wd90">
       <h2 class="active"><span>2</span>Shipping information</h2>
-      {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+      	<div class="wd100">
+	{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       {% include 'DrufonyCoreBundle::checkout_shipping_info.html.twig' %}
       {{ form_end(form) }}
+      </div>
     </div>
   {% else %}
     {% set step = step + 1 %}
@@ -94,21 +98,25 @@
 {# Billing Information #}
 <section class="checkout wd90">
   {% if checkoutStep == 'billingInformation' %}
-    <div class="fl wd70 bb">
+    <div class="wd90">
       <h2 class="active"><span>3</span>Billing Information</h2>
-      {{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
+      <div>
+	{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       {% include 'DrufonyCoreBundle::checkout_billing_info.html.twig' %}
       {{ form_end(form) }}
+      </div>
     </div>
   {% else %}
     <div class="wd90">
       {% if checkoutMethodCompleted %}
+      <div> 
       <a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>
         <h2><span>3</span>Billing Information</h2>
       </a>
       {% else %}
         <h2><span>3</span>Billing Information</h2>
       {% endif %}
+    </div>
     </div>
   {% endif %}
  </section>
@@ -119,12 +127,11 @@
     {% set step = step + 1 %}
     <div class="wd90">
       <h2 class="active"><span>4</span>{{'Order Summary'|t}}</h2>
-    	<div class="wd25 bb">	
+    	<div class="wd90 bb">	
       		{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       		{% include 'DrufonyCoreBundle::checkout_shipping_method.html.twig' %}
       		{{ form_end(form) }}
     	</div>
-      		{% include 'DrufonyCoreBundle::checkout_your_progress.html.twig' %}
     </div>
   {% else %}
     {% set step = step + 1 %}

@@ -659,6 +659,7 @@ class CommerceController extends DrufonyController
             					'registerForm'  => $registerForm->createView(),
             					'loginForm'     => $loginForm->createView(),
             					'isLoginPath'   => FALSE,
+						'shippingPrice' =>$shippingPrice,
                                                 )
                                               ));
         return $response;

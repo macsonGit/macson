@@ -1,5 +1,16 @@
-<div class="oh wd100 mg-bottom10">
-  <a href='{{ path('drufony_checkout_billing_use_shipping', {'lang': lang})}}' class="fl-link-secondary">{{ "Use shipping address" | t }}</a>
+
+<div>
+  <p><a class="underline"  href='{{ path('drufony_checkout_billing_use_shipping', {'lang': lang})}}' class="fl-link-secondary">{{ "Use shipping address" | t }}</a></p>
+<br>
+{% if addresses|length > 0 %}
+{% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
+<p class="texto">{{ "Or use one of your addresses" | t }}</p>
+{% for address in addresses %}
+<p>{{address.name}}, {{address.address}} | <a class="underline" href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
+{% endfor %}
+{% endif %}
+
+
 </div>
 
 <label class="label">
@@ -108,18 +119,10 @@
     </label>
 
   </div>
+</div>
 <footer>
 {{ form_row(form.send, {'attr': {'class': 'button button-ok'}} ) }}
 </footer>
 </div>
 
 
-{% if addresses|length > 0 %}
-{% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
-<div>
-<p>{{ "User addresses" | t }}</p>
-{% for address in addresses %}
-<p>{{address.name}}, {{address.address}} | <a href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
-{% endfor %}
-</div>
-{% endif %}

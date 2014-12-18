@@ -1,18 +1,21 @@
       
     {% if addresses|length > 0 %}
-        {% if shipping %}
+    <br>
+	    {% if shipping %}
             {% set userAddressUrl = 'drufony_checkout_shipping_user_address' %}
         {% else %}
             {% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
         {% endif%}
     <div>
-        <p>{{ "User addresses" | t }}</p>
+        <p class="texto">{{ "User addresses" | t }}</p>
         {% for address in addresses %}
-        <p>{{address.name}}, {{address.address}} | <a href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
+        <p>{{address.name}}, {{address.address}} | <a class="underline" ref='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
         {% endfor %}
+    <br>
     </div>
     {% endif %}
 
+    
 
      <label class="label">
         {{ form_label(form.name) }}
@@ -109,7 +112,8 @@
       </label>
 
       </div>
-      <footer>
+</div>    
+  <footer>
       {{ form_row(form.send, {'attr': {'class': 'button button-ok'}} ) }}
       </footer>
     </div>
