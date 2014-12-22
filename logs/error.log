@@ -768,3 +768,12 @@
 [Thu Dec 18 10:26:08 2014] [error] [client 125.64.35.68] File does not exist: /var/www/Symfony/web/r
 [Thu Dec 18 17:41:11 2014] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
 [Thu Dec 18 17:41:11 2014] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Dec 19 16:40:30 2014] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Dec 19 16:40:30 2014] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Dec 19 20:10:06 2014] [error] [client 125.64.35.67] File does not exist: /var/www/Symfony/web/r
+[Sat Dec 20 12:56:58 2014] [error] [client 125.64.35.68] File does not exist: /var/www/Symfony/web/r
+[Sat Dec 20 20:02:41 2014] [error] [client 125.64.35.67] File does not exist: /var/www/Symfony/web/r
+[Sun Dec 21 09:16:38 2014] [error] [client 125.64.35.68] File does not exist: /var/www/Symfony/web/r
+[Sun Dec 21 20:39:50 2014] [error] [client 125.64.35.67] File does not exist: /var/www/Symfony/web/r
+[Mon Dec 22 17:15:49 2014] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Mon Dec 22 17:15:49 2014] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico

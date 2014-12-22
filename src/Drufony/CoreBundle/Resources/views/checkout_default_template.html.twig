@@ -127,7 +127,7 @@
     {% set step = step + 1 %}
     <div class="wd90">
       <h2 class="active"><span>4</span>{{'Order Summary'|t}}</h2>
-    	<div class="wd90 bb">	
+    	<div class="bb">	
       		{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       		{% include 'DrufonyCoreBundle::checkout_shipping_method.html.twig' %}
       		{{ form_end(form) }}
