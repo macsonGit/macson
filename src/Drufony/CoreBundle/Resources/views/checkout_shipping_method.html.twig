@@ -10,7 +10,7 @@
             {{ form_errors(form.shipping) }}
             {{ form_widget(form.shipping) }}
         {% endif %}
-          <div class="center">
+          <div class="center borderBottom">
             {% for item in progress.cartItems%}
                 <div>
                     <div class="wd10 inline align-left"> {{ item.count }} {{'U.'|t}}</div>
@@ -27,28 +27,28 @@
                 <div class="inline align-left">{{ "Disccount" | t }}:</div>
                 <div class="align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</div><br>
 	      {% endif %}
-                <div class="inline align-left">{{ "Shipping cost" | t }}:</div>
-                <div class="align-right">{{ shippingPrice | number_format(2) }}€</div><br>
-		<div class="inline align-left"><b>{{ "Total" | t }}:</b></div>
-                <div class="align-right"><b>{{ (progress.totalDiscounted + shippingPrice)| number_format(2)  }}€</b></div><br>
+                <div class="inline align-left fs-12">{{ "Shipping cost" | t }}</div>
+                <div class="align-right fs-12">{{ shippingPrice | number_format(2) }}€</div><br>
+		<div class="inline align-left"><br><b>{{ "Total" | t }}</b></div>
+                <div class="align-right"><b><br>{{ (progress.totalDiscounted + shippingPrice)| number_format(2)  }}€</b></div><br>
               </div>
           </div>
 	<div class="center">
       {% if progress.shippingInfo is not empty %}
-        <div class="wd50 filled inline">Shipping Info <a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</a><br>
+        <div class="wd45 pad15 fs-12 inline"><b>{{ 'Shipping Info'|t }} <a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a><br>
               {{progress.shippingInfo.name}}<br>
-              {{progress.shippingInfo.countryName}}, {{progress.shippingInfo.provinceName}}<br>
-              {{progress.shippingInfo.city}}, {{progress.shippingInfo.postalCode}}<br>
+              {{progress.shippingInfo.address}}, {{progress.shippingInfo.city}}<br>	
+              {{progress.shippingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}. <br>
               T: {{progress.shippingInfo.phone}}
         </div>
       {% endif %}
 
       {% if progress.billingInfo is not empty %}
-        <div class="filled">Billing Info <a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</a>
+        <div class="pad15 fs-12"><b>{{ 'Billing Info'|t }} <a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a>
           <div>
-            {{progress.billingInfo.name}}<br>
-            {{progress.billingInfo.countryName}}, {{progress.billingInfo.provinceName}}<br>
-            {{progress.billingInfo.city}}, {{progress.billingInfo.postalCode}}<br>
+              {{progress.billingInfo.name}}<br>
+              {{progress.billingInfo.address}}, {{progress.shippingInfo.city}}<br>	
+              {{progress.billingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}. <br>
             T: {{progress.billingInfo.phone}}
           </div>
         </div>
@@ -62,14 +62,14 @@
           </div>
         </div>
       {% endif %}
-        <label class="label">
+        <label class="label wd50 center">
           {{ form_label(form.comments) }}
           {% if form.comments.vars.required %}
             <span>*</span>
           {% endif %}
         </label>
         {{ form_errors(form.comments) }}
-        <label class="textarea">
+        <label class="textarea wd50 center">
           {{ form_widget(form.comments) }}
         </label>
     </div>

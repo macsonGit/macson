@@ -2,6 +2,7 @@
 <div>
   <p><a class="underline"  href='{{ path('drufony_checkout_billing_use_shipping', {'lang': lang})}}' class="fl-link-secondary">{{ "Use shipping address" | t }}</a></p>
 <br>
+<div class="mg-bottom15">
 {% if addresses|length > 0 %}
 {% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
 <p class="texto">{{ "Or use one of your addresses" | t }}</p>
@@ -10,7 +11,7 @@
 {% endfor %}
 {% endif %}
 
-
+</div>
 </div>
 
 <label class="label">

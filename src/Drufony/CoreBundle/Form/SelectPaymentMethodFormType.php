@@ -35,7 +35,7 @@ class SelectPaymentMethodFormType extends AbstractType
                 'expanded' => true,
                 'required' => true,
             ))
-            ->add('submit', 'submit', array(
+            ->add('send', 'submit', array(
                 'label' => t('Continue'),
             ));
     }

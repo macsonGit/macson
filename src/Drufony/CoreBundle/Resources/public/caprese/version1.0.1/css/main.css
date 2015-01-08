@@ -21,7 +21,7 @@ html, body, div, section, header, footer, article, hr {
 }
 body {
   background: #f2f2f2;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Times new roman', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #404040;
 }
 h1, h2, h3, h4, h5, h6, p {
@@ -51,7 +51,7 @@ form, input, select, textarea, button {
   border: 0;
   outline: none;
   background: none;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Times new roman', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 button {
   cursor: pointer;
