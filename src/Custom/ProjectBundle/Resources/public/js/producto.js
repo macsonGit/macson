@@ -1,6 +1,16 @@
 
 $(document).ready(function(){
 
+
+
+
+      	var target = $("#target");
+      	if (target.length) {
+        	$('html,body').animate({
+          	scrollTop: (target.offset().top-30)
+        	}, 100);
+	}
+
 	$(function()
 	{
 		$('.contenido').jScrollPane();

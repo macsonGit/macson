@@ -783,3 +783,106 @@
 [Sat Jan 03 15:32:37 2015] [error] [client 109.121.207.185] File does not exist: /var/www/Symfony/web/udp
 [Thu Jan 08 11:40:29 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
 [Thu Jan 08 11:40:29 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Jan 09 09:54:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Jan 09 09:54:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Jan 09 13:20:02 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:23:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:23:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:23:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:23:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:23:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:23:38 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:27:32 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:27:32 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:27:32 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:27:32 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:27:32 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:27:33 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:28:36 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:28:36 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:28:36 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:28:36 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:28:36 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:28:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:29:08 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:29:08 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:29:08 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:29:08 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:29:08 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:29:09 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:30:12 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:30:12 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:30:12 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:30:12 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:30:12 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:30:13 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:31:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:31:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:31:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:31:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:31:19 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:31:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:32:52 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:32:52 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:32:52 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:32:52 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:32:52 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:02 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:07 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:07 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:07 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:07 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:07 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:08 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:33:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:04 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:04 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:04 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:04 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:04 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:05 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:10 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:16 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:16 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:16 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:16 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:16 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:34:17 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:35:51 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:35:51 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:35:51 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:35:51 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 13:35:51 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 16:57:28 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected T_VARIABLE in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 596, referer: http://192.168.1.140/app_dev.php/es/profile/edit-addresses
+[Fri Jan 09 17:44:17 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected ';' in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 600, referer: http://192.168.1.140/app_dev.php/es/profile/delete-addresses
+[Fri Jan 09 17:44:34 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected ';' in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 600, referer: http://192.168.1.140/app_dev.php/es/profile/delete-addresses
+[Fri Jan 09 17:44:41 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected ';' in /var/www/Symfony/src/Drufony/CoreBundle/Controller/UserController.php on line 600, referer: http://192.168.1.140/app_dev.php/es/profile/delete-addresses
+[Fri Jan 09 18:18:26 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 09 18:33:58 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:33:58 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:33:58 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:33:58 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:35:05 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:35:05 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:35:06 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:35:06 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:42:38 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:42:38 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:42:38 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/
+[Fri Jan 09 18:42:38 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/images, referer: http://192.168.1.140/app_dev.php/es/checkout/payment/method/

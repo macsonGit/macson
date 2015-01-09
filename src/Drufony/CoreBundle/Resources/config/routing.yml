@@ -10,7 +10,7 @@ macson_category:
     pattern:  /category/{category}-{categorynames}
     defaults: { _controller: CustomProjectBundle:Category:index }
 
-macson_importeri_user:
+macson_importer_user:
     pattern: /importeruser
     defaults: {_controller: CustomProjectBundle:Importer:user}
 
@@ -46,6 +46,10 @@ drufony_account_edit:
 drufony_profile_address_edit:
     pattern: /profile/edit-addresses/{id}
     defaults: { _controller: DrufonyCoreBundle:User:profileAddresses, id:null }
+
+drufony_profile_address_delete:
+    pattern: /profile/delete-addresses/{id}
+    defaults: { _controller: DrufonyCoreBundle:User:profileAddressesDelete, id:null}
 
 drufony_user_order_list:
     pattern: /profile/user-list/{id}

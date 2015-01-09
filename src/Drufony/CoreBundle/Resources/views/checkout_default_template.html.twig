@@ -10,12 +10,13 @@
 {% set step = 1 %}
 
 {# Checkout Method #}
-<section class="checkout">
+<section id="login_sect" class="checkout">
   {% if userLogged != true %}
       {% set step = step + 1 %}
       {% if checkoutStep == 'checkoutMethod' %}
 	 <div class="wd90">
 	     <div class="pad15">
+		<div id="target"></div>
 			{{ "Login to quick buy or"|t }} <a class="underline" href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'">{{ "continue without login" | t }}</a>
 	    </div>	
 	    <div class="wd40 center">
@@ -70,9 +71,10 @@
 
 
 {# Shipping Information #}
-<section class="checkout wd90">
+<section id="shipping_sect" class="checkout wd90">
   {% if checkoutStep == 'shippingInformation' %}
     {% set step = step + 1 %}
+    <div id="target"></div>
     <div class="wd90">
       <h2>Shipping information</h2>
       	<div>
@@ -96,8 +98,9 @@
 </section>
 
 {# Billing Information #}
-<section class="checkout wd90">
+<section id="billing_sect" class="checkout wd90">
   {% if checkoutStep == 'billingInformation' %}
+    <div id="target"></div>
     <div class="wd90">
       <h2>Billing Information</h2>
       <div>
@@ -122,9 +125,10 @@
  </section>
 
 {# Shipping Method #}
-<section class="checkout wd90">
+<section id="shipping_methos_sect" class="checkout wd90">
   {% if checkoutStep == 'shippingMethod' %}
     {% set step = step + 1 %}
+    <div id="target"></div>
     <div class="wd90">
       <h2>{{'Order Summary'|t}}</h2>
     	<div class="bb">	
@@ -148,9 +152,10 @@
 </section>
 
 {# Payment Method #}
-<section class="checkout wd90" style="margin-bottom:18px">
+<section id="payment_sect" class="checkout wd90" style="margin-bottom:18px">
   {% if checkoutStep == 'selectPaymentMethod' %}
     {% set step = step + 1 %}
+    <div id="target"></div>
     <div class="wd90">
       <h2>Payment method</h2>
       <form id='payment_options' action="{{ path('drufony_checkout_review_payment', {'lang' : lang} ) }}" method="post">
@@ -216,6 +221,9 @@ $(document).ready(function(){
            	form.unbind('submit').submit(); //submit it...
 	
 	});
+
+
+
 });
 </script>
 {% endif %}

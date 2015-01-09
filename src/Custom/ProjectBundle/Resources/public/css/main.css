@@ -54,6 +54,7 @@ ul { list-style-type:none; }
 .underline {text-decoration:underline;}
 .fs10 { font-size:10px}
 
+
 #logo { position:relative;top: 40px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}

@@ -586,6 +586,27 @@ class UserController extends DrufonyController
         return $response;
     }
 
+
+    function profileAddressesDeleteAction(Request $request, $lang, $id = null) {
+
+	UserUtils::removeAddress($id);
+
+	var_dump($id);
+
+	//$a=$a;
+
+    	$response = $this->redirect($this->generateUrl('drufony_profile_address_edit', array(
+        	'lang'  => $lang
+    	)));
+
+    // ... further modify the response or return it directly
+
+    	return $response;
+
+
+    }
+
+
     //TODO: place this function somewhere else
     public function provincesByCountryAction(Request $request) {
         $countryId = $request->request->get('countryId');

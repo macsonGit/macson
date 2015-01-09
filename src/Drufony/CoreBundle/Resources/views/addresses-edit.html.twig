@@ -6,6 +6,7 @@
 {% include 'DrufonyCoreBundle::user_config_menu.html.twig' %}
 <div class="fl wd65 oh bb column-info">
 <div class="wd100 oh bb mg-vertical10">
+<div class="mg-bottom20">
 <form method="GET" class="fl bb wd55 align-right mg-right5">
 <select name="addressId" id="AddressId" class="maxW100">
 {% for address in addresses %}
@@ -20,12 +21,12 @@ selected {% endif %}>{{ "New address" | t }}</option>
 {% endif %}
 </select>
 </form>
-<div class="fl wd35">
-<a href="{{ path('drufony_profile_address_edit', {'lang': lang, 'addressId': 0, 'id': id}) }}">{{ "Create
-new Address" | t }}</a>
-</a>
+<div class="wd100">
+<a href='{{ path('drufony_profile_address_delete', { 'lang' : lang, 'id':app.request.get('addressId')})}}'>{{"Delete address"|t}}</a> |
+<a href="{{ path('drufony_profile_address_edit', {'lang': lang, 'addressId': 0, 'id': id}) }}">{{ "Create new address" | t }}</a>
 </div>
-<div class="wd100 oh">
+</div>
+<div class="wd100 oh mg-vertical10">
 {{ form_start(addressForm) }}
 {{ form_errors(addressForm) }}
 {{ form_errors(addressForm.name) }}

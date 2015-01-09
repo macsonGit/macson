@@ -8,7 +8,7 @@
     <div class="mg-bottom15">
         <p class="texto">{{ "User addresses" | t }}</p>
         {% for address in addresses %}
-        <p>{{address.name}}, {{address.address}} | <a class="underline" ref='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
+        <p>{{address.name}}, {{address.address}} | <a class="underline" href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
         {% endfor %}
     </div>
     {% endif %}

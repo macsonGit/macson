@@ -16,11 +16,10 @@
 {% endif %}
 
 <aside class="column-menu wd25 fl bb mg-right5 radius5 pad10">
-  <p><span>{{ "User name" | t }}: {{ user.username }}</p>
   <ul id="configMenu">
 
       <h3 class="pad-horizontal10 mg-vertical10">{{ "Account config" | t }}</h3>
-
+       <p><span class="pad-horizontal10">{{ user.username }}</p>
       <li class="first"><a href="{{path('drufony_profile_edit', {'lang': lang, 'id': id}) }}" class="{{activeProfile}}" >{{ "Edit profile" | t }}</a></li>
       <li class="second"><a href="{{path('drufony_account_edit', {'lang': lang, 'id': id}) }}" class="{{activeAccount}}" >{{ "Account" | t }}</a></li>
       <li class="third"><a href="{{path('drufony_profile_address_edit', {'lang': lang, 'id': id}) }}" class="{{activeAddress}}" >{{ "Addresses" | t }}</a></li>

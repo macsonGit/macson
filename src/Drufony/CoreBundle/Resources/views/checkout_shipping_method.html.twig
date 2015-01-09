@@ -33,7 +33,7 @@
                 <div class="align-right"><b><br>{{ (progress.totalDiscounted + shippingPrice)| number_format(2)  }}€</b></div><br>
               </div>
           </div>
-	<div class="center">
+	<div class="borderBottom center">
       {% if progress.shippingInfo is not empty %}
         <div class="wd45 pad15 fs-12 inline"><b>{{ 'Shipping Info'|t }} <a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a><br>
               {{progress.shippingInfo.name}}<br>
@@ -44,11 +44,12 @@
       {% endif %}
 
       {% if progress.billingInfo is not empty %}
+
         <div class="pad15 fs-12"><b>{{ 'Billing Info'|t }} <a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a>
           <div>
               {{progress.billingInfo.name}}<br>
-              {{progress.billingInfo.address}}, {{progress.shippingInfo.city}}<br>	
-              {{progress.billingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}. <br>
+              {{progress.billingInfo.address}}, {{progress.billingInfo.city}}<br>	
+              {{progress.billingInfo.postalCode}}, {{progress.billingInfo.provinceName}}, {{progress.billingInfo.countryName}}. <br>
             T: {{progress.billingInfo.phone}}
           </div>
         </div>
