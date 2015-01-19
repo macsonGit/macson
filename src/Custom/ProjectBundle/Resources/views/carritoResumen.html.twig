@@ -10,50 +10,49 @@
 
 <div id="carrito">
 
+<h2 class="align-left">{{ 'Shopping Cart'|t}}</h2>
+
 {% set sumPrice= 0 %}
 
 {% if products[0] is defined  %}
 
-		<div class="inline width85  pad5 alignleft"></div>
-		<div class="inline width100 pad5"></div>
-		<div class="inline width25 pad5">{{'Size'|t}}</div>
-		<div class="inline width50 pad5">{{ 'Price'|t }} €</div>
-		<div class="inline width25 pad5">{{ 'Units'|t }}</div>
+	<div class="table">
+		<div class="height25 row">
+			<div class="cell pad5"></div>
+			<div class="cell pad5"></div>
+			<div class="cell pad5"><b>{{'Size'|t}}</b></div>
+			<div class="cell pad5"><b>{{ 'Price'|t }}</b></div>
+			<div class="cell pad5"><b>{{ 'Units'|t }}</b></div>
+		</div>
 
-	<div class="inline">
 
-	<ul id="listaCarritoResumen">
+{% set sumPrice=0 %}
 
-	{% set sumPrice=0 %}
+{% for item in products %}
 
-	{% for item in products %}
-
-		<li class="height102 pad5 border">
-				<div class="inline">
-					<a href={{ path('drufony_general_url',{'url' : item.product.target, 'lang': lang} ) }}>
-						<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
-					</a>
-				</div>		
-				<div class="inline width100  pad5 alignleft">
+		<div class="row height102 pad5">
+			<div class="cell">
+				<a href={{ path('drufony_general_url',{'url' : item.product.target, 'lang': lang} ) }}>
+					<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
+				</a>
+			</div>		
+			<div class="cell width300 pad5">
 				{{ item.product.title }}<br> ref.{{ item.product.sgu  }}
-				</div>
-				<div class="inline width25 pad5">{{ item.product.size }}</div>
-				<div class="inline width50 pad5">{{ item.product.pricePVP }} €</div>
-				<div class="inline width25 pad5">{{ item.count }}</div>
-				<div class="inline pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div>
-				{% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
-		</li>
-		<br>
+			</div>
+			<div class="cell width50 pad5">{{ item.product.size }}</div>
+			<div class="cell width100 pad5">{{ item.product.pricePVP }} €</div>
+			<div class="cell width50 pad5">{{ item.count }}</div>
+			<div class="cell width50 borrarArticulo pad5" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div>
+{% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
+		</div>
 
-	{% endfor %}
+{% endfor %}
 
-	</ul>
 
 	</div>
 
-
-	<div class="inline pad5"></div>
-	<div class="inline height102 width180 pad5  border">
+	<div class="pad5"></div>
+	<div class="height102 width180 pad5">
 		<div>
 			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
 		</div>
@@ -69,15 +68,15 @@
 
 {% else  %}
 
-	<ul id="listaCarritoResumen" class="inline">
+	<ul id="listaCarritoResumen">
 		<li>
 {{ 'There is no product added to the Cart'|t }}
 		</li>
 	</ul>
 
-	<div class="inline">
-	<div class="inline pad5"></div>
-	<div class="inline height102 width180 pad5  border">
+	<div>
+	<div class="pad5"></div>
+	<div class="height102 width180 pad5  border">
 		<div>
 			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
 		</div>

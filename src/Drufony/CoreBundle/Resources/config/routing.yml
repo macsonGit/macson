@@ -149,6 +149,11 @@ drufony_manage_path:
     pattern: /dashboard/manage
     defaults: { _controller: DrufonyCoreBundle:Content:managePath }
 
+drufony_commerce_your_order:
+    pattern: /commerce/thanks_for_your_order
+    defaults: { _controller: DrufonyCoreBundle:User:yourOrder}
+
+
 drufony_commerce_path:
     pattern: /dashboard/commerce
     defaults: { _controller: DrufonyCoreBundle:Content:commercePath }

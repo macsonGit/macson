@@ -8,7 +8,7 @@
 
 
 
-<div id="" class="layout960">
+<div class="">
 
 
 {% if app.user is not null  %}
@@ -45,7 +45,7 @@
 
   <div class="wd100 oh mg-vertical20">
 
-    <div class="third-column bb fl wd30  mg-right3 pad15">
+    <div class="third-column bb fl wd45  pad15">
         <div class="login-block">
             <h2 class="block-title">{{ "Login with existent account" | t }}</h2>
             {{ form_start(loginForm) }}
@@ -78,7 +78,7 @@
             {{ form_end(loginForm) }}
         </div>
     </div>
-    <div class="second-column bb fl wd30  mg-right3 pad15">
+    <div class="second-column bb fl wd45 mg-left5 borderLeft  pad15">
         <div class="signin-block">
             <h2>{{ "Create new account" | t }}</h2>
             {{ form_start(registerForm) }}
@@ -99,7 +99,7 @@
 
                 {{ form_widget(registerForm.acceptTerms) }}
                 {{ registerForm.acceptTerms.vars.label | raw }}
-
+		<br><br>
                 <div class="wd100 mg-vertical10">
                   {{ form_widget(registerForm.register, { 'attr': {'class': 'action-button' }}) }}
                 </div>

@@ -294,6 +294,34 @@ class UserController extends DrufonyController
         return $response;
     }
 
+    function yourOrderAction (Request $request, $lang){
+
+	$response = new Response();
+	
+            $user = $this->getUser();
+	
+	$orders = CommerceUtils::getUserOrders($user->getUid());
+
+	$products=CommerceUtils::getCartItemsAJAX();
+
+	$orderProducts=array();
+
+	if(isset($id)){
+		$orderProducts = CommerceUtils::getOrderProducts($id);
+	}
+
+        $response->setContent($this->renderView('DrufonyCoreBundle::base-registration.html.twig', array(
+            'lang'              => $lang,
+            'user'              => $user,
+            'itemConfigMenu'    => 'yourOrder',
+            'mainContent'       => 'DrufonyCoreBundle::yourOrder.html.twig',
+ 	    'products'=>$products,
+ 	    'orderProducts'=>$orderProducts,
+        )));
+
+        return $response;
+
+    }
 
     function orderHistoryAction (Request $request, $lang ,$id=null){
 	

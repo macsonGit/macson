@@ -147,7 +147,7 @@ define('TPV_STRIPE_TYPE', 1);
 define('TPV_SERMEPA_TYPE', 2);
 define('TPV_PAYPAL_TYPE', 3);
 define('TPV_STRIPE', 'Stripe');
-define('TPV_SERMEPA', 'Sermepa');
+define('TPV_SERMEPA', 'Visa/4B/Mastercard');
 define('TPV_PAYPAL', 'Paypal');
 define('TPV_GATEWAY', TPV_STRIPE);
 //Adds TPVs enabled to be used
