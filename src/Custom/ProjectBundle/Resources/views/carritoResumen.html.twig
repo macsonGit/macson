@@ -8,60 +8,66 @@
 	var lang="{{ lang }}";
 </script>
 
-<div id="carrito">
+<div id="carrito" class="pad15">
 
-<h2 class="align-left">{{ 'Shopping Cart'|t}}</h2>
+<div class="fs28 pad40"><b>{{ 'Shopping Cart'|t}}</b></div>
 
 {% set sumPrice= 0 %}
 
 {% if products[0] is defined  %}
 
-	<div class="table">
-		<div class="height25 row">
-			<div class="cell pad5"></div>
-			<div class="cell pad5"></div>
-			<div class="cell pad5"><b>{{'Size'|t}}</b></div>
-			<div class="cell pad5"><b>{{ 'Price'|t }}</b></div>
-			<div class="cell pad5"><b>{{ 'Units'|t }}</b></div>
+		<div class="height25 row pad5">
+			<div class="cell width85 pad5"></div>
+			<div class="cell width85 pad5"><b>Ref.</b></div>
+			<div class="cell pad5 width180"></div>
+			<div class="cell pad5 width50"><b>{{'Size'|t}}</b></div>
+			<div class="cell pad5 width100"><b>{{ 'Price'|t }}</b></div>
+			<div class="cell pad5 width50"><b>{{ 'Units'|t }}</b></div>
 		</div>
 
 
+	<div id="listaCarritoResumen" class="table pad10 border inline">
 {% set sumPrice=0 %}
+
 
 {% for item in products %}
 
-		<div class="row height102 pad5">
+		<div class= "row height102 pad5">
 			<div class="cell">
 				<a href={{ path('drufony_general_url',{'url' : item.product.target, 'lang': lang} ) }}>
 					<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
 				</a>
 			</div>		
-			<div class="cell width300 pad5">
-				{{ item.product.title }}<br> ref.{{ item.product.sgu  }}
+			<div class="cell width85 pad5">
+				<p class="fs10">{{ item.product.sgu  }}</p>
+			</div>
+			<div class="cell width180 pad5">
+				{{ item.product.title }}
 			</div>
 			<div class="cell width50 pad5">{{ item.product.size }}</div>
 			<div class="cell width100 pad5">{{ item.product.pricePVP }} €</div>
 			<div class="cell width50 pad5">{{ item.count }}</div>
-			<div class="cell width50 borrarArticulo pad5" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div>
+			<div class="cell width50 pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div></div>
 {% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
 		</div>
 
 {% endfor %}
 
-
 	</div>
 
-	<div class="pad5"></div>
-	<div class="height102 width180 pad5">
-		<div>
-			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
+	<div class="inline textwhite width8">ancho </div>
+	<div class="inline width200">
+	     <div class="border pad10 mg-bottom5">
+		<div><b>{{'Total Amount'|t}}</b></div>
+		<div id="precioTotal" class= "fs28">
+			<b>{{ sumPrice | round(2,'common')}} €</b>
 		</div>
-		<div class="pad5">
+	    </div>
+		<div>
 			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
-				<input type="submit" class="okButton width150" value="{{ 'Proceed to check out'|t }}">				
+				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
 			</form>
-			<div class="height3"></div>	
-			<button id="continue" class="cancelButton width150">{{'Continue Shopping'|t}}</button>		
+			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>		
 		</div>
 	</div>
 
@@ -76,16 +82,16 @@
 
 	<div>
 	<div class="pad5"></div>
-	<div class="height102 width180 pad5  border">
+	<div class="height102 width180 pad5 border">
 		<div>
 			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
 		</div>
 		<div class="pad5">
 			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
-				<input type="submit" class="okButton width150" value="{{ 'Proceed to check out'|t }}">				
+				<input type="submit" class="width200" value="{{ 'Proceed to check out'|t }}">				
 			</form>
 			<div class="height3"></div>	
-			<button id="continue" class="cancelButton width150">{{'Continue Shopping'|t}}</button>		
+			<button id="continue" class="width200">{{'Continue Shopping'|t}}</button>		
 		</div>
 	</div>
 	</div>

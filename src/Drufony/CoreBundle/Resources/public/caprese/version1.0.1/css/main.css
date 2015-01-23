@@ -1052,7 +1052,6 @@ a:hover {
   border-left: 5px solid #fff;
 }
 .textarea textarea {
-  height: auto;
   resize: none;
 }
 .radio,

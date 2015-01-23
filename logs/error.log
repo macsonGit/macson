@@ -941,3 +941,37 @@
 [Fri Jan 16 17:27:46 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
 [Mon Jan 19 12:51:49 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
 [Mon Jan 19 12:51:49 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Jan 22 16:56:53 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/613783_1.jpg, referer: http://192.168.1.140/app_dev.php/es/category/30-polos-camisetas-hombre
+[Thu Jan 22 16:56:53 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/613783_1.jpg, referer: http://192.168.1.140/app_dev.php/es/category/30-polos-camisetas-hombre
+[Thu Jan 22 17:21:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/613783_1.jpg, referer: http://192.168.1.140/app_dev.php/es/category/30-polos-camisetas-hombre
+[Thu Jan 22 17:21:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/613783_1.jpg, referer: http://192.168.1.140/app_dev.php/es/category/30-polos-camisetas-hombre
+[Fri Jan 23 16:36:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Jan 23 16:36:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:45:47 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Product/Standard/614586_2.jpg, referer: http://192.168.1.140/app_dev.php/es/category/12-camisas-hombre
+[Fri Jan 23 19:46:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:03 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:04 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:15 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:15 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:15 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:15 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:15 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:15 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map

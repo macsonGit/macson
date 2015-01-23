@@ -291,7 +291,6 @@ function opeItem(ope,productO,varietyO){
 			url: urlPHP,
 			dataType: 'json',
 			success: function(cart){
-
 					$("#mascara").show(200);
 					$("#listaCarritoResumen").empty();	
 					$("#carritoResumen").empty();	
@@ -304,7 +303,8 @@ function opeItem(ope,productO,varietyO){
 						$.each(cart, function( index, item ) {
 							precioTotal=precioTotal+item.product.pricePVP*parseInt(item.count);
 							sumItems=sumItems+item.count;
-							$("#listaCarritoResumen").append('<li class="height102 pad5 border"><div class="inline"><a href="../'+lang+'/'+item.product.target+'"><img src="'+imageThumbPath+item.product.sgu+'_1.jpg"></a></div><div class="inline width100  pad5 alignleft">'+item.product.title+'<br> ref.'+item.product.sgu+'</div><div class="inline width25 pad5">'+item.product.size+'</div><div class="inline width50 pad5">'+item.product.pricePVP+' €</div><div class="inline width25 pad5">'+item.count+'</div><div class="inline pad5"><div class="borrarArticulo"  product="'+item.product.id+'" variety="'+item.product.varProdId+'">'+removeText+'</div></div></li><br>');	
+
+							$("#listaCarritoResumen").append('<div class="row height102 pad5"><div class="cell"><a href="../'+lang+'/'+item.product.target+'"><img src="'+imageThumbPath+item.product.sgu+'_1.jpg"></a></div><div class="cell width85 pad5"><p class="fs10">'+item.product.sgu+'</p></div><div class="cell width180 pad5">' + item.product.title+'</div><div class="cell width50 pad5">'+item.product.size+'</div><div class="cell width100 pad5">'+item.product.pricePVP+' €</div><div class="cell width50 pad5">'+item.count+'</div><div class="cell width50 pad5"><div class="borrarArticulo"  product="'+item.product.id+'" variety="'+item.product.varProdId+'">'+removeText+'</div></div>');	
 						});
 						precioTotal = precioTotal.toFixed(2);
 						$("#precioTotal").append('<b>'+precioTotal+' €</b>');	
