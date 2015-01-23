@@ -315,7 +315,9 @@ function opeItem(ope,productO,varietyO){
 						$("#carrito").show(200);			
 					}
 					else{
-						$("#listaCarritoResumen").append('<li>'+noProductCartText+'</li>');
+						$("#listaCarritoResumen").append('<div class="row">'+noProductCartText+'</div>');
+						$("#carrito").hide(200);			
+						$("#mascara").hide(200);
 					}
 			}	
 		 })

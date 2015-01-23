@@ -74,26 +74,26 @@
 
 {% else  %}
 
-	<ul id="listaCarritoResumen">
-		<li>
+	<div id="listaCarritoResumen" class="table pad10 border inline">
+		<div class="row">
 {{ 'There is no product added to the Cart'|t }}
-		</li>
-	</ul>
-
-	<div>
-	<div class="pad5"></div>
-	<div class="height102 width180 pad5 border">
-		<div>
-			{{ 'Total Amount'|t  }} <div id="precioTotal"><b>{{ sumPrice | round(2,'common')}} €</b></div>
-		</div>
-		<div class="pad5">
-			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
-				<input type="submit" class="width200" value="{{ 'Proceed to check out'|t }}">				
-			</form>
-			<div class="height3"></div>	
-			<button id="continue" class="width200">{{'Continue Shopping'|t}}</button>		
 		</div>
 	</div>
+
+	<div class="inline textwhite width8">ancho </div>
+	<div class="inline width200">
+	     <div class="border pad10 mg-bottom5">
+		<div><b>{{'Total Amount'|t}}</b></div>
+		<div id="precioTotal" class= "fs28">
+			<b>{{ sumPrice | round(2,'common')}} €</b>
+		</div>
+	    </div>
+		<div>
+			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
+				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
+			</form>
+			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>		
+		</div>
 	</div>
 
 
