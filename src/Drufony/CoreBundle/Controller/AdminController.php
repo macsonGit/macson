@@ -1245,13 +1245,13 @@ class AdminController extends DrufonyController
     }
 
     public function dashboardHomeAction($lang) {
-        $response = new Response();
+        
+	$response = new Response();
 
         /* Adds items for section breadcrumb*/
         $breadCrumb = array(
           'dashboard' => array( 'label' => 'Dashboard', 'url' => 'drufony_home_dashboard'),
         );
-
         $response->setContent($this->renderView('DrufonyCoreBundle::base.html.twig',
           array('lang'=> $lang,
                 'left' => 'DrufonyCoreBundle::left.html.twig',
@@ -1310,6 +1310,7 @@ class AdminController extends DrufonyController
     }
 
     public function countryShippingListAction(Request $request, $lang) {
+
         $response = new Response();
 
         $form = $this->createForm(new CountryListFormType(), array());
@@ -1337,9 +1338,11 @@ class AdminController extends DrufonyController
           array('lang'=> $lang,
                 'left' => 'DrufonyCoreBundle::left.html.twig',
                 'itemMenu' => 'Home',
-                'dashboard' => 'DrufonyCoreBundle::content_create_form.html.twig',
-                'title' => t('Contry selection'),
-                'itemMenu' => 'Manage',
+		'dashboard' => 'DrufonyCoreBundle::content_create_form.html.twig',
+		'contentType' => 'ShippingCost',
+		'columnRight' => '',
+		'title' => t('Contry selection'),
+		'itemMenu' => 'Manage',
                 'breadCrumb' => $breadCrumb,
                 'allLanguages' => $allLanguages,
                 'currentRoute' => $currentRoute,
@@ -1391,12 +1394,13 @@ class AdminController extends DrufonyController
 
         $allLanguages = array_keys(Locale::getAllLanguages());
         $currentRoute = $request->get('_route');
-
         $response->setContent($this->renderView('DrufonyCoreBundle::base.html.twig',
           array('lang'=> $lang,
                 'left' => 'DrufonyCoreBundle::left.html.twig',
                 'itemMenu' => 'Home',
                 'dashboard' => 'DrufonyCoreBundle::content_create_form.html.twig',
+		'contentType' => 'ShippingCost',
+		'columnRight' => '',
                 'title' => t('Country shipping costs'),
                 'itemMenu' => 'Manage',
                 'breadCrumb' => $breadCrumb,

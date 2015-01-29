@@ -36,7 +36,8 @@ class Setting
     static public function set($attribute, $value) {
         $sql = "SELECT COUNT(1) AS count FROM settings WHERE attribute = ?";
         $results = db_executeQuery($sql, array($attribute));
-        $count = $results->fetch()['count'];
+        $count = $results->fetch();
+        $count = $count['count'];
         $value = serialize($value);
         if ($count) {
             if (db_update('settings', array('value' => $value), array('attribute' => $attribute))) {

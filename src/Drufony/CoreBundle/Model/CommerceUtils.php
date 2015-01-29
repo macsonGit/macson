@@ -1692,16 +1692,16 @@ class CommerceUtils
      * @return integer: shipping price
      */
     static public function getShippingCostByCountry($countryId, $weight) {
-        $sql = 'SELECT min(weight) as weight, price FROM countryShippingFee
-            WHERE countryId = ? AND weight >= ? LIMIT 1';
 
+            $sql = 'SELECT weight,price FROM countryShippingFee
+                WHERE countryId = ? ORDER BY ABS(weight-?) LIMIT 1';
         $result = db_fetchAssoc($sql, array($countryId, $weight));
 
         if (is_null($result['weight']) && is_null($result['price'])) {
-            $sql = 'SELECT min(weight) as weight, price FROM countryShippingFee
-                WHERE countryId = ? AND weight = 0 LIMIT 1';
+            $sql = 'SELECT weight,price FROM countryShippingFee
+                WHERE countryId = ? ORDER BY ABS(weight-?) LIMIT 1';
 
-            $result = db_fetchAssoc($sql, array($countryId));
+            $result = db_fetchAssoc($sql, array($countryId,$weight));
 
             if (is_null($result['weight']) && is_null($result['price'])) {
 

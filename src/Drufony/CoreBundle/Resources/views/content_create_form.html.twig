@@ -35,7 +35,6 @@
             <div class="widget-body innerAll inner-2x">
 
 <div class="row">
-
                   {# First Column #}
                   {% if columnMiddle is defined %}
                     <div class="col-md-6" style="padding: 0 15px">
@@ -49,7 +48,6 @@
     <p>{{ string }}</p>
 </div>
 {% endif %}
-
                   {% for item in form.children %}
 
                     {# set type of each item #}
@@ -64,10 +62,10 @@
 
                       {# Print input #}
                       {% if (type == "text" or type == "money" or type == "percent") and type2 != 'textarea' %}
-                            {{ form_label(item) }}
+			    {{ form_label(item) }}
                             {{ form_errors(item) }}
                             {{ form_widget(item, { 'attr': { 'class': 'form-control' } }) }}
-                            {# macroforms.inputLabel(item.vars.name, form.vars.name, item.vars.required) #}
+			    {# macroforms.inputLabel(item.vars.name, form.vars.name, item.vars.required) #}
                       {% endif %}
 
                       {# Print textarea #}
@@ -121,7 +119,7 @@
                       {# Print add buttons #}
                       {% if type matches '{Form_add*}' %}
                         <div class="widget-body">
-                          {{ form_row(attribute(form, item.vars.name)) }}
+			{{ form_row(attribute(form, item.vars.name)) }}
                         </div>
                       {% endif %}
 
@@ -238,7 +236,6 @@
                       {% if type != "checkbox" and type != "hidden" %}
                       <div class="separator bottom"></div>
                       {% endif %}
-
 {# SEPARATOR COLUMNS ---------------------------------------------------------------------------------------#}
 {# ---------------------------------------------------------------------------------------------------------#}
 {# ---------------------------------------------------------------------------------------------------------#}
@@ -274,7 +271,6 @@
                       {% endif %}
 
                   {% endfor %}
-
                 <!-- end second column -->
                 </div>
 <!-- End row -->
@@ -298,7 +294,7 @@
                   {% if form.preview is defined %}
                       {{ form_widget(form.preview) }}
                   {% endif %}
-                {{ form_widget(form.save) }}
+                {{ form_widget(form) }}
             </div>
           </div>
 <!-- End buttons row -->

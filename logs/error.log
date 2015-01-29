@@ -975,3 +975,15 @@
 [Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
 [Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
 [Fri Jan 23 19:46:20 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.map
+[Mon Jan 26 13:18:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Mon Jan 26 13:18:18 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Jan 29 10:37:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Jan 29 10:37:37 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Jan 29 11:51:51 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /var/www/Symfony/src/Drufony/CoreBundle/Controller/AdminController.php on line 1342
+[Thu Jan 29 13:04:28 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Jan 29 13:04:28 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Thu Jan 29 13:11:17 2015] [error] [client 192.168.1.196] File does not exist: /var/www/Symfony/web/orders, referer: http://192.168.1.140/app_dev.php/en/dashboard/newsletter
+[Thu Jan 29 13:13:47 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected '[' in /var/www/Symfony/src/Drufony/CoreBundle/Model/Setting.php on line 39, referer: http://192.168.1.140/app_dev.php/en/dashboard/users
+[Thu Jan 29 13:15:23 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected '[' in /var/www/Symfony/src/Drufony/CoreBundle/Model/Setting.php on line 39, referer: http://192.168.1.140/app_dev.php/en/dashboard/users
+[Thu Jan 29 13:15:36 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected '[' in /var/www/Symfony/src/Drufony/CoreBundle/Model/Setting.php on line 39, referer: http://192.168.1.140/app_dev.php/en/dashboard/users
+[Thu Jan 29 13:15:41 2015] [error] [client 192.168.1.196] PHP Parse error:  syntax error, unexpected '[' in /var/www/Symfony/src/Drufony/CoreBundle/Model/Setting.php on line 39, referer: http://192.168.1.140/app_dev.php/en/dashboard/users

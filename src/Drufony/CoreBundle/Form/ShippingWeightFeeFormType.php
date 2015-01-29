@@ -30,7 +30,7 @@ class ShippingWeightFeeFormType extends AbstractType
         $builder
             ->setMethod('POST')
             ->add('weight', 'text', array(
-                'label' => t('Up to (Grams)'),
+                'label' => t('Up to (Kilograms)'),
                 'required' => false,
                 'constraints' => array(
                     new GreaterThanOrEqual(
