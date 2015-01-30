@@ -40,6 +40,8 @@ services:
             - "%database_password%"
         calls:
             - [setAttribute, [3, 2]] # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
+    cache:
+        class: Doctrine\Common\Cache\ApcCache
 
     session.handler.pdo:
         class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler

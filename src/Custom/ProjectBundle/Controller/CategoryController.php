@@ -50,27 +50,51 @@ class CategoryController extends DrufonyController
             )
         );
 
-
         $registerForm = $this->_processRegisterForm($request);
 
         $loginForm = $this->_processLoginForm($request);
             
         $this->_processFBLogin($request);
 
-        $menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+	//-------------------VARABLE MENU
 
-        $menu = Vocabulary::vocabularyListSelected($menu,$category);
+        
+	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+	} 
+	else {
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    		$this->get('cache')->save('menu'.$lang, $menu);
+	}
 
-        $categoryBall = Vocabulary::getCategoryBall($category,$lang);
+	//-------------------VARABLE MENU LIST
 
-        $menu['selected']=$category;
+	if ($menuList = $this->get('cache')->fetch('menuList'.$lang.'-'.$category)) {
+	} 
+	else {
+		$menuList = Vocabulary::vocabularyListSelected($menu,$category);
+    		$this->get('cache')->save('menu'.$lang.'-'.$category, $menuList);
+	}
+
+        $menuList['selected']=$category;
+
+
+	//-------------------VARABLE CATEGORYBALL
+
+
+	if ($categoryBall = $this->get('cache')->fetch('categoryBall'.$lang.'-'.$category)) {
+	} 
+	else {
+        	$categoryBall = Vocabulary::getCategoryBall($category,$lang);
+    		$this->get('cache')->save('categoryBall'.$lang.'-'.$category, $categoryBall);
+	}
+
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
         $response->setContent($this->renderView("CustomProjectBundle::category.html.twig", array(
             'lang' => $lang,
             'widget' => $widgets,
-            'menu' => $menu,
+            'menu' => $menuList,
             'ball' => $categoryBall,
             'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
             'registerForm'  => $registerForm->createView(),

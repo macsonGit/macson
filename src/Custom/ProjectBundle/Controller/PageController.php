@@ -69,8 +69,12 @@ class PageController extends DrufonyController
             )
         );
 
-	$menu=Vocabulary::vocabularyList($lang);
-	//$menu= Vocabulary::vocabularyListSelected($menu,0);
+	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+	} 
+	else {
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    		$this->get('cache')->save('menu'.$lang, $menu);
+	}
 
 	$products=CommerceUtils::getCartItemsAJAX();
 

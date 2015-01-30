@@ -34,6 +34,8 @@ class ProductController extends DrufonyController
         $uid         = NULL;
         $rememberme  = FALSE;
 
+	$category=0;
+
         $product = new Product($oid, $lang);
 
 
@@ -74,9 +76,27 @@ class ProductController extends DrufonyController
 
             $this->_processFBLogin($request);
 	
-	$menu=Vocabulary::vocabularyList($lang);
-	$menu= Vocabulary::vocabularyListSelected($menu,$product->getCategory());
-	$menu['selected']=$product->getCategory();
+	//-------------------VARABLE MENU
+
+        
+	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+	} 
+	else {
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    		$this->get('cache')->save('menu'.$lang, $menu);
+	}
+
+	//-------------------VARABLE MENU LIST
+
+	if ($menuList = $this->get('cache')->fetch('menuList'.$lang.'-'.$category)) {
+	} 
+	else {
+		$menuList = Vocabulary::vocabularyListSelected($menu,$category);
+    		$this->get('cache')->save('menu'.$lang.'-'.$category, $menuList);
+	}
+
+        $menuList['selected']=$category;
+
 
         $numImages= array ('im1' => FALSE, 'im2' => FALSE, 'im3' => FALSE );
 
@@ -96,7 +116,7 @@ class ProductController extends DrufonyController
             'comments' => $comments,
             'commentsCount' => $product->getCommentsCount(),
             'commentsForm' => isset($commentsForm) ? $commentsForm : null,
-            'menu' => $menu,
+            'menu' => $menuList,
             'numImages' => $numImages,
             'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
             'registerForm'  => $registerForm->createView(),

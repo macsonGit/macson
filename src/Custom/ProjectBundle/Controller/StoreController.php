@@ -58,7 +58,15 @@ class StoreController extends DrufonyController
             
         $this->_processFBLogin($request);
 
-        $menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+	//-------------------VARABLE MENU
+
+        
+	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+	} 
+	else {
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    		$this->get('cache')->save('menu'.$lang, $menu);
+	}
 
         $menu = Vocabulary::vocabularyListSelected($menu,0);
 

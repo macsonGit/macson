@@ -172,7 +172,7 @@ class Vocabulary {
       $parent=$node['entityID'];
       $query = db_fetchAll($sql, array($parent));
       
-      $node['sons']=$query;
+      $node['sons']='';
       
     }    
 
@@ -189,9 +189,6 @@ class Vocabulary {
     $node['selected']=FALSE;
 
 
-    //var_dump('INICIO');
-    //var_dump($node); 
-
     while($j<1000){
     
       $j++;
@@ -206,9 +203,6 @@ class Vocabulary {
           $node['selected']=TRUE;
         }
 
-        //var_dump('++');
-        //var_dump($node['name']);   
-        //var_dump($node['selected']);          
       } 
   
         $previous=$node;
@@ -218,10 +212,6 @@ class Vocabulary {
       if(!$node['selected']){
         $node['selected']=$previous['selected'];
       }
-
-        //var_dump('previous');
-        //var_dump($node['name']);   
-        //var_dump($node['selected']);   
 
 
       $node['sons'][$node['next']]=$previous; 
@@ -247,16 +237,11 @@ class Vocabulary {
             $node['selected']=$previous['selected'];
           }             
 
-        //var_dump('--');
-        //var_dump($node['name']);   
-        //var_dump($node['selected']);           
         
         $node['sons'][$node['next']]=$previous;
 	$node['sons'][$node['next']]['parent']['sons']='';
         $node['next']=$node['next']+1;
         
-        //var_dump('dentrowhileasciende');
-        //var_dump($node);         
       }
       if($fin){
         break;
