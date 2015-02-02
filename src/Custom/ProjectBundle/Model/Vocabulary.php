@@ -40,7 +40,7 @@ class Vocabulary {
     $i=0;   
     $sons=array();
 
-    $sqlproduct = 'SELECT * FROM 
+    $sqlproduct = 'SELECT *  FROM 
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
@@ -72,7 +72,11 @@ class Vocabulary {
         $query = array_merge($aux,$query);
       }      
     }
-
+    
+    usort($query, function($a, $b) {
+ 	return strcmp($b["value"], $a["value"]);
+    });
+    
     return $query; 
   
   }

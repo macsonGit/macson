@@ -106,6 +106,14 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#sumItems").click(
+
+		function showCart(){
+			$("#login").hide();
+			$("#carrito").show(200);
+			$("#mascara").show(200);
+		}
+	);
 
 	$("#masInfo").click( 
 
@@ -150,6 +158,19 @@ $(document).ready(function(){
 
 	//Hide Show MMenu-------------------------------------------------
 
+	if($("#tipoPagina").text()=="noLogin"){
+		
+		$('#loginMenu').hide();
+
+	}
+
+	if($("#tipoPagina").text()=="noLoginNoChart"){
+		
+		$('#loginMenu').hide();
+		$('#carritoResumen').hide();
+		$('#sumItems').hide();
+
+	}
 
 	if($("#tipoPagina").text() == 'prod' || $("#tipoPagina").text() == 'prod1' || $("#tipoPagina").text() == 'prod2'){
 

@@ -84,10 +84,11 @@ class CategoryController extends DrufonyController
 	if ($categoryBall = $this->get('cache')->fetch('categoryBall'.$lang.'-'.$category)) {
 	} 
 	else {
-        	$categoryBall = Vocabulary::getCategoryBall($category,$lang);
+		$categoryBall = Vocabulary::getCategoryBall($category,$lang);
     		$this->get('cache')->save('categoryBall'.$lang.'-'.$category, $categoryBall);
 	}
 
+		$categoryBall = Vocabulary::getCategoryBall($category,$lang);
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
