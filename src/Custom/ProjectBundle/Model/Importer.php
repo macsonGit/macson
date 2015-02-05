@@ -50,7 +50,7 @@ class Importer {
 	
 	foreach ($query as $item){
 
-	if(($item['stock']<>0 or $item['productSize']=='AGOTADO') and file_exists($path.'Original/'.$item['reference'].'_1.jpg')){
+	if(($item['stock']<>0 or $item['productSize']=='00_AGOTADO') and file_exists($path.'Original/'.strtolower($item['reference'].'_1.jpg'))){
 
 		
 		$i++;
@@ -96,16 +96,12 @@ class Importer {
 
 		$prod['weight']=$query['weight'];
 
-		var_dump($query['weight']);
 
-		if ($item["statusProduct"]=="ACTIVE"){
-			$prod['published']=1;
-		}
-
-		else{
-			$prod['published']=0;
-		}
+		$prod['published']=1;
 		
+		if ($item["statusProduct"]=="INACTIVO"){
+			$prod['published']=0;
+		}		
 	
 
 

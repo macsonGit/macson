@@ -3,7 +3,11 @@ parameters:
 
 services:
 
-
+    price.twig_extension:
+        class: Custom\ProjectBundle\Twig\PriceExtension
+        public: false
+        tags:
+            - { name: twig.extension }
 
 #    custom_project.example:
 #        class: %custom_project.example.class%

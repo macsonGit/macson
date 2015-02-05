@@ -92,7 +92,7 @@ class Vocabulary {
 
     $node['next'] =0;
     $node['parent']='root';
-    $node['entityID']=0;
+    $node['entityID']=1;
     $node['show']=FALSE;
     $node['description']='';    
     $node['sons']=array();
@@ -179,7 +179,8 @@ class Vocabulary {
       $node['sons']='';
       
     }    
-
+//var_dump($node['sons'][0]);
+//$a=$a;
     return $node;
   }
  public static function vocabularyListSelected($node,$selected){

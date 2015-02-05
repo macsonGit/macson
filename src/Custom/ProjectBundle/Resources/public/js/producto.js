@@ -228,7 +228,10 @@ $(document).ready(function(){
 			    var newSource = $this.data('alt-src');
 			    $this.data('alt-src', $this.attr('src'));
 			    $this.attr('src', newSource);
-			}
+			    $(this).children( '.tagPrice' ).hide();
+			    $this.$('.tagPrice').show();
+			    $this.$('.tagName').show();
+			}			
     	);
 	}	
 

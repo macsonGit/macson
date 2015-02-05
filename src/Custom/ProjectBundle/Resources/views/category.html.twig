@@ -15,17 +15,17 @@
 					<img class="fotoImg" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" 
 					data-alt-src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}"  alt="{{ product.title }}" /></a>
 
-	{% if product.value == 'AGOTADO'%}		
+	{% if product.value == '00_AGOTADO'%}		
 			<div id="tagAgotado">{{'OUT OF STOCK'|t}}</div>
 	{% endif %}
-			<div id="tagName">
+			<div class="tagName">
 				{{product.title}}
 			</div>
-			<div id="tagPrice">
+			<div class="tagPrice">
 	{% if product.pricePVP == product.firstPrice %}		
-				{{ product.pricePVP | round(2,'common')}} <font size="2">€</font>
+				{{ product.pricePVP | round(0,'floor')}}<font size="2">,{{ product.pricePVP | decimals  }} €</font>
 	{% else %}
-			<a class="tachado">{{ product.firstPrice  | round(2,'common')}} €</a>    {{product.pricePVP | round(2,'common')}} <font size="2">€</font>
+			<a class="tachado">{{ product.firstPrice  | round(2,'common')}} €</a>    {{product.pricePVP | round(0,'floor')}}<font size="2">,{{ product.pricePVP | decimals  }} €</font>
 	{%endif%}
 			</div>
 		</div>

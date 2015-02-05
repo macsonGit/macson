@@ -32,7 +32,7 @@
 			<div id="tallas">
 				<div class="h2 inline bold-text">{{contentData.title}} &nbsp;&nbsp; | &nbsp;&nbsp;       </div> 
 				<ul id="listaTallas" class="inline">
-{%if contentData.varieties[0].value!= 'AGOTADO'%}
+{%if contentData.varieties[0].value!= '00_AGOTADO'%}
 	{% for size in contentData.varieties if size.stock > 0 %}	
 		{%if loop.first%}
 			{%if contentData.varieties|length > 1%}
@@ -43,13 +43,16 @@
 		{%endif%}			
 					<li class="itemTalla">{{size.value}}</li> |							
 	{% endfor %}
+{% else %}
+	{{ 'OUT OF STOCK'|t }}
+
 {% endif %}
 				</ul>		
 				<div id="tagPriceProducto" class="inline bold-text">
 {% if contentData.pricePVP == contentData.firstPrice%}		
-					{{ contentData.pricePVP | round (2,'common')}} <font size="2">€</font>
+					{{ contentData.pricePVP | round (0,'common')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font>
 {% else %}
-					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(2,'common')}}  <font size="2">€ </font> 
+					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font> 
 {%endif%}
 				</div>			
 				<div id="buyBoton" class="inline">								
