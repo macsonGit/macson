@@ -14,7 +14,7 @@ class PriceExtension extends \Twig_Extension
     public function decimalsFilter($number)
     {
 //        $decimals = round(($number-round($number, 0, PHP_ROUND_HALF_DOWN))*100,0);
-        $decimals = ($number-floor($number))*100;
+        $decimals = round(($number-floor($number))*100);
 
         return $decimals;
     }

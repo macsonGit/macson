@@ -2,7 +2,6 @@
 	<div class="height408 border">
 	<ul class="pad15">
 {% for subitem1 in menu.sons if subitem1.show %}
-
 	{% if not subitem1.selected %}
 <a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li id='item1'>{{subitem1.namecat}}</li></a>
 	{% else %}

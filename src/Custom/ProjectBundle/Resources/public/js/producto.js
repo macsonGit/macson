@@ -92,6 +92,7 @@ $(document).ready(function(){
 	$("#loginMenu").click(
 
 		function showLogin(){
+			window.scrollTo(0, 0);
 			$("#carrito").hide();
 			$("#login").show(200);
 			$("#mascara").show(200);
@@ -100,6 +101,7 @@ $(document).ready(function(){
 	$("#carritoResumen").click(
 
 		function showCart(){
+			windowndow.scrollTo(x-coord, y-coord); .scrollTo(0, 0);
 			$("#login").hide();
 			$("#carrito").show(200);
 			$("#mascara").show(200);
@@ -221,6 +223,7 @@ $(document).ready(function(){
 
 	if($("#tipoPagina").text() == 'cat'){
 		$("#menu ul").css('background-image', 'none');
+	    $(".tagName").hide();
 
 	    $('img.fotoImg').hover(
 			function () {
@@ -228,11 +231,22 @@ $(document).ready(function(){
 			    var newSource = $this.data('alt-src');
 			    $this.data('alt-src', $this.attr('src'));
 			    $this.attr('src', newSource);
-			    $(this).children( '.tagPrice' ).hide();
-			    $this.$('.tagPrice').show();
-			    $this.$('.tagName').show();
+			    $this.children( '.tagPrice' ).hide();
 			}			
-    	);
+	    );
+	    $('.foto').hover(
+			function () {
+			    var $this = $(this);
+			    $this.children( '.tagPrice' ).hide();
+			    $this.children( '.tagName' ).show();
+			},
+			function () {
+			    var $this = $(this);
+			    $this.children( '.tagPrice' ).show();
+			    $this.children( '.tagName' ).hide();
+			}
+			
+	    );
 	}	
 
 	if($("#tipoPagina").text() == 'prod'){

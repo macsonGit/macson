@@ -26,6 +26,8 @@ class MacsonExtension extends Twig_Extension
       $url = str_replace('ñ','n',$url);
       $url = strtolower($url);
 
+ 
+
       return $url;
     }
 
