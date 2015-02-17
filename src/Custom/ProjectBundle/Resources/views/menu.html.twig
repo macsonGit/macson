@@ -1,33 +1,43 @@
 <div id="menu">
+{% if outlet is defined %}
+	{% set route = 'macson_category_outlet' %} 
+{% else %}
+	{% set route = 'macson_category' %} 
+{% endif %}
+
 	<div class="height408 border">
+{% if outlet is defined %}
+	<div class="fs18 pad10 blacktext">OUTLET</div> 
+{% endif %}
+
 	<ul class="pad15">
 {% for subitem1 in menu.sons if subitem1.show %}
 	{% if not subitem1.selected %}
-<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li id='item1'>{{subitem1.namecat}}</li></a>
+<a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li id='item1'>{{subitem1.namecat}}</li></a>
 	{% else %}
-<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class="selected" id='item1'>{{subitem1.namecat}}</li></a>		
+<a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class="selected" id='item1'>{{subitem1.namecat}}</li></a>		
 	{% endif %}
 	{% if subitem1.sons is defined %}
 		{% for subitem2 in subitem1.sons if (subitem2.show and subitem1.selected) %}
 
 			{% if not subitem2.selected %}
-	<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li id='item2'>{{subitem2.namecat}}</li></a>
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li id='item2'>{{subitem2.namecat}}</li></a>
 			{% else %}
-	<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li class="selected" id='item2'>{{subitem2.namecat}}</li></a>		
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li class="selected" id='item2'>{{subitem2.namecat}}</li></a>		
 			{% endif %}
 			{% if subitem2.sons is defined %}
 				{% for subitem3 in subitem2.sons if (subitem3.show and subitem2.selected) %}
 					{% if not subitem3.selected %}
-	<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem3.name, 'categorynames' :subitem3.url|toUrl} ) }}'><li id='item3'>{{subitem3.namecat}}</li></a>
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem3.name, 'categorynames' :subitem3.url|toUrl} ) }}'><li id='item3'>{{subitem3.namecat}}</li></a>
 					{% else %}
-	<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem3.name, 'categorynames' :subitem3.url|toUrl} ) }}'><li class="selected"  id='item3'>{{subitem3.namecat}}</li></a>	
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem3.name, 'categorynames' :subitem3.url|toUrl} ) }}'><li class="selected"  id='item3'>{{subitem3.namecat}}</li></a>	
 					{% endif %}
 					{% if subitem3.sons is defined  %}
 						{% for subitem4 in subitem3.sons if (subitem4.show and subitem3.selected) %}
 							{% if not subitem4.selected %}
-	<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem4.name, 'categorynames' :subitem4.url|toUrl} ) }}'><li id='item4'>{{subitem4.namecat}}</li></a>
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem4.name, 'categorynames' :subitem4.url|toUrl} ) }}'><li id='item4'>{{subitem4.namecat}}</li></a>
 							{% else %}
-	<a href='{{ path('macson_category',{'lang' : lang , 'category' :subitem4.name, 'categorynames' :subitem4.url|toUrl} ) }}'><li class="selected" id='item4'>{{subitem4.namecat}}</li></a>		
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem4.name, 'categorynames' :subitem4.url|toUrl} ) }}'><li class="selected" id='item4'>{{subitem4.namecat}}</li></a>		
 							{% endif %}
 						{% endfor %}	
 					{% endif %}

@@ -33,21 +33,33 @@ class Vocabulary {
   /*
   */
 
-  public static function getCategoryBall($category,$lang){
+  public static function getCategoryBall($category,$lang,$type='NORMAL'){
 
     $final=FALSE;
 
     $i=0;   
     $sons=array();
 
-    $sqlproduct = 'SELECT *  FROM 
+
+   $sqlproduct = 'SELECT *  FROM 
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-		WHERE (product.category=? AND product.lang=? AND product.published=1)		 
+		WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand<>"OUTLET")		 
 		GROUP BY product.sku';
 
+   if ($type =='OUTLET'){
+
+	   $sqlproduct = 'SELECT *  FROM 
+			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
+			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
+			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
+			WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand="OUTLET")		 
+			GROUP BY product.sku';
+   }
+
     $query = db_fetchAll($sqlproduct, array($category,$lang));
+
 
     $sqlcatname = 'SELECT * FROM categorysource WHERE name=?'; 
 
@@ -81,14 +93,19 @@ class Vocabulary {
   
   }
 
+
+
+
+
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 
 
-  public static function vocabularyList($lang){
+  public static function vocabularyList($lang,$type = 'NORMAL'){
 
 
-    $sql= 'SELECT *, name_'.$lang.' AS namecat, url_'.$lang.' AS url FROM categorysource WHERE parent=?';
+
+    $sql= 'SELECT *, name_'.$lang.' AS namecat, url_'.$lang.' AS url FROM categorysource WHERE parent=? ';
 
     $node['next'] =0;
     $node['parent']='root';
@@ -126,7 +143,12 @@ class Vocabulary {
       }
 
       $category=$node['name'];
-      $sqlcat = 'SELECT category FROM product WHERE category=? AND published=1';
+      if ($type == 'OUTLET'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand="OUTLET"';
+      }
+      else{
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand!="OUTLET"';
+      }
       $querycat = db_fetchAll($sqlcat, array($category));
 
       if (!empty($querycat)){

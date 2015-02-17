@@ -45,7 +45,9 @@
 				{{ item.product.title }}
 			</div>
 			<div class="cell width50 pad5">{{ item.product.size }}</div>
-			<div class="cell width100 pad5">{{ item.product.pricePVP }} €</div>
+			<div class="cell width100 pad5">
+				{{ item.product.pricePVP | round(0,'floor')}}<font size="1">,{{ item.product.pricePVP | decimals  }} €</font>
+			</div>
 			<div class="cell width50 pad5">{{ item.count }}</div>
 			<div class="cell width50 pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div></div>
 {% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
@@ -60,7 +62,7 @@
 	     <div class="border pad10 mg-bottom5">
 		<div><b>{{'Total Amount'|t}}</b></div>
 		<div id="precioTotal" class= "fs28">
-			<b>{{ sumPrice | round(2,'common')}} €</b>
+			<b>{{ sumPrice | round(0,'floor')}}<font size="4">,{{ sumPrice | decimals  }} €</font><b>
 		</div>
 	    </div>
 		<div>

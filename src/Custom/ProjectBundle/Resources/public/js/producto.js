@@ -101,7 +101,7 @@ $(document).ready(function(){
 	$("#carritoResumen").click(
 
 		function showCart(){
-			windowndow.scrollTo(x-coord, y-coord); .scrollTo(0, 0);
+			windowndow.scrollTo(0, 0);
 			$("#login").hide();
 			$("#carrito").show(200);
 			$("#mascara").show(200);

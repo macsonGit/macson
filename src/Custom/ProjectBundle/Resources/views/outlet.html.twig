@@ -1,0 +1,23 @@
+
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="tipoPagina">cat</div>
+<div id="contenedor1">	
+	<div id="fotoRow">	
+		<div class="foto">
+{% include "CustomProjectBundle::login.html.twig" %}			
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}			
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+{% include "CustomProjectBundle::menu.html.twig" %}
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+		<div class="foto">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+	</div>	
+</div>	
+
+{% include "CustomProjectBundle::footer.html.twig" %}

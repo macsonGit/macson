@@ -10,6 +10,18 @@ macson_category:
     pattern:  /category/{category}-{categorynames}
     defaults: { _controller: CustomProjectBundle:Category:index }
 
+macson_category_shoponline:
+    pattern:  /shop-on-line
+    defaults: { _controller: CustomProjectBundle:Category:shoponline }
+
+macson_category_outlet_home:
+    pattern:  /outlet
+    defaults: { _controller: CustomProjectBundle:Category:outlet }
+
+macson_category_outlet:
+    pattern:  /outlet/category/{category}-{categorynames}
+    defaults: { _controller: CustomProjectBundle:Category:outletcategory }
+
 macson_importer_user:
     pattern: /importeruser
     defaults: {_controller: CustomProjectBundle:Importer:user}

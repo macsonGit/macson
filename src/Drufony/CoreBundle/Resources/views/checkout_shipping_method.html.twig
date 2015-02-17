@@ -12,10 +12,13 @@
         {% endif %}
           <div class="center borderBottom">
             {% for item in progress.cartItems%}
-                <div>
-                    <div class="wd10 inline align-left"> {{ item.count }} {{'U.'|t}}</div>
-                    <div class="wd50 inline align-left"> {{ item.product.title }} </div>
-                    <div class="align-right"> {{ (item.product.pricePVP*item.count) | number_format(2) }}€</div>
+                <div class="height90">
+		    <img class="inline" src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
+                    <div class="wd10 verticalcenter90 inline pad10"> {{ item.count }}{{'u.'|t}}</div>
+                    <div class="wd50 verticalcenter90 inline pad10"> {{ item.product.title }} </div>
+                    <div class="wd10 align-right pad10">
+			{{ (item.product.pricePVP*item.count) | round(0,'floor')}}<font size="1">,{{  (item.product.pricePVP*item.count)| decimals  }} €</font>
+		    </div>
                 </div><br>
             {% endfor %}
               {% set discountClarification = '' %}
@@ -28,9 +31,13 @@
                 <div class="align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</div><br>
 	      {% endif %}
                 <div class="inline align-left fs-12">{{ "Shipping cost" | t }}</div>
-                <div class="align-right fs-12">{{ shippingPrice | number_format(2) }}€</div><br>
+                <div class="align-right fs-12">
+			{{ shippingPrice | round(0,'floor')}}<font size="1">,{{  shippingPrice | decimals  }} €</font>
+		</div>
 		<div class="inline align-left"><br><b>{{ "Total" | t }}</b></div>
-                <div class="align-right"><b><br>{{ (progress.totalDiscounted + shippingPrice)| number_format(2)  }}€</b></div><br>
+                <div class="align-right">
+			<b><br>{{ (progress.totalDiscounted + shippingPrice) | round(0,'floor')}}<font size="1">,{{  (progress.totalDiscounted + shippingPrice)| decimals  }} €</font></b><br><br>
+		</div>
               </div>
           </div>
 	<div class="borderBottom center">

@@ -103,8 +103,12 @@ class Importer {
 			$prod['published']=0;
 		}		
 	
-
-
+		$prod['brand']=$item["statusProduct"];
+		
+		if ($item["statusProduct"]==""){
+			$prod['brand']="NORMAL";
+		}
+		
 		$sqlprodFind="SELECT id,nid FROM product WHERE sgu=? and lang='es'";
 		$result_es=db_fetchAssoc($sqlprodFind,array($prod['sgu']));	
 

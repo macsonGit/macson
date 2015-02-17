@@ -9,6 +9,8 @@
 
 	<div id='header' class="sinEfectos">
 	<ul>
+	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'outlet' | t }} | <li>  
+	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'shop on-line' | t }} | <li>  
             <li id="loginMenu">
 {% if app.user is not null %}
 	{% if app.user.profile.name is empty %}	

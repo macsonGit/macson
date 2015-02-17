@@ -92,7 +92,7 @@ class ProductController extends DrufonyController
 	} 
 	else {
 		$menuList = Vocabulary::vocabularyListSelected($menu,$category);
-    		$this->get('cache')->save('menu'.$lang.'-'.$category, $menuList);
+    		$this->get('cache')->save('menuList'.$lang.'-'.$category, $menuList);
 	}
 
         $menuList['selected']=$category;
