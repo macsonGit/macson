@@ -10,7 +10,16 @@
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
 {% for product in ball %}
+	{% if "NOVEDAD" in product.brand %}
+	      {% if novedad is not defined %}
+		<div class="foto novedad">
+	      {% else %}
 		<div class="foto">
+	      {% endif %}
+	
+	{% else %}
+		<div class="foto">
+	{% endif %}
 			<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
 					<img class="fotoImg" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" 
 					data-alt-src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}"  alt="{{ product.title }}" /></a>

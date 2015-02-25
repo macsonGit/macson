@@ -233,6 +233,7 @@ class CategoryController extends DrufonyController
 
 	$menuList=$menu;
 
+
 	//-------------------VARABLE CATEGORYBALL
 
 	$products=CommerceUtils::getCartItemsAJAX();
@@ -255,6 +256,81 @@ class CategoryController extends DrufonyController
 
     
     }
+
+
+
+    public function newsAction($lang,Request $request)
+    {
+        $response = new Response();
+        $session     = getSession();
+        $user        = $this->getUser();
+        $uid         = NULL;
+        $rememberme  = FALSE;
+                              
+       $widgets = array(
+            'social' => array(
+                'facebookShare' => TRUE,
+                'twitterShare'  => TRUE,
+                'googleShare'   => TRUE,
+                'facebookLike'  => TRUE,
+                'googleLike'    => TRUE,
+            )
+        );
+
+        $registerForm = $this->_processRegisterForm($request);
+
+        $loginForm = $this->_processLoginForm($request);
+            
+        $this->_processFBLogin($request);
+
+	//-------------------VARABLE MENU
+
+        
+	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+	} 
+	else {
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    		$this->get('cache')->save('menu'.$lang, $menu);
+	}
+
+	//-------------------VARABLE MENU LIST
+
+
+	if ($categoryBall = $this->get('cache')->fetch('categoryBallNews'.$lang)) {
+	} 
+	else {
+		$categoryBall = Vocabulary::getCategoryBall(1,$lang,'NOVEDAD');
+    		$this->get('cache')->save('categoryBallNews'.$lang, $categoryBall);
+	}
+
+	$menuList=$menu;
+
+	//-------------------VARABLE CATEGORYBALL
+
+	$products=CommerceUtils::getCartItemsAJAX();
+
+        $response->setContent($this->renderView("CustomProjectBundle::category.html.twig", array(
+            'lang' => $lang,
+            'widget' => $widgets,
+            'menu' => $menuList,
+            'ball' => $categoryBall,
+            'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
+            'registerForm'  => $registerForm->createView(),
+            'loginForm'     => $loginForm->createView(),
+            'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
+	    'products'=>$products,
+	    'user'=>$user,
+	    'novedad'=>true,
+
+        )));
+        return $response;        
+
+
+    
+    }
+
+
+
     public function shoponlineAction($lang,Request $request)
     {
     

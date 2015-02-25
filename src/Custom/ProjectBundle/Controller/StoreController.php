@@ -68,9 +68,15 @@ class StoreController extends DrufonyController
     		$this->get('cache')->save('menu'.$lang, $menu);
 	}
 
-        $menu = Vocabulary::vocabularyListSelected($menu,0);
 
-        $storeBall = Store::getStoreBall($lang);
+	if ($storeBall = $this->get('cache')->fetch('storeBall'.$lang)) {
+	} 
+	else {
+        	$storeBall = Store::getStoreBall($lang);
+    		$this->get('cache')->save('storeBall'.$lang, $storeBall);
+	}
+
+
 
         $menu['selected']=0;
 

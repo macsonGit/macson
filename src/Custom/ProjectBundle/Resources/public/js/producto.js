@@ -17,13 +17,17 @@ $(document).ready(function(){
 	});
 
 	$("#infoPanel").hide();
-	$("#mascara").hide();
 	$('#zoomContainer').hide();
-	$("#login").hide();
-	$("#carrito").hide();
+	$("#mascara").hide();
 	$("#loading").hide();
 	$("#contenedor1").css('visibility','visible');
 	$("#cuidadosPanel").hide();
+	$(".novedad").hide();
+		
+		$("#login").hide();
+		$("#carrito").hide();
+
+
 	
 	var showPanel=false;
 	var showPanelCuidados=false;
@@ -92,19 +96,21 @@ $(document).ready(function(){
 	$("#loginMenu").click(
 
 		function showLogin(){
-			window.scrollTo(0, 0);
+			$("html,body").scrollTop(0);
 			$("#carrito").hide();
 			$("#login").show(200);
 			$("#mascara").show(200);
+			return false;
 		}
 	);
 	$("#carritoResumen").click(
 
 		function showCart(){
-			windowndow.scrollTo(0, 0);
+			$("html,body").scrollTop(0);
 			$("#login").hide();
 			$("#carrito").show(200);
 			$("#mascara").show(200);
+			return false;
 		}
 	);
 
@@ -114,6 +120,8 @@ $(document).ready(function(){
 			$("#login").hide();
 			$("#carrito").show(200);
 			$("#mascara").show(200);
+			return false;
+
 		}
 	);
 

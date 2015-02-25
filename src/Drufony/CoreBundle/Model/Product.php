@@ -20,6 +20,7 @@ class Product extends Content
     protected $color;
     protected $composition;
     protected $weight = 0;
+    protected $brand;
 
 
     function __construct($nid = null, $lang = DEFAULT_LANG) {
@@ -111,7 +112,9 @@ class Product extends Content
         return $this->weight;
     }
 
-
+    public function getBrand() {
+        return $this->brand;
+    }
 
     public function isAvailable($varietyId = null) {
         return ($this->getStock($varietyId) > 0);

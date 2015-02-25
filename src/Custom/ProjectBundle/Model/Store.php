@@ -37,7 +37,7 @@ class Store {
 
     $final=FALSE;
 
-    $sql = 'SELECT * FROM boutiques';
+    $sql = 'SELECT * FROM boutiques ORDER BY bou_pais,bou_provincia, bou_poblacion,bou_orden';
     $stores = db_fetchAll($sql, array());
 
     return $stores; 

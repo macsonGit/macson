@@ -1,39 +1,59 @@
 {% include "CustomProjectBundle::header.html.twig" %}
 
+{% set antProvince = '' %}
+{% set contador=0 %} 
+
 <div id="tipoPagina">sto</div>
-<div id="contenedor1">	
+<div id="contenedor1">
+
+
 	<div id="fotoRow">	
-		<div class="foto border">
-{% include "CustomProjectBundle::login.html.twig" %}			
-{% include "CustomProjectBundle::carritoResumen.html.twig" %}			
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+
 {% for store in ball %}
-			<div id="infoStore" class="pad5">
-				{{store.bou_provincia}}
-			</div>
-		</div>
-	{%if (loop.index)%3 == 0 %}
+	
+	{% if  antProvince !=  store.bou_provincia %}
+		{% set contador=0 %} 
 	</div>
-	<div id="fotoRow">
-	{% endif %}			
-	{% if loop.last %}
-		{%if (loop.index)%3 == 1 %}
-		<div class="foto">
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		<b>
+		<div class="fs18 center2 height90">
+			<div class="inline wd40  height45 borderBottom"></div> 
+			<div class="inline height90 wd20 verticalcenter90">{{store.bou_provincia}}</div>
+			<div class="inline height45 wd40 borderBottom"></div> 
 		</div>
-		<div class="foto">
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
-		</div>		
-		{% endif %}
-		{%if (loop.index)%3 == 2 %}	
-		<div class="foto">
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
-		</div>	
-		{% endif %}
-	{% else %}
-		<div class="foto border">	
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
-	{% endif %}	
+		</b>
+	<div id="fotoRow">	
+	
+	{% endif %}
+		
+	{% set contador=contador+1 %} 
+        {% set antProvince=store.bou_provincia %}
+			<div class="store border">
+
+	{% if loop.first %}
+				{% include "CustomProjectBundle::login.html.twig" %}			
+				{% include "CustomProjectBundle::carritoResumen.html.twig" %}
+	{% endif %}
+				<div  class="pad5 fs12 height35 borderBottom bgcolorgray">
+					<b>{{store.bou_poblacion}}</b>
+	{% if store.bou_nombre is not null %}
+					<br>
+					{{store.bou_nombre}}
+	{% endif %}		
+				</div>
+				<div  class="pad5 fs14 texto">
+					{{store.bou_direccion}}<br>
+					{{store.bou_telefono}}<br>
+				</div>
+				<div  class="pad5 texto fs12">
+					{{store.bou_descripcion}}
+				</div>
+			</div>
+
+	{%if contador%4 == 0  %}
+		</div>
+		<div id="fotoRow">
+	{% endif %}			
+
 {% endfor %}
 	</div>	
 </div>	

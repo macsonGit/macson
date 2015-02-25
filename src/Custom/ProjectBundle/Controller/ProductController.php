@@ -71,29 +71,52 @@ class ProductController extends DrufonyController
             $registerForm = $this->_processRegisterForm($request);
 
             
-                $loginForm = $this->_processLoginForm($request);
+           $loginForm = $this->_processLoginForm($request);
             
 
             $this->_processFBLogin($request);
 	
 	//-------------------VARABLE MENU
 
-        
-	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
-	} 
-	else {
-        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
-    		$this->get('cache')->save('menu'.$lang, $menu);
+	if(strcmp('OUTLET',$product->getBrand())<0){
+		if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+		} 
+		else {
+        		$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    			$this->get('cache')->save('menu'.$lang, $menu);
+		}
+		if ($menuList = $this->get('cache')->fetch('menuList'.$lang.'-'.$category)) {
+		} 
+		else {
+			$menuList = Vocabulary::vocabularyListSelected($menu,$category);
+    			$this->get('cache')->save('menuList'.$lang.'-'.$category, $menuList);
+		}
+	}
+	else{
+       
+
+
+		if ($menu = $this->get('cache')->fetch('menuOutlet'.$lang)) {
+		}	 
+		else {
+        		$menu= Vocabulary::vocabularyList($lang, 'OUTLET'); //VARIABLE A GUARDAR EN MEMCACHED
+    			$this->get('cache')->save('menuOutlet'.$lang, $menu);
+		}
+
+		//-------------------VARABLE MENU LIST
+
+		if ($menuList = $this->get('cache')->fetch('menuListOutlet'.$lang.'-'.$category)) {
+		} 
+		else {
+			$menuList = Vocabulary::vocabularyListSelected($menu,$category);
+    			$this->get('cache')->save('menuListOutlet'.$lang.'-'.$category, $menuList);
+		}
+
+
 	}
 
 	//-------------------VARABLE MENU LIST
 
-	if ($menuList = $this->get('cache')->fetch('menuList'.$lang.'-'.$category)) {
-	} 
-	else {
-		$menuList = Vocabulary::vocabularyListSelected($menu,$category);
-    		$this->get('cache')->save('menuList'.$lang.'-'.$category, $menuList);
-	}
 
         $menuList['selected']=$category;
 

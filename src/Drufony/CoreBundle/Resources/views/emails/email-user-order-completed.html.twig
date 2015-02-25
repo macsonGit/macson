@@ -1,4 +1,48 @@
+
+<html>
+  <head>
+    <title>{{'Shipping and Payment'|t}}</title>
+    
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024">
+    <meta name="description" content="Page description">
+    <!--/ metas -->
+    
+    <!-- styles -->
+    <link rel="stylesheet" href="/bundles/drufonycore/caprese/version1.0.1/css/main.css">
+    <link rel="stylesheet" href="/bundles/drufonycore/caprese/version1.0.1/css/jquery.pretty.photo.css">
+    <link rel="shortcut icon" href="/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico">
+    <link rel="stylesheet" href="/bundles/drufonycore/assets/css/generic-styles.css">
+    <!--/ styles -->
+    
+    <!-- scripts -->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery-1.10.1.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery.isotope.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery.nivo.slider.min.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/jquery.pretty.photo.js"></script>
+    <script src="/bundles/drufonycore/caprese/version1.0.1/js/main.js"></script>
+    <!--/ scripts -->
+
+    <style type="text/css">
+      .checkout-process-wrapper {overflow: hidden; position: relative;}
+      .checkout-process-wrapper .checkout {position: relative;}
+      .checkout-process-wrapper .input {border-bottom: none}
+      .checkout-process-wrapper form { overflow:hidden; display:block !important;}
+      .checkout-process-wrapper .checkout h2 { cursor: inherit; }
+    </style>
+  </head>
+<body>  
+<div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
+
 <p>{{ 'Hello @username' | t({ '@username': customParams.username }) }},</p>
 <p>{{ 'Your order with number @orderId has been completed successfully and paid through @paymentPlataform.'
     | t({ '@orderId': customParams.orderId, '@paymentPlataform': customParams.paymentPlataform }) }}
+<p>{{ 'Briefly you will receive your goods in the indicated address'|t}}</p>
+<p>{{ 'Briefly you will receive your goods in the indicated address'|t}}</p>
+
 </p>
+</body>
+</html>

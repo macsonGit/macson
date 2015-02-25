@@ -10,50 +10,52 @@
             {{ form_errors(form.shipping) }}
             {{ form_widget(form.shipping) }}
         {% endif %}
-          <div class="center borderBottom">
+          <div class="borderBottom">
             {% for item in progress.cartItems%}
-                <div class="height90">
-		    <img class="inline" src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
-                    <div class="wd10 verticalcenter90 inline pad10"> {{ item.count }}{{'u.'|t}}</div>
-                    <div class="wd50 verticalcenter90 inline pad10"> {{ item.product.title }} </div>
-                    <div class="wd10 align-right pad10">
+                <div class="height120">
+		    <div class="inline">
+		    	<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
+		    </div>
+                    <div class="wd20 inline verticalcenter120"> {{ item.count }}{{'u.'|t}}</div>
+                    <div class="wd50 inline fs14 verticalcenter120"> {{ item.product.title }} </div>
+                    <div class="wd20 inline align-right verticalcenter120">
 			{{ (item.product.pricePVP*item.count) | round(0,'floor')}}<font size="1">,{{  (item.product.pricePVP*item.count)| decimals  }} €</font>
 		    </div>
-                </div><br>
+                </div>
             {% endfor %}
               {% set discountClarification = '' %}
               {% if (progress.discount > 0 and progress.discountType == 1) %}
                 {% set discountClarification = '(' ~ progress.couponDiscount ~ '%' ~ ')'  %}
               {% endif %}
-              <div class="wd100">
+              <div class="wd100 height120 fs14">
 	      {% if progress.discount > 0 %}
-                <div class="inline align-left">{{ "Disccount" | t }}:</div>
+                <div class="inline align-right wd80">{{ "Disccount" | t }}:</div>
                 <div class="align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</div><br>
 	      {% endif %}
-                <div class="inline align-left fs-12">{{ "Shipping cost" | t }}</div>
-                <div class="align-right fs-12">
+                <div class="inline align-right wd80">{{ "Shipping cost" | t }}</div>
+                <div class="align-right fs14">
 			{{ shippingPrice | round(0,'floor')}}<font size="1">,{{  shippingPrice | decimals  }} €</font>
 		</div>
-		<div class="inline align-left"><br><b>{{ "Total" | t }}</b></div>
+		<div class="inline align-right wd80"><br><b>{{ "Total" | t }}</b></div>
                 <div class="align-right">
 			<b><br>{{ (progress.totalDiscounted + shippingPrice) | round(0,'floor')}}<font size="1">,{{  (progress.totalDiscounted + shippingPrice)| decimals  }} €</font></b><br><br>
 		</div>
               </div>
           </div>
-	<div class="borderBottom center">
+	<div class="borderBottom fs14">
       {% if progress.shippingInfo is not empty %}
-        <div class="wd45 pad15 fs-12 inline"><b>{{ 'Shipping Info'|t }} <a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a><br>
-              {{progress.shippingInfo.name}}<br>
-              {{progress.shippingInfo.address}}, {{progress.shippingInfo.city}}<br>	
-              {{progress.shippingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}. <br>
-              T: {{progress.shippingInfo.phone}}
-        </div>
-      {% endif %}
+      <div class="wd45 pad15 inline"><b>{{ 'Shipping Info'|t }} <a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a><br>
+{{progress.shippingInfo.name}}<br>
+{{progress.shippingInfo.address}}, {{progress.shippingInfo.city}}<br>	
+{{progress.shippingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}. <br>
+T: {{progress.shippingInfo.phone}}
+</div>
+{% endif %}
 
-      {% if progress.billingInfo is not empty %}
+{% if progress.billingInfo is not empty %}
 
-        <div class="pad15 fs-12"><b>{{ 'Billing Info'|t }} <a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a>
-          <div>
+<div class="pad15"><b>{{ 'Billing Info'|t }} <a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a>
+<div>
               {{progress.billingInfo.name}}<br>
               {{progress.billingInfo.address}}, {{progress.billingInfo.city}}<br>	
               {{progress.billingInfo.postalCode}}, {{progress.billingInfo.provinceName}}, {{progress.billingInfo.countryName}}. <br>
@@ -70,14 +72,14 @@
           </div>
         </div>
       {% endif %}
-        <label class="label wd50 center">
+        <label class="label">
           {{ form_label(form.comments) }}
           {% if form.comments.vars.required %}
             <span>*</span>
           {% endif %}
         </label>
         {{ form_errors(form.comments) }}
-        <label class="textarea height25 wd50 center">
+        <label class="textarea height25">
           {{ form_widget(form.comments) }}
         </label>
     </div>

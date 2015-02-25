@@ -45,7 +45,7 @@ class Vocabulary {
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-		WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand<>"OUTLET")		 
+		WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand NOT LIKE "%OUTLET")		 
 		GROUP BY product.sku';
 
    if ($type =='OUTLET'){
@@ -54,9 +54,21 @@ class Vocabulary {
 			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-			WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand="OUTLET")		 
+			WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand LIKE "%OUTLET")		 
 			GROUP BY product.sku';
    }
+
+   if ($type =='NOVEDAD'){
+
+	   $sqlproduct = 'SELECT *  FROM 
+			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
+			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
+			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
+			WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand LIKE "%NOVEDAD")		 
+			GROUP BY product.sku';
+   }
+
+
 
     $query = db_fetchAll($sqlproduct, array($category,$lang));
 
@@ -84,10 +96,10 @@ class Vocabulary {
         $query = array_merge($aux,$query);
       }      
     }
-    
+
     usort($query, function($a, $b) {
- 	return strcmp($b["value"], $a["value"]);
-    });
+	return strcmp($b["brand"], $a["brand"]);
+    });  
     
     return $query; 
   
@@ -143,12 +155,13 @@ class Vocabulary {
       }
 
       $category=$node['name'];
-      if ($type == 'OUTLET'){
-      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand="OUTLET"';
+      
+      $sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand NOT LIKE "%OUTLET"';
+     
+       if ($type == 'OUTLET'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand LIKE "%OUTLET"';
       }
-      else{
-      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand!="OUTLET"';
-      }
+     
       $querycat = db_fetchAll($sqlcat, array($category));
 
       if (!empty($querycat)){

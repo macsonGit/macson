@@ -99,14 +99,14 @@ class Importer {
 
 		$prod['published']=1;
 		
-		if ($item["statusProduct"]=="INACTIVO"){
+		if ($item["statusProduct"]=="00_INACTIVO"){
 			$prod['published']=0;
 		}		
 	
 		$prod['brand']=$item["statusProduct"];
 		
 		if ($item["statusProduct"]==""){
-			$prod['brand']="NORMAL";
+			$prod['brand']="99_NORMAL";
 		}
 		
 		$sqlprodFind="SELECT id,nid FROM product WHERE sgu=? and lang='es'";

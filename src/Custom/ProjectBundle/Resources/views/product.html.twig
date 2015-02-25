@@ -26,7 +26,10 @@
 <div id="contenedor1">	
 	<div id="fotoRow">
 		<div class="foto">
-{% include "CustomProjectBundle::login.html.twig" %}		
+{% include "CustomProjectBundle::login.html.twig" %}
+{% if 'OUTLET' in contentData.brand %}
+{% set outlet=true %}
+{% endif %}		
 {% include "CustomProjectBundle::menu.html.twig" %}
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
 			<div id="tallas">

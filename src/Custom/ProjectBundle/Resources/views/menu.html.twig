@@ -6,11 +6,13 @@
 {% endif %}
 
 	<div class="height408 border">
-{% if outlet is defined %}
-	<div class="fs18 pad10 blacktext">OUTLET</div> 
-{% endif %}
 
 	<ul class="pad15">
+{% if outlet is defined %}
+	<div class="fs18 pad10 blacktext">OUTLET</div>
+{% else %}
+	<a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li id='item1'>{{ 'New Collection' | t}}</li></a> 
+{% endif %}
 {% for subitem1 in menu.sons if subitem1.show %}
 	{% if not subitem1.selected %}
 <a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li id='item1'>{{subitem1.namecat}}</li></a>

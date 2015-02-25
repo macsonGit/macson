@@ -193,8 +193,12 @@ class Mailing {
 
         $templatePath = $templating->exists("CustomProjectBundle::emails/${template}") ?
             "CustomProjectBundle::emails/${template}" : "DrufonyCoreBundle::emails/${template}";
+		
+	
 
-        $body = $templating->render($templatePath, array('customParams'    => $customParams));
+	$lang=$customParams['lang'];
+
+        $body = $templating->render($templatePath, array('customParams'    => $customParams,'lang'=>$lang));
 
         return $body;
     }

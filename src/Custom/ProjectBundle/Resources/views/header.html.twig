@@ -26,7 +26,7 @@
 {% if sumItems  %}
             <li id="carritoResumen"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'></li>
  	    <li id="sumItems">
-	    	({{ sumItems }})
+	    	({{ sumItems }}) |
 	    </li>
 {% else %}
             <li id="carritoResumen"></li>
@@ -52,4 +52,4 @@
 {% endif %}
 
 
-<div id="mascara"><div id=cerrar class="underline">{{ 'Close'|t }} [X]</div></div>
+<div id="mascara"><div id="cerrar" class="underline">{{ 'Close'|t }} [X]</div></div>

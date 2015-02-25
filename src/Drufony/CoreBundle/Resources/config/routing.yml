@@ -22,6 +22,10 @@ macson_category_outlet:
     pattern:  /outlet/category/{category}-{categorynames}
     defaults: { _controller: CustomProjectBundle:Category:outletcategory }
 
+macson_category_news:
+    pattern:  /new_collection
+    defaults: { _controller: CustomProjectBundle:Category:news }
+
 macson_importer_user:
     pattern: /importeruser
     defaults: {_controller: CustomProjectBundle:Importer:user}
