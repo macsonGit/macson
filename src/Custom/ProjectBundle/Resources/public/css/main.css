@@ -289,4 +289,26 @@ a.button-ok:hover, button.button-ok:hover{
 * html .jspCorner
 {
 	margin: 0 -3px 0 0;
+}
 
+/*Lets create the magnifying glass*/
+.large {
+	width: 200px; height: 200px;
+	position: absolute;
+	border-radius: 100%;
+	z-index:50;	
+	/*Multiple box shadows to achieve the glass effect*/
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 
+	0 0 7px 7px rgba(0, 0, 0, 0.25), 
+	inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+
+
+	
+	/*Lets load up the large image first*/
+	
+	/*hide the glass by default*/
+	display: none;
+}
+
+/*To solve overlap bug at the edges during magnification*/
+.small { display: block; }

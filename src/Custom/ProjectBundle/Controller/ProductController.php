@@ -78,7 +78,8 @@ class ProductController extends DrufonyController
 	
 	//-------------------VARABLE MENU
 
-	if(strcmp('OUTLET',$product->getBrand())<0){
+
+	if(strpos(!$product->getBrand(),'OUTLET')){
 		if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
 		} 
 		else {

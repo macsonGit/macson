@@ -25,7 +25,7 @@
 {% endif %}	
 <div id="contenedor1">	
 	<div id="fotoRow">
-		<div class="foto">
+		<div id="foto1" class="foto magnify">
 {% include "CustomProjectBundle::login.html.twig" %}
 {% if 'OUTLET' in contentData.brand %}
 {% set outlet=true %}
@@ -68,17 +68,19 @@
 {% if not numImages.im2 %}		
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 {% else %}
-			<img class="fotoImg1" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
+			<div class="large"></div>
+			<img class="fotoImg1 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
 {% endif %}	
 		</div>
-		<div class="foto">
+		<div id="foto2" class="foto magnify">
+			<div class="large"></div>
 {% if not numImages.im2 %}
-			<img class="fotoImg1" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
+			<img class="fotoImg1 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
 {% else %}
-			<img class="fotoImg2" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg') }}'>	
+			<img class="fotoImg2 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg') }}'>	
 {% endif %}		
 		</div>
-		<div class="foto">
+		<div id="foto3" class="foto magnify">
 			<div id="infoPanel" class="pad5 border">
 				<div class="texto borderBottom">{{contentData.body}}</div>
 				<div class="height3"></div>	
@@ -98,7 +100,8 @@
 {% if not numImages.im3 %}
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 {% else %}
-			<img class="fotoImg3" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
+			<div style="background:{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg')}}" class="large"></div>
+			<img class="fotoImg3 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
 {% endif %}	
 			<div id="titulo">
 			<div id="masInfo">PRODUCT INFO +</div>  	
