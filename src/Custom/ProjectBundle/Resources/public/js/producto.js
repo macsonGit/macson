@@ -307,6 +307,16 @@ $(document).ready(function(){
 
 	);	
 
+	$(".listFooter").click(
+		function shiftItem(){
+			position=$(this).position();
+			padre=$(this).parent();
+			padre.find(".desplegaFooter").hide(200);
+			desplega=$(this).find(".desplegaFooter");
+			desplega.show(200);
+			desplega.css("left",position.left);
+		}
+	);	
 	var native_width = 0;
 	var native_height = 0;
 
@@ -395,6 +405,7 @@ $(document).ready(function(){
 			}
 		}
 	})
+
 });
 
 

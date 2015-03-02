@@ -177,9 +177,9 @@ a.button-ok:hover, button.button-ok:hover{
 #masInfo {cursor: pointer; display: inline-block;color:gray;font-size:12px}	
 #boton1 {width:100px;height:30px;z-index:4;}
 #footer { position:fixed ; width: 100%; bottom: 0px; height: 20px; z-index:75 ;background-image:url('../images/menuBackground.png')}
-#footer li {display:inline; vertical-align: top;line-height:20px}
-.desplegaFooter{position:absolute; right:0px;bottom:20px;background-image:url('../images/menuBackground.png')}
-.desplegaFooter li {height:20px;}
+.listFooter  {display:inline; vertical-align: top;line-height:20px; cursor:pointer}
+.desplegaFooter{padding:5px;position:absolute; display:none;bottom:20px;background-image:url('../images/menuBackground.png')}
+.listDesplegaFooter {height:20px; text-align:left; margin-bottom:3px}
 
 
 .jspContainer
