@@ -5,12 +5,27 @@
 	{% set sumItems= sumItems + item.count %}
 {% endfor %}
 
+{% if app.request.attributes.get('_route_params') %}
+
+{% set urlSplit = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) | split('-') %}
+
+{% else %}
+
+
+	{% set urlSplit = '' %}
+
+{% endif %}
+
+{% if outlet is defined %}
+	{% set urlSplit = urlSplit|merge(['outlet','hombre']) %}
+{% endif %}
+
 <body>
 
 	<div id='header' class="sinEfectos">
 	<ul>
-	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'outlet' | t }} | <li>  
-	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'shop on-line' | t }} | <li>  
+	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | <li>  
+	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'Shop On-line' | t }} | <li>  
             <li id="loginMenu">
 {% if app.user is not null %}
 	{% if app.user.profile.name is empty %}	
@@ -19,7 +34,7 @@
    		{{app.user.profile.name}} |
 	{% endif %}
 {% else %}
-		{{ 'login'|t }} |
+		{{ 'Login'|t }} |
 {% endif %}
 	    </li>
 
@@ -34,22 +49,29 @@
 	    </li>
 {% endif %}		
             <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
-		{{'shops'|t}} | </a>
+		{{'Stores'|t}} | </a>
 	    </li>
 {% if lang == 'es' %}
-	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> english<a><li>  
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> English<a><li>  
 {% endif %}
 {% if lang == 'en' %}
-	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> español<a><li>  
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> Español<a><li>  
 {% endif %}
         </ul>
+
 	</div>
 
 {% if homePage is defined %}
 <div id="logo"><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'></div> 
 {% else %}
-<div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
+			<h1 id="titulo1" class="textwhite">	
+	{% for word in urlSplit %}
+		{% if not loop.first and not loop.last %}
+			{{ word }}
+		{% endif %}
+	{% endfor %}
+			</h1>
+<div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img alt="macson logo" src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
 {% endif %}
-
 
 <div id="mascara"><div id="cerrar" class="underline">{{ 'Close'|t }} [X]</div></div>

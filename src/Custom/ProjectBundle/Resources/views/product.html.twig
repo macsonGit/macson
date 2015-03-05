@@ -69,15 +69,15 @@
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 {% else %}
 			<div class="large"></div>
-			<img class="fotoImg1 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
+			<img class="fotoImg1 small" alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
 {% endif %}	
 		</div>
 		<div id="foto2" class="foto magnify">
 			<div class="large"></div>
 {% if not numImages.im2 %}
-			<img class="fotoImg1 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
+			<img class="fotoImg1 small"  alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
 {% else %}
-			<img class="fotoImg2 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg') }}'>	
+			<img class="fotoImg2 small"  alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg') }}'>	
 {% endif %}		
 		</div>
 		<div id="foto3" class="foto magnify">
@@ -93,7 +93,7 @@
 				</div>	
 				<div id="cuidadosPanel" class="border">
 					<div class="height3"></div>	
-					<img src='{{ asset('bundles/customproject/images/Cares/cuidado'~contentData.cares~'.jpg') }}'>
+					<img alt="{{'Cares'|t}}" src='{{ asset('bundles/customproject/images/Cares/cuidado'~contentData.cares~'.jpg') }}'>
 				</div>
 				<div class="ref">ref. {{contentData.__get('sgu')}}</div>
 			</div>	
@@ -101,7 +101,7 @@
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 {% else %}
 			<div style="background:{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg')}}" class="large"></div>
-			<img class="fotoImg3 small" src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
+			<img class="fotoImg3 small"  alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
 {% endif %}	
 			<div id="titulo">
 			<div id="masInfo">PRODUCT INFO +</div>  	

@@ -156,10 +156,10 @@ class Vocabulary {
 
       $category=$node['name'];
       
-      $sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand NOT LIKE "%OUTLET"';
+      $sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD"';
      
        if ($type == 'OUTLET'){
-      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand LIKE "%OUTLET"';
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD"';
       }
      
       $querycat = db_fetchAll($sqlcat, array($category));

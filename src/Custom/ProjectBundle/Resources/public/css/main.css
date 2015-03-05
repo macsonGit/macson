@@ -24,12 +24,13 @@ ul { list-style-type:none; }
 .floatright {float:right}
 .center { width: 50%; margin: 0 auto;}
 .center2 { width: 90%; margin: 0 auto;}
-.bold-text {font-weight : bold}
+.bold-text {font-weight :bold}
 .texto{font-size: 12px; background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
 .tachado {text-decoration:line-through; font-size: 14px}
 .hidden {visibility:hidden}
 .ref {position:absolute; font-size: 15px; font-style:italic; bottom:8px; right:6px;}
 .inline { float:left; }
+.display-inline { display:inline; }
 .noinline { float:none; }
 .verticalcenter90 {line-height:90px}
 .verticalcenter102 {line-height:102px}
@@ -87,6 +88,7 @@ ul { list-style-type:none; }
 .table{display: table;}
 .row{ display: table-row; }
 .cell { display: table-cell; vertical-align:middle}
+#titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal }
 #logo { position:relative;top: 40px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
@@ -111,7 +113,7 @@ ul { list-style-type:none; }
 #item4 { padding-left:50px; font-size: 12px; padding-top: 2px; padding-bottom: 2px; }
 #item4.selected{font-weight:bold; color:black;}
 #zoomContainer {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
-.foto { position:relative; top:3%; display: inline-block; width:320px; height:411px; }
+.foto { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .store { position:relative; margin-top:10px;display: inline-block; vertical-align: top;width:200px; height:160px; }
 .tagPrice {position:absolute; bottom:0px; background-repeat: repeat; height: 30px; width: 320px; line-height:30px; font-size: 20px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
 .tagName {position:absolute; bottom:0px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 320px; font-size: 14px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
@@ -178,9 +180,9 @@ a.button-ok:hover, button.button-ok:hover{
 #boton1 {width:100px;height:30px;z-index:4;}
 #footer { position:fixed ; width: 100%; bottom: 0px; height: 20px; z-index:75 ;background-image:url('../images/menuBackground.png')}
 .listFooter  {display:inline; vertical-align: top;line-height:20px; cursor:pointer}
-.desplegaFooter{padding:5px;position:absolute; display:none;bottom:20px;background-image:url('../images/menuBackground.png')}
-.listDesplegaFooter {height:20px; text-align:left; margin-bottom:3px}
-
+.desplegaFooter{position:absolute; display:none;bottom:18px;padding-bottom:3px;background-image:url('../images/menuBackground.png')}
+.listDesplegaFooter {padding-left:5px;height:25px; text-align:left; line-height:25px; width:180px}
+.listDesplegaFooter:hover { background-color:gray;}
 
 .jspContainer
 {
