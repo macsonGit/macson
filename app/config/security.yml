@@ -33,5 +33,7 @@ security:
     access_control:
         - { path: ^/[a-z]+/profile, roles: ROLE_USER }
         - { path: ^/[a-z]+/dashboard, roles: ROLE_ADMIN }
+        - { path: ^/[a-z]+/checkout_FALTACERTIFICADO, roles: ROLE_ADMIN, requires_channel: https }
+
         #- { path: ^/[a-z]+/section/add, roles: ROLE_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

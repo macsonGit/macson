@@ -211,8 +211,14 @@ class CommerceUtils
     }
 
     
-     static public function getCartItemsAJAX() {
- 	$cart     = self::getInstance();
+     static public function getCartItemsAJAX($sessionId=0) {
+ 
+	if ($sessionId==0){
+		$cart     = self::getInstance();
+	}
+	else{
+                $cart = new SessionPool(CART_NAME, $sessionId);
+	}
         $products = array();
 
         $cart->rewind();

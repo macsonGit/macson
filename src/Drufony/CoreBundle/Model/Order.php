@@ -99,6 +99,21 @@ class Order
         return $products;
     }
 
+    static public function getProductsFromDB($orderId) {
+        $products = array();
+
+        $sql = 'SELECT quantity, varieties,title, sgu ';
+        $sql .= 'FROM orders_by_product INNER JOIN product ON product.nid = orders_by_product.nid ';
+        $sql .= 'WHERE orderId = ?';
+
+        if($result = db_executeQuery($sql, array($orderId))) {
+            while($row = $result->fetch()) {
+                $products[] = $row;
+            }
+        }
+
+        return $products;
+    }
     /**
      * Relate a coupon with the order
      *
@@ -176,6 +191,21 @@ class Order
                 $this->comments = $order['comments'];
                 $this->orderStatus = $order['orderStatus'];
                 $this->couponId = $order['couponId'];
+            }
+            else {
+                throw \Exception("Order $orderId does not exist");
+            }
+        }
+    }
+    static public function getOrderInfo($orderId){
+        $sql = 'SELECT * ';
+        $sql .= 'FROM `order` ';
+        $sql .= 'WHERE orderId = ?';
+
+        if($result = db_executeQuery($sql, array($orderId))) {
+            if(!empty($result)) {
+                $order = $result->fetch();
+		return $order;
             }
             else {
                 throw \Exception("Order $orderId does not exist");

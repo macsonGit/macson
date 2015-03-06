@@ -14,12 +14,6 @@
 {% if app.user is not null  %}
 	
 	<div class="oh pad15 "> 
-	{{'Welcome'|t}} 
- {% if user.username is defined %}
-	{{ user.profile.name}}
-{% endif %}
-	</div>
-	<div class="oh pad15 "> 
  		<a href="{{path('drufony_profile_edit',{'lang':lang})}}">{{'Edit your profile'|t}}</a>
 	</div>
 	<div class="oh pad15 ">

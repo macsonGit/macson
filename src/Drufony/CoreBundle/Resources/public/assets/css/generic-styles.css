@@ -3,7 +3,7 @@ body{ font-size: 14px; margin: 0 auto; padding: 0; width:100%;}
 
 .clear { clear: both }
 
-.layout960 { width: 960px; margin: 0 auto; color: #555; font-family: Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif; }
+.layout960 { width: 960px; margin: 0 auto; color: #555; font-family: Times New Roman, Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif; }
 .fl { float: left }
 .fr { float:right }
 

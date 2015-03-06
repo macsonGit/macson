@@ -9,6 +9,7 @@ namespace Drufony\CoreBundle\Model;
 
 // Class dependencies
 use Drufony\CoreBundle\Entity\User;
+use Drufony\CoreBundle\Model\Order;
 
 /**
  * Provides methods for mailing to users. It defines all the system notifications.
@@ -83,7 +84,11 @@ class Mailing {
         $customParams['orderId'] = $orderId;
         $customParams['paymentPlataform'] = $paymentPlataform;
 
-        $subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));
+	$customParams['orderInfo']= Order::getOrderInfo($orderId);
+ 
+	$customParams['cart']= Order::getProductsFromDB($orderId);
+        
+	$subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));
         $template = 'email-user-order-completed.html.twig';
 
         self::sendMail($email, $subject, $template, $customParams);
@@ -95,6 +100,9 @@ class Mailing {
         $customParams['paymentPlataform'] = $paymentPlataform;
         $customParams['paymentHash'] = $paymentHash;
 
+	$customParams['orderInfo']= Order::getOrderInfo($orderId);
+ 
+	$customParams['cart']= Order::getProductsFromDB($orderId);
         $subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));
         $template = 'email-management-order-completed.html.twig';
 
