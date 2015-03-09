@@ -1,9 +1,10 @@
-   
 
 {% include "CustomProjectBundle::header.html.twig" %}
 
         <h2>{{ contentData.Teaser | raw }}</h2>
         <h3>{{ contentData.Description | raw }}</h3>
+
+<div id="tipoPagina">con</div>
 
 <div id="contenedor1">
 
@@ -11,14 +12,25 @@
 		<div class="foto">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 {% include "CustomProjectBundle::login.html.twig" %}		
+{% include "CustomProjectBundle::menu.html.twig" %}		
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
-     			<div class="contenido">
-				<h1>{{ contentData.Title }}</h1>
-        			<p>{{ contentData.Body | raw}}</p>
-			</div>
 		</div>
 		<div class="foto">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
+     			<div class="border contenido">
+				<h2>{{ contentData.Title }}</h2>
+				<br>
+{% if contentData.getimages() %}	
+				<div class="wd40 inline">
+					{% include 'DrufonyCoreBundle::content_common_fields.html.twig' %}
+				</div>
+
+        			<div class="wd50 inline padleft15">{{ contentData.Body | raw}}</div>
+{% else %}
+				
+        			<div class="inline padleft15">{{ contentData.Body | raw}}</div>
+{% endif %}
+			</div>
 		</div>
 		<div class="foto">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		

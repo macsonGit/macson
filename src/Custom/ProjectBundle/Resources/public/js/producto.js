@@ -31,6 +31,7 @@ $(document).ready(function(){
 	
 	var showPanel=false;
 	var showPanelCuidados=false;
+	var showMascara=false;
 
 
 	
@@ -40,6 +41,7 @@ $(document).ready(function(){
 			$("#mascara").hide(200);
 			$("#login").hide(200);
 			$("#carrito").hide(200);
+			showMascara=false;
 		}
 	);	
 
@@ -101,6 +103,7 @@ $(document).ready(function(){
 			$(".large").hide();
 			$("#login").show(200);
 			$("#mascara").show(200);
+			showMascara=true;
 			return false;
 		}
 	);
@@ -112,6 +115,7 @@ $(document).ready(function(){
 			$("#carrito").show(200);
 			$(".large").hide();
 			$("#mascara").show(200);
+			showMascara=true;
 			return false;
 		}
 	);
@@ -122,6 +126,7 @@ $(document).ready(function(){
 			$("#login").hide();
 			$("#carrito").show(200);
 			$("#mascara").show(200);
+			$showCart=true;
 			return false;
 
 		}
@@ -215,7 +220,7 @@ $(document).ready(function(){
 
 	}	
 
-	if($("#tipoPagina").text() == 'cat'){
+	if($("#tipoPagina").text() == 'cat' || $("#tipoPagina").text() == 'con'){
 		$("#menu ul").css('background-image', 'none');
 	    $(".tagName").hide();
 
@@ -348,6 +353,9 @@ $(document).ready(function(){
 			urlImage=urlImg3;	
 		
 		}
+	    	if(showMascara){
+			return true;
+		}	
 
 		$(this).find(".large").css('background','url('+urlImage+') no-repeat');
 		//When the user hovers on the image, the script will first calculate

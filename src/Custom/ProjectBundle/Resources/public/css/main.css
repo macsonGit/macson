@@ -6,6 +6,7 @@ color: #000;
 min-width: 980px;
 background: none;
 letter-spacing:1.1px;
+line-height:normal;
 }
 img {border:none;}
 html, body { height: 100%;text-align: center ;}
@@ -94,7 +95,8 @@ ul { list-style-type:none; }
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
 #login { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
 #carrito { position:absolute; top:0px; width:920px ;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
-.contenido{ position:absolute ;top:5px; width:960px; height: 405px ;font-size:12px; overflow-y: auto;text-align: left;z-index:5;}
+.contenido{ position:absolute ;top:0px; width:640px; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}
+.contenido h2 { text-align:center; font-size:20px }
 .borrarArticulo {color:red; text-decoration:none;cursor: pointer;}
 #menu {height: 411px,overflow-y: auto;text-align: left;z-index:5;}
 #menu ul {height: 408px;background-image:url('../images/menuBackground.png')}
@@ -296,9 +298,12 @@ a.button-ok:hover, button.button-ok:hover{
 /*Lets create the magnifying glass*/
 .large {
 	width: 200px; height: 200px;
+	line-height: 200px;
+	font-size:16px;
 	position: absolute;
 	border-radius: 100%;
-	z-index:50;	
+	z-index:50;
+	cursor:pointer;	
 	/*Multiple box shadows to achieve the glass effect*/
 	box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 
 	0 0 7px 7px rgba(0, 0, 0, 0.25), 

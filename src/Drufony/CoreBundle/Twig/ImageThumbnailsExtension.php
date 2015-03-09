@@ -16,7 +16,13 @@ class ImageThumbnailsExtension extends \Twig_Extension
         $fileName = end($temp);
         $directory = implode('/', array_slice($temp, 0, count($temp)-1));
 
+	if($style === ''){
+
+        	return '/' . $directory .'/' . $fileName;
+	}
+
         return '/' . $directory . '/thumbnails/' . $style . '/' . $fileName;
+
     }
 
     public function getName() {

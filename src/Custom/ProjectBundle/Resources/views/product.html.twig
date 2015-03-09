@@ -68,12 +68,12 @@
 {% if not numImages.im2 %}		
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 {% else %}
-			<div class="large"></div>
+			<div class="large">{{'Click to open'|t}}</div>
 			<img class="fotoImg1 small" alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
 {% endif %}	
 		</div>
 		<div id="foto2" class="foto magnify">
-			<div class="large"></div>
+			<div class="large">{{'Click to open'|t}}</div>
 {% if not numImages.im2 %}
 			<img class="fotoImg1 small"  alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg') }}'>
 {% else %}
@@ -100,7 +100,7 @@
 {% if not numImages.im3 %}
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 {% else %}
-			<div style="background:{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg')}}" class="large"></div>
+			<div style="background:{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg')}}" class="large">{{'Click to open'|t}}</div>
 			<img class="fotoImg3 small"  alt={{contentData.title}} src='{{ asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg') }}'>
 {% endif %}	
 			<div id="titulo">

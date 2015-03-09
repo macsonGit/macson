@@ -474,7 +474,8 @@ class ImageEffects
     {
         $function = 'image' . ucfirst(key($effect)) . 'Effect';
         if(method_exists(new ImageEffects(),$function)) {
-            return self::$function($image, reset($effect)['info']);
+	    $aux=reset($effect);
+            return self::$function($image, $aux['info']);
         }
         return FALSE;
     }

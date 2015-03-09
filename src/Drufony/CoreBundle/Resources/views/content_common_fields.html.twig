@@ -1,31 +1,21 @@
-<h4>Images:</h4>
 <div>
 {% for image in contentData.getImages() %}
-<p><img src="{{ image.uri|thumbnail('style200x200') }}" alt='{{ image.alt }}'></p>
-{% else %}
-<p>No images found</p>
+<p><img src="{{ image.uri|thumbnail('') }}" alt='{{ image.alt }}'></p>
 {% endfor %}
 </div>
 
-<h4>Attachments:</h4>
 <div>
 {% for attach in contentData.getAttachments() %}
 <p><a href='/{{ attach.uri }}'>{{ attach.title }}</a></p>
-{% else %}
-<p>No attachments found</p>
 {% endfor %}
 </div>
 
-<h4>Videos:</h4>
 <div>
 {% for video in contentData.getVideos() %}
 <p><iframe src="//player.vimeo.com/video/{{ video.token }}" width="220" height="200" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
-{% else %}
-<p>No videos found</p>
 {% endfor %}
 </div>
 
-<h4>Links:</h4>
 <div>
 {% for link in contentData.getLinks() %}
 {% set target = '' %}
@@ -33,13 +23,10 @@
 {% set target = '_blank' %}
 {% endif %}
 <p><a href='{{ link.url }}' target='{{ target }}'>{{ link.title }}</a></p>
-{% else %}
-<p>No links found</p>
 {% endfor %}
 </div>
 
 {% if contentData.getLocation() %}
-<h4>Location:</h4>
 <div>
 <div id="googleMap" style="height:380px;" data-longitude='{{ contentData.getLongitude() }}' data-latitude='{{ contentData.getLatitude() }}'></div>
 </div>
