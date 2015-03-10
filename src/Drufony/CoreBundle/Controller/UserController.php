@@ -362,10 +362,13 @@ class UserController extends DrufonyController
 
 	$order= CommerceUtils::getOrder($id);
 	
+	$billingInfo = unserialize($order['billingInfo']);
+
     	$this->render('DrufonyCoreBundle::invoice.pdf.twig', array(
 		"id" 		=> $id,
 		"orderProducts" => $orderProducts,	
 		"order"		=> $order,
+		"billingInfo"   => $billingInfo,
 		"lang"		=> $lang
 	), $response);
 
@@ -373,6 +376,8 @@ class UserController extends DrufonyController
 
 
     	$content = $facade->render($xml);
+
+
 
     	return new Response($content, 200, array('content-type' => 'application/pdf'));
     }   

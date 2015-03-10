@@ -937,6 +937,7 @@ class CommerceController extends DrufonyController
         $this->__saveOrder(PAYMENT_STATUS_PAID);
 
         //TODO: redirect to the proper place
+        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
         $this->get('session')->getFlashBag()->add(INFO, t('Thanks for the purchase'));
     }
 

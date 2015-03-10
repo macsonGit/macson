@@ -89,6 +89,8 @@ ul { list-style-type:none; }
 .table{display: table;}
 .row{ display: table-row; }
 .cell { display: table-cell; vertical-align:middle}
+.fotoImg2 { position:absolute; top:0px;right:0px;}
+.fotoImg { position:absolute; top:0px;right:0px;}
 #titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal }
 #logo { position:relative;top: 40px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}

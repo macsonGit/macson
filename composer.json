@@ -26,7 +26,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "zfr/zfr-mailchimp-bundle": "2.*",
         "excelwebzone/recaptcha-bundle": "1.0.*",
-        "paypal/rest-api-sdk-php": "0.11.0",
+        "paypal/rest-api-sdk-php": "*",
 	"doctrine/doctrine-fixtures-bundle": "dev-master",
 	"egeloen/ckeditor-bundle": "~2.0",
 	"psliwa/pdf-bundle": "~1.0",

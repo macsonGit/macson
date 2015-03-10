@@ -1,0 +1,13 @@
+<stylesheet>
+    <!-- style attributes are embeded as xml attributes, class attribute has the same meaning as in HTML/CSS -->
+    <div class="logo" top="50px" text-align="center">
+    </div>
+
+    <h2 class="header">
+        <span font-size="9px">
+        </span>
+
+        <div font-style="bold">
+        </div>
+    </h2>
+</stylesheet>

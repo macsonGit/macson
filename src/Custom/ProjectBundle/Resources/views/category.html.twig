@@ -21,10 +21,17 @@
 	{% else %}
 		<div class="foto">
 	{% endif %}
-			<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
-					<img class="fotoImg" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" 
-					data-alt-src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}"  alt="{{ product.title }}" /></a>
-
+			<div class="fotoImg2">
+				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
+					<img src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}" alt="{{ product.title }} - {{'Backside'|t}}" />
+				</a>
+			</div> 
+			<div class="fotoImg">
+				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
+					<img src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
+				</a>
+ 			</div>
+					
 	{% if product.value == '00_AGOTADO'%}		
 			<div id="tagAgotado">{{'OUT OF STOCK'|t}}</div>
 	{% endif %}

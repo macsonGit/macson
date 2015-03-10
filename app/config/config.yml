@@ -112,7 +112,7 @@ ps_pdf:
     fonts_file: ~
     complex_attributes_file: ~
     colors_file: ~
-    use_cache_in_stylesheet: ~
+    use_cache_in_stylesheet: off
     cache:
       type: ~
       options: ~

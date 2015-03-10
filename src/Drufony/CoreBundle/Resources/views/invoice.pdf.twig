@@ -1,38 +1,102 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 {% set shippingcost='' %}
 {% set total_product_no_vat='' %}
 {% set total_no_vat='' %}
 {% set percentage_vat=0  %}
 {% set total=0  %}
-
 		{% set shippingcost=order.shippingValue %}
 		{% set total_product_no_vat=order.subtotal_with_vat %}
 		{% set total=order.total %}
 <pdf>
-    <dynamic-page>
+
+<dynamic-page>
+
+<div id="contenedor1">
         <!-- pdf_image('BundleName:image-name.extension') -->
 
-
-<div id="contenedor1">	
-  	<div id="orderDetailList" class="inline column-menu fl bb mg-right5 radius5">
-			<ul>
+	<div class="logo">
+		<stylesheet>
+    			<attribute name="margin-left" value="300px" />
+    			<attribute name="font-size" value="14px" />	
+		</stylesheet>
+		<img src='{{ pdf_image('CustomProjectBundle:LogoMacson.png') }}'/>
+	</div>
+	<h1>
+		{{'Invoice'|t}}
+	</h1>
+	<div>	
+		<stylesheet>
+    			<attribute name="margin-top" value="5px" />	
+		</stylesheet>
+		<div>{{'Invoice Number'|t}}: {{order.orderId}}</div>
+		<div>{{'Customer Id'|t}}: {{order.uid}}</div>
+		<div>{{'Name'|t}}: {{billingInfo.name}}</div>
+		<div>{{'NIF'|t}}: {{billingInfo.nif}}</div>
+		<div>{{'Address'|t}}:</div>
+		<div> {{billingInfo.address}}</div>
+		<div>{{billingInfo.city}}</div>
+		<div>{{billingInfo.postalCode}}</div>
+		<div>{{billingInfo.province}}</div>
+	</div>
+	<table>
+		<stylesheet>
+    			<attribute name="margin-top" value="20px" />	
+		</stylesheet>
+		<tr>
+			<td id="celda">
+				<stylesheet>
+    					<attribute name="margin-top" value="5px" />	
+    					<complex-attribute name="border" type="none" />	
+    					<attribute name="text-align" value="center" />	
+    					<attribute name="height" value="20px" />	
+				</stylesheet>
+				{{ 'Units'|t }}
+			</td>
+			<td extends="celda">{{ 'Code'|t}}-{{'Size'|t}}</td>
+			<td extends="celda">
+				{{'Product Name'|t}}
+				<stylesheet>
+    					<attribute name="width" value="300px" />	
+				</stylesheet>
+			</td>
+			<td extends="celda">{{ 'Price Vat incl.'|t }}</td>
+		</tr>		
+	</table>
+  	<table>
+		<stylesheet>
+			<complex-attribute name="border" color="black" />	
+    			<attribute name="margin-top" value="5px" />	
+		</stylesheet>
 	{% for item in orderProducts %}
 		{% set percentage_vat=item.percentage_vat  %}
-				<li>
-					<div class="inline width50 pad5 aligncenter">{{ item.quantity }}</div>
-					<div class="inline width100 pad5 aligncenter">{{ item.sgu  }}-{{item.varieties}}</div>
-					<div class="inline width50 pad5 alignright">{{ item.pricePVP }} €</div>
-				</li>
+				<tr>
+					<td extends="celda">
+						{{ item.quantity }}
+					</td>
+					<td extends="celda">{{ item.sgu  }}-{{item.varieties}}</td>
+					<td extends="celda">
+						<stylesheet>
+    							<attribute name="width" value="300px" />	
+						</stylesheet>
+						{{ item.title}}
+					</td>
+					<td extends="celda">{{ item.pricePVP }} €</td>
+				</tr>
 	{% endfor %}
-			</ul>
-
-
+	</table>
+	<div>
+		<stylesheet>
+    			<attribute name="text-align" value="right" />	
+			<complex-attribute name="border" color="black" />	
+    			<attribute name="margin-top" value="20px" />	
+    			<attribute name="padding" value="10px" />	
+		</stylesheet>
 	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
-			<div class="pad5 alignright">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
-			<div class="pad5 alignright">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
-			<div class="pad5 alignright">{{ 'Total'|t }}: {{ total|number_format(2) }} €</div>
-			<div class="pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
-			<div class="pad5 alignright">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
+			<div>{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
+			<div>{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
+			<div>{{ 'Total'|t }}: {{ total|number_format(2) }} €</div>
+			<div>{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
+			<div>{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
 		
 	</div>
 </div>

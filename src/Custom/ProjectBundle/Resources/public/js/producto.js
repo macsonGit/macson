@@ -224,25 +224,18 @@ $(document).ready(function(){
 		$("#menu ul").css('background-image', 'none');
 	    $(".tagName").hide();
 
-	    $('img.fotoImg').hover(
-			function () {
-			    var $this = $(this);
-			    var newSource = $this.data('alt-src');
-			    $this.data('alt-src', $this.attr('src'));
-			    $this.attr('src', newSource);
-			    $this.children( '.tagPrice' ).hide();
-			}			
-	    );
 	    $('.foto').hover(
 			function () {
-			    var $this = $(this);
-			    $this.children( '.tagPrice' ).hide();
-			    $this.children( '.tagName' ).show();
+			    var foto = $(this);
+			    foto.children( '.tagPrice' ).hide();
+			    foto.children( '.tagName' ).show();
+			    foto.find( '.fotoImg' ).fadeOut(700);
 			},
 			function () {
-			    var $this = $(this);
-			    $this.children( '.tagPrice' ).show();
-			    $this.children( '.tagName' ).hide();
+			    var foto = $(this);
+			    foto.children( '.tagPrice' ).show();
+			    foto.children( '.tagName' ).hide();
+			    foto.find( '.fotoImg' ).fadeIn(700);
 			}
 			
 	    );
