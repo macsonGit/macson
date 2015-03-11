@@ -1,5 +1,9 @@
 parameters:
 #    custom_project.example.class: Custom\ProjectBundle\Example
+    custom_tools.twig.asset_exists_extension.class: Custom\ProjectBundle\Twig\AssetExistsExtension
+
+
+
 
 services:
 
@@ -8,6 +12,11 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+    custom_tools.twig.asset_exists_extension:
+        class: '%custom_tools.twig.asset_exists_extension.class%'
+        arguments: ['@kernel']
+        tags:
+          - { name: twig.extension }
 
 #    custom_project.example:
 #        class: %custom_project.example.class%

@@ -50,6 +50,8 @@ $(document).ready(function(){
 			ope='add';
 			//var route = "{{ path('macson_chart', { 'pid': 'PLACEHOLDER1' , 'vid':'PLACEHOLDER2' }) }}";
 			if (sizeSelected==1){
+				
+				showMascara=true;
 				opeItem(ope,product,variety);
 			}
 			else{
@@ -65,6 +67,7 @@ $(document).ready(function(){
 			productR =$(this).attr("product");
 			varietyR =$(this).attr("variety");
 			//var route = "{{ path('macson_chart', { 'pid': 'PLACEHOLDER1' , 'vid':'PLACEHOLDER2' }) }}";
+			showMascara=true;
 			opeItem(ope,productR,varietyR);
 
 		}
@@ -90,6 +93,7 @@ $(document).ready(function(){
 		function continueShopping(){
 			$("#carrito").hide();
 			$("#mascara").hide();
+			showMascara=false;
 		}
 	);
 	//Hide Show In panel-------------------------------------------------
@@ -126,7 +130,7 @@ $(document).ready(function(){
 			$("#login").hide();
 			$("#carrito").show(200);
 			$("#mascara").show(200);
-			$showCart=true;
+			showMascara=true;
 			return false;
 
 		}
@@ -190,14 +194,14 @@ $(document).ready(function(){
 
 	}
 
-	if($("#tipoPagina").text() == 'prod' || $("#tipoPagina").text() == 'prod1' || $("#tipoPagina").text() == 'prod2'){
+	if($("#tipoPagina").text() == 'prod1' || $("#tipoPagina").text() == 'prod2' || $("#tipoPagina").text() == 'prod3'){
 
 
 		$('.large').click(
 			function zoomImage(){
 				if (!showMenu){
 					$('#zoomContainer').show();
-					$('#zoomContainer').html('<img src=\''+urlImg1+'\'>');
+					$('#zoomContainer').html('<img src=\''+urlImage+'\'>');
 					$("#mascara").show(200);
 					$(".large").hide(2);
 				}
@@ -241,13 +245,6 @@ $(document).ready(function(){
 	    );
 	}	
 
-	if($("#tipoPagina").text() == 'prod'){
-
-
-		$("#menu ul").hide();
-		showMenu=false;
-
-	}	
 
 	if($("#tipoPagina").text() == 'prod1'){
 		$("#infoPanel").show();
@@ -259,12 +256,21 @@ $(document).ready(function(){
 	}	
 
 	if($("#tipoPagina").text() == 'prod2'){
-		$("#infoPanel").show();
+		$("#infoPanel").hide();
 		$("#masInfo").text("");		
-		$("#menu ul").hide();
+		$("#menu ul").show();
+		$("#menu ul").css('background-image', 'none');
+		$("#tituloCat").text("");
 		showMenu=false;
 	}		
 
+	if($("#tipoPagina").text() == 'prod3'){
+
+		$("#menu ul").hide();
+		showMenu=false;
+
+	}
+			
 	$("#menu").height(23);	
 
 
@@ -277,15 +283,12 @@ $(document).ready(function(){
 				showMenu=false;
 				$("#tituloCat").text("+ MENU");
 				$("#menu ul").hide(350);
-				$("#menu").height(23);
 			}
 			else{
 				showMenu=true;
 				$("#tituloCat").text("- MENU");
 				$("#menu ul").show(350);
-
-				$("#menu").height(440);
-				
+	
 			}			
 
 		}
@@ -442,7 +445,7 @@ function opeItem(ope,productO,varietyO){
 							precioTotal=precioTotal+item.product.pricePVP*parseInt(item.count);
 							sumItems=sumItems+item.count;
 
-							$("#listaCarritoResumen").append('<div class="row height102 pad5"><div class="cell"><a href="../'+lang+'/'+item.product.target+'"><img src="'+imageThumbPath+item.product.sgu+'_1.jpg"></a></div><div class="cell width85 pad5"><p class="fs10">'+item.product.sgu+'</p></div><div class="cell width180 pad5">' + item.product.title+'</div><div class="cell width50 pad5">'+item.product.size+'</div><div class="cell width100 pad5">'+item.product.pricePVP+' €</div><div class="cell width50 pad5">'+item.count+'</div><div class="cell width50 pad5"><div class="borrarArticulo"  product="'+item.product.id+'" variety="'+item.product.varProdId+'">'+removeText+'</div></div>');	
+							$("#listaCarritoResumen").append('<div class="row height102 pad5"><div class="cell"><a href="../../'+lang+'/'+item.product.target+'"><img src="'+imageThumbPath+item.product.sgu+'_1.jpg"></a></div><div class="cell width85 pad5"><p class="fs10">'+item.product.sgu+'</p></div><div class="cell width180 pad5">' + item.product.title+'</div><div class="cell width50 pad5">'+item.product.size+'</div><div class="cell width100 pad5">'+item.product.pricePVP+' €</div><div class="cell width50 pad5">'+item.count+'</div><div class="cell width50 pad5"><div class="borrarArticulo"  product="'+item.product.id+'" variety="'+item.product.varProdId+'">'+removeText+'</div></div>');	
 						});
 						precioTotal = precioTotal.toFixed(2);
 						$("#precioTotal").append('<b>'+precioTotal+' €</b>');	
@@ -456,6 +459,7 @@ function opeItem(ope,productO,varietyO){
 						$("#listaCarritoResumen").append('<div class="row">'+noProductCartText+'</div>');
 						$("#carrito").hide(200);			
 						$("#mascara").hide(200);
+						showMascara=false;
 					}
 			}	
 		 })
