@@ -5,8 +5,13 @@
 	{% set route = 'macson_category' %} 
 {% endif %}
 
+{% if homePage is defined %}
+<div id="menuPortada"> 
+	<div class="height408">
+{% else %}
 <div id="menu">
 	<div class="height408 border">
+{% endif %}
 
 	<ul class="pad15">
 {% if outlet is defined %}

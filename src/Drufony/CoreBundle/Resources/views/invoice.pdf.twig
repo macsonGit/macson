@@ -11,6 +11,33 @@
 
 <dynamic-page>
 
+<placeholders>
+    <header>
+	<div height="50px" width="100%">
+		<stylesheet>
+			<attribute name="text-align" value="right" />
+			<attribute name="margin-right" value="10px" />
+			<attribute name="font-size" value="12px" />	
+		</stylesheet>
+	 	Macon S.A.<br></br> 
+		NIF A-08008583.<br></br>
+		Avda. J.V. Foix, 66. Barcelona.<br></br>
+		08034. Barcelona.<br></br>
+		Tlf. 93 237 86 86<br></br>
+	</div>
+    </header>
+    <footer>
+	<div height="50px" width="100%">
+		<stylesheet>
+			<attribute name="text-align" value="center" />
+			<attribute name="margin-left" value="30px" />
+			<attribute name="font-size" value="10px" />	
+		</stylesheet>
+		Macon S.A. NIF A-08008583. Registro Mercantil de Barcelona Tomo 5777 Folio 58 Hoja B65942 5ª
+	</div>
+    </footer>
+</placeholders>
+
 <div id="contenedor1">
         <!-- pdf_image('BundleName:image-name.extension') -->
 
@@ -28,15 +55,14 @@
 		<stylesheet>
     			<attribute name="margin-top" value="5px" />	
 		</stylesheet>
+		<div>{{'Date'|t}}: {{'now'|date('d/m/y')}}</div>
 		<div>{{'Invoice Number'|t}}: {{order.orderId}}</div>
 		<div>{{'Customer Id'|t}}: {{order.uid}}</div>
 		<div>{{'Name'|t}}: {{billingInfo.name}}</div>
 		<div>{{'NIF'|t}}: {{billingInfo.nif}}</div>
-		<div>{{'Address'|t}}:</div>
-		<div> {{billingInfo.address}}</div>
-		<div>{{billingInfo.city}}</div>
-		<div>{{billingInfo.postalCode}}</div>
-		<div>{{billingInfo.province}}</div>
+		<div>{{'Address'|t}}:
+			 {{billingInfo.address}}. {{billingInfo.city}}. {{billingInfo.postalCode}}. {{billingInfo.province}}
+		</div>
 	</div>
 	<table>
 		<stylesheet>
@@ -92,16 +118,15 @@
     			<attribute name="padding" value="10px" />	
 		</stylesheet>
 	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
-			<div>{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
 			<div>{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
-			<div>{{ 'Total'|t }}: {{ total|number_format(2) }} €</div>
-			<div>{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
+			<div>{{ 'Total without VAT'|t }}: {{ total|number_format(2) }} €</div>
 			<div>{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
+			<div>{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} €</div>
+			<div><b>{{ 'Total'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</b></div>
 		
 	</div>
 </div>
 
+</dynamic-page>
 
-
-	</dynamic-page>
 </pdf>

@@ -6461,3 +6461,16 @@
 [Wed Mar 11 19:14:12 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
 [Wed Mar 11 19:15:53 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
 [Wed Mar 11 19:15:53 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:41:42 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:41:42 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:41:56 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:41:56 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:42:08 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:42:08 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:47:05 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:47:05 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:47:14 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:47:14 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Thu Mar 12 17:54:38 2015] [error] [client 192.168.1.213] File does not exist: /var/www/robots.txt
+[Fri Mar 13 19:50:11 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Mar 13 19:50:11 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico

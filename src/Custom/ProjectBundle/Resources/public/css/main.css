@@ -95,6 +95,7 @@ ul { list-style-type:none; }
 #logo { position:relative;top: 40px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
+#menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
 #login { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
 #carrito { position:absolute; top:0px; width:920px ;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
 .contenido{ position:absolute ;top:0px; width:640px; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}
@@ -107,6 +108,13 @@ ul { list-style-type:none; }
 #menu a:visited {text-decoration:none; color:black;}
 #menu a:hover {text-decoration:none;color:black;}
 #menu a:active {text-decoration:none;color:black;}
+#menuPortada {height:380px;text-align: left;z-index:5;width:321px}
+#menuPortada ul {height:380px}
+#menuPortada li:hover { color:black;cursor: pointer;}
+#menuPortada a:link {text-decoration:none;color:white;}
+#menuPortada a:visited {text-decoration:none; color:white}
+#menuPortada a:hover {text-decoration:none;color:white;}
+#menuPortada a:active {text-decoration:none;color:white;}
 #menutitle{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
 #item1 {padding-left:10px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
 #item1.selected{color:black; font-weight:bold}
