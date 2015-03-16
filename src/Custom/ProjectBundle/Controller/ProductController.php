@@ -31,6 +31,10 @@ class ProductController extends DrufonyController
         $response = new Response();
         $session     = getSession();
         $user        = $this->getUser();
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $uid         = NULL;
         $rememberme  = FALSE;
 
@@ -147,6 +151,7 @@ class ProductController extends DrufonyController
             //'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
             'isLoginPath'   => FALSE,
  	    'products'=>$products,
+            'orders'    	=> $orders,
 	    'user'=>$user,
         )));
         return $response;

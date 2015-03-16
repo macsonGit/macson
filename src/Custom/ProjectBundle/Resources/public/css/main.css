@@ -46,7 +46,9 @@ ul { list-style-type:none; }
 .height35 {height:35px}
 .height25 {height:25px}
 .height20 {height:20px}
+.height400 {height:400px}
 .height405 {height:405px}
+.height380 {height:380px}
 .height408 {height:408px}
 .height900 {height:900px !important }
 .height3 {height:3px}
@@ -73,6 +75,7 @@ ul { list-style-type:none; }
 .invisible {visibility: hidden;}
 .dentroCuadro {position:absolute; top:0px; width:612px; height:381px;} 
 .zindex10{z-index:10}
+.overflowy { overflow-y:auto; }
 .sinEfectos a:link {text-decoration:none;color:black;}
 .sinEfectos a:visited {text-decoration:none; color:black;}
 .sinEfectos a:hover {text-decoration:none;color:black;}
@@ -96,6 +99,7 @@ ul { list-style-type:none; }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
 #menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
+#orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
 #login { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
 #carrito { position:absolute; top:0px; width:920px ;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
 .contenido{ position:absolute ;top:0px; width:640px; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}

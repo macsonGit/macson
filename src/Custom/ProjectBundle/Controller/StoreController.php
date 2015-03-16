@@ -38,6 +38,10 @@ class StoreController extends DrufonyController
         $response = new Response();
         $session     = getSession();
         $user        = $this->getUser();
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $uid         = NULL;
         $rememberme  = FALSE;
                               
@@ -92,6 +96,7 @@ class StoreController extends DrufonyController
             'loginForm'     => $loginForm->createView(),
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
+            'orders'    	=> $orders,
 	    'user'=>$user,
 
         )));

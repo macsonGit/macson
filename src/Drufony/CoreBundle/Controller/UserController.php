@@ -297,6 +297,9 @@ class UserController extends DrufonyController
     function yourOrderAction (Request $request, $lang){
 
 	$response = new Response();
+        $session     = getSession();
+        $user        = $this->getUser();
+        $rememberme  = FALSE;
 	
             $user = $this->getUser();
 	
@@ -305,6 +308,12 @@ class UserController extends DrufonyController
 	$products=CommerceUtils::getCartItemsAJAX();
 
 	$orderProducts=array();
+            
+	$registerForm = $this->_processRegisterForm($request);
+            
+        $loginForm = $this->_processLoginForm($request);
+
+        $this->_processFBLogin($request);
 
 	if(isset($id)){
 		$orderProducts = CommerceUtils::getOrderProducts($id);
@@ -316,7 +325,10 @@ class UserController extends DrufonyController
             'itemConfigMenu'    => 'yourOrder',
             'mainContent'       => 'DrufonyCoreBundle::yourOrder.html.twig',
  	    'products'=>$products,
- 	    'orderProducts'=>$orderProducts,
+ 	    'orderProducts'=>$orderProducts,            'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
+            'registerForm'  => $registerForm->createView(),
+            'loginForm'     => $loginForm->createView(),
+            'isLoginPath'   => FALSE 
         )));
 
         return $response;
@@ -335,8 +347,16 @@ class UserController extends DrufonyController
 
 	$orderProducts=array();
 
+            $registerForm = $this->_processRegisterForm($request);
+
+            
+           $loginForm = $this->_processLoginForm($request);
+            
+
+            $this->_processFBLogin($request);
 	if(isset($id)){
 		$orderProducts = CommerceUtils::getOrderProducts($id);
+		$order = CommerceUtils::getOrder($id);
 	}
 
         $response->setContent($this->renderView('DrufonyCoreBundle::base-registration.html.twig', array(
@@ -345,7 +365,12 @@ class UserController extends DrufonyController
             'id'                => $id,
             'itemConfigMenu'    => 'orders',
             'orders'    	=> $orders,
+            'order'    		=> $order,
             'mainContent'       => 'DrufonyCoreBundle::orderList.html.twig',
+            'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
+            'registerForm'  => $registerForm->createView(),
+            'loginForm'     => $loginForm->createView(),
+            'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
  	    'products'=>$products,
  	    'orderProducts'=>$orderProducts,
         )));

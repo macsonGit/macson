@@ -39,6 +39,10 @@ class CategoryController extends DrufonyController
         $user        = $this->getUser();
         $uid         = NULL;
         $rememberme  = FALSE;
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
                               
        $widgets = array(
             'social' => array(
@@ -101,6 +105,7 @@ class CategoryController extends DrufonyController
             'loginForm'     => $loginForm->createView(),
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
+            'orders'    	=> $orders,
 	    'user'=>$user,
 
         )));
@@ -118,6 +123,10 @@ class CategoryController extends DrufonyController
         $user        = $this->getUser();
         $uid         = NULL;
         $rememberme  = FALSE;
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
                               
        $widgets = array(
             'social' => array(
@@ -181,6 +190,7 @@ class CategoryController extends DrufonyController
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
 	    'user'=>$user,
+	    'orders'=>$orders,
 	    'outlet'=>true,
 
         )));
@@ -199,6 +209,10 @@ class CategoryController extends DrufonyController
         $response = new Response();
         $session     = getSession();
         $user        = $this->getUser();
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $uid         = NULL;
         $rememberme  = FALSE;
                               
@@ -248,6 +262,7 @@ class CategoryController extends DrufonyController
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
 	    'user'=>$user,
+            'orders'    	=> $orders,
 	    'outlet'=>true,
 
         )));
@@ -337,6 +352,10 @@ class CategoryController extends DrufonyController
         $response = new Response();
         $session     = getSession();
         $user        = $this->getUser();
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $uid         = NULL;
         $rememberme  = FALSE;
                               
@@ -384,6 +403,7 @@ class CategoryController extends DrufonyController
             'loginForm'     => $loginForm->createView(),
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
+            'orders'    	=> $orders,
 	    'user'=>$user,
 
         )));

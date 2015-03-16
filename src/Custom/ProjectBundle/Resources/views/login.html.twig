@@ -5,104 +5,118 @@
 {% form_theme loginForm 'DrufonyCoreBundle::forms_generic_theme.html.twig' %}
 
 
-
-
-
-<div class="">
-
-
 {% if app.user is not null  %}
-	
-	<div class="oh pad15 "> 
- 		<a href="{{path('drufony_profile_edit',{'lang':lang})}}">{{'Edit your profile'|t}}</a>
+		
+	<div class="inline pad15 wd20">
+
+		<div class="sinEfectos oh pad15 "> 
+			<a href="{{path('drufony_profile_edit',{'lang':lang})}}">{{'Edit your profile'|t}}</a>
+		</div>
+		<div class="sinEfectos oh pad15 ">
+			{{'Orders'|t}}
+		</div>
+		<div class="sinEfectos oh pad15 "> 
+			<a href="{{path('drufony_login_logout',{'lang':lang})}}">{{'Logout'|t}}</a>
+		</div>
+
 	</div>
-	<div class="oh pad15 ">
-		<a href="{{path('drufony_user_order_list',{'lang':lang})}}">{{'Orders'|t}}</a>
+
+	<div id="orderList" class="inline wd70 height380 overflowy pad15">
+	{% for order in orders %}
+		{% set shippingcost=order.shippingValue %}
+		{% set total_product_no_vat=order.subtotal_with_vat %}
+		{% set total=order.total %}
+		<div class="row pad5">
+			<div class="cell pad-horizontal40 aligncenter">{{ order.orderId }}</div>
+			<div class="cell pad-horizontal40 aligncenter">{{ order.orderDate|date('d/m/y') }}</div>
+			<div class="cell pad-horizontal40 aligncenter">{{ order.total|number_format(2) }} €</div>
+			<a href={{ path('drufony_user_order_list',{'id' : order.orderId, 'lang': lang} ) }}>
+				<div class="cell pad-horizontal40 aligncenter">{{ 'Details'|t }}</div>
+			</a>
+		</div>
+	{% endfor %}
 	</div>
-	<div class="oh pad15 "> 
-		<a href="{{path('drufony_login_logout',{'lang':lang})}}">{{'Logout'|t}}</a>
-	</div>
-</div>
+
+
 
 {% else  %}
 
+	<div class="inline pad15">
 
-{% set highlightLogin = '' %}
-{% set highlightRegistration = '' %}
-{% if isLoginPath %}
-  {% set highlightLogin = '' %}
-{% else %}
-  {% set highlightRegistration = '' %}
-{% endif %}
+	{% set highlightLogin = '' %}
+	{% set highlightRegistration = '' %}
+	{% if isLoginPath %}
+	  {% set highlightLogin = '' %}
+	{% else %}
+	  {% set highlightRegistration = '' %}
+	{% endif %}
 
+	  <div class="wd100 oh mg-vertical20">
 
+	    <div class="third-column bb fl wd45  pad15">
+		<div class="login-block">
+		    <h2 class="block-title">{{ "Login with existent account" | t }}</h2>
+		    {{ form_start(loginForm) }}
+		    {{ form_errors(loginForm) }}
 
-  <div class="wd100 oh mg-vertical20">
+			<div class="mg-bottom10">
+			  {{ form_label(loginForm.username) }}
+			</div>
+			{{ form_errors(loginForm.username, {'attr': {'class' : 'wd100 show-form-error'} }) }}
+			{{ form_widget(loginForm.username, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your email'|t } } ) }}
 
-    <div class="third-column bb fl wd45  pad15">
-        <div class="login-block">
-            <h2 class="block-title">{{ "Login with existent account" | t }}</h2>
-            {{ form_start(loginForm) }}
-            {{ form_errors(loginForm) }}
+			<div class="mg-bottom10">
+			  {{ form_label(loginForm.password) }}
+			</div>
+			{{ form_errors(loginForm.password) }}
+			{{ form_widget(loginForm.password, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your password'|t } } ) }}
 
-                <div class="mg-bottom10">
-                  {{ form_label(loginForm.username) }}
-                </div>
-                {{ form_errors(loginForm.username, {'attr': {'class' : 'wd100 show-form-error'} }) }}
-                {{ form_widget(loginForm.username, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your email'|t } } ) }}
+			<div class="mg-bottom10">
+			  {{ form_errors(loginForm.rememberme) }}
+			  {{ form_widget(loginForm.rememberme ) }}
+			  {{ form_label(loginForm.rememberme) }}
+			</div>
 
-                <div class="mg-bottom10">
-                  {{ form_label(loginForm.password) }}
-                </div>
-                {{ form_errors(loginForm.password) }}
-                {{ form_widget(loginForm.password, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your password'|t } } ) }}
+			<a href="{{ path('drufony_user_request_forgot_pass', {'lang' : lang }) }}">{{ "Forgot password" | t }}</a>
 
-                <div class="mg-bottom10">
-                  {{ form_errors(loginForm.rememberme) }}
-                  {{ form_widget(loginForm.rememberme ) }}
-                  {{ form_label(loginForm.rememberme) }}
-                </div>
+			<div class="wd100 mg-vertical10">
+			  {{ form_widget(loginForm.login, { 'attr': {'class': 'action-button' }}) }}
+			</div>
 
-                <a href="{{ path('drufony_user_request_forgot_pass', {'lang' : lang }) }}">{{ "Forgot password" | t }}</a>
+		    {{ form_end(loginForm) }}
+		</div>
+	    </div>
+	    <div class="second-column bb fl wd45 mg-left5 borderLeft  pad15">
+		<div class="signin-block">
+		    <h2>{{ "Create new account" | t }}</h2>
+		    {{ form_start(registerForm) }}
+		    {{ form_errors(registerForm) }}
 
-                <div class="wd100 mg-vertical10">
-                  {{ form_widget(loginForm.login, { 'attr': {'class': 'action-button' }}) }}
-                </div>
+			<div class="mg-bottom10">
+			  {{ form_label(registerForm.email) }}
+			</div>
+			{{ form_errors(registerForm.email) }}
+			{{ form_widget(registerForm.email, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your email'|t } } ) }}
 
-            {{ form_end(loginForm) }}
-        </div>
-    </div>
-    <div class="second-column bb fl wd45 mg-left5 borderLeft  pad15">
-        <div class="signin-block">
-            <h2>{{ "Create new account" | t }}</h2>
-            {{ form_start(registerForm) }}
-            {{ form_errors(registerForm) }}
-
-                <div class="mg-bottom10">
-                  {{ form_label(registerForm.email) }}
-                </div>
-                {{ form_errors(registerForm.email) }}
-                {{ form_widget(registerForm.email, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your email'|t } } ) }}
-
-                <div class="mg-bottom10">
-                  {{ form_label(registerForm.password) }}
-                </div>
-                {{ form_errors(registerForm.password) }}
-                {{ form_widget(registerForm.password, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your password'|t } } ) }}
-
-
-                {{ form_widget(registerForm.acceptTerms) }}
-                {{ registerForm.acceptTerms.vars.label | raw }}
-		<br><br>
-                <div class="wd100 mg-vertical10">
-                  {{ form_widget(registerForm.register, { 'attr': {'class': 'action-button' }}) }}
-                </div>
-            {{ form_end(registerForm) }}
-        </div>
-    </div>
-  </div>
- </div>
+			<div class="mg-bottom10">
+			  {{ form_label(registerForm.password) }}
+			</div>
+			{{ form_errors(registerForm.password) }}
+			{{ form_widget(registerForm.password, { 'attr': { 'class': 'wd100 pad10 mg-bottom20 radius5', 'placeholder': 'Your password'|t } } ) }}
 
 
-{% endif %}
+			{{ form_widget(registerForm.acceptTerms) }}
+			{{ registerForm.acceptTerms.vars.label | raw }}
+			<br><br>
+			<div class="wd100 mg-vertical10">
+			  {{ form_widget(registerForm.register, { 'attr': {'class': 'action-button' }}) }}
+			</div>
+		    {{ form_end(registerForm) }}
+		</div>
+	    </div>
+	  </div>
+	 </div>
+
+
+	{% endif %}
 </div>

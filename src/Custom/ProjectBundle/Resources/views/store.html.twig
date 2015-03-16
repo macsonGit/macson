@@ -12,13 +12,24 @@
 {% for store in ball %}
 	
 	{% if  antProvince !=  store.bou_provincia %}
-		{% set contador=0 %} 
+		 
+		{% if  contador%4==1  %}
+			<div class="store"></div>
+			<div class="store"></div>
+			<div class="store"></div>
+		{% endif %}
+		{% if  contador%4==2  %}
+			<div class="store"></div>
+			<div class="store"></div>
+		{% endif %}
+		{% if  contador%4==3  %}
+			<div class="store"></div>
+		{% endif %}
+		{% set contador=0 %}
 	</div>
 		<b>
-		<div class="fs18 center2 height90">
-			<div class="inline wd40  height45 borderBottom"></div> 
-			<div class="inline height90 wd20 verticalcenter90">{{store.bou_provincia}}</div>
-			<div class="inline height45 wd40 borderBottom"></div> 
+		<div class="align-left height90 verticalcenter90 center fs18">
+			{{store.bou_provincia}}
 		</div>
 		</b>
 	<div id="fotoRow">	

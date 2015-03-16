@@ -21,6 +21,10 @@ class PageController extends DrufonyController
 
 
         $user        = $this->getUser();
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $uid         = NULL;
         $rememberme  = FALSE;
 
@@ -91,6 +95,7 @@ class PageController extends DrufonyController
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'menu'=>$menu,
 	    'products'=>$products,
+            'orders'    	=> $orders,
 	    'user'=>$user,
         )));
 
