@@ -9,30 +9,45 @@
 		
 	<div class="inline pad15 wd20">
 
-		<div class="sinEfectos oh pad15 "> 
+		<div class="sinEfectos oh pad15 hoverborder "> 
 			<a href="{{path('drufony_profile_edit',{'lang':lang})}}">{{'Edit your profile'|t}}</a>
 		</div>
-		<div class="sinEfectos oh pad15 ">
+		<div id="orderOption" class="sinEfectos oh pad15 hoverborder">
 			{{'Orders'|t}}
 		</div>
-		<div class="sinEfectos oh pad15 "> 
+		<div class="sinEfectos oh pad15 hoverborder"> 
 			<a href="{{path('drufony_login_logout',{'lang':lang})}}">{{'Logout'|t}}</a>
 		</div>
 
 	</div>
 
-	<div id="orderList" class="inline wd70 height380 overflowy pad15">
+	<div id="orderList" class="mg-top20 border inline wd70 fs12 overflowy pad15">
 	{% for order in orders %}
+		{% if loop.first %}
+		<div class="row pad5">
+			<b>
+			<div class="cell  wd10 pad-horizontal10">{{ "Id"|t }} </div>
+			<div class="cell  wd10 pad-horizontal10"> {{"Date"|t }} </div>
+			<div class="cell  wd10 pad-horizontal10"> {{ "Amount"|t }}</div>
+			<div class="cell  wd10 pad-horizontal10"></div>
+			<div class="cell  wd10 pad-horizontal10"></div>
+			</b>
+		</div>
+		{% endif %}
 		{% set shippingcost=order.shippingValue %}
 		{% set total_product_no_vat=order.subtotal_with_vat %}
 		{% set total=order.total %}
-		<div class="row pad5">
-			<div class="cell pad-horizontal40 aligncenter">{{ order.orderId }}</div>
-			<div class="cell pad-horizontal40 aligncenter">{{ order.orderDate|date('d/m/y') }}</div>
-			<div class="cell pad-horizontal40 aligncenter">{{ order.total|number_format(2) }} €</div>
-			<a href={{ path('drufony_user_order_list',{'id' : order.orderId, 'lang': lang} ) }}>
-				<div class="cell pad-horizontal40 aligncenter">{{ 'Details'|t }}</div>
-			</a>
+		<div class="row pad5 hoverbggray sinEfectos">
+		<a href={{ path('drufony_user_order_list',{'id' : order.orderId, 'lang': lang} ) }}>
+			<div class="cell  wd10 pad-horizontal10">{{ order.orderId }}</div>
+			<div class="cell  wd10 pad-horizontal10">{{ order.orderDate|date('d/m/y') }}</div>
+			<div class="cell  wd10 pad-horizontal10">{{ order.total|number_format(2) }} €</div>
+		</a>
+			<div class="cell  wd10 pad-horizontal10 ">
+				<a href={{ path('drufony_user_invoice',{'id' : order.orderId, 'lang': lang} ) }}>
+					<b>{{ 'Invoice'|t }}</b>
+				</a>
+			</div>
 		</div>
 	{% endfor %}
 	</div>

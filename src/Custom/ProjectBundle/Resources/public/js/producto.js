@@ -23,6 +23,7 @@ $(document).ready(function(){
 	$("#contenedor1").css('visibility','visible');
 	$("#cuidadosPanel").hide();
 	$(".novedad").hide();
+	$("#orderList").hide();
 		
 		$("#login").hide();
 		$("#carrito").hide();
@@ -108,6 +109,14 @@ $(document).ready(function(){
 			$("#login").show(200);
 			$("#mascara").show(200);
 			showMascara=true;
+			return false;
+		}
+	);
+	$("#orderOption").click(
+
+		function showLogin(){
+			$("#orderList").show(200);
+			$("#orderOption").css("background-color","gray");;
 			return false;
 		}
 	);

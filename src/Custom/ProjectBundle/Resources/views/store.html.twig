@@ -6,64 +6,52 @@
 <div id="tipoPagina">sto</div>
 <div id="contenedor1">
 
-
 	<div id="fotoRow">	
+			<div class="storeDummy">
+				{% include "CustomProjectBundle::login.html.twig" %}			
+				{% include "CustomProjectBundle::carritoResumen.html.twig" %}
+			</div>
+			<div class="storeDummy"></div>
+	</div>
+	<div id="fotoRow" class="hoverborder hoverbggray">	
 
 {% for store in ball %}
 	
 	{% if  antProvince !=  store.bou_provincia %}
 		 
-		{% if  contador%4==1  %}
-			<div class="store"></div>
-			<div class="store"></div>
-			<div class="store"></div>
-		{% endif %}
-		{% if  contador%4==2  %}
-			<div class="store"></div>
-			<div class="store"></div>
-		{% endif %}
-		{% if  contador%4==3  %}
-			<div class="store"></div>
-		{% endif %}
-		{% set contador=0 %}
 	</div>
-		<b>
-		<div class="align-left height90 verticalcenter90 center fs18">
-			{{store.bou_provincia}}
-		</div>
-		</b>
-	<div id="fotoRow">	
+	<b>
+	<div class="center  wd100 mg-top20 mg-bottom20 height30 fs14 borderBottom">
+		{{store.bou_provincia}}
+	</div>
+	</b>
+	<div id="fotoRow" class="hoverbggray">	
 	
 	{% endif %}
 		
 	{% set contador=contador+1 %} 
         {% set antProvince=store.bou_provincia %}
-			<div class="store border">
+			<div class="store">
 
-	{% if loop.first %}
-				{% include "CustomProjectBundle::login.html.twig" %}			
-				{% include "CustomProjectBundle::carritoResumen.html.twig" %}
-	{% endif %}
-				<div  class="pad5 fs12 height35 borderBottom bgcolorgray">
+				<div  class="align-left inline wd30 fs12 height30">
 					<b>{{store.bou_poblacion}}</b>
-	{% if store.bou_nombre is not null %}
-					<br>
-					{{store.bou_nombre}}
+	{% if store.bou_nombre %}
+					 <br>{{store.bou_nombre}}
 	{% endif %}		
 				</div>
-				<div  class="pad5 fs14 texto">
-					{{store.bou_direccion}}<br>
-					{{store.bou_telefono}}<br>
+				<div  class="align-left inline wd20 height30 fs14">
+					{{store.bou_direccion}}
+				</div> 
+				<div  class="align-left inline wd20 height30 fs14">
+					{{'Tel'|t}}. {{store.bou_telefono}}
 				</div>
-				<div  class="pad5 texto fs12">
-					{{store.bou_descripcion}}
+				<div  class="height30 fs12 align-left">
+					{{'Opening hours'|t}}: {{store.bou_descripcion}}
 				</div>
 			</div>
 
-	{%if contador%4 == 0  %}
-		</div>
-		<div id="fotoRow">
-	{% endif %}			
+	</div>
+	<div id="fotoRow" class="hoverbggray">
 
 {% endfor %}
 	</div>	

@@ -325,6 +325,7 @@ class UserController extends DrufonyController
             'itemConfigMenu'    => 'yourOrder',
             'mainContent'       => 'DrufonyCoreBundle::yourOrder.html.twig',
  	    'products'=>$products,
+ 	    'orders'=>$orders,
  	    'orderProducts'=>$orderProducts,            'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
             'registerForm'  => $registerForm->createView(),
             'loginForm'     => $loginForm->createView(),

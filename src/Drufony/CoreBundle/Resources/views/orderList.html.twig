@@ -14,7 +14,6 @@
 
 
 {% include "CustomProjectBundle::header.html.twig" %}
-<div id="tipoPagina">noLogin</div>
 
 
 
@@ -24,7 +23,22 @@
 		<div class="foto">
 			{% include "CustomProjectBundle::login.html.twig" %}
 			{% include "CustomProjectBundle::carritoResumen.html.twig" %}		
-			<div id="orderDetailList" class="">
+			<div id="orderDetailList" class="border pad10 overflowy ">
+		<div class= "row height102 pad5 fs-11">
+			<div class="cell pad5 wd10">
+			</div>		
+			<div class="cell pad5 wd10">{{'Units'|t}}</div>
+			<div class="cell pad5 wd10">
+				{{ 'Reference'|t}}
+			</div>
+			<div class="cell pad5 wd20">
+				{{ 'Product'|t}}
+			</div>
+			<div class="cell pad5 wd10">{{ 'Size'|t}}</div>
+			<div class="cell wd10 pad5">
+				{{ 'Price'|t}}
+			</div>
+		</div>
 		{% for item in orderProducts %}
 			{% set percentage_vat=item.percentage_vat  %}
 		<div class= "row height102 pad5">
@@ -33,6 +47,7 @@
 					<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.sgu~'_1.jpg') }}'>
 				</a>
 			</div>		
+			<div class="cell pad5 wd10">{{ item.quantity }}</div>
 			<div class="cell pad5 wd10">
 				{{ item.sgu  }}
 			</div>
@@ -43,7 +58,6 @@
 			<div class="cell wd10 pad5">
 				{{ item.pricePVP | round(0,'floor')}}<font size="1">,{{ item.pricePVP | decimals  }} €</font>
 			</div>
-			<div class="cell pad5 wd10">{{ item.quantity }}</div>
 {% set sumPrice= sumPrice + item.pricePVP*item.quantity %}
 		</div>
 		{% endfor %}
@@ -51,16 +65,14 @@
 		<br>	
 		<br>	
 
+			<div class="mg-right10">
 		{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
-				<div class="pad5 alignright">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
-				<div class="pad5 alignright">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
-				<div class="pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
-				<div class="pad5 alignright">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
+				<div class="pad5 alignright fs-11">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
+				<div class="pad5 alignright fs-11">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
+				<div class="pad5 alignright fs-11">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
+				<div class="pad5 alignright fs-11">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
 				<div class="pad5 alignright"><b>{{ 'Total'|t }}: {{ total|number_format(2) }} €</b></div>
-				<a href={{ path('drufony_user_invoice',{'id' : id, 'lang': lang} ) }}>
-					<div class="inline width50 pad5 aligncenter">{{ 'Invoice'|t }}</div>
-				</a>
-			
+			</div>	
 			</div>
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
@@ -79,76 +91,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="contenedor1">	
-	<div id="" class="layout960 maxW960p wd98 oh pad10 align-left">
-{% include 'DrufonyCoreBundle::user_config_menu.html.twig' %}
-		<div id="orderList" class="inline wd30 fs-12 fl bb mg-right2 radius5 pad5">
-			<ul>
-{% for order in orders %}
-	{% if id==order.orderId %}
-		{% set shippingcost=order.shippingValue %}
-		{% set total_product_no_vat=order.subtotal_with_vat %}
-		{% set total=order.total %}
-	{% endif %}
-				<li class="height25 pad5">
-					<div class="inline width25 pad5 aligncenter">{{ order.orderId }}</div>
-					<div class="inline wd30 pad5 aligncenter">{{ order.orderDate|date('d/m/y') }}</div>
-					<div class="inline wd20 pad5 aligncenter">{{ order.total }} €</div>
-					<a href={{ path('drufony_user_order_list',{'id' : order.orderId, 'lang': lang} ) }}>
-						<div class="inline wd20 pad5 aligncenter">{{ 'Details'|t }}</div>
-					</a>
-				</li>
-{% endfor %}
-
-			</ul>
-		</div>
-
-{% if id %}
-		<div id="orderDetailList" class="inline pad10 wd30 fs-12 fl bb mg-right2 radius5">
-			<ul>
-	{% for item in orderProducts %}
-		{% set percentage_vat=item.percentage_vat  %}
-				<li>
-						<div class="inline wd25 pad5 aligncenter">{{ item.quantity }}</div>
-						<div class="inline wd30 pad5 aligncenter">{{ item.sgu  }}-{{item.varieties}}</div>
-						<div class="inline wd30 pad5 alignright">{{ item.pricePVP }} €</div>
-				</li>
-	{% endfor %}
-			</ul>
-
-	<br>	
-	<br>	
-
-	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
-			<div class="pad5 alignright">{{ 'Total Product'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</div>
-			<div class="pad5 alignright">{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
-			<div class="pad5 alignright">{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} € </div>
-			<div class="pad5 alignright">{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
-			<div class="pad5 alignright"><b>{{ 'Total'|t }}: {{ total|number_format(2) }} €</b></div>
-			<a href={{ path('drufony_user_invoice',{'id' : id, 'lang': lang} ) }}>
-				<div class="inline width50 pad5 aligncenter">{{ 'Invoice'|t }}</div>
-			</a>
-		
-		</div>
-{% endif %}
-	</div>
-</div>
-{% include "CustomProjectBundle::footer.html.twig" %}
 

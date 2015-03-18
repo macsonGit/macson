@@ -135,6 +135,10 @@ class CommerceController extends DrufonyController
         );
 
         $registerForm = $this->_processRegisterForm($request);
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
            
         $loginForm = $this->_processLoginForm($request);
 	$products=CommerceUtils::getCartItemsAJAX();
@@ -155,6 +159,7 @@ class CommerceController extends DrufonyController
                                                     'mainContent' => 'DrufonyCoreBundle::viewCart.html.twig',
                                                     'breadCrumb' => $breadCrumb,
 						    'products'=>$products,
+						     'orders'=>$orders,
             					    'registerForm'  => $registerForm->createView(),
             					    'loginForm'     => $loginForm->createView(),
             					    'isLoginPath'   => FALSE,
@@ -285,6 +290,10 @@ class CommerceController extends DrufonyController
 
         $registerForm = $this->_processRegisterForm($request);
            
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $loginForm = $this->_processLoginForm($request);
 	$products=CommerceUtils::getCartItemsAJAX();
         $response->setContent($this->renderView('CustomProjectBundle::base-commerce.html.twig', array(
@@ -298,6 +307,7 @@ class CommerceController extends DrufonyController
             'checkoutMethodCompleted'=> CommerceUtils::existStep(CHECKOUT_METHOD),
             'breadCrumb'  => $breadCrumb,
 	    'products' => $products,
+	    'orders'=>$orders,
             'registerForm'  => $registerForm->createView(),
             'loginForm'     => $loginForm->createView(),
             'isLoginPath'   => FALSE,
@@ -417,6 +427,10 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $registerForm = $this->_processRegisterForm($request);
            
         $loginForm = $this->_processLoginForm($request);
@@ -434,6 +448,7 @@ class CommerceController extends DrufonyController
                                                 'checkoutStep' => BILLING_INFO_NAME,
                                                 'breadCrumb'  => $breadCrumb,
 						'products' => $products,
+						'orders'=>$orders,
             					'registerForm'  => $registerForm->createView(),
             					'loginForm'     => $loginForm->createView(),
             					'isLoginPath'   => FALSE,
@@ -538,6 +553,10 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $registerForm = $this->_processRegisterForm($request);
            
         $loginForm = $this->_processLoginForm($request);
@@ -554,6 +573,7 @@ class CommerceController extends DrufonyController
                                                 'checkoutStep' => SHIPPING_INFO_NAME,
                                                 'breadCrumb'  => $breadCrumb,
 						'products'=>$products,
+						'orders'=>$orders,
             					'registerForm'  => $registerForm->createView(),
             					'loginForm'     => $loginForm->createView(),
             					'isLoginPath'   => FALSE,
@@ -641,6 +661,10 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $registerForm = $this->_processRegisterForm($request);
            
         $loginForm = $this->_processLoginForm($request);
@@ -656,6 +680,7 @@ class CommerceController extends DrufonyController
                                                 'breadCrumb' => $breadCrumb,
 						'info' => $info,
 						'products' => $products,
+						 'orders'=>$orders,
             					'registerForm'  => $registerForm->createView(),
             					'loginForm'     => $loginForm->createView(),
             					'isLoginPath'   => FALSE,
@@ -728,7 +753,15 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
 	
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
 	$products=CommerceUtils::getCartItemsAJAX();
 
         $registerForm = $this->_processRegisterForm($request);
@@ -745,7 +778,9 @@ class CommerceController extends DrufonyController
                                                 'mainContent' => 'DrufonyCoreBundle::checkout_default_template.html.twig',
                                                 'checkoutStep' => SELECT_PAYMENT_METHOD_NAME,
                                                 'breadCrumb' => $breadCrumb,
+						'orders' => $orders,
 						'products' => $products,
+						'orders'=>$orders,
             					'registerForm'  => $registerForm->createView(),
             					'loginForm'     => $loginForm->createView(),
             					'isLoginPath'   => FALSE,
@@ -1032,6 +1067,10 @@ class CommerceController extends DrufonyController
           'ecommerce' => array( 'label' => 'Home', 'url' => 'commerce_home_path'),
         );
 
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
         $registerForm = $this->_processRegisterForm($request);
            
         $loginForm = $this->_processLoginForm($request);
@@ -1047,6 +1086,7 @@ class CommerceController extends DrufonyController
                                                       'checkoutStep'      => PAYMENT_METHOD_NAME,
                                                       'breadCrumb'        => $breadCrumb,
 						      'products'	  => $products,
+						      'orders'=>$orders,
             					      'registerForm'  => $registerForm->createView(),
             					      'loginForm'     => $loginForm->createView(),
             					      'isLoginPath'   => FALSE,
