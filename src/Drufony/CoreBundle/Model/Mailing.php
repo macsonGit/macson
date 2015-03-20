@@ -191,6 +191,7 @@ class Mailing {
             'lang'          => $user->getLang(),
             'username'      => $user->getUserName(),
             'uid'           => $uid,
+            'newsletter'    => $user->getNewsletter(),
         );
 
         return $customParams;

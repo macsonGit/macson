@@ -1264,7 +1264,7 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
              l(INFO, 'All checkout steps removed');
             
 	     Mailing::sendUserOrderCompletedEmail($user->getEmail(), $orderId, $payment['name']);
-            Mailing::sendManagementOrderCompletedEmail(COMMERCE_MANAGEMENT_EMAIL, $user->getEmail(), $orderId, $payment['name'], $payment['hash']);
+             Mailing::sendManagementOrderCompletedEmail(COMMERCE_MANAGEMENT_EMAIL, $user->getEmail(), $orderId, $payment['name'], $payment['hash']);
         }
 
         return $orderId;

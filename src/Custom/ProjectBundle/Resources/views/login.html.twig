@@ -12,18 +12,21 @@
 		<div class="sinEfectos oh pad15 hoverborder "> 
 			<a href="{{path('drufony_profile_edit',{'lang':lang})}}">{{'Edit your profile'|t}}</a>
 		</div>
+	{% if orders|length >0 %}
 		<div id="orderOption" class="sinEfectos oh pad15 hoverborder">
 			{{'Orders'|t}}
 		</div>
+	{% endif %}
 		<div class="sinEfectos oh pad15 hoverborder"> 
 			<a href="{{path('drufony_login_logout',{'lang':lang})}}">{{'Logout'|t}}</a>
 		</div>
 
 	</div>
-
+	
+	{% if orders|length >0 %}
 	<div id="orderList" class="mg-top20 border inline wd70 fs12 overflowy pad15">
-	{% for order in orders %}
-		{% if loop.first %}
+		{% for order in orders %}
+			{% if loop.first %}
 		<div class="row pad5">
 			<b>
 			<div class="cell  wd10 pad-horizontal10">{{ "Id"|t }} </div>
@@ -33,10 +36,10 @@
 			<div class="cell  wd10 pad-horizontal10"></div>
 			</b>
 		</div>
-		{% endif %}
-		{% set shippingcost=order.shippingValue %}
-		{% set total_product_no_vat=order.subtotal_with_vat %}
-		{% set total=order.total %}
+			{% endif %}
+			{% set shippingcost=order.shippingValue %}
+			{% set total_product_no_vat=order.subtotal_with_vat %}
+			{% set total=order.total %}
 		<div class="row pad5 hoverbggray sinEfectos">
 		<a href={{ path('drufony_user_order_list',{'id' : order.orderId, 'lang': lang} ) }}>
 			<div class="cell  wd10 pad-horizontal10">{{ order.orderId }}</div>
@@ -49,9 +52,10 @@
 				</a>
 			</div>
 		</div>
-	{% endfor %}
+		{% endfor %}
 	</div>
 
+	{% endif %}
 
 
 {% else  %}
@@ -121,8 +125,10 @@
 
 
 			{{ form_widget(registerForm.acceptTerms) }}
-			{{ registerForm.acceptTerms.vars.label | raw }}
-			<br><br>
+			{{ registerForm.acceptTerms.vars.label | raw }}<br>
+			{{ form_widget(registerForm.newsletter) }}
+			{{ registerForm.newsletter.vars.label | raw }}
+			<br>
 			<div class="wd100 mg-vertical10">
 			  {{ form_widget(registerForm.register, { 'attr': {'class': 'action-button' }}) }}
 			</div>

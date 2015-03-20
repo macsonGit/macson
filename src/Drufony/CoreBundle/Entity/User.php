@@ -16,6 +16,7 @@ use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\DBAL\DriverManager;
 use Drufony\CoreBundle\Model\Profile;
+use Drufony\CoreBundle\Model\Mailing;
 use Doctrine\ORM\Mapping as ORM;
 use Drufony\CoreBundle\Exception\UserNotSaved;
 use Drufony\CoreBundle\Exception\EmailNotFound;
@@ -156,6 +157,9 @@ class User implements UserInterface, \Serializable
      * @var Profile
      */
     private $profile;
+    
+
+    private $newsletter;
 
     /**
      * User constructor. Retrieves the user object by uid, or an empty user object instead.
@@ -251,6 +255,9 @@ class User implements UserInterface, \Serializable
         return $this->active;
     }
 
+    public function getNewsletter() {
+        return $this->active;
+    }
     /**
      * Checks if the instanced User is a valid user or an empty object.
      *
@@ -335,6 +342,7 @@ class User implements UserInterface, \Serializable
             $this->creationDate,
             $this->active,
             $this->roles,
+            $this->newsletter 
         ));
     }
 
@@ -355,7 +363,8 @@ class User implements UserInterface, \Serializable
             $this->language,
             $this->creationDate,
             $this->active,
-            $this->roles
+            $this->roles,
+            $this->newsletter
         ) = \json_decode($serialized);
     }
 
@@ -418,6 +427,7 @@ class User implements UserInterface, \Serializable
             $user['creationDate']  = date(DEFAULT_PUBLICATION_DATE_FORMAT);
             $user['active']        = USER_DEFAULT_STATUS;
             $user['lang']          = isset($userData['lang']) ? $userData['lang'] : DEFAULT_LANGUAGE;
+	    Mailing::sendRegisterEmail($user['email']);
             $inserted = $user['uid'] = db_insert('users', $user);
 
             if (!$inserted) {

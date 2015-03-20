@@ -30,6 +30,10 @@ class RegisterFormType extends AbstractType
                     'value' => TRUE,
                 ));
             }
+            $builder->add('newsletter', 'checkbox', array(
+                'label' => t('Sign up for newsletter'),
+                'required' => FALSE,
+            ));
             $builder->add('register', 'submit', array(
                 'label' => t('Register'),
             ));
