@@ -10,6 +10,7 @@ namespace Drufony\CoreBundle\Model;
 // Class dependencies
 use Drufony\CoreBundle\Entity\User;
 use Drufony\CoreBundle\Model\Order;
+use Drufony\CoreBundle\Model\Geo;
 
 /**
  * Provides methods for mailing to users. It defines all the system notifications.
@@ -86,6 +87,10 @@ class Mailing {
 
 	$customParams['orderInfo']= Order::getOrderInfo($orderId);
  
+	$customParams['billing_Info']=unserialize($customParams['orderInfo']['billingInfo']);
+	$customParams['shipping_Info']=unserialize($customParams['orderInfo']['shippingInfo']);
+	$customParams['shipping_Info']['country']=Geo::getCountryNamebyId($customParams['shipping_Info']['countryId']);
+
 	$customParams['cart']= Order::getProductsFromDB($orderId);
         
 	$subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));
@@ -101,6 +106,10 @@ class Mailing {
         $customParams['paymentHash'] = $paymentHash;
 
 	$customParams['orderInfo']= Order::getOrderInfo($orderId);
+	
+	$customParams['billing_Info']=unserialize($customParams['orderInfo']['billingInfo']);
+	$customParams['shipping_Info']=unserialize($customParams['orderInfo']['shippingInfo']);
+	$customParams['shipping_Info']['country']=Geo::getCountryNamebyId($customParams['shipping_Info']['countryId']);
  
 	$customParams['cart']= Order::getProductsFromDB($orderId);
         $subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));

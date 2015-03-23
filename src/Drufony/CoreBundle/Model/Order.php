@@ -102,7 +102,7 @@ class Order
     static public function getProductsFromDB($orderId) {
         $products = array();
 
-        $sql = 'SELECT quantity, varieties,title, sgu ';
+        $sql = 'SELECT quantity, varieties,title, sgu, pricePVP ';
         $sql .= 'FROM orders_by_product INNER JOIN product ON product.nid = orders_by_product.nid ';
         $sql .= 'WHERE orderId = ?';
 
