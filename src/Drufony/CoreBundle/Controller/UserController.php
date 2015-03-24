@@ -2,6 +2,7 @@
 
 namespace Drufony\CoreBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Custom\ProjectBundle\Model\Vocabulary; 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Form\FormError;
@@ -314,6 +315,19 @@ class UserController extends DrufonyController
         $loginForm = $this->_processLoginForm($request);
 
         $this->_processFBLogin($request);
+        
+	if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
+	} 
+	else {
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+    		$this->get('cache')->save('menu'.$lang, $menu);
+	}
+
+	//-------------------VARABLE MENU LIST
+
+
+        $menuList['selected']='';
+
 
 	if(isset($id)){
 		$orderProducts = CommerceUtils::getOrderProducts($id);
@@ -326,6 +340,7 @@ class UserController extends DrufonyController
             'mainContent'       => 'DrufonyCoreBundle::yourOrder.html.twig',
  	    'products'=>$products,
  	    'orders'=>$orders,
+	    'menu'=>$menu,
  	    'orderProducts'=>$orderProducts,            'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
             'registerForm'  => $registerForm->createView(),
             'loginForm'     => $loginForm->createView(),

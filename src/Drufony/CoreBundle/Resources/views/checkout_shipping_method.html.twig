@@ -10,63 +10,88 @@
             {{ form_errors(form.shipping) }}
             {{ form_widget(form.shipping) }}
         {% endif %}
-          <div class="borderBottom">
-            {% for item in progress.cartItems%}
-                <div class="height120">
-		    <div class="inline">
+          <div class="table wd90 borderBottom">
+		<div class="row height20">
+	    	    <div class="cell wd10"></div>
+	    	    <div class="wd20 cell"><b> {{'Units'|t}} </b></div>
+	    	    <div class="wd30 cell fs14"><b> {{'Product'|t}}</b></div>
+	    	    <div class="wd20 cell align-right"><b>{{ 'Price'|t}}</b> </div>
+		</div>
+        {% for item in progress.cartItems%}
+                <div class="row height120">
+		    <div class="cell wd10">
 		    	<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
 		    </div>
-                    <div class="wd20 inline verticalcenter120"> {{ item.count }}{{'u.'|t}}</div>
-                    <div class="wd50 inline align-left fs14 verticalcenter120"> {{ item.product.title }} </div>
-                    <div class="wd20 inline align-right verticalcenter120">
+                    <div class="wd20 cell verticalcenter120"> {{ item.count }}</div>
+                    <div class="wd30 cell  fs14 verticalcenter120"> {{ item.product.title }} </div>
+                    <div class="wd20 cell align-right verticalcenter120">
 			{{ (item.product.pricePVP*item.count) | round(0,'floor')}}<font size="1">,{{  (item.product.pricePVP*item.count)| decimals  }} €</font>
 		    </div>
                 </div>
-            {% endfor %}
-              {% set discountClarification = '' %}
-              {% if (progress.discount > 0 and progress.discountType == 1) %}
-                {% set discountClarification = '(' ~ progress.couponDiscount ~ '%' ~ ')'  %}
-              {% endif %}
-              <div class="wd100 height120 fs14">
-	      {% if progress.discount > 0 %}
-                <div class="inline align-right wd80">{{ "Disccount" | t }}:</div>
-                <div class="align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</div><br>
-	      {% endif %}
-                <div class="inline align-right wd80">{{ "Shipping cost" | t }}</div>
-                <div class="align-right fs14">
-			{{ shippingPrice | round(0,'floor')}}<font size="1">,{{  shippingPrice | decimals  }} €</font>
-		</div>
-		<div class="inline align-right wd80"><br><b>{{ "Total" | t }}</b></div>
-                <div class="align-right">
-			<b><br>{{ (progress.totalDiscounted + shippingPrice) | round(0,'floor')}}<font size="1">,{{  (progress.totalDiscounted + shippingPrice)| decimals  }} €</font></b><br><br>
-		</div>
-              </div>
-          </div>
-	<div class="borderBottom fs14">
-      {% if progress.shippingInfo is not empty %}
-      <div class="wd45 pad15 inline"><b>{{ 'Shipping Info'|t }} <a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a><br>
-{{progress.shippingInfo.name}}<br>
-{{progress.shippingInfo.address}}, {{progress.shippingInfo.city}}<br>	
-{{progress.shippingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}. <br>
-T: {{progress.shippingInfo.phone}}
-</div>
-{% endif %}
+        {% endfor %}
+ 
+       {% set discountClarification = '' %}
 
-{% if progress.billingInfo is not empty %}
+        {% if (progress.discount > 0 and progress.discountType == 1) %}
+        	{% set discountClarification = '(' ~ progress.couponDiscount ~ '%' ~ ')'  %}
+        {% endif %}
 
-<div class="pad15"><b>{{ 'Billing Info'|t }} <a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</b></a>
-<div>
-              {{progress.billingInfo.name}}<br>
-              {{progress.billingInfo.address}}, {{progress.billingInfo.city}}<br>	
-              {{progress.billingInfo.postalCode}}, {{progress.billingInfo.provinceName}}, {{progress.billingInfo.countryName}}. <br>
-            T: {{progress.billingInfo.phone}}
-          </div>
         </div>
-      {% endif %}
+
+        <div class="table wd90 borderBottom pad10">
+
+	{% if progress.discount > 0 %}
+              	<div class="row wd90 height20 fs14">
+                	<div class="cell align-right wd80">{{ "Disccount" | t }}:</div>
+                	<div class="cell align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</div><br>
+		</div>
+	{% endif %}
+              	<div class="row wd90 height20 fs14">
+                	<div class="cell align-right wd80">{{ "Shipping cost" | t }}</div>
+                	<div class="cell align-right fs14">
+				{{ shippingPrice | round(0,'floor')}}<font size="1">,{{  shippingPrice | decimals  }} €</font>
+			</div>
+		</div>
+              	<div class="row wd90 height20 fs14">
+			<div class="cell align-right wd80"><b>{{ "Total" | t }}</b></div>
+                	<div class="cell align-right">
+				<b>{{ (progress.totalDiscounted + shippingPrice) | round(0,'floor')}}<font size="1">,{{  (progress.totalDiscounted + shippingPrice)| decimals  }} €</font></b>
+			</div>
+		</div>
+          </div>
+	  <div class="wd90 fs14">
+	<br>
+
+	{% if progress.shippingInfo is not empty %}
+      		<div class="align-left pad10">
+			 <b><a class="underline" href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>{{'Edit' |t}}</a>
+			{{ 'Shipping Info'|t }}
+			</b>
+			{{progress.shippingInfo.name}}.<br> 
+			{{progress.shippingInfo.address}}, {{progress.shippingInfo.city}}.
+			{{progress.shippingInfo.postalCode}}, {{progress.shippingInfo.provinceName}}, {{progress.shippingInfo.countryName}}.
+			T: {{progress.shippingInfo.phone}}
+	   	</div>
+	{% endif %}
+
+	{% if progress.billingInfo is not empty %}
+
+		<div class="align-left pad10"><b>
+			<a class="underline" href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>{{'Edit' |t}}</a>
+			{{ 'Billing Info'|t }} 
+			</b>
+              		{{progress.billingInfo.name}}.
+              		{{progress.billingInfo.nif}}.<br>
+              		{{progress.billingInfo.address}}, {{progress.billingInfo.city}}.
+              		{{progress.billingInfo.postalCode}}, {{progress.billingInfo.provinceName}}, {{progress.billingInfo.countryName}}.
+            		T: {{progress.billingInfo.phone}}
+        	</div>
+      	{% endif %}	
+	<br>
 	</div><br>
 
       {% if progress.shippingMethod is not empty %}
-        <div class="filled">Shipping Method  <a class="underline" href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>{{'Edit' |t}}</a>
+        <div class="filled wd90">Shipping Method  <a class="underline" href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>{{'Edit' |t}}</a>
           <div>
             {{progress.shippingMethod.title}}
           </div>

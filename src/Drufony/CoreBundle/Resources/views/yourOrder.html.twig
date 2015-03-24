@@ -9,13 +9,18 @@
 	<div id="fotoRow">
 		<div class="foto">
 			{% include "CustomProjectBundle::login.html.twig" %}
+			{% include "CustomProjectBundle::menu.html.twig" %}
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
-     			<div class="contenido">
-				<h1>{{ "Thank you for your order."|t }}</h1>
-        			<p>{{'Your order has been received'}} 
-			</div>
 		</div>
 		<div class="foto">
+     			<div class="contenido mg-top20 mg-left20">
+				<br>
+				<br>
+				<br>
+				<h1>{{ "Thank you for your order."|t }}</h1>
+				<br>
+        			<p>{{'Your order has been received'}} 
+			</div>
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
 		<div class="foto">

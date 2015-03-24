@@ -46,8 +46,8 @@
 			<div class="cell  wd10 pad-horizontal10">{{ order.orderDate|date('d/m/y') }}</div>
 			<div class="cell  wd10 pad-horizontal10">{{ order.total|number_format(2) }} €</div>
 		</a>
-			<div class="cell  wd10 pad-horizontal10 ">
-				<a href={{ path('drufony_user_invoice',{'id' : order.orderId, 'lang': lang} ) }}>
+			<div class="cell underline wd10 pad-horizontal10">
+				<a  href={{ path('drufony_user_invoice',{'id' : order.orderId, 'lang': lang} ) }}>
 					<b>{{ 'Invoice'|t }}</b>
 				</a>
 			</div>

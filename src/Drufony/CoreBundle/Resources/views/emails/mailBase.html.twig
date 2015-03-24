@@ -1,7 +1,12 @@
 
 
-{% include "CustomProjectBundle::base.html.twig" %}
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>{{'Macson Order'|t }}</title>
+        <style></style>
+    </head>
 
 <body>  
 
@@ -12,4 +17,4 @@
                 <tr>
                     <td align="center" valign="top">
 
-<div class="center" id="logo"><img src='{{app.request.getSchemeAndHttpHost()  ~  asset('bundles/customproject/images/LogoMacson.png') }}'></div>
+<div><img src='{{app.request.getSchemeAndHttpHost()  ~  asset('bundles/customproject/images/LogoMacson.png') }}'></div>

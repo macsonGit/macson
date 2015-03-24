@@ -2,7 +2,9 @@
 {% include 'DrufonyCoreBundle::emails/mailBase.html.twig' %}
 
 
-
+<br>	
+<br>	
+<table>
 
 <p>{{ 'Hello'|t }},</p>
 <p>{{ 'The user @username order @orderId has been completed successfully and paid through @paymentPlataform with idetifier @paymentHash.'
@@ -11,65 +13,63 @@
 
 </p>
 
-<p> {{ 'Shipment Information'|t }}:</p>
+<p><b> {{ 'Shipment Information'|t }}:</b></p>
 
-<table width="100%">
 
-<tr>
-{{ 'Name' | t}}:{{ customParams.shipping_Info.name }}
-</tr>	
-<tr>
-{{ 'Adress' | t}}:
-</tr>
-<tr>
+{{ customParams.shipping_Info.name }}
+<br>	
 {{ customParams.shipping_Info.address }}
-</tr>	
-<tr>
+<br>	
 {{ customParams.shipping_Info.city }}.{{ customParams.billing_Info.province }}.{{ customParams.billing_Info.postalCode }}
-</tr>	
-<tr>
+<br>	
 {{ customParams.shipping_Info.country }}
-</tr>	
+<br>	
+<br>	
 
 </table>
 
-
 <table width="100%">
 <tr>
-	<td width="10%">{{'Units'|t}}</td>
-	<td width="20%">
-		{{ 'Reference'|t}}
+	<td width="50" align:"center"><b>{{'Units'|t}}</b></td>
+	<td width="100" align:"center">
+		<b>{{ 'Reference'|t}}</b>
 	</td>
-	<td width="40%">
-		{{ 'Product'|t}}
+	<td width="250" align:"center">
+		<b>{{ 'Product'|t}}</b>
 	</td>
-	<td width="10%">
-		{{ 'Size'|t}}</td>
+	<td width="80" align:"center">
+		<b>{{ 'Size'|t}}</b></td>
 	</td>
-	<td width="20%">
-		{{ 'Price'|t}}
+	<t align:"center">
+		<b>{{ 'Price'|t}}</b>
 	</td>
+
 </tr>
 {% for item in customParams.cart %}
 <tr>
-	<td>{{ item.quantity }}</td>
-	<td>
+	<td align:"center">{{ item.quantity }}</td>
+	<td align:"center">
 		{{ item.sgu  }}
 	</td>
-	<td>
+	<td align:"center">
 		{{ item.title }}
 	</td>
-	<td>{{ item.varieties }}</td>
-	<td>
-		{{ item.pricePVP | round(0,'floor')}}<font size="1">,{{ item.pricePVP | decimals  }} €</font>
+	<td align:"center">{{ item.varieties }}</td>
+	<td align:"center">
+		{{ item.pricePVP | round(0,'floor')}},{{ item.pricePVP | decimals  }} €
 	</td>
-</tr>
-<tr>
-{{'Shipping Cost'|t}}:{{ customParams.orderInfo.shippingValue }} €
 </tr>
 
 {% endfor %}
-
+<br>
+<br>
+</table>	
+<table width="100%">	
+<tr>
+<td  width="100%" align:"right">
+<b>{{'Shipping Cost'|t}}: </b>{{ customParams.orderInfo.shippingValue }} €
+</td>
+</tr>
 </table>	
 
 
