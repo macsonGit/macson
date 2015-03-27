@@ -133,10 +133,8 @@ class ProductController extends DrufonyController
         $numImages['im1'] = file_exists($path.$product->__get('sgu').'_1.jpg');
         $numImages['im2'] = file_exists($path.$product->__get('sgu').'_2.jpg');
         $numImages['im3'] = file_exists($path.$product->__get('sgu').'_3.jpg');
-	
 	$products=CommerceUtils::getCartItemsAJAX();
-
-	$response->setContent($this->renderView("CustomProjectBundle::${template}.html.twig", array(
+	$response->setContent($this->container->get('templating')->render("CustomProjectBundle::${template}.html.twig", array(
             'lang' => $lang,
             'contentData' => $product,
             'widget' => $widgets,

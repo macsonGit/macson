@@ -9,14 +9,19 @@ letter-spacing:1.1px;
 line-height:normal;
 }
 img {border:none;}
-html, body { height: 100%;text-align: center ;}
+html, body { text-align: center ;}
 ul { list-style-type:none; }
 #mascara { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 6; background-color: #000000; opacity: 0.9; filter: alpha(opacity=90);}
 #cerrar { position: absolute; right: 90px; top: 30px; width:80px; z-index: 7; color: white; cursor:pointer;}
 #header { position: fixed; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 20px; z-index:100;background-image:url('../images/menuBackground.png');}
 #header li {display:inline;cursor: pointer;}
+
+#header_mob { font-size:60px; position: relative; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 200px; z-index:100;}
+#header_mob li {display:inline;cursor: pointer;}
+
 #tipoPagina {color: white;}
 #portada {position: fixed;left:0px;top: 0px;z-index:0; width:100%;}
+#portada_mob {position: fixed;left:0px;top: 200px;z-index:0; width:100%;}
 .inlinedisplay { display:inline}
 .bgcolorgray{ background-color:#E6E6E6}
 .bgcolorblack{ background-color:black}
@@ -28,6 +33,7 @@ ul { list-style-type:none; }
 .bold-text {font-weight :bold}
 .texto{font-size: 12px; background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
 .tachado {text-decoration:line-through; font-size: 14px}
+.tachado_mob {text-decoration:line-through; font-size: 34px}
 .hidden {visibility:hidden}
 .ref {position:absolute; font-size: 15px; font-style:italic; bottom:8px; right:6px;}
 .inline { float:left; }
@@ -96,6 +102,7 @@ ul { list-style-type:none; }
 .cell { display: table-cell; vertical-align:middle}
 .fotoImg2 { position:absolute; top:0px;right:0px;}
 .fotoImg { position:absolute; top:0px;right:0px;}
+.fotoImgSingle { position:absolute; top:0px;right:0px;}
 .hoverborder:hover {border-style:solid;border-width:1px;border-color:gray}
 .hoverbggray:hover {background-color:#D8D8D8}
 #orderOption{cursor:pointer}
@@ -103,21 +110,22 @@ ul { list-style-type:none; }
 #titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal }
 #logo { position:relative;top: 40px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
-#menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
-#menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
+#contenedor1_mob{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
 #orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:45;background-color: white; }
 #login { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
 #carrito { position:absolute; top:0px; width:920px ;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
 .contenido{ position:absolute ;top:0px; width:640px; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}
 .contenido h2 { text-align:center; font-size:20px }
 .borrarArticulo {color:red; text-decoration:none;cursor: pointer;}
-#menu {height:380px;text-align: left;z-index:5;width:321px}
-#menu ul {height:380px;background-image:url('../images/menuBackground.png')}
+#menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
+#menu {text-align: left;z-index:5;width:321px}
+#menu ul {height:380px; background-image:url('../images/menuBackground.png')}
 #menu li:hover { color:black;cursor: pointer;}
 #menu a:link {text-decoration:none;color:black;}
 #menu a:visited {text-decoration:none; color:black;}
 #menu a:hover {text-decoration:none;color:black;}
 #menu a:active {text-decoration:none;color:black;}
+#menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
 #menuPortada {height:380px;text-align: left;z-index:5;width:321px}
 #menuPortada ul {height:380px}
 #menuPortada li:hover { color:black;cursor: pointer;}
@@ -126,22 +134,62 @@ ul { list-style-type:none; }
 #menuPortada a:hover {text-decoration:none;color:white;}
 #menuPortada a:active {text-decoration:none;color:white;}
 #menutitle{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
-#item1 {padding-left:10px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
-#item1.selected{color:black; font-weight:bold}
-#item2 {padding-left:20px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
-#item2.selected{color:black; font-weight:bold}
-#item3 { padding-left:35px; font-size: 14px; padding-top: 2px; padding-bottom: 2px; }
-#item3.selected{ font-weight:bold;}
-#item4 { padding-left:50px; font-size: 12px; padding-top: 2px; padding-bottom: 2px; }
-#item4.selected{font-weight:bold; color:black;}
+#menu_mob { position:relative; top:0px; padding: 0px;font-size: 16px ;color: white;width: 700px;text-align: left;z-index:4;}
+#menu_mob li:hover { color:black;cursor: pointer;}
+#menu_mob a:link {text-decoration:none;color:black;}
+#menu_mob a:visited {text-decoration:none; color:black;}
+#menu_mob a:hover {text-decoration:none;color:black;}
+#menu_mob a:active {text-decoration:none;color:black;}
+#menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
+#menuPortada_mob {height:380px;text-align: left;z-index:5;width:321px}
+#menuPortada_mob ul {height:380px}
+#menuPortada_mob li:hover { color:black;cursor: pointer;}
+#menuPortada_mob a:link {text-decoration:none;color:white;}
+#menuPortada_mob a:visited {text-decoration:none; color:white}
+#menuPortada_mob a:hover {text-decoration:none;color:white;}
+#menuPortada_mob a:active {text-decoration:none;color:white;}
+#menutitle_mob{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
+.item1 {padding-left:10px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
+.item1.selected{color:black; font-weight:bold}
+.item2 {padding-left:20px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
+.item2.selected{color:black; font-weight:bold}
+.item3 { padding-left:35px; font-size: 14px; padding-top: 2px; padding-bottom: 2px; }
+.item3.selected{ font-weight:bold;}
+.item4 { padding-left:50px; font-size: 12px; padding-top: 2px; padding-bottom: 2px; }
+.item4.selected{font-weight:bold; color:black;}
+.item1_mob {padding-left:10px;font-size: 38px; padding-top: 3px; padding-bottom: 3px;}
+.item1_mob.selected{color:black; font-weight:bold}
+.item2_mob {padding-left:20px;font-size: 38px; padding-top: 3px; padding-bottom: 3px;}
+.item2_mob.selected{color:black; font-weight:bold}
+.item3_mob { padding-left:35px; font-size: 36px; padding-top: 2px; padding-bottom: 2px; }
+.item3_mob.selected{ font-weight:bold;}
+.item4_mob { padding-left:50px; font-size: 34px; padding-top: 2px; padding-bottom: 2px; }
+.item4_mob.selected{font-weight:bold; color:black;}
 #zoomContainer {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
+.fotoA {}
+.fotoRow_mob { width:100% }
+.fotoRow_mob2 { width:320px }
 .foto { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
+.foto_mob { position:relative; top:3%; display: inline-block; width:700px; margin-top:15px;vertical-align:top;height:900px; }
+.foto_blank { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
+.foto_blank1 { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
+.foto_blank1_mob { position:relative; top:3%; display: inline-block; width:700px; vertical-align:top }
+.foto_blank_mob { position:relative; top:3%; display: inline-block; width:0px; visibility:hidden }
 .store { position:relative; margin-top:10px;display: inline-block; vertical-align: top;width:960px; height:40px; }
 .storeDummy { position:relative; ;display: inline-block; vertical-align: top;width:450px;  }
-.tagPrice {position:absolute; bottom:0px; background-repeat: repeat; height: 30px; width: 320px; line-height:30px; font-size: 20px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
-.tagName {position:absolute; bottom:0px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 320px; font-size: 14px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
-#tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
-#tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 320px; background-image:url('../images/menuBackground.png'); font-size: 20px ; font-style: bold;text-align: center;z-index:4}
+.tagPrice {position:absolute; bottom:0px; background-repeat: repeat; height: 30px; width: 100%; line-height:30px; font-size: 20px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
+.tagName {position:absolute; bottom:0px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 100%; font-size: 14px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
+.tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
+.tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 100%; background-image:url('../images/menuBackground.png'); font-size: 20px ; font-style: bold;text-align: center;z-index:4}
+.tagPrice_mob {position:absolute; bottom:0px; background-repeat: repeat; height: 90px; width: 100%; line-height:90px; font-size: 40px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
+.tagName_mob {position:absolute; bottom:0px;  line-height:90px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 90px; width: 100%; font-size: 40px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
+.tagPriceProducto_mob {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
+.tagAgotado_mob {background-color: red; color:white; padding-top:6px;position:absolute; bottom:450px; background-repeat: repeat; line-height:90px;height: 90px; width: 100%; background-image:url('../images/menuBackground.png'); font-size: 40px ; font-style: bold;text-align: center;z-index:4}
+
+
+.precioDecimal_mob {font-size:4}
+.precioDecimal_mob {font-size:28px}
+
 #infoStore {position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 315px; background-image:url('../images/menuBackground.png'); font-size: 12px ;text-align: center;z-index:4}
 #infoPanel {position: absolute; top:0px;width:310px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
 #cuidados {cursor: pointer;}

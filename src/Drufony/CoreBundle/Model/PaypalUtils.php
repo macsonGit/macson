@@ -126,6 +126,7 @@ class PaypalUtils
         $redirectUrls->setReturnUrl($router->generate('drufony_payment_paypal_success', array('lang' => getLang()), true))
             ->setCancelUrl($router->generate('drufony_payment_paypal_error', array('lang' => getLang()), true));
 
+
         $payment = new Payment();
         $payment->setIntent("sale")
             ->setPayer($payer)
@@ -134,6 +135,7 @@ class PaypalUtils
 
         try {
             $payment->create($apiContext);
+
         } catch (PayPal\Exception\PPConnectionException $ex) {
             l(ERROR, "Exception: " . $ex->getMessage());
             throw new \Exception($ex->getMessage);

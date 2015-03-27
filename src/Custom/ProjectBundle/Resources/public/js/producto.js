@@ -1,8 +1,93 @@
 
 $(document).ready(function(){
 
+	mobile=false;
+
+	var ancho=screen.width;
+
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+
+		if(ancho>700){
+
+ 		var mobile=true;
+		$('body').css({'letter-spacing': '11px'});
+		$('.fotoA').hide();
+		$("#portada").attr('id', 'portada_mob');
+		$("#menu").attr('id', 'menu_mob');
+		$("#header").attr('id', 'header_mob');
+		$("#logo").attr('id', 'logo_mob');
+		$(".tagPriceProducto").attr('id', 'tagPriceProducto_mob');
+		$(".tagPrice").attr('class', 'tagPrice_mob');
+		$(".tagName").attr('class', 'tagName_mob');
+		$(".tagName_mob").hide();
+		$(".tagAgotado").attr('class', 'tagAgotado_mob');
+		$(".item1").attr('class', 'item1_mob');
+		$(".item2").attr('class', 'item2_mob');
+		$(".item3").attr('class', 'item3_mob');
+		$(".item4").attr('class', 'item4_mob');
+		$(".foto_blank").attr('class', 'foto_blank_mob');
+		$(".foto_blank1").attr('class', 'foto_blank1_mob');
+		$(".fotoRow").attr('class', 'fotoRow_mob');
+		$(".foto").attr('class', 'foto_mob');
+		$(".precioDecimal").attr('class', 'precioDecimal_mob');
+		$(".tachado").attr('class', 'tachado_mob');
+		$("#footer").hide();
+		$("#menuImg").remove();
+		$(".foto_blank_mob").hide();
 
 
+		
+
+
+    		var str = $("#logoImg").attr('src');
+		$("#logoImg").attr("src",str.replace(".png","_mob.png"));
+
+
+		$('.fotoA').each(function(){
+    			var str = $(this).attr('src');
+			$(this).attr("src",str.replace("Standard","Original"));
+		});
+
+
+		$('.fotoA').show();
+
+		}
+		else{
+
+
+		$('body').css({'letter-spacing': '5px'});
+		$("#portada").attr('id', 'portada_mob2');
+		$("#menu").attr('id', 'menu_mob2');
+		$("#header").attr('id', 'header_mob2');
+		$(".tagPriceProducto").attr('id', 'tagPriceProducto_mob2');
+		$(".tagPrice").attr('class', 'tagPrice_mob2');
+		$(".tagName").attr('class', 'tagName_mob2');
+		$(".tagName_mob").hide();
+		$(".tagAgotado").attr('class', 'tagAgotado_mob2');
+		$(".item1").attr('class', 'item1_mob2');
+		$(".item2").attr('class', 'item2_mob2');
+		$(".item3").attr('class', 'item3_mob2');
+		$(".item4").attr('class', 'item4_mob2');
+		$(".fotoRow").attr('class', 'fotoRow_mob2');
+		$(".precioDecimal").attr('class', 'precioDecimal_mob2');
+		$(".tachado").attr('class', 'tachado_mob2');
+		$("#footer").hide();
+		$("#menuImg").remove();
+		$(".foto_blank_mob").hide();
+
+
+		
+
+
+
+
+
+		}
+
+	}
+
+	var timer;
+	var hoverdelay = 200;
 
       	var target = $("#target");
       	if (target.length) {
@@ -321,13 +406,18 @@ $(document).ready(function(){
 	);	
 
 	$(".listFooter").hover(
-		function shiftItem(){
+		function (){
 			position=$(this).position();
 			desplega=$(this).find(".desplegaFooter");
-			desplega.show(200);
-			desplega.css("left",position.left);
+			timer = setTimeout(function() {
+				desplega.show(200);
+				desplega.css("left",position.left);
+ 			}
+			, hoverdelay);
+
 		},
-		function shiftItem(){
+		function (){
+			clearTimeout(timer);
 			desplega=$(this).find(".desplegaFooter");
 			desplega.hide(200);
 		}
@@ -336,96 +426,113 @@ $(document).ready(function(){
 	var native_width = 0;
 	var native_height = 0;
 
-
+	var timeoutid = 0;
+	var este= $(this);
 	
 	//Now the mousemove function
+
+
 	$(".magnify").mousemove(function(e){
 
-		if($(this).attr('id' )=="foto1"){
+
+    		if (timeoutid) {
+			clearTimeout(timeoutid);
+			timeoutid = 0;
+		}
+
+		var idattr = $(this).attr('id' ); 
+		var magnify_offset = $(this).offset();
+
+		var container =$(this);
+		var grande =$(this).find(".large");
+		var peque =$(this).find(".small");
+	
+			if(idattr=="foto1"){
 				urlImage=urlImg1;
-	    		if(showMenu){
-				return true;
-			}	
-		}
-		if($(this).attr('id' )=="foto2"){
-			urlImage=urlImg2;	
-		
-		}
-		if($(this).attr('id' )=="foto3"){
-	    		if(showPanel){
-				return true;
-			}	
-			urlImage=urlImg3;	
-		
-		}
-	    	if(showMascara){
-			return true;
-		}	
-
-		$(this).find(".large").css('background','url('+urlImage+') no-repeat');
-		//When the user hovers on the image, the script will first calculate
-		//the native dimensions if they don't exist. Only after the native dimensions
-		//are available, the script will show the zoomed version.
-		native_width = 700;
-		native_height = 900;
-		if(!native_width && !native_height)
-		{
-			//This will create a new image object with the same image as that in .small
-			//We cannot directly get the dimensions from .small because of the 
-			//width specified to 200px in the html. To get the actual dimensions we have
-			//created this image object.
-			var image_object = new Image();
-
-
-			image_object.src = $(this).find(".small").attr("src");
+				if(showMenu){
+					return true;
+				}	
+			}
+			if(idattr=="foto2"){
+				urlImage=urlImg2;	
 			
-			//This code is wrapped in the .load function which is important.
-			//width and height of the object would return 0 if accessed before 
-			//the image gets loaded.
-			native_width = image_object.width;
-			native_height = image_object.height;
-		}
-		else
-		{
-			//x/y coordinates of the mouse
-			//This is the position of .magnify with respect to the document.
-			var magnify_offset = $(this).offset();
-			//We will deduct the positions of .magnify from the mouse positions with
-			//respect to the document to get the mouse positions with respect to the 
-			//container(.magnify)
-			var mx = e.pageX - magnify_offset.left;
-			var my = e.pageY - magnify_offset.top;
+			}
+			if(idattr=="foto3"){
+				if(showPanel){
+					return true;
+				}	
+				urlImage=urlImg3;	
 			
-			//Finally the code to fade out the glass if the mouse is outside the container
-			if(mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0)
+			}
+			if(showMascara){
+				return true;
+			}
+
+			
+
+			grande.css('background','url('+urlImage+') no-repeat');
+			//When the user hovers on the image, the script will first calculate
+			//the native dimensions if they don't exist. Only after the native dimensions
+			//are available, the script will show the zoomed version.
+			native_width = 700;
+			native_height = 900;
+			if(!native_width && !native_height)
 			{
-				$(this).find(".large").fadeIn(100);
+				//This will create a new image object with the same image as that in .small
+				//We cannot directly get the dimensions from .small because of the 
+				//width specified to 200px in the html. To get the actual dimensions we have
+				//created this image object.
+				var image_object = new Image();
+
+
+				image_object.src = peque.attr("src");
+				
+				//This code is wrapped in the .load function which is important.
+				//width and height of the object would return 0 if accessed before 
+				//the image gets loaded.
+				native_width = image_object.width;
+				native_height = image_object.height;
 			}
 			else
 			{
-				$(this).find(".large").fadeOut(100);
-			}
-			if($(this).find(".large").is(":visible"))
-			{
-				//The background position of .large will be changed according to the position
-				//of the mouse over the .small image. So we will get the ratio of the pixel
-				//under the mouse pointer with respect to the image and use that to position the 
-				//large image inside the magnifying glass
-				var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
-				var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
-				var bgp = rx + "px " + ry + "px";
+				//x/y coordinates of the mouse
+				//This is the position of .magnify with respect to the document.
+				//We will deduct the positions of .magnify from the mouse positions with
+				//respect to the document to get the mouse positions with respect to the 
+				//container(.magnify)
+				var mx = e.pageX - magnify_offset.left;
+				var my = e.pageY - magnify_offset.top;
 				
-				//Time to move the magnifying glass with the mouse
-				var px = mx - $(this).find(".large").width()/2;
-				var py = my - $(this).find(".large").height()/2;
-				//Now the glass moves with the mouse
-				//The logic is to deduct half of the glass's width and height from the 
-				//mouse coordinates to place it with its center at the mouse coordinates
-				
-				//If you hover on the image now, you should see the magnifying glass in action
-				$(this).find(".large").css({left: px, top: py, backgroundPosition: bgp});
+				//Finally the code to fade out the glass if the mouse is outside the container
+				if(mx < container.width() && my < container.height() && mx > 0 && my > 0)
+				{
+					grande.fadeIn(100);
+				}
+				else
+				{
+					grande.fadeOut(100);
+				}
+				if(grande.is(":visible"))
+				{
+					//The background position of .large will be changed according to the position
+					//of the mouse over the .small image. So we will get the ratio of the pixel
+					//under the mouse pointer with respect to the image and use that to position the 
+					//large image inside the magnifying glass
+					var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
+					var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
+					var bgp = rx + "px " + ry + "px";
+					
+					//Time to move the magnifying glass with the mouse
+					var px = mx - grande.width()/2;
+					var py = my - grande.height()/2;
+					//Now the glass moves with the mouse
+					//The logic is to deduct half of the glass's width and height from the 
+					//mouse coordinates to place it with its center at the mouse coordinates
+					
+					//If you hover on the image now, you should see the magnifying glass in action
+					grande.css({left: px, top: py, backgroundPosition: bgp});
+				}
 			}
-		}
 	})
 
 });

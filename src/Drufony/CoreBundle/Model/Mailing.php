@@ -29,7 +29,7 @@ class Mailing {
     static public function sendRegisterEmail($email) {
         $customParams = self::_getUserEmailParams($email);
         $params     = array();
-        $subject    = t('Welcome', $params, $customParams['lang']);
+        $subject    = t('Macson. Welcome', $params, $customParams['lang']);
         $template   = 'email-user-register.html.twig';
 
         self::sendMail($email, $subject, $template, $customParams);
@@ -45,7 +45,7 @@ class Mailing {
         $customParams['link'] = $forgotPasswordLink;
 
         $params     = array();
-        $subject    = t('Password recovery', $params, $customParams['lang']);
+        $subject    = t('Macson. Password recovery', $params, $customParams['lang']);
         $template   = 'email-password-recovery.html.twig';
 
         self::sendMail($email, $subject, $template, $customParams);
@@ -93,7 +93,7 @@ class Mailing {
 
 	$customParams['cart']= Order::getProductsFromDB($orderId);
         
-	$subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));
+	$subject = t('Macson. Order @orderId, completed successfully', array('@orderId'=> $orderId));
         $template = 'email-user-order-completed.html.twig';
 
         self::sendMail($email, $subject, $template, $customParams);
@@ -112,7 +112,7 @@ class Mailing {
 	$customParams['shipping_Info']['country']=Geo::getCountryNamebyId($customParams['shipping_Info']['countryId']);
  
 	$customParams['cart']= Order::getProductsFromDB($orderId);
-        $subject = t('Order @orderId, completed successfully', array('@orderId'=> $orderId));
+        $subject = t('Macson. Order @orderId, completed successfully', array('@orderId'=> $orderId));
         $template = 'email-management-order-completed.html.twig';
 
         self::sendMail($email, $subject, $template, $customParams);

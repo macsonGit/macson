@@ -2,12 +2,12 @@
 
 <div id="tipoPagina">cat</div>
 <div id="contenedor1">	
-	<div id="fotoRow">	
-		<div class="foto">
+	<div class="fotoRow">	
+		<div class="foto_blank1">
 
 {% include "CustomProjectBundle::login.html.twig" %}			
-{% include "CustomProjectBundle::carritoResumen.html.twig" %}		
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}	
+			<img id="menuImg" src='{{ asset('bundles/customproject/images/espacio.png') }}'>
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
 {% for product in ball %}
@@ -24,54 +24,54 @@
 	{% if asset_exists( "bundles/customproject/images/Product/Standard/"~product.sgu~"_2.jpg" ) %}
 			<div class="fotoImg2">
 				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
-					<img src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}" alt="{{ product.title }} - {{'Backside'|t}}" />
+					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}" alt="{{ product.title }} - {{'Backside'|t}}" />
 				</a>
 			</div>
 			<div class="fotoImg">
 				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
-					<img src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
+					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
 				</a>
  			</div>
 	{% else %}
-			<div>
+			<div class="fotoImgSingle">
 				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
-					<img src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
+					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
 				</a>
  			</div>
 	{% endif %}
 					
 	{% if product.value == '00_AGOTADO'%}		
-			<div id="tagAgotado">{{'OUT OF STOCK'|t}}</div>
+			<div class="tagAgotado">{{'OUT OF STOCK'|t}}</div>
 	{% endif %}
 			<div class="tagName">
 				{{product.title}}
 			</div>
 			<div class="tagPrice">
 	{% if product.pricePVP == product.firstPrice %}		
-				{{ product.pricePVP | round(0,'floor')}}<font size="2">,{{ product.pricePVP | decimals  }} €</font>
+				{{ product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>
 	{% else %}
-			<a class="tachado">{{ product.firstPrice  | round(2,'common')}} €</a>    {{product.pricePVP | round(0,'floor')}}<font size="2">,{{ product.pricePVP | decimals  }} €</font>
+			<a class="tachado">{{ product.firstPrice  | round(2,'common')}} €</a>    {{product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>
 	{%endif%}
 			</div>
 		</div>
 	{% if loop.last %}
 		{%if (loop.index)%3 == 0 %}
-		<div class="foto">
+		<div class="foto_blank">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 		</div>
-		<div class="foto">
+		<div class="foto_blank">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
 		</div>		
 		{% endif %}
 		{%if (loop.index)%3 == 1 %}	
-		<div class="foto">
+		<div class="foto_blank">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 		</div>	
 		{% endif %}
 	{% endif %}	
 	{%if (loop.index-2)%3 == 0 %}
 	</div>
-	<div id="fotoRow">
+	<div class="fotoRow">
 	{% endif %}			
 {% endfor %}
 	</div>	
