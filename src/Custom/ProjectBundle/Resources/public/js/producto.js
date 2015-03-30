@@ -5,82 +5,53 @@ $(document).ready(function(){
 
 	var ancho=screen.width;
 
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
-		if(ancho>700){
+	$("#tallas_mob").hide();
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
 
  		var mobile=true;
-		$('body').css({'letter-spacing': '11px'});
-		$('.fotoA').hide();
+		$('body').css({'letter-spacing': '3px'});
+		$('body').css({'min-width': '200px'});
 		$("#portada").attr('id', 'portada_mob');
 		$("#menu").attr('id', 'menu_mob');
+		$("#tallas").hide();
+		$("#tallas_mob").show();
+		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
+		$(".loginStyle").attr('class', 'loginStyle_mob');
+		$("#infoPanel").attr('id', 'infoPanel_mob');
 		$("#logo").attr('id', 'logo_mob');
-		$(".tagPriceProducto").attr('id', 'tagPriceProducto_mob');
-		$(".tagPrice").attr('class', 'tagPrice_mob');
-		$(".tagName").attr('class', 'tagName_mob');
-		$(".tagName_mob").hide();
-		$(".tagAgotado").attr('class', 'tagAgotado_mob');
+		$("#tallas_mob").css({'letter-spacing':'1.5px'});
+		$("#tituloVolver").attr('id', 'tituloVolver_mob');
+		$("#carrito").attr('width', '100%');
+		$("#login").attr('width', '100%');
+		$(".tagName").hide();
 		$(".item1").attr('class', 'item1_mob');
 		$(".item2").attr('class', 'item2_mob');
 		$(".item3").attr('class', 'item3_mob');
 		$(".item4").attr('class', 'item4_mob');
-		$(".foto_blank").attr('class', 'foto_blank_mob');
-		$(".foto_blank1").attr('class', 'foto_blank1_mob');
-		$(".fotoRow").attr('class', 'fotoRow_mob');
+		$(".fotoImg").attr('class', 'fotoImg_mob');
 		$(".foto").attr('class', 'foto_mob');
+		$(".f1masgrande").attr('class', 'fotoProd_mob f1masgrande_mob');
+		$(".f1masgrande_blank").attr('class', 'foto_blank f1masgrande_mob');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
-		$(".tachado").attr('class', 'tachado_mob');
 		$("#footer").hide();
+		$(".fotoImage2").hide();
+		$("#masInfo").hide();
 		$("#menuImg").remove();
-		$(".foto_blank_mob").hide();
+		$("#tituloCat").remove();
+		$(".foto_blank").hide();
+		$(".large").hide();
 
 
-		
+		if($("#tipoPagina").text() == 'prod1'){
 
-
-    		var str = $("#logoImg").attr('src');
-		$("#logoImg").attr("src",str.replace(".png","_mob.png"));
-
-
-		$('.fotoA').each(function(){
-    			var str = $(this).attr('src');
-			$(this).attr("src",str.replace("Standard","Original"));
-		});
-
-
-		$('.fotoA').show();
+			$("#foto1").css({'height':'200px'});
 
 		}
-		else{
+		if($("#tipoPagina").text() == 'prod2'){
 
-
-		$('body').css({'letter-spacing': '5px'});
-		$("#portada").attr('id', 'portada_mob2');
-		$("#menu").attr('id', 'menu_mob2');
-		$("#header").attr('id', 'header_mob2');
-		$(".tagPriceProducto").attr('id', 'tagPriceProducto_mob2');
-		$(".tagPrice").attr('class', 'tagPrice_mob2');
-		$(".tagName").attr('class', 'tagName_mob2');
-		$(".tagName_mob").hide();
-		$(".tagAgotado").attr('class', 'tagAgotado_mob2');
-		$(".item1").attr('class', 'item1_mob2');
-		$(".item2").attr('class', 'item2_mob2');
-		$(".item3").attr('class', 'item3_mob2');
-		$(".item4").attr('class', 'item4_mob2');
-		$(".fotoRow").attr('class', 'fotoRow_mob2');
-		$(".precioDecimal").attr('class', 'precioDecimal_mob2');
-		$(".tachado").attr('class', 'tachado_mob2');
-		$("#footer").hide();
-		$("#menuImg").remove();
-		$(".foto_blank_mob").hide();
-
-
-		
-
-
-
-
+			$("#foto1").css({'height':'200px'});
 
 		}
 
@@ -102,16 +73,18 @@ $(document).ready(function(){
 	});
 
 	$("#infoPanel").hide();
+	$("#tituloVolver").hide();
 	$('#zoomContainer').hide();
 	$("#mascara").hide();
 	$("#loading").hide();
 	$("#contenedor1").css('visibility','visible');
+	$("#contenedor1_mob").css('visibility','visible');
 	$("#cuidadosPanel").hide();
 	$(".novedad").hide();
 	$("#orderList").hide();
 		
-		$("#login").hide();
-		$("#carrito").hide();
+	$("#login").hide();
+	$("#carrito").hide();
 
 
 	
@@ -147,6 +120,21 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#boton1_mov").click(  
+		function addItem(){
+			ope='add';
+			//var route = "{{ path('macson_chart', { 'pid': 'PLACEHOLDER1' , 'vid':'PLACEHOLDER2' }) }}";
+			if (sizeSelected==1){
+				
+				showMascara=true;
+				opeItem(ope,product,variety);
+			}
+			else{
+				alert("Selecciona Talla");
+			}
+
+		}
+	);
 	$("#listaCarritoResumen").on('click','.borrarArticulo',  
 		function removeItem(){
 			ope='remove';
@@ -343,6 +331,7 @@ $(document).ready(function(){
 	if($("#tipoPagina").text() == 'prod1'){
 		$("#infoPanel").show();
 		$("#menu ul").show();
+		$("#menu_mob").hide();
 		$("#menu ul").css('background-image', 'none');
 		$("#tituloCat").text("");
 		$("#masInfo").text("");
@@ -353,6 +342,7 @@ $(document).ready(function(){
 		$("#infoPanel").hide();
 		$("#masInfo").text("");		
 		$("#menu ul").show();
+		$("#menu_mob").hide();
 		$("#menu ul").css('background-image', 'none');
 		$("#tituloCat").text("");
 		showMenu=false;
@@ -360,6 +350,7 @@ $(document).ready(function(){
 
 	if($("#tipoPagina").text() == 'prod3'){
 
+		$("#menu_mob").hide();
 		$("#menu ul").hide();
 		showMenu=false;
 

@@ -48,43 +48,17 @@
 			<div id="tipoPagina">prod{{ tipoPag }}</div>
 <div id="contenedor1">	
 	<div id="fotoRow">
-		<div id="foto1" class="foto magnify">
+		<div id="foto1" class="fotoProd f1masgrande  magnify">
 {% include "CustomProjectBundle::login.html.twig" %}
 {% if 'OUTLET' in contentData.brand %}
 {% set outlet=true %}
 {% endif %}		
 {% include "CustomProjectBundle::menu.html.twig" %}
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
-			<div id="tallas">
-				<div class="h2 inline bold-text">{{contentData.title}} &nbsp;&nbsp; | &nbsp;&nbsp;       </div> 
-				<ul id="listaTallas" class="inline">
-{%if contentData.varieties[0].value!= '00_AGOTADO'%}
-	{% for size in contentData.varieties if size.stock > 0 %}	
-		{%if loop.first%}
-			{%if contentData.varieties|length > 1%}
-					<li>{{'Select Size'|t}}:</li>
-			{% else %}
-					<li>{{'Only available in size'|t}}:</li>
-			{% endif %}
-		{%endif%}			
-					<li class="itemTalla">{{size.value}}</li> |							
-	{% endfor %}
-{% else %}
-	{{ 'OUT OF STOCK'|t }}
-
-{% endif %}
-				</ul>		
-				<div id="tagPriceProducto" class="inline bold-text">
-{% if contentData.pricePVP == contentData.firstPrice%}		
-					{{ contentData.pricePVP | round (0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font>
-{% else %}
-					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font> 
-{%endif%}
-				</div>			
-				<div id="buyBoton" class="inline">								
-					<button id="boton1" class="button bold-text">{{'Buy'|t}}</button>		
-				</div>
-			</div>
+{% include "CustomProjectBundle::tallas.html.twig" %}		
+			<div class="sinEfectos" id="tituloVolver">
+				<a  href="javascript:history.back()"> {{ "back" | t}}</a>
+			</div>	
 			<div id="tituloCat">
 				+ {{ "MENU" | t}}
 			</div>	
@@ -95,12 +69,19 @@
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 {% endif %}	
 		</div>
-		<div id="foto2" class="foto magnify">
+		<div id="foto2" class="fotoProd magnify">
 			<div class="large">{{'Click to open'|t}}</div>
 			<img class="fotoImg2 small"  alt={{contentData.title}} src='{{ image2 }}'>
 		</div>
-		<div id="foto3" class="foto magnify">
+		<div id="foto3" class="fotoProd magnify">
+{% if tipoPag==1 %}
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+{% else %}
+			<div class="large">{{'Click to open'|t}}</div>
+			<img class="fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
+{% endif %}	
 			<div id="infoPanel" class="pad5 border">
+				<div class="ref">ref. {{contentData.__get('sgu')}}</div>
 				<div class="texto borderBottom">{{contentData.body}}</div>
 				<div class="height3"></div>	
 				<div class="texto borderBottom pad5 borderBottom">{{contentData.color}}</div>
@@ -114,14 +95,7 @@
 					<div class="height3"></div>	
 					<img alt="{{'Cares'|t}}" src='{{ asset('bundles/customproject/images/Cares/cuidado'~contentData.cares~'.jpg') }}'>
 				</div>
-				<div class="ref">ref. {{contentData.__get('sgu')}}</div>
 			</div>	
-{% if tipoPag==1 %}
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
-{% else %}
-			<div class="large">{{'Click to open'|t}}</div>
-			<img class="fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
-{% endif %}	
 			<div id="titulo">
 			<div id="masInfo">PRODUCT INFO +</div>  	
 			</div>		

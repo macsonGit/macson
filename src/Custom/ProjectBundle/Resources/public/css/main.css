@@ -16,10 +16,10 @@ ul { list-style-type:none; }
 #header { position: fixed; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 20px; z-index:100;background-image:url('../images/menuBackground.png');}
 #header li {display:inline;cursor: pointer;}
 
-#header_mob { font-size:60px; position: relative; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 200px; z-index:100;}
+#header_mob { font-size:18px;  width: 100%; left:0px;top: 0px; padding: 10px; z-index:100;border-style:solid;border-width:1px;border-color:gray }
 #header_mob li {display:inline;cursor: pointer;}
 
-#tipoPagina {color: white;}
+#tipoPagina {color: white;visibility:hidden}
 #portada {position: fixed;left:0px;top: 0px;z-index:0; width:100%;}
 #portada_mob {position: fixed;left:0px;top: 200px;z-index:0; width:100%;}
 .inlinedisplay { display:inline}
@@ -33,9 +33,8 @@ ul { list-style-type:none; }
 .bold-text {font-weight :bold}
 .texto{font-size: 12px; background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
 .tachado {text-decoration:line-through; font-size: 14px}
-.tachado_mob {text-decoration:line-through; font-size: 34px}
 .hidden {visibility:hidden}
-.ref {position:absolute; font-size: 15px; font-style:italic; bottom:8px; right:6px;}
+.ref { font-size: 15px; font-style:italic; text-align:right;z-index:10}
 .inline { float:left; }
 .display-inline { display:inline; }
 .noinline { float:none; }
@@ -100,24 +99,28 @@ ul { list-style-type:none; }
 .table{display: table;}
 .row{ display: table-row; }
 .cell { display: table-cell; vertical-align:middle}
-.fotoImg2 { position:absolute; top:0px;right:0px;}
+.fotoImage2 { position:absolute; top:0px;right:0px;}
 .fotoImg { position:absolute; top:0px;right:0px;}
+.fotoImg_mob { position:absolute; top:0px;right:0px;}
 .fotoImgSingle { position:absolute; top:0px;right:0px;}
 .hoverborder:hover {border-style:solid;border-width:1px;border-color:gray}
 .hoverbggray:hover {background-color:#D8D8D8}
 #orderOption{cursor:pointer}
 #orderList{line-height:25px; height: 320px }
 #titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal }
-#logo { position:relative;top: 40px;  height:100px;z-index:1 }
+#logo { position:relative;top: 20px;  height:100px;z-index:1 }
 #contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
-#contenedor1_mob{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
+#contenedor1_mob{ position:relative;top:0px;width:100%; margin-bottom:200px;visibility: hidden;}
 #orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:45;background-color: white; }
-#login { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
+.loginStyle { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
+.loginStyle_mob { position:absolute; top:0px; display: inline-block; width:100%; height:500px; color:black;top:0px;font-size: 14px ;text-align: left;z-index:50;background-color: white; }
 #carrito { position:absolute; top:0px; width:920px ;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
+#carrito_mob { position:absolute; top:0px; width:100% ;top:0px;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
 .contenido{ position:absolute ;top:0px; width:640px; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}
+.contenido_mob{ position:absolute ;top:0px; width:100%; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}
 .contenido h2 { text-align:center; font-size:20px }
 .borrarArticulo {color:red; text-decoration:none;cursor: pointer;}
-#menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
+#menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;height:400px}
 #menu {text-align: left;z-index:5;width:321px}
 #menu ul {height:380px; background-image:url('../images/menuBackground.png')}
 #menu li:hover { color:black;cursor: pointer;}
@@ -134,14 +137,14 @@ ul { list-style-type:none; }
 #menuPortada a:hover {text-decoration:none;color:white;}
 #menuPortada a:active {text-decoration:none;color:white;}
 #menutitle{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
-#menu_mob { position:relative; top:0px; padding: 0px;font-size: 16px ;color: white;width: 700px;text-align: left;z-index:4;}
+#menu_mob { position:relative; top:0px; padding: 0px;font-size: 16px ;color: white;width: 100%;text-align: left;z-index:4;}
 #menu_mob li:hover { color:black;cursor: pointer;}
 #menu_mob a:link {text-decoration:none;color:black;}
 #menu_mob a:visited {text-decoration:none; color:black;}
 #menu_mob a:hover {text-decoration:none;color:black;}
 #menu_mob a:active {text-decoration:none;color:black;}
-#menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
-#menuPortada_mob {height:380px;text-align: left;z-index:5;width:321px}
+#menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 12px ;color: white;width: 320px;text-align: left;z-index:4;}
+#menuPortada_mob {height:380px;text-align: left;z-index:5;width:100%}
 #menuPortada_mob ul {height:380px}
 #menuPortada_mob li:hover { color:black;cursor: pointer;}
 #menuPortada_mob a:link {text-decoration:none;color:white;}
@@ -157,48 +160,49 @@ ul { list-style-type:none; }
 .item3.selected{ font-weight:bold;}
 .item4 { padding-left:50px; font-size: 12px; padding-top: 2px; padding-bottom: 2px; }
 .item4.selected{font-weight:bold; color:black;}
-.item1_mob {padding-left:10px;font-size: 38px; padding-top: 3px; padding-bottom: 3px;}
+.item1_mob {padding-left:10px;font-size: 24px; padding-top: 3px; padding-bottom: 3px;}
 .item1_mob.selected{color:black; font-weight:bold}
-.item2_mob {padding-left:20px;font-size: 38px; padding-top: 3px; padding-bottom: 3px;}
+.item2_mob {padding-left:20px;font-size: 22px; padding-top: 3px; padding-bottom: 3px;}
 .item2_mob.selected{color:black; font-weight:bold}
-.item3_mob { padding-left:35px; font-size: 36px; padding-top: 2px; padding-bottom: 2px; }
+.item3_mob { padding-left:35px; font-size: 20px; padding-top: 2px; padding-bottom: 2px; }
 .item3_mob.selected{ font-weight:bold;}
-.item4_mob { padding-left:50px; font-size: 34px; padding-top: 2px; padding-bottom: 2px; }
+.item4_mob { padding-left:50px; font-size: 20px; padding-top: 2px; padding-bottom: 2px; }
 .item4_mob.selected{font-weight:bold; color:black;}
 #zoomContainer {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
+#zoomContainer_mob {position:absolute; top:30px;height:900px; width:80%; left:50%;margin-left: -350px; z-index:50; background-color: white;}
 .fotoA {}
-.fotoRow_mob { width:100% }
-.fotoRow_mob2 { width:320px }
-.foto { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
-.foto_mob { position:relative; top:3%; display: inline-block; width:700px; margin-top:15px;vertical-align:top;height:900px; }
+.foto { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
+.fotoProd { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
+.f1masgrande_mob { height:585px; }
+.fotoProd_mob { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top; }
+.foto_mob { position:relative; margin-top:3px;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .foto_blank { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .foto_blank1 { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
-.foto_blank1_mob { position:relative; top:3%; display: inline-block; width:700px; vertical-align:top }
-.foto_blank_mob { position:relative; top:3%; display: inline-block; width:0px; visibility:hidden }
 .store { position:relative; margin-top:10px;display: inline-block; vertical-align: top;width:960px; height:40px; }
 .storeDummy { position:relative; ;display: inline-block; vertical-align: top;width:450px;  }
 .tagPrice {position:absolute; bottom:0px; background-repeat: repeat; height: 30px; width: 100%; line-height:30px; font-size: 20px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
 .tagName {position:absolute; bottom:0px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 100%; font-size: 14px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
-.tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
+#tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
+#tagPriceProducto_mob { font-size: 22px ;z-index:5;padding:10px}
 .tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 100%; background-image:url('../images/menuBackground.png'); font-size: 20px ; font-style: bold;text-align: center;z-index:4}
-.tagPrice_mob {position:absolute; bottom:0px; background-repeat: repeat; height: 90px; width: 100%; line-height:90px; font-size: 40px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
-.tagName_mob {position:absolute; bottom:0px;  line-height:90px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 90px; width: 100%; font-size: 40px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
-.tagPriceProducto_mob {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
-.tagAgotado_mob {background-color: red; color:white; padding-top:6px;position:absolute; bottom:450px; background-repeat: repeat; line-height:90px;height: 90px; width: 100%; background-image:url('../images/menuBackground.png'); font-size: 40px ; font-style: bold;text-align: center;z-index:4}
 
 
-.precioDecimal_mob {font-size:4}
-.precioDecimal_mob {font-size:28px}
+.precioDecimal_mob {font-size:2}
+.precioDecimal_mob {font-size:14px}
 
 #infoStore {position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 315px; background-image:url('../images/menuBackground.png'); font-size: 12px ;text-align: center;z-index:4}
 #infoPanel {position: absolute; top:0px;width:310px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
-#cuidados {cursor: pointer;}
+#infoPanel_mob { top:0px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
+#cuidados {cursor: pointer;z-index:20}
 #tallas{position:absolute; bottom:-40px ; left:0px; font-size: 16px; display:inline ; text-align: left; height: 20px;width:948px; background-image:url('../images/menuBackground.png');padding:10px}
 #tallas li {width:25px;}
 #tallas ul li { display: inline; padding-left: 2px; padding-right: 2px;font-size:12px}
 #tallas li:hover { background-color:#CCCCCC; cursor: pointer;}
+#tallas_mob{  font-size: 16px; padding:10pxi; margin-bottom:5px}
+#tallas_mob ul li { display: inline; padding-left: 10px; padding-right: 10px;font-size:12px}
 #tituloCat{position:absolute; top:-25px ; left:3px; font-size: 12px ; letter-spacing: 2px; cursor: pointer;color:gray}
-#buyBoton {position:absolute; right:4px; top:5px; }
+#tituloVolver_mob{position:absolute; top:-25px ; left:3px; font-size: 18px ; letter-spacing: 2px; cursor: pointer}
+.buyBotonStyle {position:absolute; right:4px; top:5px; }
 
 .button {
   height: 48px;

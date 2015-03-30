@@ -22,7 +22,7 @@
 		<div class="foto">
 	{% endif %}
 	{% if asset_exists( "bundles/customproject/images/Product/Standard/"~product.sgu~"_2.jpg" ) %}
-			<div class="fotoImg2">
+			<div class="fotoImage2">
 				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
 					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}" alt="{{ product.title }} - {{'Backside'|t}}" />
 				</a>
