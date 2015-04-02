@@ -2,7 +2,6 @@
 
 <div id="tipoPagina">cat</div>
 <div id="contenedor1">	
-	<div class="fotoRow">	
 		<div class="foto_blank1">
 
 {% include "CustomProjectBundle::login.html.twig" %}			
@@ -11,16 +10,7 @@
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
 {% for product in ball %}
-	{% if "NOVEDAD" in product.brand %}
-	      {% if novedad is not defined %}
-		<div class="foto novedad">
-	      {% else %}
 		<div class="foto">
-	      {% endif %}
-	
-	{% else %}
-		<div class="foto">
-	{% endif %}
 	{% if asset_exists( "bundles/customproject/images/Product/Standard/"~product.sgu~"_2.jpg" ) %}
 			<div class="fotoImage2">
 				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
@@ -54,27 +44,15 @@
 	{%endif%}
 			</div>
 		</div>
-	{% if loop.last %}
-		{%if (loop.index)%3 == 0 %}
-		<div class="foto_blank">
+
+
+	{% if loop.first and loop.last %}
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
-		</div>
-		<div class="foto_blank">
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
-		</div>		
-		{% endif %}
-		{%if (loop.index)%3 == 1 %}	
-		<div class="foto_blank">
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
-		</div>	
-		{% endif %}
 	{% endif %}	
-	{%if (loop.index-2)%3 == 0 %}
-	</div>
-	<div class="fotoRow">
-	{% endif %}			
+
 {% endfor %}
-	</div>	
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 </div>	
 
 {% include "CustomProjectBundle::footer.html.twig" %}

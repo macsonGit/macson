@@ -1,0 +1,17 @@
+
+			<div id="infoPanel" class="pad5 border">
+				<div class="ref">ref. {{contentData.__get('sgu')}}</div>
+				<div class="texto borderBottom">{{contentData.body}}</div>
+				<div class="height3"></div>	
+				<div class="texto borderBottom pad5 borderBottom">{{contentData.color}}</div>
+				<div class="height3"></div>	
+				<div class="texto borderBottom">{{contentData.composition}}</div>		
+				<div class="height3"></div>	
+				<div id="cuidados">
+					<div class="texto">{{ "Cares"|t }}+</div>
+				</div>	
+				<div id="cuidadosPanel" class="border">
+					<div class="height3"></div>	
+					<img alt="{{'Cares'|t}}" src='{{ asset('bundles/customproject/images/Cares/cuidado'~contentData.cares~'.jpg') }}'>
+				</div>
+			</div>	

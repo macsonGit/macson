@@ -7,6 +7,8 @@ $(document).ready(function(){
 
 
 	$("#tallas_mob").hide();
+	$("#infoPanel_mob").hide();
+
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
 
  		var mobile=true;
@@ -14,26 +16,23 @@ $(document).ready(function(){
 		$('body').css({'min-width': '200px'});
 		$("#portada").attr('id', 'portada_mob');
 		$("#menu").attr('id', 'menu_mob');
-		$("#tallas").hide();
-		$("#tallas_mob").show();
 		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
 		$(".loginStyle").attr('class', 'loginStyle_mob');
-		$("#infoPanel").attr('id', 'infoPanel_mob');
 		$("#logo").attr('id', 'logo_mob');
 		$("#tallas_mob").css({'letter-spacing':'1.5px'});
 		$("#tituloVolver").attr('id', 'tituloVolver_mob');
 		$("#carrito").attr('width', '100%');
 		$("#login").attr('width', '100%');
 		$(".tagName").hide();
+		$(".block-title").attr('class', 'block-title_mob');
 		$(".item1").attr('class', 'item1_mob');
 		$(".item2").attr('class', 'item2_mob');
 		$(".item3").attr('class', 'item3_mob');
 		$(".item4").attr('class', 'item4_mob');
 		$(".fotoImg").attr('class', 'fotoImg_mob');
 		$(".foto").attr('class', 'foto_mob');
-		$(".f1masgrande").attr('class', 'fotoProd_mob f1masgrande_mob');
-		$(".f1masgrande_blank").attr('class', 'foto_blank f1masgrande_mob');
+		$(".fotoProd").attr('class', 'fotoProd_mob');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
 		$("#footer").hide();
 		$(".fotoImage2").hide();
@@ -42,16 +41,23 @@ $(document).ready(function(){
 		$("#tituloCat").remove();
 		$(".foto_blank").hide();
 		$(".large").hide();
+		var alturaText=$("#menu_mob").height();
+		$(".foto_blank1").css({'height': alturaText});
+
+
+		$("#infoPanel").hide();
+		$("#infoPanel_mob").show();
+		$("#tallas").hide();
+		$("#tallas_mob").show();
 
 
 		if($("#tipoPagina").text() == 'prod1'){
-
-			$("#foto1").css({'height':'200px'});
+			$("#foto1").hide();
 
 		}
 		if($("#tipoPagina").text() == 'prod2'){
 
-			$("#foto1").css({'height':'200px'});
+			$("#foto1").hide();
 
 		}
 

@@ -47,8 +47,9 @@
 
 			<div id="tipoPagina">prod{{ tipoPag }}</div>
 <div id="contenedor1">	
-	<div id="fotoRow">
-		<div id="foto1" class="fotoProd f1masgrande  magnify">
+
+{% include "CustomProjectBundle::tallas_mob.html.twig" %}		
+		<div id="foto1" class="fotoProd  magnify">
 {% include "CustomProjectBundle::login.html.twig" %}
 {% if 'OUTLET' in contentData.brand %}
 {% set outlet=true %}
@@ -66,7 +67,9 @@
 			<div class="large">{{'Click to open'|t}}</div>
 			<img class="fotoImg1 small" alt={{contentData.title}} src='{{ image1 }}'>
 {% else %}
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+			<div class="foto_blank">	
+				<img  src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+			</div>
 {% endif %}	
 		</div>
 		<div id="foto2" class="fotoProd magnify">
@@ -75,32 +78,19 @@
 		</div>
 		<div id="foto3" class="fotoProd magnify">
 {% if tipoPag==1 %}
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+			<div class="foto_blank">	
+				<img  src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+			</div>
 {% else %}
 			<div class="large">{{'Click to open'|t}}</div>
 			<img class="fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
 {% endif %}	
-			<div id="infoPanel" class="pad5 border">
-				<div class="ref">ref. {{contentData.__get('sgu')}}</div>
-				<div class="texto borderBottom">{{contentData.body}}</div>
-				<div class="height3"></div>	
-				<div class="texto borderBottom pad5 borderBottom">{{contentData.color}}</div>
-				<div class="height3"></div>	
-				<div class="texto borderBottom">{{contentData.composition}}</div>		
-				<div class="height3"></div>	
-				<div id="cuidados">
-					<div class="texto">{{ "Cares"|t }}+</div>
-				</div>	
-				<div id="cuidadosPanel" class="border">
-					<div class="height3"></div>	
-					<img alt="{{'Cares'|t}}" src='{{ asset('bundles/customproject/images/Cares/cuidado'~contentData.cares~'.jpg') }}'>
-				</div>
-			</div>	
+{% include "CustomProjectBundle::info_panel.html.twig" %}		
 			<div id="titulo">
 			<div id="masInfo">PRODUCT INFO +</div>  	
 			</div>		
 		</div>		
-	</div>
+{% include "CustomProjectBundle::info_panel_mob.html.twig" %}		
 </div>
 
 {% include "CustomProjectBundle::footer.html.twig" %}

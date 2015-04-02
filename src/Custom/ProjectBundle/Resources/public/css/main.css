@@ -3,7 +3,6 @@ body{
 font-size: 12px;
 font-family: "Times new roman";
 color: #000;
-min-width: 980px;
 background: none;
 letter-spacing:1.1px;
 line-height:normal;
@@ -109,8 +108,8 @@ ul { list-style-type:none; }
 #orderList{line-height:25px; height: 320px }
 #titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal }
 #logo { position:relative;top: 20px;  height:100px;z-index:1 }
-#contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden;}
-#contenedor1_mob{ position:relative;top:0px;width:100%; margin-bottom:200px;visibility: hidden;}
+#contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden; max-width:980px; display:inline-block}
+#contenedor1_mob{ position:relative;top:0px;width:100%; margin-bottom:200px;visibility: hidden; max-width:975px}
 #orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:45;background-color: white; }
 .loginStyle { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
 .loginStyle_mob { position:absolute; top:0px; display: inline-block; width:100%; height:500px; color:black;top:0px;font-size: 14px ;text-align: left;z-index:50;background-color: white; }
@@ -143,7 +142,7 @@ ul { list-style-type:none; }
 #menu_mob a:visited {text-decoration:none; color:black;}
 #menu_mob a:hover {text-decoration:none;color:black;}
 #menu_mob a:active {text-decoration:none;color:black;}
-#menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 12px ;color: white;width: 320px;text-align: left;z-index:4;}
+#menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 12px ;color: white;width: 100%;text-align: left;z-index:4;}
 #menuPortada_mob {height:380px;text-align: left;z-index:5;width:100%}
 #menuPortada_mob ul {height:380px}
 #menuPortada_mob li:hover { color:black;cursor: pointer;}
@@ -173,7 +172,6 @@ ul { list-style-type:none; }
 .fotoA {}
 .foto { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .fotoProd { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
-.f1masgrande_mob { height:585px; }
 .fotoProd_mob { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top; }
 .foto_mob { position:relative; margin-top:3px;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .foto_blank { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
@@ -192,13 +190,13 @@ ul { list-style-type:none; }
 
 #infoStore {position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 315px; background-image:url('../images/menuBackground.png'); font-size: 12px ;text-align: center;z-index:4}
 #infoPanel {position: absolute; top:0px;width:310px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
-#infoPanel_mob { top:0px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
+#infoPanel_mob {  height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
 #cuidados {cursor: pointer;z-index:20}
 #tallas{position:absolute; bottom:-40px ; left:0px; font-size: 16px; display:inline ; text-align: left; height: 20px;width:948px; background-image:url('../images/menuBackground.png');padding:10px}
 #tallas li {width:25px;}
 #tallas ul li { display: inline; padding-left: 2px; padding-right: 2px;font-size:12px}
 #tallas li:hover { background-color:#CCCCCC; cursor: pointer;}
-#tallas_mob{  font-size: 16px; padding:10pxi; margin-bottom:5px}
+#tallas_mob{  font-size: 16px; padding:10px; margin-bottom:5px}
 #tallas_mob ul li { display: inline; padding-left: 10px; padding-right: 10px;font-size:12px}
 #tituloCat{position:absolute; top:-25px ; left:3px; font-size: 12px ; letter-spacing: 2px; cursor: pointer;color:gray}
 #tituloVolver_mob{position:absolute; top:-25px ; left:3px; font-size: 18px ; letter-spacing: 2px; cursor: pointer}

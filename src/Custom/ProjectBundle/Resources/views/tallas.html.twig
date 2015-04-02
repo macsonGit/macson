@@ -32,36 +32,3 @@
 
 
 
-
-			<div id="tallas_mob" class="pad10 border">
-				<div class="h2 bold-text">{{contentData.title}} </div> 
-				<div class="pad10">
-				<ul id="listaTallas">
-{%if contentData.varieties[0].value!= '00_AGOTADO'%}
-	{% for size in contentData.varieties if size.stock > 0 %}	
-		{%if loop.first%}
-			{%if contentData.varieties|length > 1%}
-					<li>{{'Size'|t}}:</li>
-			{% else %}
-					<li>{{'Only available in size'|t}}:</li>
-			{% endif %}
-		{%endif%}			
-					<li class="itemTalla">{{size.value}}</li> |							
-	{% endfor %}
-{% else %}
-	{{ 'OUT OF STOCK'|t }}
-
-{% endif %}
-				</ul>
-				</div>		
-				<div id="tagPriceProducto_mob" class="bold-text">
-{% if contentData.pricePVP == contentData.firstPrice%}		
-					{{ contentData.pricePVP | round (0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font>
-{% else %}
-					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font> 
-{%endif%}
-				</div>			
-				<div id="buyBoton">								
-					<button id="boton1_mov" class="button bold-text">{{'Buy'|t}}</button>		
-				</div>
-			</div>
