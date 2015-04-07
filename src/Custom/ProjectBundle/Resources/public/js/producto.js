@@ -7,7 +7,9 @@ $(document).ready(function(){
 
 
 	$("#tallas_mob").hide();
+	$("#carritoDiv_mob").hide();
 	$("#infoPanel_mob").hide();
+	$("#menu_boton_mob").hide();
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
 
@@ -16,13 +18,13 @@ $(document).ready(function(){
 		$('body').css({'min-width': '200px'});
 		$("#portada").attr('id', 'portada_mob');
 		$("#menu").attr('id', 'menu_mob');
+		$(".carrito").css({'width': '80%'});
 		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
 		$(".loginStyle").attr('class', 'loginStyle_mob');
 		$("#logo").attr('id', 'logo_mob');
 		$("#tallas_mob").css({'letter-spacing':'1.5px'});
 		$("#tituloVolver").attr('id', 'tituloVolver_mob');
-		$("#carrito").attr('width', '100%');
 		$("#login").attr('width', '100%');
 		$(".tagName").hide();
 		$(".block-title").attr('class', 'block-title_mob');
@@ -41,23 +43,34 @@ $(document).ready(function(){
 		$("#tituloCat").remove();
 		$(".foto_blank").hide();
 		$(".large").hide();
-		var alturaText=$("#menu_mob").height();
-		$(".foto_blank1").css({'height': alturaText});
+		var alturaText=$("#menu_mob").height()+70;
+		$(".foto_blank1").css({'height': '70'});
 
 
 		$("#infoPanel").hide();
 		$("#infoPanel_mob").show();
 		$("#tallas").hide();
 		$("#tallas_mob").show();
+		$("#menu_boton_mob").show();
+		$("#carritoDiv").hide();
+		$("#carritoDiv_mob").show();
+		$("#menu_mob").hide();
 
 
 		if($("#tipoPagina").text() == 'prod1'){
 			$("#foto1").hide();
+			$("#menu_boton_mob").hide();
 
 		}
 		if($("#tipoPagina").text() == 'prod2'){
 
 			$("#foto1").hide();
+			$("#menu_boton_mob").hide();
+
+		}
+		if($("#tipoPagina").text() == 'prod3'){
+
+			$("#menu_boton_mob").hide();
 
 		}
 
@@ -90,7 +103,7 @@ $(document).ready(function(){
 	$("#orderList").hide();
 		
 	$("#login").hide();
-	$("#carrito").hide();
+	$(".carrito").hide();
 
 
 	
@@ -105,7 +118,7 @@ $(document).ready(function(){
 			$('#zoomContainer').hide();
 			$("#mascara").hide(200);
 			$("#login").hide(200);
-			$("#carrito").hide(200);
+			$(".carrito").hide(200);
 			showMascara=false;
 		}
 	);	
@@ -171,7 +184,7 @@ $(document).ready(function(){
 	$("#continue").click(
 
 		function continueShopping(){
-			$("#carrito").hide();
+			$(".carrito").hide();
 			$("#mascara").hide();
 			showMascara=false;
 		}
@@ -183,7 +196,7 @@ $(document).ready(function(){
 
 		function showLogin(){
 			$("html,body").scrollTop(0);
-			$("#carrito").hide();
+			$(".carrito").hide();
 			$(".large").hide();
 			$("#login").show(200);
 			$("#mascara").show(200);
@@ -204,7 +217,7 @@ $(document).ready(function(){
 		function showCart(){
 			$("html,body").scrollTop(0);
 			$("#login").hide();
-			$("#carrito").show(200);
+			$(".carrito").show(200);
 			$(".large").hide();
 			$("#mascara").show(200);
 			showMascara=true;
@@ -216,7 +229,7 @@ $(document).ready(function(){
 
 		function showCart(){
 			$("#login").hide();
-			$("#carrito").show(200);
+			$(".carrito").show(200);
 			$("#mascara").show(200);
 			showMascara=true;
 			return false;
@@ -332,6 +345,7 @@ $(document).ready(function(){
 			
 	    );
 	}	
+	
 
 
 	if($("#tipoPagina").text() == 'prod1'){
@@ -379,6 +393,29 @@ $(document).ready(function(){
 				showMenu=true;
 				$("#tituloCat").text("- MENU");
 				$("#menu ul").show(350);
+	
+			}			
+
+		}
+
+	);
+
+	showMenu_mob=false;
+	$("#menu_boton_mob").click( 
+
+		function showMenuA_mob(){
+			if(showMenu_mob){
+				showMenu_mob=false;
+				$("#menu_boton_mob").text("MENU +");
+				$("#menu_mob").hide(350);
+				$(".foto_blank1").css({'height': '70'});
+				$("#foto_blank1_mob").hide(0);
+			}
+			else{
+				showMenu_mob=true;
+				$("#menu_boton_mob").text("MENU -");
+				$(".foto_blank1").css({'height': alturaText});
+				$("#menu_mob").show(0);
 	
 			}			
 
@@ -566,11 +603,11 @@ function opeItem(ope,productO,varietyO){
 						//$("#carrito").hide(200);			
 						$("#listaCarritoResumen").trigger('create');
 						$("#carritoResumen").append('<img src="'+imageCarrito+'">');	
-						$("#carrito").show(200);			
+						$(".carrito").show(200);			
 					}
 					else{
 						$("#listaCarritoResumen").append('<div class="row">'+noProductCartText+'</div>');
-						$("#carrito").hide(200);			
+						$(".carrito").hide(200);			
 						$("#mascara").hide(200);
 						showMascara=false;
 					}

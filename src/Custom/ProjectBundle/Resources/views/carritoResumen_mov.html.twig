@@ -1,18 +1,4 @@
 
-<script>
-	var removeText="{{'Remove'|t}}";
-	var noProductCartText="{{'There is no product added to the Cart'|t}}";
-	var imageThumbPath =" {{asset('bundles/customproject/images/Product/Thumb/')}}";
-	var route = "{{ path('macson_chart', { 'ope':'PLACEHOLDER1','pid': 'PLACEHOLDER2' , 'vid':'PLACEHOLDER3' }) }}";
-	var imageCarrito =" {{asset('bundles/customproject/images/carrito.png')}}";
-	var lang="{{ lang }}";
-</script>
-
-<div id="carritoDiv_mob">
-{% include "CustomProjectBundle::carritoResumen_mov.html.twig" %}
-</div>
-	
-<div id="carritoDiv">
 <div class="carrito" class="pad15">
 
 <div class="fs28 pad40"><b>{{ 'Shopping Cart'|t}}</b></div>
@@ -21,40 +7,31 @@
 
 {% if products[0] is defined  %}
 
-		<div class="height25 row pad5">
-			<div class="cell width85 pad5"></div>
-			<div class="cell width85 pad5"><b>Ref.</b></div>
-			<div class="cell pad5 width180"></div>
-			<div class="cell pad5 width50"><b>{{'Size'|t}}</b></div>
-			<div class="cell pad5 width100"><b>{{ 'Price'|t }}</b></div>
-			<div class="cell pad5 width50"><b>{{ 'Units'|t }}</b></div>
-		</div>
 
-
-	<div id="listaCarritoResumen" class="table pad10 border inline">
+	<div id="listaCarritoResumen" class="table pad10 border">
 {% set sumPrice=0 %}
 
 
 {% for item in products %}
 
-		<div class= "row height102 pad5">
-			<div class="cell">
+		<div class= "row wd100 height102 pad5">
+			<div>
 				<a href={{ path('drufony_general_url',{'url' : item.product.target, 'lang': lang} ) }}>
 					<img src='{{ asset('bundles/customproject/images/Product/Thumb/'~item.product.sgu~'_1.jpg') }}'>
 				</a>
 			</div>		
-			<div class="cell width85 pad5">
+			<div class="pad5">
 				<p class="fs10">{{ item.product.sgu  }}</p>
 			</div>
-			<div class="cell width180 pad5">
+			<div class="pad5">
 				{{ item.product.title }}
 			</div>
-			<div class="cell width50 pad5">{{ item.product.size }}</div>
-			<div class="cell width100 pad5">
+			<div class="pad5">{{ item.product.size }}</div>
+			<div class="pad5">
 				{{ item.product.pricePVP | round(0,'floor')}}<font size="1">,{{ item.product.pricePVP | decimals  }} €</font>
 			</div>
-			<div class="cell width50 pad5">{{ item.count }}</div>
-			<div class="cell width50 pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div></div>
+			<div class="pad5">{{'Units'|t}}:{{ item.count }}</div>
+			<div class="pad5"><div class="borrarArticulo" product="{{ item.product.id }}" variety="{{ item.product.varProdId  }}">{{'Remove'|t}}</div></div>
 {% set sumPrice= sumPrice + item.product.pricePVP*item.count %}
 		</div>
 
@@ -62,8 +39,7 @@
 
 	</div>
 
-	<div class="inline textwhite width8">ancho </div>
-	<div class="inline width200">
+	<div class="inline wd100">
 	     <div class="border pad10 mg-bottom5">
 		<div><b>{{'Total Amount'|t}}</b></div>
 		<div id="precioTotal" class= "fs28">
@@ -81,7 +57,7 @@
 
 {% else  %}
 
-	<div id="listaCarritoResumen" class="table pad10 border inline">
+	<div id="listaCarritoResumen" class="table pad10 border">
 		<div class="row">
 {{ 'There is no product added to the Cart'|t }}
 		</div>
@@ -105,5 +81,4 @@
 
 
 {% endif %}
-</div>
 </div>
