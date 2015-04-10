@@ -7,9 +7,9 @@
 {% include 'DrufonyCoreBundle::user_config_menu.html.twig' %}
 <div class="fl wd65 oh bb column-info">
 <div class="wd100 oh bb mg-vertical10">
-<div class="mg-bottom20">
-<form method="GET" class="fl bb wd55 align-right mg-right5">
-<select name="addressId" id="AddressId" class="maxW100">
+<div class="mg-bottom20 oh">
+<form method="GET" class="fl wd69">
+<select name="addressId" id="AddressId"">
 {% for address in addresses %}
 <option value="{{ address.id }}" {% if app.request.get('addressId') == address.id %}
 selected {% endif %}>{{ address.name }} - {{ address.address }}</option>
@@ -22,59 +22,57 @@ selected {% endif %}>{{ "New address" | t }}</option>
 {% endif %}
 </select>
 </form>
-<div class="wd100">
 <a href='{{ path('drufony_profile_address_delete', { 'lang' : lang, 'id':app.request.get('addressId')})}}'>{{"Delete address"|t}}</a> |
 <a href="{{ path('drufony_profile_address_edit', {'lang': lang, 'addressId': 0, 'id': id}) }}">{{ "Create new address" | t }}</a>
-</div>
 </div>
 <div class="wd100 oh mg-vertical10">
 {{ form_start(addressForm) }}
 {{ form_errors(addressForm) }}
 {{ form_errors(addressForm.name) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.name) }}
 </div>
 {{ form_widget(addressForm.name, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
 {{ form_errors(addressForm.nif) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.nif) }}
 </div>
 <div class="disIB wd69">
-{{ form_widget(addressForm.nif, { 'attr': {'class': 'wd30 pad10 mg-bottom20 radius5 clear'} }) }}
+{{ form_widget(addressForm.nif, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5 clear'} }) }}
 </div>
 {{ form_errors(addressForm.address) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.address) }}
 </div>
 {{ form_widget(addressForm.address, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
 {{ form_errors(addressForm.countryId) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.countryId) }}
 </div>
 {{ form_widget(addressForm.countryId, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
 {{ form_errors(addressForm.province) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.province) }}
 </div>
 {{ form_widget(addressForm.province, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
 {{ form_errors(addressForm.city) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.city) }}
 </div>
 {{ form_widget(addressForm.city, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
 {{ form_errors(addressForm.postalCode) }}
-<div class="disIB wd28 mg-right2">
+<div class="mg-right2">
 {{ form_label(addressForm.postalCode) }}
 </div>
 <div class="disIB wd69">
-{{ form_widget(addressForm.postalCode, { 'attr': {'class': 'wd30 pad10 mg-bottom20 radius5 clear'} }) }}
+{{ form_widget(addressForm.postalCode, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5 clear'} }) }}
 </div>
 {{ form_errors(addressForm.phone) }}
-<div class="disIB wd20 mg-right10">
+<div class="disIB wd69 mg-right10">
 {{ form_label(addressForm.phone) }}
 </div>
 <div class="disIB wd69">
-{{ form_widget(addressForm.phone, { 'attr': {'class': 'wd30 pad10 mg-bottom20 radius5'} }) }}
+{{ form_widget(addressForm.phone, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
 </div>
 <div class="wd100 mg-vertical10 align-right">
 {{ form_widget(addressForm.send, { 'attr': {'class': 'action-button' }}) }}

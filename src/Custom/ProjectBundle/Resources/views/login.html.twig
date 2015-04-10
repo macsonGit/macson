@@ -10,7 +10,7 @@
 
 {% if app.user is not null  %}
 		
-	<div class="inline pad15 wd20">
+	<div class="pad15 wd90">
 
 		<div class="sinEfectos oh pad15 hoverborder "> 
 			<a href="{{path('drufony_profile_edit',{'lang':lang})}}">{{'Edit your profile'|t}}</a>
@@ -27,7 +27,7 @@
 	</div>
 	
 	{% if orders|length >0 %}
-	<div id="orderList" class="mg-top20 border inline wd70 fs12 overflowy pad15">
+	<div id="orderList" class="mg-top20 border inline wd90 fs12 overflowy pad15">
 		{% for order in orders %}
 			{% if loop.first %}
 		<div class="row pad5">

@@ -12,24 +12,24 @@
       {{ form_errors(accountForm) }}
 
       {{ form_errors(accountForm.email) }}
-      <div class="disIB wd28 mg-right2">
+      <div class="mg-right2">
         {{ form_label(accountForm.email) }}
       </div>
-      {{ form_widget(accountForm.email, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
+      {{ form_widget(accountForm.email, { 'attr': {'class': 'wd100 pad10 mg-bottom20 radius5'} }) }}
 
       {% if accountForm.password is defined %}
       {{ form_errors(accountForm.password) }}
-      <div class="disIB wd28 mg-right2">
+      <div class="mg-right2">
         {{ form_label(accountForm.password) }}
       </div>
-      {{ form_widget(accountForm.password, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
+      {{ form_widget(accountForm.password, { 'attr': {'class': 'wd100 pad10 mg-bottom20 radius5'} }) }}
       {% endif %}
 
       {% for passwordField in accountForm.newPassword %}
-          <div class="disIB wd28 mg-right2">
+          <div class="mg-right2">
             {{ form_label(passwordField, null, { 'attr': {'class': ''} }) }}
           </div>
-              {{ form_widget(passwordField, { 'attr': {'class': 'wd69 pad10 mg-bottom20 radius5'} }) }}
+              {{ form_widget(passwordField, { 'attr': {'class': 'wd100 pad10 mg-bottom20 radius5'} }) }}
       {% endfor %}
 
     <div class="wd100 mg-vertical10 align-right">

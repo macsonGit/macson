@@ -167,17 +167,17 @@ ul li { list-style:none }
 /* Mediaqueries */
 @media screen and (min-width: 300px) {
   .column-menu,
-  .column-info { font-size: 11px;}
+  .column-info { font-size: 16px;}
 
 }
 @media screen and (min-width: 440px) {
   .column-menu,
-  .column-info { font-size: 12px;}
+  .column-info { font-size: 16px;}
 
 }
 @media screen and (max-width: 800px) {
   .column-menu,
-  .column-info { width: 100%; padding: 5px;}
+  .column-info { width: 90%; padding: 5px;}
 
 }
 @media screen and (min-width: 800px) {

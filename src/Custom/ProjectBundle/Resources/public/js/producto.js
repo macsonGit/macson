@@ -6,10 +6,9 @@ $(document).ready(function(){
 	var ancho=screen.width;
 
 
-	$("#tallas_mob").hide();
-	$("#carritoDiv_mob").hide();
 	$("#infoPanel_mob").hide();
 	$("#menu_boton_mob").hide();
+	$(".tallasStyle_mob").hide();
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
 
@@ -18,12 +17,14 @@ $(document).ready(function(){
 		$('body').css({'min-width': '200px'});
 		$("#portada").attr('id', 'portada_mob');
 		$("#menu").attr('id', 'menu_mob');
-		$(".carrito").css({'width': '80%'});
 		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
 		$(".loginStyle").attr('class', 'loginStyle_mob');
 		$("#logo").attr('id', 'logo_mob');
-		$("#tallas_mob").css({'letter-spacing':'1.5px'});
+		$(".second-column").attr('class', 'mg-top10');
+		$(".third-column").attr('class', 'borderBottom');
+		$(".tallasStyle_mob").css({'letter-spacing':'1.5px'});
+		$(".stiches").css({'width':'100%'});
 		$("#tituloVolver").attr('id', 'tituloVolver_mob');
 		$("#login").attr('width', '100%');
 		$(".tagName").hide();
@@ -45,36 +46,48 @@ $(document).ready(function(){
 		$(".large").hide();
 		var alturaText=$("#menu_mob").height()+70;
 		$(".foto_blank1").css({'height': '70'});
-
+		$("#carritoId").remove();
+		$("#listaCarritoResumen").remove();
 
 		$("#infoPanel").hide();
 		$("#infoPanel_mob").show();
-		$("#tallas").hide();
-		$("#tallas_mob").show();
+		$(".tallasStyle").hide();
+		$(".tallasStyle_mob").show();
 		$("#menu_boton_mob").show();
-		$("#carritoDiv").hide();
-		$("#carritoDiv_mob").show();
 		$("#menu_mob").hide();
+
 
 
 		if($("#tipoPagina").text() == 'prod1'){
 			$("#foto1").hide();
 			$("#menu_boton_mob").hide();
+			$("#carritoId_mob").css({'top':'-300px'});
+			$(".loginStyle_mob").css({'top':'-300px'});
 
 		}
 		if($("#tipoPagina").text() == 'prod2'){
 
 			$("#foto1").hide();
 			$("#menu_boton_mob").hide();
+			$("#carritoId_mob").css({'top':'-300px'});
+			$(".loginStyle_mob").css({'top':'-300px'});
 
 		}
 		if($("#tipoPagina").text() == 'prod3'){
 
 			$("#menu_boton_mob").hide();
+			$("#carritoId_mob").css({'top':'-300px'});
+			$(".loginStyle_mob").css({'top':'-300px'});
 
 		}
 
 	}
+	else{
+
+		$("#carritoId_mob").remove();
+		$("#listaCarritoResumen_mob").remove();
+	}
+
 
 	var timer;
 	var hoverdelay = 200;
@@ -166,12 +179,24 @@ $(document).ready(function(){
 		}
 	);
 
+	$("#listaCarritoResumen_mob").on('click','.borrarArticulo',  
+		function removeItem(){
+			ope='remove';
+			productR =$(this).attr("product");
+			varietyR =$(this).attr("variety");
+			//var route = "{{ path('macson_chart', { 'pid': 'PLACEHOLDER1' , 'vid':'PLACEHOLDER2' }) }}";
+			showMascara=true;
+			opeItem(ope,productR,varietyR);
+
+		}
+	);
 	$(".itemTalla").click(  
 		function selectSize(){
 			var index;
 			sizeSelected = 1;
 			for (index = 0; index < varieties.length; ++index) {   
     				$( "#tallas li" ).eq( index +1).css("background-color","inherit");
+    				$( "#tallas_mob li" ).eq( index +1).css("background-color","inherit");
 				if (varietiesVal[index]==$( this ).text()){
 					$(this).css("background-color","red");
 					variety=varieties[index];
@@ -584,6 +609,7 @@ function opeItem(ope,productO,varietyO){
 			success: function(cart){
 					$("#mascara").show(200);
 					$("#listaCarritoResumen").empty();	
+					$("#listaCarritoResumen_mob").empty();	
 					$("#carritoResumen").empty();	
 					$("#sumItems").empty();	
 					$("#precioTotal").empty();	
@@ -592,21 +618,24 @@ function opeItem(ope,productO,varietyO){
 						precioTotal=0,00;
 						sumItems=0;
 						$.each(cart, function( index, item ) {
-							precioTotal=precioTotal+item.product.pricePVP*parseInt(item.count);
-							sumItems=sumItems+item.count;
-
+						precioTotal=precioTotal+item.product.pricePVP*parseInt(item.count);
+						sumItems=sumItems+item.count;
 							$("#listaCarritoResumen").append('<div class="row height102 pad5"><div class="cell"><a href="../../'+lang+'/'+item.product.target+'"><img src="'+imageThumbPath+item.product.sgu+'_1.jpg"></a></div><div class="cell width85 pad5"><p class="fs10">'+item.product.sgu+'</p></div><div class="cell width180 pad5">' + item.product.title+'</div><div class="cell width50 pad5">'+item.product.size+'</div><div class="cell width100 pad5">'+item.product.pricePVP+' €</div><div class="cell width50 pad5">'+item.count+'</div><div class="cell width50 pad5"><div class="borrarArticulo"  product="'+item.product.id+'" variety="'+item.product.varProdId+'">'+removeText+'</div></div>');	
+							$("#listaCarritoResumen_mob").append('<div class="row pad5"><div class="mg-top10"><a href="../../'+lang+'/'+item.product.target+'"><img src="'+imageThumbPath+item.product.sgu+'_1.jpg"></a></div><div class="pad5"><p class="fs10">'+item.product.sgu+'</p></div><div class="pad5">' + item.product.title+'</div><div class="pad5">'+sizeText+':'+item.product.size+'</div><div class="pad5">'+item.product.pricePVP+' €</div><div class="pad5">'+unitsText+":"+item.count+'</div><div class="pad5"><div class="borrarArticulo borderBottom"  product="'+item.product.id+'" variety="'+item.product.varProdId+'">'+removeText+'</div></div>');	
 						});
 						precioTotal = precioTotal.toFixed(2);
 						$("#precioTotal").append('<b>'+precioTotal+' €</b>');	
 						$("#sumItems").append('('+sumItems+') |');	
 						//$("#carrito").hide(200);			
-						$("#listaCarritoResumen").trigger('create');
+							$("#listaCarritoResumen_mob").trigger('create');
+							$("#listaCarritoResumen").trigger('create');
+							$( "#carritoId_mob" ).show();
+							$( "#carritoId" ).show();
 						$("#carritoResumen").append('<img src="'+imageCarrito+'">');	
-						$(".carrito").show(200);			
 					}
 					else{
 						$("#listaCarritoResumen").append('<div class="row">'+noProductCartText+'</div>');
+						$("#listaCarritoResumen_mob").append('<div class="row">'+noProductCartText+'</div>');
 						$(".carrito").hide(200);			
 						$("#mascara").hide(200);
 						showMascara=false;
