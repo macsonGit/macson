@@ -46,6 +46,16 @@ $(document).ready(function(){
 		$(".large").hide();
 		var alturaText=$("#menu_mob").height()+70;
 		$(".foto_blank1").css({'height': '70'});
+		$(".checkout .col").css({'width': '100%'});
+		$(".checkout .col").css({'float': 'none'});
+		$(".page-title").css({'height': '0px'});
+		$(".page-footer").css({'width': '100%'});
+		$(".icon-comment").css({'position': 'relative'});
+		$(".checkout .wd90 .h2").css({'font-size': '20px'});
+		$(".addresses").css({'letter-spacing': '1px'});
+		$(".addresses").css({'font-size': '10px'});
+		$(".col_mob").css({'float': 'none'});
+		$(".checkout .wd90").css({'width': '100%'});
 		$("#carritoId").remove();
 		$("#listaCarritoResumen").remove();
 

@@ -2,13 +2,18 @@
 <div>
   <p><a class="underline"  href='{{ path('drufony_checkout_billing_use_shipping', {'lang': lang})}}' class="fl-link-secondary">{{ "Use shipping address" | t }}</a></p>
 <br>
-<div class="mg-bottom15">
+<div class="adresses mg-bottom15">
 {% if addresses|length > 0 %}
 {% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
 <p class="texto">{{ "Or use one of your addresses" | t }}</p>
-{% for address in addresses %}
-<p>{{address.name}}, {{address.address}} | <a class="underline" href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
-{% endfor %}
+	<div class="table">
+        {% for address in addresses %}
+	<div class="row"> 
+        <div class="align-left cell pad5">{{address.name}}, {{address.address}}</div>
+	<div class="align-right cell pad5"> <a class="underline" href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></div>
+ 	</div>
+       {% endfor %}
+    	</div>
 {% endif %}
 
 </div>

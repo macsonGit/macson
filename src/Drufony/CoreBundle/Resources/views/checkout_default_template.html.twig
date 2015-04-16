@@ -70,7 +70,7 @@
 
 
 {# Shipping Information #}
-<section id="shipping_sect" class="checkout wd90">
+<section id="shipping_sect" class="checkout">
   {% if checkoutStep == 'shippingInformation' %}
     {% set step = step + 1 %}
     <div id="target"></div>
@@ -97,7 +97,7 @@
 </section>
 
 {# Billing Information #}
-<section id="billing_sect" class="checkout wd90">
+<section id="billing_sect" class="checkout">
   {% if checkoutStep == 'billingInformation' %}
     <div id="target"></div>
     <div class="wd90">
@@ -124,7 +124,7 @@
  </section>
 
 {# Shipping Method #}
-<section id="shipping_methos_sect" class="checkout wd90">
+<section id="shipping_method_sect" class="checkout">
   {% if checkoutStep == 'shippingMethod' %}
     {% set step = step + 1 %}
     <div id="target"></div>
@@ -151,7 +151,7 @@
 </section>
 
 {# Payment Method #}
-<section id="payment_sect" class="checkout wd90" style="margin-bottom:18px">
+<section id="payment_sect" class="checkout" style="margin-bottom:18px">
   {% if checkoutStep == 'selectPaymentMethod' %}
     {% set step = step + 1 %}
     <div id="target"></div>

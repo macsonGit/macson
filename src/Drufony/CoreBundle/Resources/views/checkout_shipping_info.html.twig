@@ -5,11 +5,16 @@
         {% else %}
             {% set userAddressUrl = 'drufony_checkout_billing_user_address' %}
         {% endif%}
-    <div class="mg-bottom15">
+    <div class="addresses mg-bottom15">
         <p class="texto">{{ "User addresses" | t }}</p>
+	<div class="table">
         {% for address in addresses %}
-        <p>{{address.name}}, {{address.address}} | <a class="underline" href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></p>
-        {% endfor %}
+	<div class="row"> 
+        <div class="align-left cell pad5">{{address.name}}, {{address.address}}</div>
+	<div class="align-right cell pad5"> <a class="underline" href='{{ path(userAddressUrl, {'lang': lang, 'addressId': address.id})}}'>{{ "Use this address" | t }}</a></div>
+ 	</div>
+       {% endfor %}
+    	</div>
     </div>
     {% endif %}
 
@@ -113,7 +118,7 @@
 </div>    
   <footer>
       {{ form_row(form.send, {'attr': {'class': 'button button-ok'}} ) }}
-      </footer>
-    </div>
+ </footer>
+</div>
 
 
