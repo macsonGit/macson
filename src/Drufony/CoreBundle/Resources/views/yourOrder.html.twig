@@ -7,15 +7,13 @@
 <div id="contenedor1">
 
 	<div id="fotoRow">
-		<div class="foto">
+		<div class="foto_blank">
 			{% include "CustomProjectBundle::login.html.twig" %}
 			{% include "CustomProjectBundle::menu.html.twig" %}
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
 		<div class="foto">
-     			<div class="contenido mg-top20 mg-left20">
-				<br>
-				<br>
+     			<div class="thanksClass contenido mg-top20 mg-left20">
 				<br>
 				<h1>{{ "Thank you for your order."|t }}</h1>
 				<br>
@@ -23,7 +21,7 @@
 			</div>
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
-		<div class="foto">
+		<div class="foto_blank">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
 	</div>

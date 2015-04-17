@@ -21,7 +21,7 @@
 		 
 	</div>
 	<b>
-	<div class="center  wd100 mg-top20 mg-bottom20 height30 fs14 borderBottom">
+	<div class="center  wd100 mg-top20 mg-bottom20 height30 fs18 border verticalcenter30">
 		{{store.bou_provincia}}
 	</div>
 	</b>
@@ -31,21 +31,21 @@
 		
 	{% set contador=contador+1 %} 
         {% set antProvince=store.bou_provincia %}
-			<div class="store">
+			<div class="store margin10">
 
-				<div  class="align-left inline wd30 fs12 height30">
+				<div  class="cell_store align-left inline wd30 fs12 height30">
 					<b>{{store.bou_poblacion}}</b>
 	{% if store.bou_nombre %}
 					 <br>{{store.bou_nombre}}
 	{% endif %}		
 				</div>
-				<div  class="align-left inline wd20 height30 fs14">
+				<div  class="cell_store align-left inline wd20 height30 fs14">
 					{{store.bou_direccion}}
 				</div> 
-				<div  class="align-left inline wd20 height30 fs14">
+				<div  class="cell_store align-left inline wd20 height30 fs14">
 					{{'Tel'|t}}. {{store.bou_telefono}}
 				</div>
-				<div  class="height30 fs12 align-left">
+				<div  class="cell_store height30 fs12 align-left">
 					{{'Opening hours'|t}}: {{store.bou_descripcion}}
 				</div>
 			</div>

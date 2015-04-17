@@ -2,16 +2,15 @@
 
 {% include "CustomProjectBundle::header.html.twig" %}
 
-<div id="tipoPagina">cat</div>
+<img id="portada" class="portada_main" src='{{ asset('bundles/customproject/images/Outlet.png') }}'/>
+<div id="tipoPagina">cat_main</div>
 <div id="contenedor1">	
-	<div id="fotoRow">	
 		<div class="foto">
 {% include "CustomProjectBundle::login.html.twig" %}			
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}			
-			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
-		<div class="foto">
+		<div class="foto_blank">
 
 			<div>
 			
@@ -19,10 +18,9 @@
 			</div>
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 		</div>
-		<div class="foto">
+		<div class="foto_blank">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 		</div>
-	</div>	
 </div>	
 
 {% include "CustomProjectBundle::footer.html.twig" %}

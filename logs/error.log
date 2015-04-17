@@ -10226,3 +10226,10 @@
 [Thu Apr 16 13:26:53 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
 [Thu Apr 16 18:00:30 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
 [Thu Apr 16 18:00:30 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Apr 17 16:31:39 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Outlet.jpg, referer: http://macson.es/app_dev.php/es/outlet
+[Fri Apr 17 16:31:39 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/customproject/images/Outlet.jpg, referer: http://macson.es/app_dev.php/es/outlet
+[Fri Apr 17 16:59:04 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Apr 17 16:59:04 2015] [error] [client 192.168.1.213] File does not exist: /var/www/Symfony/web/bundles/drufonycore/caprese/version1.0.1/img/favicon.ico
+[Fri Apr 17 18:30:32 2015] [error] [client 84.78.18.132] File does not exist: /var/www/Symfony/web/apple-touch-icon-120x120-precomposed.png
+[Fri Apr 17 18:30:34 2015] [error] [client 84.78.18.132] File does not exist: /var/www/Symfony/web/apple-touch-icon-120x120.png
+[Fri Apr 17 18:30:34 2015] [error] [client 84.78.18.132] File does not exist: /var/www/Symfony/web/apple-touch-icon-precomposed.png

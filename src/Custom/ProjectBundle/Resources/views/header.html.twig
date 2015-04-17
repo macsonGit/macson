@@ -24,8 +24,11 @@
 
 	<div id='header' class="sinEfectos">
 	<ul>
-	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | <li>  
-	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'Shop On-line' | t }} | <li>  
+            <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
+		{{'Stores'|t}} | </a>
+	    </li>
+	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'Shop On-line' | t }} |</a> </li>  
+	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | </a></li>  
             <li id="loginMenu">
 {% if app.user is not null %}
 	{% if app.user.profile.name is empty %}	
@@ -39,18 +42,17 @@
 	    </li>
 
 {% if sumItems  %}
-            <li id="carritoResumen"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'></li>
- 	    <li id="sumItems">
+            <li id="carritoResumen"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'>
+ 	    <span id="sumItems">
 	    	({{ sumItems }}) |
-	    </li>
+	    </span>
+	   </li>
 {% else %}
-            <li id="carritoResumen"></li>
- 	    <li id="sumItems">
+            <li id="carritoResumen">
+ 	    <span id="sumItems">
+	    </span>
 	    </li>
 {% endif %}		
-            <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
-		{{'Stores'|t}} | </a>
-	    </li>
 {% if lang == 'es' %}
 	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> English<a><li>  
 {% endif %}

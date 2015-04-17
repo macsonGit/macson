@@ -2,7 +2,7 @@
 
 			<div id="tallas_mob" class="tallasStyle_mob pad10 border">
 				<div class="h2 bold-text">{{contentData.title}} </div> 
-				<div class="pad10">
+				<div class="pad10 fs24">
 				<ul id="listaTallas">
 {%if contentData.varieties[0].value!= '00_AGOTADO'%}
 	{% for size in contentData.varieties if size.stock > 0 %}	

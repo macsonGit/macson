@@ -9,13 +9,15 @@ $(document).ready(function(){
 	$("#infoPanel_mob").hide();
 	$("#menu_boton_mob").hide();
 	$(".tallasStyle_mob").hide();
+	$(".portada_main").hide();
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
 
  		var mobile=true;
-		$('body').css({'letter-spacing': '3px'});
+		$('body').css({'letter-spacing': '2px'});
 		$('body').css({'min-width': '200px'});
 		$("#portada").attr('id', 'portada_mob');
+		$("#menuPortada").attr('id', 'menuPortada_mob');
 		$("#menu").attr('id', 'menu_mob');
 		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
@@ -26,16 +28,25 @@ $(document).ready(function(){
 		$(".tallasStyle_mob").css({'letter-spacing':'1.5px'});
 		$(".stiches").css({'width':'100%'});
 		$("#tituloVolver").attr('id', 'tituloVolver_mob');
+		$(".zoomContainerClass").attr('class', 'zoomContainerClass_mob');
 		$("#login").attr('width', '100%');
 		$(".tagName").hide();
 		$(".block-title").attr('class', 'block-title_mob');
+		$(".thanksClass").attr('class', 'thanksClass_mob');
+		$(".cell_store").attr('class', 'cell_store_mob');
 		$(".item1").attr('class', 'item1_mob');
 		$(".item2").attr('class', 'item2_mob');
 		$(".item3").attr('class', 'item3_mob');
 		$(".item4").attr('class', 'item4_mob');
+		$(".store").attr('class', 'store_mob');
+		$(".cell_store").attr('class', 'cell_store_mob');
+		$(".texto").attr('class', 'texto_mob');
 		$(".fotoImg").attr('class', 'fotoImg_mob');
 		$(".foto").attr('class', 'foto_mob');
 		$(".fotoProd").attr('class', 'fotoProd_mob');
+		$(".fotoLarge1").attr('class', 'fotoLarge1_mob');
+		$(".fotoLarge2").attr('class', 'fotoLarge2_mob');
+		$(".fotoLarge3").attr('class', 'fotoLarge3_mob');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
 		$("#footer").hide();
 		$(".fotoImage2").hide();
@@ -54,8 +65,9 @@ $(document).ready(function(){
 		$(".checkout .wd90 .h2").css({'font-size': '20px'});
 		$(".addresses").css({'letter-spacing': '1px'});
 		$(".addresses").css({'font-size': '10px'});
+		$(".verticalcenter120").css({'line-height': 'normal'});
 		$(".col_mob").css({'float': 'none'});
-		$(".checkout .wd90").css({'width': '100%'});
+		$(".checkout .wd90").css({'width': '96%'});
 		$("#carritoId").remove();
 		$("#listaCarritoResumen").remove();
 
@@ -65,7 +77,7 @@ $(document).ready(function(){
 		$(".tallasStyle_mob").show();
 		$("#menu_boton_mob").show();
 		$("#menu_mob").hide();
-
+		$(".portada_main").show();
 
 
 		if($("#tipoPagina").text() == 'prod1'){
@@ -333,6 +345,36 @@ $(document).ready(function(){
 	if($("#tipoPagina").text() == 'prod1' || $("#tipoPagina").text() == 'prod2' || $("#tipoPagina").text() == 'prod3'){
 
 
+		$('.fotoLarge1_mob').click(
+			function zoomImage(){
+				if (!showMenu){
+					$('#zoomContainer').show();
+					$('#zoomContainer').html('<img src=\''+urlImg1+'\'>');
+					$("#mascara").show(200);
+					$(".large").hide(2);
+				}
+			}
+		);
+		$('.fotoLarge2_mob').click(
+			function zoomImage(){
+				if (!showMenu){
+					$('#zoomContainer').show();
+					$('#zoomContainer').html('<img src=\''+urlImg2+'\'>');
+					$("#mascara").show(200);
+					$(".large").hide(2);
+				}
+			}
+		);
+		$('.fotoLarge3_mob').click(
+			function zoomImage(){
+				if (!showMenu){
+					$('#zoomContainer').show();
+					$('#zoomContainer').html('<img src=\''+urlImg3+'\'>');
+					$("#mascara").show(200);
+					$(".large").hide(2);
+				}
+			}
+		);
 		$('.large').click(
 			function zoomImage(){
 				if (!showMenu){
@@ -360,7 +402,7 @@ $(document).ready(function(){
 
 	}	
 
-	if($("#tipoPagina").text() == 'cat' || $("#tipoPagina").text() == 'con'){
+	if($("#tipoPagina").text() == 'cat' || $("#tipoPagina").text() == 'con' || $("#tipoPagina").text() == 'cat_main'){
 		$("#menu ul").css('background-image', 'none');
 	    $(".tagName").hide();
 
@@ -381,7 +423,13 @@ $(document).ready(function(){
 	    );
 	}	
 	
-
+        if($("#tipoPagina").text() == 'cat_main'){
+				$("#menu_boton_mob").hide();
+				showMenu_mob=true;
+				$("#menu_boton_mob").text("MENU -");
+				$(".foto_blank1").css({'height': alturaText});
+				$("#menu_mob").show(0);
+	}
 
 	if($("#tipoPagina").text() == 'prod1'){
 		$("#infoPanel").show();

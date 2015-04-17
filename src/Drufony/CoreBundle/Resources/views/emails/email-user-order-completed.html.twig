@@ -4,11 +4,69 @@
 <p>{{ 'Hello @username' | t({ '@username': customParams.username }) }},</p>
 
 
-{{customParams.cart[0].varieties}}
+
+
+<table>
+
+<p>{{ 'Hello'|t }},</p>
 <p>{{ 'Your order with number @orderId has been completed successfully and paid through @paymentPlataform.'
     | t({ '@orderId': customParams.orderId, '@paymentPlataform': customParams.paymentPlataform }) }}
 <p>{{ 'Briefly you will receive your goods in the indicated address'|t}}</p>
 
+<p><b> {{ 'Shipment Information'|t }}:</b></p>
+
+
+{{ customParams.shipping_Info.name }}
+<br>	
+{{ customParams.shipping_Info.address }}
+<br>	
+{{ customParams.shipping_Info.city }}.{{ customParams.billing_Info.province }}.{{ customParams.billing_Info.postalCode }}
+<br>	
+{{ customParams.shipping_Info.country }}
+<br>	
+<br>	
+
+</table>
+
+<table width="100%">
+<tr>
+	<td width="50" align:"center"><b>{{'Units'|t}}</b></td>
+	<td width="100" align:"center">
+		<b>{{ 'Reference'|t}}</b>
+	</td>
+	<td width="250" align:"center">
+		<b>{{ 'Product'|t}}</b>
+	</td>
+	<td width="80" align:"center">
+		<b>{{ 'Size'|t}}</b></td>
+	</td>
+	<td align:"center"><b>{{ 'Price'|t}}</b></td>
+
+</tr>
+{% for item in customParams.cart %}
+<tr>
+	<td align:"center">{{ item.quantity }}</td>
+	<td align:"center">
+		{{ item.sgu  }}
+	</td>
+	<td align:"center">
+		{{ item.title }}
+	</td>
+	<td align:"center">{{ item.varieties }}</td>
+	<td align:"center"><p>{{ item.pricePVP | round(0,'floor')}},{{ item.pricePVP | decimals  }} €</p></td>
+</tr>
+
+{% endfor %}
+</table>	
+<br>
+<br>
+<table width="100%">	
+<tr>
+<td  width="100%" align:"right">
+<b>{{'Shipping Cost'|t}}: </b>{{ customParams.orderInfo.shippingValue }} €
+</td>
+</tr>
+</table>	
 
 
 

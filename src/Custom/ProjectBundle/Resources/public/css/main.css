@@ -15,12 +15,12 @@ ul { list-style-type:none; }
 #header { position: fixed; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 20px; z-index:100;background-image:url('../images/menuBackground.png');}
 #header li {display:inline;cursor: pointer;}
 
-#header_mob { font-size:18px;  width: 100%; left:0px;top: 0px; padding: 10px; z-index:100;border-style:solid;border-width:1px;border-color:gray }
-#header_mob li {display:inline;cursor: pointer;}
+#header_mob { font-size:18px;  width: 100%; left:0px;top: 0px; z-index:100;border-style:solid;border-width:1px;border-color:gray;line-height:30px }
+#header_mob li {display:inline;cursor: pointer}
 
-#tipoPagina {color: white;visibility:hidden}
+#tipoPagina {color: white;visibility:hidden;height:1px}
 #portada {position: fixed;left:0px;top: 0px;z-index:0; width:100%;}
-#portada_mob {position: fixed;left:0px;top: 200px;z-index:0; width:100%;}
+#portada_mob {left:0px;top: 0px;z-index:0; width:100%;}
 .inlinedisplay { display:inline}
 .bgcolorgray{ background-color:#E6E6E6}
 .bgcolorblack{ background-color:black}
@@ -31,6 +31,7 @@ ul { list-style-type:none; }
 .center2 { width: 90%; margin: 0 auto;}
 .bold-text {font-weight :bold}
 .texto{font-size: 12px; background-color: white; color:gray;padding: 5px;letter-spacing:1.2px}
+.texto_mob{font-size: 16px; background-color: white; color:gray;padding: 5px;letter-spacing:1.4px}
 .tachado {text-decoration:line-through; font-size: 14px}
 .hidden {visibility:hidden}
 .ref { font-size: 15px; font-style:italic; text-align:right;z-index:10}
@@ -42,6 +43,7 @@ ul { list-style-type:none; }
 .verticalcenter102 {line-height:102px}
 .verticalcenter120 {line-height:120px}
 .verticalcenter45 {line-height:45px}
+.verticalcenter30 {line-height:30px}
 .height102 {height:102px}
 .height120 {height:120px}
 .height90 {height:90px}
@@ -94,6 +96,7 @@ ul { list-style-type:none; }
 .fs12 { font-size:12px}
 .fs14 { font-size:14px}
 .fs18 { font-size:18px}
+.fs24 { font-size:24px}
 .fs28 { font-size:28px}
 .table{display: table;}
 .row{ display: table-row; }
@@ -112,7 +115,7 @@ ul { list-style-type:none; }
 #contenedor1_mob{ position:relative;top:0px;width:100%; margin-bottom:200px;visibility: hidden; max-width:975px}
 #orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:45;background-color: white; }
 .loginStyle { position:absolute; top:0px; padding-left:40px;display: inline-block; width:920px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }
-.loginStyle_mob { position:absolute; top:0px; display: inline-block; width:100%; color:black;font-size: 14px ;text-align: left;z-index:50;background-color: white; }
+.loginStyle_mob { position:absolute; top:0px; display: inline-block; width:95%; color:black;font-size: 14px ;text-align: left;z-index:50;background-color: white; }
 #carritoId { position:absolute; top:0px; width:920px ;font-size: 12px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto ;padding-left:40px;padding-bottom:40px;margin-bottom:20px}
 #carritoId_mob { position:absolute; top:0px; width:95% ;font-size: 14px ;z-index:50; text.color: gray;background-color: white; overflow-y:auto; padding-left:10px}
 .contenido{ position:absolute ;top:0px; width:640px; padding-left: 20px; padding-right:20px; padding-top: 5px; padding-bottom: 8px;height: 407px ;font-size:14px; line-height:20px;  margin-left:10px; overflow-y: auto;text-align: left;z-index:5;}
@@ -137,20 +140,20 @@ ul { list-style-type:none; }
 #menuPortada a:active {text-decoration:none;color:white;}
 #menutitle{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
 #menu_boton_mob{ background:none;position:relative; font-size:18px;padding:10px; margin-bottom:20px }
-#menu_mob { position:relative; top:0px; padding: 0px;font-size: 16px ;color: white;width: 100%;text-align: left;z-index:4;}
+#menu_mob { position:relative; top:0px; padding: 0px;font-size: 14px ;color: white;width: 100%;text-align: left;z-index:4;}
 #menu_mob li:hover { color:black;cursor: pointer;}
 #menu_mob a:link {text-decoration:none;color:black;}
 #menu_mob a:visited {text-decoration:none; color:black;}
 #menu_mob a:hover {text-decoration:none;color:black;}
 #menu_mob a:active {text-decoration:none;color:black;}
 #menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 12px ;color: white;width: 100%;text-align: left;z-index:4;}
-#menuPortada_mob {height:380px;text-align: left;z-index:5;width:100%}
+#menuPortada_mob {text-align: left;z-index:5;width:100%}
 #menuPortada_mob ul {height:380px}
-#menuPortada_mob li:hover { color:black;cursor: pointer;}
-#menuPortada_mob a:link {text-decoration:none;color:white;}
-#menuPortada_mob a:visited {text-decoration:none; color:white}
-#menuPortada_mob a:hover {text-decoration:none;color:white;}
-#menuPortada_mob a:active {text-decoration:none;color:white;}
+#menuPortada_mob li:hover { color:black;cursor: pointer;color:black}
+#menuPortada_mob a:link {text-decoration:none;color:black}
+#menuPortada_mob a:visited {text-decoration:none;color:black}
+#menuPortada_mob a:hover {text-decoration:none;color:black}
+#menuPortada_mob a:active {text-decoration:none;color:black}
 #menutitle_mob{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
 .item1 {padding-left:10px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
 .item1.selected{color:black; font-weight:bold}
@@ -160,25 +163,27 @@ ul { list-style-type:none; }
 .item3.selected{ font-weight:bold;}
 .item4 { padding-left:50px; font-size: 12px; padding-top: 2px; padding-bottom: 2px; }
 .item4.selected{font-weight:bold; color:black;}
-.item1_mob {padding-left:10px;font-size: 24px; padding-top: 3px; padding-bottom: 3px;}
+.item1_mob {padding-left:10px;font-size: 20px; padding-top: 3px; padding-bottom: 3px;}
 .item1_mob.selected{color:black; font-weight:bold}
-.item2_mob {padding-left:20px;font-size: 22px; padding-top: 3px; padding-bottom: 3px;}
+.item2_mob {padding-left:20px;font-size: 18px; padding-top: 3px; padding-bottom: 3px;}
 .item2_mob.selected{color:black; font-weight:bold}
-.item3_mob { padding-left:35px; font-size: 20px; padding-top: 2px; padding-bottom: 2px; }
+.item3_mob { padding-left:35px; font-size: 16px; padding-top: 2px; padding-bottom: 2px; }
 .item3_mob.selected{ font-weight:bold;}
-.item4_mob { padding-left:50px; font-size: 20px; padding-top: 2px; padding-bottom: 2px; }
+.item4_mob { padding-left:50px; font-size: 16px; padding-top: 2px; padding-bottom: 2px; }
 .item4_mob.selected{font-weight:bold; color:black;}
-#zoomContainer {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
-#zoomContainer_mob {position:absolute; top:30px;height:900px; width:80%; left:50%;margin-left: -350px; z-index:50; background-color: white;}
+.zoomContainerClass {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
+.zoomContainerClass_mob {position:absolute; top:100px; z-index:50; background-color: white;width:100%; overflow-y:auto;overflow-x:auto}
 .fotoA {}
 .foto { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .fotoProd { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .fotoProd_mob { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top; }
 .foto_mob { position:relative; margin-top:3px;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
+.foto_main_mob { position:relative; margin-top:3px;top:3%; display: inline-block; width:320px; }
 .foto_blank { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .foto_blank1 { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .store { position:relative; margin-top:10px;display: inline-block; vertical-align: top;width:960px; height:40px; }
 .storeDummy { position:relative; ;display: inline-block; vertical-align: top;width:450px;  }
+.store_mob { position:relative; margin-top:10px; padding:5px}
 .tagPrice {position:absolute; bottom:0px; background-repeat: repeat; height: 30px; width: 100%; line-height:30px; font-size: 20px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
 .tagName {position:absolute; bottom:0px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 100%; font-size: 14px; font-style:bold;  text-align: center; z-index:5;background-image:url('../images/menuBackground.png')}
 #tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
@@ -188,10 +193,12 @@ ul { list-style-type:none; }
 
 .precioDecimal_mob {font-size:2}
 .precioDecimal_mob {font-size:14px}
+.thanksClass_mob{padding-top:30px;padding-bottom:30px}
+#listaCarritoResumen_mob {width:90%}
 
 #infoStore {position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 315px; background-image:url('../images/menuBackground.png'); font-size: 12px ;text-align: center;z-index:4}
-#infoPanel {position: absolute; top:0px;width:310px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
-#infoPanel_mob {  height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white}
+#infoPanel {position: absolute; top:0px;width:310px; height:401px; z-index:4;text-align: left;left; padding: 5px; background-color:white; overflow-y:auto}
+#infoPanel_mob {  z-index:4;text-align: left;left; padding: 5px; background-color:white;font-size:18px}
 #cuidados {cursor: pointer;z-index:20}
 .tallasStyle{position:absolute; bottom:-40px ; left:0px; font-size: 16px; display:inline ; text-align: left; height: 20px;width:948px; background-image:url('../images/menuBackground.png');padding:10px}
 .tallasStyle li {width:25px;}
