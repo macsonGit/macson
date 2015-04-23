@@ -147,6 +147,15 @@ $(document).ready(function(){
 	var showMascara=false;
 
 
+	$('#cookie-out').click(
+		function zoomImageOut(){
+			$('#cookie-out').hide();
+			$("#mascara").hide(200);
+			$("#login").hide(200);
+			$(".carrito").hide(200);
+			showMascara=false;
+		}
+	);	
 	
 	$('#mascara').click(
 		function zoomImageOut(){
@@ -398,7 +407,8 @@ $(document).ready(function(){
 
 	if($("#tipoPagina").text() == 'hom'){
 
-		
+		$("#back").hide();	
+		$("#menu ul").css('position', 'absolute');
 
 	}	
 

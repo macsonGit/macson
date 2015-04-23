@@ -4,7 +4,6 @@ must be defined in .css site file, in order to define a custom design for the me
 COOKIE-MODE constant must be defined in customConfig: 1 disabled,
 2 accepting mode if user continues browsing , 3 accepting mode if user clicks accept button.
 
-FIXME t function must be used.
 #}
 {%if (isConstDefined('COOKIE_MODE'))%}
     {% if constant('COOKIE_MODE') > 1 and constant('COOKIE_MODE') < 4 %}
@@ -15,22 +14,22 @@ FIXME t function must be used.
             <script type='text/javascript' src="{{ asset_url }}"></script>
             {% endjavascripts %}
             {% if constant('COOKIE_MODE') == 2 %}
-                {% set notice='Cookies help us deliver our services. By using our services, you agree to our use of cookies.' %}{# FIXME t function pending #}
+                {% set notice='Cookies help us deliver our services. By using our services, you agree to our use of cookies.'|t %}
             {% endif %}
             {% if constant('COOKIE_MODE') == 3 %}
-                {% set notice='Cookies help us deliver our services. Do you accept the our cookie terms?.' %}{# FIXME t function pending #}
+                {% set notice='Cookies help us deliver our services. Do you accept the our cookie terms?.'|t %}
             {% endif %}
             <div id='cookie-container'>
             <p id='cookie-notice'>
-                {{ notice }}{# FIXME t function pending #}
+                {{ notice }}
 
             {% if constant('COOKIE_MODE') == 3 %}
                 <a href='#' id='cookie-button' data-cookie-domain='{% if isConstDefined('COOKIE_DOMAIN') %}{{constant('COOKIE_DOMAIN')}}{% endif %}'>
-                    {{ 'Accept' }}{# FIXME t function pending #}
+                    {{ 'Accept'|t }}
                 </a>
             {% endif %}
             <a href='{{ path('drufony_cookie_terms_url', { 'lang': lang }) }}' id='cookie-terms-link' target='_blank'>
-                {{'Learn more'}}{# FIXME t function pending #}
+                {{'Learn more'|t}}
             </a>
             </p>
             </div>

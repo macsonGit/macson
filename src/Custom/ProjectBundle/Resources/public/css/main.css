@@ -12,7 +12,7 @@ html, body { text-align: center ;}
 ul { list-style-type:none; }
 #mascara { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 6; background-color: #000000; opacity: 0.9; filter: alpha(opacity=90);}
 #cerrar { position: absolute; right: 90px; top: 30px; width:80px; z-index: 7; color: white; cursor:pointer;}
-#header { position: fixed; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 20px; z-index:100;background-image:url('../images/menuBackground.png');}
+#header { position: fixed; width: 100%; left:0px;top: 0px; padding-left: 5px; height: 20px; z-index:100;background-color:white;}
 #header li {display:inline;cursor: pointer;}
 
 #header_mob { font-size:18px;  width: 100%; left:0px;top: 0px; z-index:100;border-style:solid;border-width:1px;border-color:gray;line-height:30px }
@@ -259,9 +259,12 @@ a.button-ok:hover, button.button-ok:hover{
 #titulo {position:absolute; top: -25px; font-size: 12px ; color:gray; right:0px; z-index:4; width: 700px; text-align:right;letter-spacing: 2px}	
 #masInfo {cursor: pointer; display: inline-block;color:gray;font-size:12px}	
 #boton1 {width:100px;height:30px;z-index:4;}
-#footer { position:fixed ; width: 100%; bottom: 0px; height: 20px; z-index:75 ;background-image:url('../images/menuBackground.png')}
+#footer { position:fixed ; width: 100%; bottom: 0px; height: 20px; z-index:75 ;background-color:white}
+#cookie-container { position:relative;  width: 100%; bottom: 20px; z-index:75 ; background-color:white}
+#cookie-out { cursor:pointer}
+#back{ margin-left:10px; cursor:pointer  }
 .listFooter  {display:inline; vertical-align: top;line-height:20px; cursor:pointer}
-.desplegaFooter{position:absolute; display:none;bottom:18px;padding-bottom:3px;background-image:url('../images/menuBackground.png')}
+.desplegaFooter{position:absolute; display:none;bottom:18px;padding-bottom:3px;background-color:white}
 .listDesplegaFooter {padding-left:5px;height:25px; text-align:left; line-height:25px; width:180px}
 .listDesplegaFooter:hover { background-color:gray;}
 

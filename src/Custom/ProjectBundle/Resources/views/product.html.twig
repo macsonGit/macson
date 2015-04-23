@@ -57,9 +57,6 @@
 {% include "CustomProjectBundle::menu.html.twig" %}
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
 {% include "CustomProjectBundle::tallas.html.twig" %}		
-			<div class="sinEfectos" id="tituloVolver">
-				<a  href="javascript:history.back()"> {{ "back" | t}}</a>
-			</div>	
 			<div id="tituloCat">
 				+ {{ "MENU" | t}}
 			</div>	
@@ -93,5 +90,6 @@
 {% include "CustomProjectBundle::info_panel_mob.html.twig" %}		
 </div>
 
+{% include 'DrufonyCoreBundle::block-cookie.html.twig' %}
 {% include "CustomProjectBundle::footer.html.twig" %}
 
