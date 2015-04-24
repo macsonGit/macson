@@ -190,6 +190,7 @@ ul { list-style-type:none; }
 #tagPriceProducto_mob { font-size: 22px ;z-index:5;padding:10px}
 .tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 100%; background-image:url('../images/menuBackground.png'); font-size: 20px ; font-style: bold;text-align: center;z-index:4}
 
+.titleCheck {font-weight:bold; font-size:24px;height:50px}
 
 .precioDecimal_mob {font-size:2}
 .precioDecimal_mob {font-size:14px}

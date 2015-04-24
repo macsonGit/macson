@@ -23,7 +23,12 @@
 <body>
 
 	<div id='header' class="sinEfectos">
-	<div id="back" class="inline underline"><a  href="javascript:history.back()">{{'Back'|t}}</a></div>
+{% set referUrl=app.request.headers.get('referer') %}
+{% if "www.macson" in referUrl %} 
+		<div id="back" class="inline underline"><a id="backLink" href="{{app.request.headers.get('referer')}}">{{'Back'|t}}</a></div>
+{% else %}
+		<div id="back" class="inline underline"><a id="backLink" href="http://www.macson.es">{{'Back'|t}}</a></div>
+{% endif %}
 	<ul>
             <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
 		{{'Stores'|t}} | </a>

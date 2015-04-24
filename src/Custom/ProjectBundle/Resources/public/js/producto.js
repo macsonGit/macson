@@ -126,6 +126,7 @@ $(document).ready(function(){
 		$('.contenido').jScrollPane();
 	});
 
+
 	$("#infoPanel").hide();
 	$("#tituloVolver").hide();
 	$('#zoomContainer').hide();
@@ -139,6 +140,7 @@ $(document).ready(function(){
 		
 	$("#login").hide();
 	$(".carrito").hide();
+
 
 
 	
