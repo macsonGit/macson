@@ -27,12 +27,13 @@ class RegisterFormType extends AbstractType
             else {
                 $builder->add('acceptTerms', 'checkbox', array(
                     'label' => t('I accept <a href="@terms" target="_blank">Terms and conditions</a>', array('@terms' => $options['data']['termsUrl'])),
-                    'value' => TRUE,
+                    'value' => true,
                 ));
             }
             $builder->add('newsletter', 'checkbox', array(
                 'label' => t('Sign up for newsletter'),
-                'required' => FALSE,
+		'data' => true,
+                'required' => false,
             ));
             $builder->add('register', 'submit', array(
                 'label' => t('Register'),

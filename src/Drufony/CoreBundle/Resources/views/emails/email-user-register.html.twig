@@ -4,11 +4,11 @@
 <p>{{ 'Hello :username' | t({ ':username': customParams.username }, customParams.lang) }}</p>
 
 <p>{{ 'Thanks for sign up.' | t(0, customParams.lang) }}</p>
-<p>{{ 'Welcome to the new Macson Web Page' | t(0, customParams.lang) }}</p>
+<p>{{ 'Welcome to Macson Web Page' | t(0, customParams.lang) }}</p>
 {% if customParams.newsletter %}
 <p>{{ 'Shortly you will receive news about fashion, offers and special events ' | t(0, customParams.lang) }}</p>
 {% endif %}
-
+<div><img src='{{ asset('bundles/customproject/images/portada1.jpg') }}'/></div>
 
 
 

@@ -533,9 +533,21 @@ class UserController extends DrufonyController
                     }
                 }
             }
-            $response->setContent($this->renderView('DrufonyCoreBundle::forgotPassword.html.twig', array(
+        $registerForm = $this->_processRegisterForm($request);
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+            $response->setContent($this->renderView('CustomProjectBundle::forgotPassword.html.twig', array(
                 'lang' => $lang,
                 'forgotForm' => $forgotForm->createView(),
+						    'products'=>$products,
+						    'orders'=>$orders,
+            					    'registerForm'  => $registerForm->createView(),
+            					    'loginForm'     => $loginForm->createView(),
+            					    'isLoginPath'   => FALSE,
             )));
             return $response;
         }
@@ -578,9 +590,23 @@ class UserController extends DrufonyController
                     return $this->redirect($this->generateUrl('drufony_profile_edit', array('lang' => $lang)));
                 }
             }
-            $response->setContent($this->renderView('DrufonyCoreBundle::changePassword.html.twig', array(
+
+        $registerForm = $this->_processRegisterForm($request);
+	$orders ='';
+	if(!empty($user)){
+		$orders = CommerceUtils::getUserOrders($user->getUid());
+	}
+        $loginForm = $this->_processLoginForm($request);
+	$products=CommerceUtils::getCartItemsAJAX();
+
+            $response->setContent($this->renderView('CustomProjectBundle::recoverPassword.html.twig', array(
                 'lang' => $lang,
                 'accountForm' => $accountForm->createView(),
+						    'products'=>$products,
+						     'orders'=>$orders,
+            					    'registerForm'  => $registerForm->createView(),
+            					    'loginForm'     => $loginForm->createView(),
+            					    'isLoginPath'   => TRUE,
             )));
         }
         else {
