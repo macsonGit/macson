@@ -12,6 +12,9 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->setMethod('POST')
+	    ->add('contactType','hidden', array(
+		'data'	     => 'val'	
+	    ))
             ->add('name', 'text', array(
                 'label'      => t('Name'),
                 'max_length' => 255,

@@ -1700,7 +1700,7 @@ class ContentUtils
      * @param Request $POST; request with the form content
      * @return void
      */
-    public static function processContactForm($action, $email, $POST) {
+    public static function processContactForm($action, $email, $POST, $lang) {
         $success     = True;
         $contactForm = new ContactFormType();
         $form        = $action->createForm($contactForm, array());
@@ -1720,7 +1720,7 @@ class ContentUtils
             }
 
             $attachments  = isset($attachment) ? array($attachment->getPathName()) : array();
-            $customParams = array('name' => $formData['name'], 'email' => $formData['email'],
+            $customParams = array('lang'=>$lang,'name' => $formData['name'], 'email' => $formData['email'],
                                 'body' => $formData['message'], 'phone' => $formData['phone']);
 
             Mailing::sendMail($email, $subject, $template, $customParams,

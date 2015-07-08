@@ -1,22 +1,66 @@
-<html>
-<body>
-<h1>{{ "Contact form" | t }}</h1>
-{{ form_start(form) }}
-<div class="form-item">
-{{ form_row(form.name) }}
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="contenedor1">
+
+	<div id="fotoRow">
+		{% if contactType=='customer' %}
+		<h1>{{ "Customer Service Contact" | t }}</h1>
+		<br>
+		<div>{{ 'Please insert your question or suggestion'| t }} </div>
+		<br>
+		{% endif %} 
+		{% if contactType=='hr' %}
+		<h1>{{ "Human Resources Contact" | t }}</h1>
+		<br>
+		<div>{{ 'Send us your CV'| t }} </div>
+		<br>
+		{% endif %} 
+		{% if contactType=='franchises' %}
+		<h1>{{ "Franchises Contact" | t }}</h1>
+		<br>
+		<div>{{ 'Contact us if you are interested in macson franchises'| t }} </div>
+		<br>
+		{% endif %} 
+		{% if contactType=='uniforms' %}
+		<h1>{{ "Uniforms Contact" | t }}</h1>
+		<br>
+		<div>{{ 'Contact us if you want to order company uniforms '| t }} </div>
+		<br>
+		{% endif %} 
+		<div class="pad15 wd50 radius5 center">
+			{{ form_start(form) }}
+			{{ form_widget(form.contactType, {value : contactType }) }}
+			<div class="align-left pad15">
+			{{ form_label(form.name) }}
+			{{ form_widget(form.name,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="align-left pad15">
+			{{ form_label(form.email) }}
+			{{ form_widget(form.email,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="align-left pad15">
+			{{ form_label(form.phone) }}
+			{{ form_widget(form.phone,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="align-left pad15">
+			{{ form_label(form.message) }}
+			{{ form_widget(form.message,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="pad15">
+			{{ form_widget(form.attachment,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="wd95 mg-vertical10 center">
+			  {{ form_widget(form.reset, { 'attr': {'class': 'action-button' }}) }}
+			</div>
+			<div class="wd95 mg-vertical10 center">
+			  {{ form_widget(form.send, { 'attr': {'class': 'action-button' }}) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+
 </div>
-<div class="form-item">
-{{ form_row(form.email) }}
-</div>
-<div class="form-item">
-{{ form_row(form.phone) }}
-</div>
-<div class="form-item">
-{{ form_row(form.message) }}
-</div>
-<div class="form-item">
-{{ form_row(form.attachment) }}
-</div>
-{{ form_end(form) }}
-</body>
-</html>
+
+
+{% include "CustomProjectBundle::footer.html.twig" %}

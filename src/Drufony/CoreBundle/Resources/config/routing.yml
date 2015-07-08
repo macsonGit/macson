@@ -407,7 +407,7 @@ drufony_schedule_calendar:
     defaults: { _controller: DrufonyCoreBundle:Admin:events }
 
 drufony_contact:
-    pattern: /contact
+    pattern: /contact/{contactType}
     defaults: { _controller: DrufonyCoreBundle:Contact:contactForm }
 
 drufony_stats_now:

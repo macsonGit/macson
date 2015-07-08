@@ -75,7 +75,7 @@
     {% set step = step + 1 %}
     <div id="target"></div>
     <div class="wd90">
-        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'|t}}</div>
       	<div>
 	{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       {% include 'DrufonyCoreBundle::checkout_shipping_info.html.twig' %}
@@ -87,10 +87,10 @@
     <div class="wd90">
       {% if checkoutMethodCompleted %}
       <a href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information|t'}}</div>
       </a>
       {% else %}
-        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'|t}}</div>
       {% endif %}
     </div>
   {% endif %}
@@ -101,7 +101,7 @@
   {% if checkoutStep == 'billingInformation' %}
     <div id="target"></div>
     <div class="wd90">
-        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'|t}}</div>
       <div>
 	{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       {% include 'DrufonyCoreBundle::checkout_billing_info.html.twig' %}
@@ -113,10 +113,10 @@
       {% if checkoutMethodCompleted %}
       <div> 
       <a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'|t}}</div>
       </a>
       {% else %}
-        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'|t}}</div>
       {% endif %}
     </div>
     </div>
@@ -156,7 +156,7 @@
     {% set step = step + 1 %}
     <div id="target"></div>
     <div class="wd90">
-      <div class="titleCheck">{{'Step'|t}} 4. {{'Payment method'}}</div>
+      <div class="titleCheck">{{'Step'|t}} 4. {{'Payment Method' |t}}</div>
       <form id='payment_options' action="{{ path('drufony_checkout_review_payment', {'lang' : lang} ) }}" method="post">
 	{% if data is defined %}
 	<input type="hidden" name="Ds_Merchant_Amount" value="{{  data.predefined_data.sermepa_express_checkout.Amount}}" />
@@ -190,10 +190,10 @@
     <div class="wd90">
       {% if checkoutMethodCompleted %}
       <a href='{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 4. {{'Payment method'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 4. {{'Payment Method|t'}}</div>
       </a>
       {% else %}
-        <div class="titleCheck">{{'Step'|t}} 4. {{'Payment method'}}</div>
+        <div class="titleCheck">{{'Step'|t}} 4. {{'Payment Method'|t}}</div>
       {% endif %}
     </div>
   {% endif %}
