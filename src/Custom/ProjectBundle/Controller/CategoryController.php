@@ -107,7 +107,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
             'orders'    	=> $orders,
 	    'user'=>$user,
-
+	    'type'=>'category',
         )));
         return $response;        
 
@@ -192,6 +192,7 @@ class CategoryController extends DrufonyController
 	    'user'=>$user,
 	    'orders'=>$orders,
 	    'outlet'=>true,
+	    'type'=>'category',
 
         )));
         return $response;        

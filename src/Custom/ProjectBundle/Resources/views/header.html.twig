@@ -5,9 +5,9 @@
 	{% set sumItems= sumItems + item.count %}
 {% endfor %}
 
-{% if app.request.attributes.get('_route_params') %}
+{% if type is defined and app.request.attributes.get('_route_params') %}
 
-{% set urlSplit = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) | split('-') %}
+	{% set urlSplit = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) | split('-') %}
 
 {% else %}
 
@@ -69,16 +69,27 @@
 
 	</div>
 
-{% if homePage is defined %}
-<div id="logo"></div> 
-{% else %}
-			<h1 id="titulo1" class="textwhite">	
+{% if urlSplit is not empty %}
+
+<h1 id="titulo1" class="textwhite">	
 	{% for word in urlSplit %}
 		{% if not loop.first and not loop.last %}
 			{{ word }}
 		{% endif %}
 	{% endfor %}
-			</h1>
+</h1>
+
+{% else%}
+
+<div id="titulo1" class="textwhite">	
+	a	
+</div>
+
+{% endif %}
+
+{% if homePage is defined %}
+<div id="logo"></div> 
+{% else %}
 <div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img id="logoImg" alt="macson logo" src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
 {% endif %}
 

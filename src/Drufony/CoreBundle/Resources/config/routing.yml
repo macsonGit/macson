@@ -34,6 +34,10 @@ macson_stores:
     pattern:  /stores
     defaults: { _controller: CustomProjectBundle:Store:index }
 
+macson_size:
+    pattern:  /size_chart
+    defaults: { _controller: CustomProjectBundle:Size:index }
+
 drufony_login:
     pattern: /login
     defaults: { _controller: DrufonyCoreBundle:User:loginRegister }

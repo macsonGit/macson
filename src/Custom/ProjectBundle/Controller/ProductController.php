@@ -151,6 +151,7 @@ class ProductController extends DrufonyController
  	    'products'=>$products,
             'orders'    	=> $orders,
 	    'user'=>$user,
+	    'type'=>'product',
         )));
         return $response;
     }

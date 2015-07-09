@@ -1,0 +1,17 @@
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="tipoPagina">cat</div>
+<div id="contenedor1">
+
+	<div id="foto1">	
+				{% include "CustomProjectBundle::login.html.twig" %}			
+				{% include "CustomProjectBundle::carritoResumen.html.twig" %}
+	</div>
+	<div id="foto1">
+
+		<img id="logoImg" alt="macson logo" src='{{ asset('bundles/customproject/images/traje_es.png') }}'>	
+	</div>	
+</div>	
+
+{% include 'DrufonyCoreBundle::block-cookie.html.twig' %}
+{% include "CustomProjectBundle::footer.html.twig" %}
