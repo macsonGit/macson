@@ -11,18 +11,18 @@
 
 {% else %}
 
-
 	{% set urlSplit = '' %}
 
 {% endif %}
 
-{% if outlet is defined %}
-	{% set urlSplit = urlSplit|merge(['outlet','hombre']) %}
+{% if outlet is defined and urlSplit is not empty %}
+	{% set urlSplit = urlSplit | merge(['outlet','hombre']) %}
 {% endif %}
 
 <body>
 
 	<div id='header' class="sinEfectos">
+
 {% set referUrl=app.request.headers.get('referer') %}
 {% if "www.macson" in referUrl %} 
 		<div id="back" class="inline underline"><a id="backLink" href="{{app.request.headers.get('referer')}}">{{'Back'|t}}</a></div>
@@ -69,7 +69,18 @@
 
 	</div>
 
-{% if urlSplit is not empty %}
+
+{% if type is defined %}
+
+
+{% if type=="product" %}
+
+<h1 id="titulo1" class="textwhite">	
+	{{ contentData.title }}			
+</h1>
+
+{% else %}
+
 
 <h1 id="titulo1" class="textwhite">	
 	{% for word in urlSplit %}
@@ -79,10 +90,14 @@
 	{% endfor %}
 </h1>
 
-{% else%}
+{% endif %}
+
+{% endif %}
+
+{% if type is not defined %}
 
 <div id="titulo1" class="textwhite">	
-	a	
+	texto	
 </div>
 
 {% endif %}

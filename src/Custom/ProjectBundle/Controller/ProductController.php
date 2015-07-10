@@ -124,7 +124,6 @@ class ProductController extends DrufonyController
 
         $menuList['selected']=$category;
 
-
         $numImages= array ('im1' => FALSE, 'im2' => FALSE, 'im3' => FALSE );
 
 	$kernel = $this->get('kernel');

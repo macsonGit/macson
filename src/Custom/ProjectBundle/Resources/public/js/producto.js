@@ -564,8 +564,23 @@ $(document).ready(function(){
 
 	var timeoutid = 0;
 	var este= $(this);
+
+
+	$(".itemSize").click(
+
+		function(){
+			replaced = urlImgSize.replace("XXXX",$(this).text() +"_" + lang);
+			$(".itemSize").removeClass("underline");
+			$(this).addClass("underline"); 	
+			$("#sizeImg").attr("src",replaced);
+		}
+	);
+
+
 	
 	//Now the mousemove function
+
+	
 
 
 	$(".magnify").mousemove(function(e){
