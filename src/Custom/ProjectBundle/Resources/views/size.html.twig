@@ -8,30 +8,31 @@
 
 <div id="tipoPagina">cat</div>
 <div id="contenedor1">
+	{{ 'Select an option'|t }}
 	<div id="foto1">
 		<div id="menu_size">
-			<div class="itemSize">
-				americana
+			<div class="itemSize" value="americana">
+				 {{ 'blazer'|t }}
 			</div>	
 			| 
-			<div class="itemSize">
-				punto
+			<div class="itemSize" value="punto">
+				{{ 'knitted'|t }}
 			</div>
 			|
-			<div class="itemSize">
-				traje
+			<div class="itemSize" value="traje">
+				{{ 'suit'|t }}
 			</div>
 			|
-			<div class="itemSize">
-				camisa
+			<div class="itemSize" value="camisa">
+				{{ 'shirt'|t }}
 			</div>
 			|
-			<div class="itemSize">
-				pantalones
+			<div class="itemSize" value="pantalones">
+				{{ 'trousers'|t }}
 			</div>
 			|
-			<div class="itemSize">
-				zapatos
+			<div class="itemSize" value="zapatos">
+				{{ 'shoes'|t }}
 			</div>
 		</div>	
 {% include "CustomProjectBundle::login.html.twig" %}			

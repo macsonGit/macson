@@ -15,6 +15,7 @@
 		{%endif%}			
 					<li class="itemTalla">{{size.value}}</li> |							
 	{% endfor %}
+					<li class="itemTalla sinEfectos"><a href={{ path('macson_size',{ 'lang': lang} ) }}><b>{{ 'Size Guide'|t }}</a></b></li> |							
 {% else %}
 	{{ 'OUT OF STOCK'|t }}
 

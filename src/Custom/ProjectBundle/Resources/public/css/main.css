@@ -123,7 +123,8 @@ ul { list-style-type:none; }
 .contenido h2 { text-align:center; font-size:20px }
 .borrarArticulo {color:red; text-decoration:none;cursor: pointer;}
 
-#menu_size { position:absolute; top:0px; padding: 0px;font-size: 18px ;width: 100%;z-index:4;height:100px}
+#menu_size_mob {  padding: 0px;font-size: 18px ;width: 100%;z-index:4}
+#menu_size { position:absolute; top:20px; padding: 0px;font-size: 18px ;width: 100%;z-index:4;height:100px}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;height:400px}
 #menu {text-align: left;z-index:5;width:321px}
 #menu ul {height:380px; background-image:url('../images/menuBackground.png')}
@@ -135,7 +136,7 @@ ul { list-style-type:none; }
 #menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;}
 #menuPortada {height:380px;text-align: left;z-index:5;width:321px}
 #menuPortada ul {height:380px}
-#menuPortada li:hover { color:black;cursor: pointer;}
+#menuPortada li:hover { font-weight:bold ;cursor: pointer;}
 #menuPortada a:link {text-decoration:none;color:white;}
 #menuPortada a:visited {text-decoration:none; color:white}
 #menuPortada a:hover {text-decoration:none;color:white;}
@@ -151,13 +152,14 @@ ul { list-style-type:none; }
 #menuPortada_mob { position:absolute; top:0px; padding: 0px;font-size: 12px ;color: white;width: 100%;text-align: left;z-index:4;}
 #menuPortada_mob {text-align: left;z-index:5;width:100%}
 #menuPortada_mob ul {height:380px}
-#menuPortada_mob li:hover { color:black;cursor: pointer;color:black}
+#menuPortada_mob li:hover { color:black;cursor: pointer}
 #menuPortada_mob a:link {text-decoration:none;color:black}
 #menuPortada_mob a:visited {text-decoration:none;color:black}
 #menuPortada_mob a:hover {text-decoration:none;color:black}
 #menuPortada_mob a:active {text-decoration:none;color:black}
 #menutitle_mob{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
 .itemSize {font-size: 18px;  font-weight:bold; display:inline; cursor:pointer}
+.itemSize_mob {font-size: 18px;  font-weight:bold; display:inline; cursor:pointer}
 .item1 {padding-left:10px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
 .item1.selected{color:black; font-weight:bold}
 .item2 {padding-left:20px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
@@ -266,7 +268,7 @@ a.button-ok:hover, button.button-ok:hover{
 #footer { position:fixed ; width: 100%; bottom: 0px; height: 20px; z-index:75 ;background-color:white}
 #cookie-container { position:relative;  width: 100%; bottom: 20px; z-index:5 ; background-color:white}
 #cookie-out { cursor:pointer}
-#back{ margin-left:10px; cursor:pointer  }
+#back{ margin-left:10px; cursor:pointer ; margin-right:10px }
 .listFooter  {display:inline; vertical-align: top;line-height:20px; cursor:pointer}
 .desplegaFooter{position:absolute; display:none;bottom:18px;padding-bottom:3px;background-color:white}
 .listDesplegaFooter {padding-left:5px;height:25px; text-align:left; line-height:25px; width:180px}

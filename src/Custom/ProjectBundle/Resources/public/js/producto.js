@@ -19,6 +19,7 @@ $(document).ready(function(){
 		$("#portada").attr('id', 'portada_mob');
 		$("#menuPortada").attr('id', 'menuPortada_mob');
 		$("#menu").attr('id', 'menu_mob');
+		$("#menu_size").attr('id', 'menu_size_mob');
 		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
 		$(".loginStyle").attr('class', 'loginStyle_mob');
@@ -47,6 +48,7 @@ $(document).ready(function(){
 		$(".fotoLarge1").attr('class', 'fotoLarge1_mob');
 		$(".fotoLarge2").attr('class', 'fotoLarge2_mob');
 		$(".fotoLarge3").attr('class', 'fotoLarge3_mob');
+		$(".itemSize").attr('class', 'itemSize_mob');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
 		$("#footer").hide();
 		$(".fotoImage2").hide();
@@ -569,13 +571,22 @@ $(document).ready(function(){
 	$(".itemSize").click(
 
 		function(){
-			replaced = urlImgSize.replace("XXXX",$(this).text() +"_" + lang);
+			replaced = urlImgSize.replace("XXXX",$(this).attr("value")+"_"+lang);
 			$(".itemSize").removeClass("underline");
 			$(this).addClass("underline"); 	
 			$("#sizeImg").attr("src",replaced);
 		}
 	);
 
+	$(".itemSize_mob").click(
+
+		function(){
+			replaced = urlImgSize.replace("XXXX",$(this).attr("value")+"_"+lang+"_mob");
+			$(".itemSize_mob").removeClass("underline");
+			$(this).addClass("underline"); 	
+			$("#sizeImg").attr("src",replaced);
+		}
+	);
 
 	
 	//Now the mousemove function
