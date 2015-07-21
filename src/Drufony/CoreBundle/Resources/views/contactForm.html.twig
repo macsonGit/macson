@@ -22,6 +22,12 @@
 		<div>{{ 'Contact us if you are interested in macson franchises'| t }} </div>
 		<br>
 		{% endif %} 
+		{% if contactType=='press' %}
+		<h1>{{ "Press Contact" | t }}</h1>
+		<br>
+		<div>{{ 'For any press request please insert here:'| t }} </div>
+		<br>
+		{% endif %} 
 		{% if contactType=='uniforms' %}
 		<h1>{{ "Uniforms Contact" | t }}</h1>
 		<br>

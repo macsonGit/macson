@@ -218,7 +218,7 @@ ul { list-style-type:none; }
 
 .button {
   height: 48px;
-  padding: 0 36px;
+  padding: 0 0px;
   border-radius: 4px;
   background: #46629B;
   text-align: center;
@@ -270,7 +270,7 @@ a.button-ok:hover, button.button-ok:hover{
 #cookie-out { cursor:pointer}
 #back{ margin-left:10px; cursor:pointer ; margin-right:10px }
 .listFooter  {display:inline; vertical-align: top;line-height:20px; cursor:pointer}
-.desplegaFooter{position:absolute; display:none;bottom:18px;padding-bottom:3px;background-color:white}
+.desplegaFooter{position:absolute; display:none;bottom:18px;padding-bottom:3px;background-color:#A4A4A4}
 .listDesplegaFooter {padding-left:5px;height:25px; text-align:left; line-height:25px; width:180px}
 .listDesplegaFooter:hover { background-color:gray;}
 

@@ -75,32 +75,39 @@
 				{{'Contact'|t}} |
 				<div class="desplegaFooter sinEfectos">
 					<ul>
-						<li class="listDesplegaFooter">
-							{{'Customer center'|t}}
-						</li>
-						<li class="listDesplegaFooter">
-							{{'Jobs'|t}}
-						</li>
-						<li class="listDesplegaFooter">
-							Newsletter
-						</li>
-						<li class="listDesplegaFooter">
-							{{'Franchises'|t}}
-						</li>
-						<li class="listDesplegaFooter">
-							{{'Uniforms'|t}}
-						</li>
-						<li class="listDesplegaFooter">
-							{{'On-line press room'|t}}
-						</li>
+						<a href="{{path('drufony_contact',{'contactType':'customer'})}}">
+							<li class="listDesplegaFooter">
+								{{'Customer center'|t}}
+							</li>
+						</a>
+						<a href="{{path('drufony_contact',{'contactType':'hr'})}}">
+							<li class="listDesplegaFooter">
+								{{'Jobs'|t}}
+							</li>
+						</a>
+						<a href="{{path('drufony_contact',{'contactType':'newsletter'})}}">
+							<li class="listDesplegaFooter">
+								Newsletter
+							</li>
+						</a>
+						<a href="{{path('drufony_contact',{'contactType':'franchises'})}}">
+							<li class="listDesplegaFooter">
+								{{'Franchises'|t}}
+							</li>
+						</a>
+						<a href="{{path('drufony_contact',{'contactType':'uniforms'})}}">
+							<li class="listDesplegaFooter">
+								{{'Uniforms'|t}}
+							</li>
+						</a>
+						<a href="{{path('drufony_contact',{'contactType':'press'})}}">
+							<li class="listDesplegaFooter">
+								{{'On-line press room'|t}}
+							</li>
+						</a>
 					</ul>
 
 				</div>
-			</li>
-			<li class="listFooter sinEfectos">
-				<a href="{{path('drufony_general_url',{'url':lang~'-press-room','lang':lang})}}">
-					{{'Press Room'|t}} |
-				</a>
 			</li>
 			
 			<li class="listFooter">

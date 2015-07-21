@@ -420,6 +420,7 @@ $(document).ready(function(){
 
 		$("#back").hide();	
 		$("#menu ul").css('position', 'absolute');
+		$(".listDesplegaFooter").css('background-color', 'white');
 
 	}	
 
