@@ -15,7 +15,7 @@ define('DRUFONY_SALT', 'NvwKmbfRaf4tG1ObazTmHfLb7zSgAY0jzZgsjyABFhbX9vj8MLiZaq9q
 //    - 1: desactivado
 //    - 2: modo aceptacion si usuario continua navegando
 //    - 3: modo aceptacion si usuario hace click en boton aceptar
-define('COOKIE_MODE', 2);
+define('COOKIE_MODE', 3);
 
 // IDIOMAS
 define('DEFAULT_LANGUAGE','es');

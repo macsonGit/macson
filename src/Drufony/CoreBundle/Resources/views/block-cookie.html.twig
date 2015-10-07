@@ -17,15 +17,14 @@ COOKIE-MODE constant must be defined in customConfig: 1 disabled,
                 {% set notice='Cookies help us deliver our services. By using our services, you agree to our use of cookies.'|t %}
             {% endif %}
             {% if constant('COOKIE_MODE') == 3 %}
-                {% set notice='Cookies help us deliver our services. Do you accept the our cookie terms?.'|t %}
+		{% set notice='Cookies help us deliver our services. Do you accept the our cookie terms?.'|t %}
             {% endif %}
             <div id='cookie-container'>
             <p id='cookie-notice'>
                 {{ notice }}
-
             {% if constant('COOKIE_MODE') == 3 %}
                 <a href='#' id='cookie-button' data-cookie-domain='{% if isConstDefined('COOKIE_DOMAIN') %}{{constant('COOKIE_DOMAIN')}}{% endif %}'>
-                    {{ 'Accept'|t }}
+                    {{ 'Accept'|t }}  
                 </a>
             {% endif %}
             <a href='{{ path('drufony_cookie_terms_url', { 'lang': lang }) }}' id='cookie-terms-link' target='_blank'>

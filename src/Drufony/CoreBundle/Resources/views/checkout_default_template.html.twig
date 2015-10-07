@@ -2,7 +2,7 @@
 {% form_theme form 'DrufonyCoreBundle::form_theme_checkout.html.twig' %}
 
 <!-- page title -->
-<h1 class="page-title hidden">{{'Checkout' |t}} </h1>
+<h1 class="hidden">{{'Checkout' |t}} </h1>
 <!--/ page title -->
 
 <div class="checkout-process-wrapper">
@@ -10,12 +10,48 @@
 {% set step = 1 %}
 
 {# Checkout Method #}
-<section id="login_sect" class="checkout">
-  {% if userLogged != true %}
-      {% set step = step + 1 %}
+
+
+{% if checkoutStep !=  'checkoutMethod' %}
+<div id="menucommerce">
+{% if checkoutStep == 'shippingInformation' %}
+	<div class="titleCheck inline pad15 zindex10 underline">
+{% else %}
+	<div class="titleCheck inline pad15 zindex10 graytext">
+{% endif %}
+		<a href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>1. {{'Shipping'|t}}</a>
+	</div>
+{% if checkoutStep == 'billingInformation' %}
+	<div class="titleCheck inline pad15 zindex10 underline">
+{% else %}
+	<div class="titleCheck inline pad15 zindex10 graytext">
+{% endif %}
+		<a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>2. {{'Billing'|t}}</a>
+	</div>
+{% if checkoutStep == 'shippingMethod' %}
+	<div class="titleCheck inline pad15 zindex10 underline">
+{% else %}
+	<div class="titleCheck inline pad15 zindex10 graytext">
+{% endif %}
+		<a href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>3. {{'Summary'|t}}</a>
+	</div>
+{% if checkoutStep == 'selectPaymentMethod' %}
+	<div class="titleCheck inline pad15 zindex10 underline">
+{% else %}
+	<div class="titleCheck inline pad15 zindex10 graytext">
+{% endif %}
+      		<a href='{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}'>4. {{'Payment'|t}}</a>
+	</div>
+	<div class="clear"></div>
+</div>
+{% endif %}
+
+{% if userLogged != true %}
       {% if checkoutStep == 'checkoutMethod' %}
+<section id="" class="checkout">
+      {% set step = step + 1 %}
 	 <div class="wd90">
-	     <div class="pad15 fs16">
+	     <div class="center pad15 fs16">
 			{{ "Login to quick buy or"|t }} <a class="underline" href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'"><b>{{ "click here and create a new user" | t }}</b></a>
 	    </div>	
 	    <div class="wd40 center">
@@ -51,112 +87,56 @@
                 <a class="underline" href="{{ path('drufony_user_request_forgot_pass', {'lang' : lang }) }}">{{ "Forgot password?" | t }}</a>
 		</div>
 	</div>
-      {% else  %}
-        <div class="wd90">
-          <a href='{{ path('drufony_checkout_login', { 'lang' : lang})}}'>
-          	<div class="titleCheck">{{'Login'|t}}</div>
-          </a>
-        </div>
-      {% endif %}
-  {% else %}
-        <div class="wd90">
-          <a href='{{ path('drufony_checkout_login', { 'lang' : lang})}}'>
-            <div class="titleCheck">{{'Logged'}}</div>
-          </a>
-        </div>
-    {% set step = step + 1 %}
-  {% endif %}
 </section>
-
+{% endif %}
+{% endif %}
 
 {# Shipping Information #}
-<section id="shipping_sect" class="checkout">
   {% if checkoutStep == 'shippingInformation' %}
+<section id="shipping_sect" class="checkout">
     {% set step = step + 1 %}
-    <div id="target"></div>
     <div class="wd90">
-        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'|t}}</div>
-      	<div>
+      	<div class="">
 	{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       {% include 'DrufonyCoreBundle::checkout_shipping_info.html.twig' %}
       {{ form_end(form) }}
       </div>
     </div>
-  {% else %}
-    {% set step = step + 1 %}
-    <div class="wd90">
-      {% if checkoutMethodCompleted %}
-      <a href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'|t}}</div>
-      </a>
-      {% else %}
-        <div class="titleCheck">{{'Step'|t}} 1. {{'Shipping Information'|t}}</div>
-      {% endif %}
-    </div>
-  {% endif %}
 </section>
+  {% endif %}
 
 {# Billing Information #}
-<section id="billing_sect" class="checkout">
   {% if checkoutStep == 'billingInformation' %}
-    <div id="target"></div>
+<section id="billing_sect" class="checkout">
     <div class="wd90">
-        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'|t}}</div>
       <div>
 	{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       {% include 'DrufonyCoreBundle::checkout_billing_info.html.twig' %}
       {{ form_end(form) }}
       </div>
     </div>
-  {% else %}
-    <div class="wd90">
-      {% if checkoutMethodCompleted %}
-      <div> 
-      <a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'|t}}</div>
-      </a>
-      {% else %}
-        <div class="titleCheck">{{'Step'|t}} 2. {{'Billing Information'|t}}</div>
-      {% endif %}
-    </div>
-    </div>
-  {% endif %}
  </section>
+  {% endif %}
 
 {# Shipping Method #}
+{% if checkoutStep == 'shippingMethod' %}
 <section id="shipping_method_sect" class="checkout">
-  {% if checkoutStep == 'shippingMethod' %}
     {% set step = step + 1 %}
-    <div id="target"></div>
     <div class="wd90">
-        <div class="titleCheck">{{'Step'|t}} 3. {{'Order Summary'}}</div>
     	<div class="bb">	
       		{{ form_start(form, {'attr': { 'id': 'paymentForm', 'class': 'form' } }) }}
       		{% include 'DrufonyCoreBundle::checkout_shipping_method.html.twig' %}
       		{{ form_end(form) }}
     	</div>
     </div>
-  {% else %}
-    {% set step = step + 1 %}
-    <div class="wd90">
-      {% if checkoutMethodCompleted %}
-      <a href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 3. {{'Order Summary'}}</div>
-      </a>
-      {% else %}
-      	<div class="titleCheck">{{'Step'|t}} 3. {{'Order Summary'}}</div>
-      {% endif %}
-    </div>
-  {% endif %}
 </section>
+  {% endif %}
 
 {# Payment Method #}
-<section id="payment_sect" class="checkout" style="margin-bottom:18px">
   {% if checkoutStep == 'selectPaymentMethod' %}
+<section id="payment_sect" class="checkout" style="margin-bottom:18px">
     {% set step = step + 1 %}
-    <div id="target"></div>
     <div class="wd90">
-      <div class="titleCheck">{{'Step'|t}} 4. {{'Payment Method' |t}}</div>
       <form id='payment_options' action="{{ path('drufony_checkout_review_payment', {'lang' : lang} ) }}" method="post">
 	{% if data is defined %}
 	<input type="hidden" name="Ds_Merchant_Amount" value="{{  data.predefined_data.sermepa_express_checkout.Amount}}" />
@@ -185,20 +165,8 @@
 
     </form>
 </div>
-  {% else %}
-    {% set step = step + 1 %}
-    <div class="wd90">
-      {% if checkoutMethodCompleted %}
-      <a href='{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}'>
-        <div class="titleCheck">{{'Step'|t}} 4. {{'Payment Method|t'}}</div>
-      </a>
-      {% else %}
-        <div class="titleCheck">{{'Step'|t}} 4. {{'Payment Method'|t}}</div>
-      {% endif %}
-    </div>
-  {% endif %}
 </section>
-
+  {% endif %}
 
 </div>
 <div style="clear:both"></div>

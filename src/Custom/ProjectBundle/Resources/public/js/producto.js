@@ -11,6 +11,7 @@ $(document).ready(function(){
 	$(".tallasStyle_mob").hide();
 	$(".portada_main").hide();
 
+
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
 
  		var mobile=true;
@@ -49,6 +50,8 @@ $(document).ready(function(){
 		$(".fotoLarge2").attr('class', 'fotoLarge2_mob');
 		$(".fotoLarge3").attr('class', 'fotoLarge3_mob');
 		$(".itemSize").attr('class', 'itemSize_mob');
+		$("#menucommerce .inline").removeClass('pad15');
+		$("#menucommerce .inline").removeClass('inline');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
 		$("#footer").hide();
 		$(".fotoImage2").hide();
@@ -70,6 +73,7 @@ $(document).ready(function(){
 		$(".verticalcenter120").css({'line-height': 'normal'});
 		$(".col_mob").css({'float': 'none'});
 		$(".checkout .wd90").css({'width': '96%'});
+		$(".titleCheck").css({'font-size': '18px'});
 		$("#carritoId").remove();
 		$("#listaCarritoResumen").remove();
 
@@ -107,7 +111,7 @@ $(document).ready(function(){
 
 	}
 	else{
-
+		$(".titleCheck").css({'height': '25px'});
 		$("#carritoId_mob").remove();
 		$("#listaCarritoResumen_mob").remove();
 	}
@@ -511,14 +515,14 @@ $(document).ready(function(){
 		function showMenuA_mob(){
 			if(showMenu_mob){
 				showMenu_mob=false;
-				$("#menu_boton_mob").text("MENU +");
+				$("#menu_boton_mob").text("Menu +");
 				$("#menu_mob").hide(350);
 				$(".foto_blank1").css({'height': '70'});
 				$("#foto_blank1_mob").hide(0);
 			}
 			else{
 				showMenu_mob=true;
-				$("#menu_boton_mob").text("MENU -");
+				$("#menu_boton_mob").text("Menu -");
 				$(".foto_blank1").css({'height': alturaText});
 				$("#menu_mob").show(0);
 	
