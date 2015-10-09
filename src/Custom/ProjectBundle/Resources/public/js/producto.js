@@ -77,7 +77,6 @@ $(document).ready(function(){
 		$("#carritoId").remove();
 		$("#listaCarritoResumen").remove();
 
-		$("#infoPanel").hide();
 		$("#infoPanel_mob").show();
 		$(".tallasStyle").hide();
 		$(".tallasStyle_mob").show();
@@ -133,7 +132,6 @@ $(document).ready(function(){
 	});
 
 
-	$("#infoPanel").hide();
 	$("#tituloVolver").hide();
 	$('#zoomContainer').hide();
 	$("#mascara").hide();
@@ -468,9 +466,8 @@ $(document).ready(function(){
 	}	
 
 	if($("#tipoPagina").text() == 'prod2'){
-		$("#infoPanel").hide();
 		$("#masInfo").text("");		
-		$("#menu ul").show();
+		$("#menu ul").hide();
 		$("#menu_mob").hide();
 		$("#menu ul").css('background-image', 'none');
 		$("#tituloCat").text("");
@@ -478,11 +475,10 @@ $(document).ready(function(){
 	}		
 
 	if($("#tipoPagina").text() == 'prod3'){
-
 		$("#menu_mob").hide();
 		$("#menu ul").hide();
+		$("#foto3").hide();
 		showMenu=false;
-
 	}
 			
 	$("#menu").height(23);	
@@ -598,7 +594,9 @@ $(document).ready(function(){
 
 	
 
-
+	$(".magnify").mouseleave(function(e){
+		$(".large").hide();
+	});
 	$(".magnify").mousemove(function(e){
 
 
@@ -607,7 +605,7 @@ $(document).ready(function(){
 			timeoutid = 0;
 		}
 
-		var idattr = $(this).attr('id' ); 
+		var idattr = $(this).attr('id'); 
 		var magnify_offset = $(this).offset();
 
 		var container =$(this);

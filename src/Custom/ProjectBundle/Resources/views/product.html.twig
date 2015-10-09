@@ -18,15 +18,15 @@
 	{% if not im2 or not im3 %}	
 	{% set  tipoPag=2 %}
 		{% if not im2 %}	
-			{% set image2=asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg')  %}
-			{% set image3=asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg')  %}
-	var urlImg2 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_1.jpg') }}";
-	var urlImg3 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg') }}";
+			{% set image1=asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg')  %}
+			{% set image2=asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_3.jpg')  %}
+	var urlImg1 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_1.jpg') }}";
+	var urlImg2 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg') }}";
 		{% else %}
-			{% set image2= asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg')  %}
-			{% set image3= asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg')  %}
-	var urlImg2 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_1.jpg') }}";
-	var urlImg3 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_2.jpg') }}";
+			{% set image1= asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_1.jpg')  %}
+			{% set image2= asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg')  %}
+	var urlImg1 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_1.jpg') }}";
+	var urlImg2 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_2.jpg') }}";
 		{% endif %}
 	{% else %}
 		{% set image2= asset('bundles/customproject/images/Product/Standard/'~contentData.__get('sgu')~'_2.jpg')  %}
@@ -49,7 +49,7 @@
 <div id="contenedor1">	
 
 {% include "CustomProjectBundle::tallas_mob.html.twig" %}		
-		<div id="foto1" class="fotoProd  magnify">
+		<div class="fotoProd">
 {% include "CustomProjectBundle::login.html.twig" %}
 {% if 'OUTLET' in contentData.brand %}
 {% set outlet=true %}
@@ -60,32 +60,34 @@
 			<div id="tituloCat">
 				+ {{ "MENU" | t}}
 			</div>	
-{% if tipoPag==3 %}		
-			<div class="large">{{'Click to open'|t}}</div>
-			<img class="fotoLarge1 fotoImg1 small" alt={{contentData.title}} src='{{ image1 }}'>
+{% if tipoPag >  1%}		
+			<div id="foto1" class="magnify">
+				<div class="large">{{'Click to open'|t}}</div>
+				<img class="fotoLarge1 fotoImg1 small" alt={{contentData.title}} src='{{ image1 }}'>
+			</div>
 {% else %}
 			<div class="foto_blank">	
 				<img  src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 			</div>
 {% endif %}	
 		</div>
-		<div id="foto2" class="fotoProd magnify">
-			<div class="large">{{'Click to open'|t}}</div>
-			<img class="fotoLarge2 fotoImg2 small"  alt={{contentData.title}} src='{{ image2 }}'>
+		<div class="fotoProd">
+			<div id="foto2" class="magnify">
+				<div id="idLarge2" class="large">{{'Click to open'|t}}</div>
+				<img id="idSmall2" class="fotoLarge2 fotoImg2 small"  alt={{contentData.title}} src='{{ image2 }}'>
+			</div>
+{% if tipoPag ==  3%}		
+			<div id="foto3" class="magnify">
+				<div id="idLarge3" class="large">{{'Click to open'|t}}</div>
+				<img class="fotoLarge3 fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
+			</div>
+{% endif %}	
 		</div>
-		<div id="foto3" class="fotoProd magnify">
-{% if tipoPag==1 %}
+		<div class="fotoProd">
 			<div class="foto_blank">	
 				<img  src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 			</div>
-{% else %}
-			<div class="large">{{'Click to open'|t}}</div>
-			<img class="fotoLarge3 fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
-{% endif %}	
 {% include "CustomProjectBundle::info_panel.html.twig" %}		
-			<div id="titulo">
-			<div id="masInfo">PRODUCT INFO +</div>  	
-			</div>		
 		</div>		
 {% include "CustomProjectBundle::info_panel_mob.html.twig" %}		
 </div>
