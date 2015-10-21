@@ -2,10 +2,14 @@
 
 
 {% if outlet is defined %}
-	{% set route = 'macson_category_outlet' %} 
+	{% set route = 'macson_category_outlet' %}
+{% elseif mujer is defined %} 
+	{% set route = 'macson_category_mujer' %} 
 {% else %}
 	{% set route = 'macson_category' %} 
 {% endif %}
+
+
 
 {% if homePage is defined %}
 <div id="menuPortada"> 
@@ -22,6 +26,8 @@
 	<ul class="pad15">
 {% if outlet is defined %}
 	<div class="fs18 pad10 blacktext">OUTLET</div>
+{% elseif mujer is defined %}
+	<div class="fs18 pad10 blacktext">{{'WOMEN'|t}}</div>
 {% else %}
 	<a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'New Collection' | t}}</li></a> 
 {% endif %}

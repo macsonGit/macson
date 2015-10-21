@@ -1,0 +1,26 @@
+
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<img id="portada" class="portada_main" src='{{ asset('bundles/customproject/images/Mujer.png') }}'/>
+<div id="tipoPagina">cat_main</div>
+<div id="contenedor1">	
+		<div class="foto">
+{% include "CustomProjectBundle::login.html.twig" %}			
+{% include "CustomProjectBundle::carritoResumen.html.twig" %}			
+{% include "CustomProjectBundle::menu.html.twig" %}
+		</div>
+		<div class="foto_blank">
+
+			<div>
+			
+			<img src='{{ asset('bundles/customproject/images/Mujer.jpg') }}'>	
+			</div>
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+		<div class="foto_blank">
+			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
+		</div>
+</div>	
+
+{% include "CustomProjectBundle::footer.html.twig" %}

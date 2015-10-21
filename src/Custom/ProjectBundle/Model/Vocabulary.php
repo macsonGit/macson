@@ -41,11 +41,12 @@ class Vocabulary {
     $sons=array();
 
 
+
    $sqlproduct = 'SELECT *  FROM 
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-		WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand NOT LIKE "%OUTLET")		 
+		WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand NOT LIKE "%OUTLET" AND product.brand NOT LIKE "%MUJER" )		 
 		GROUP BY product.sku';
 
    if ($type =='OUTLET'){
@@ -55,6 +56,16 @@ class Vocabulary {
 			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
 			WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand LIKE "%OUTLET")		 
+			GROUP BY product.sku';
+   }
+
+   if ($type =='MUJER'){
+
+	   $sqlproduct = 'SELECT *  FROM 
+			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
+			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
+			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
+			WHERE (product.category=? AND product.lang=? AND product.published=1 AND product.brand LIKE "%MUJER")		 
 			GROUP BY product.sku';
    }
 
@@ -156,12 +167,16 @@ class Vocabulary {
 
       $category=$node['name'];
       
-      $sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD"';
+      $sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
      
        if ($type == 'OUTLET'){
       	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD"';
       }
      
+       if ($type == 'MUJER'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND published=1 AND brand LIKE "%MUJER" AND brand NOT LIKE "%NOVEDAD"';
+      }
+
       $querycat = db_fetchAll($sqlcat, array($category));
 
       if (!empty($querycat)){

@@ -22,6 +22,14 @@ macson_category_outlet:
     pattern:  /outlet/category/{category}-{categorynames}
     defaults: { _controller: CustomProjectBundle:Category:outletcategory }
 
+macson_category_mujer_home:
+    pattern:  /mujer
+    defaults: { _controller: CustomProjectBundle:Category:mujer }
+
+macson_category_mujer:
+    pattern:  /mujer/category/{category}-{categorynames}
+    defaults: { _controller: CustomProjectBundle:Category:mujercategory }
+
 macson_category_news:
     pattern:  /new_collection
     defaults: { _controller: CustomProjectBundle:Category:news }

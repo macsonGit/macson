@@ -25,16 +25,17 @@
 
 {% set referUrl=app.request.headers.get('referer') %}
 {% if "www.macson" in referUrl %} 
-		<div id="back" class="inline underline"><a id="backLink" href="{{app.request.headers.get('referer')}}">{{'Back'|t}}</a></div>
+		<div id="back" class="inline padtop3"><a id="backLink" href="{{app.request.headers.get('referer')}}"><img src='{{ asset('bundles/customproject/images/back.png') }}'></a></div>
 {% else %}
-		<div id="back" class="inline underline"><a id="backLink" href="http://www.macson.es">{{'Back'|t}}</a></div>
+		<div id="back" class="inline padtop3"><a id="backLink" href="http://www.macson.es"><img src='{{ asset('bundles/customproject/images/back.png') }}'></a></div>
 {% endif %}
-	<ul>
+	<ul class="verticalcenter30">
             <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
 		{{'Stores'|t}} | </a>
 	    </li>
 	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'Shop On-line' | t }} |</a> </li>  
 	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | </a></li>  
+	    <li><a href={{ path('macson_category_mujer_home',{ 'lang': lang} ) }}> {{ 'Women' | t }} | </a></li>  
             <li id="loginMenu">
 {% if app.user is not null %}
 	{% if app.user.profile.name is empty %}	
@@ -47,25 +48,31 @@
 {% endif %}
 	    </li>
 
-{% if sumItems  %}
-            <li id="carritoResumen"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'>
- 	    <span id="sumItems">
-	    	({{ sumItems }}) |
-	    </span>
-	   </li>
-{% else %}
-            <li id="carritoResumen">
- 	    <span id="sumItems">
-	    </span>
-	    </li>
-{% endif %}		
 {% if lang == 'es' %}
-	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> English<a><li>  
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> English | <a><li>  
 {% endif %}
 {% if lang == 'en' %}
-	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> Español<a><li>  
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> Español | <a><li>  
 {% endif %}
-        </ul>
+            <li><span id="carritoResumen"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'></span>
+ 	    <span id="sumItems">
+	    	({{ sumItems }})
+	    </span>
+	   </li>
+		<li>
+			<ul id="header_socialmedia">
+
+            					<li><a href="https://facebook.com/macsonshop" target="_blank"><img src='{{ asset('bundles/customproject/images/facebookIcon.png') }}'></a></li>
+            					<li><a href="https://twitter.com/macsonshop" target="_blank"><img src='{{ asset('bundles/customproject/images/twitterIcon.png') }}'></a></li>
+            					<li><a href="https://instagram.com/macsonshop" target="_blank"><img src='{{ asset('bundles/customproject/images/InstagramIcon.png') }}'></a></li>
+            					<li><a href="https://plus.google.com/+MacsonEs/posts" target="_blank"><img src='{{ asset('bundles/customproject/images/googlePlusIcon.png') }}'></a></li>
+            					<li><a href="https://www.youtube.com/channel/UCX5ENrQR5rxUOE2LQw6aIkw" target="_blank"><img src='{{ asset('bundles/customproject/images/youTubeIcon.png') }}'></a></li>
+
+			</ul>
+
+		</li>
+
+	</ul>
 
 	</div>
 
