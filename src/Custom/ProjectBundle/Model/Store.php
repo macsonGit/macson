@@ -44,6 +44,14 @@ class Store {
   
   }
 
+  public static function getStoreNames(){
+
+    $sql = 'SELECT bou_nombre AS name ,bou_poblacion AS city , bou_direccion AS address FROM boutiques WHERE bou_gencat=1 ORDER BY bou_pais,bou_provincia, bou_poblacion,bou_orden';
+    $stores = db_fetchAll($sql, array());
+
+    return $stores; 
+  
+  }
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 

@@ -418,6 +418,10 @@ drufony_schedule_calendar:
     path: /dashboard/schedule
     defaults: { _controller: DrufonyCoreBundle:Admin:events }
 
+drufony_gencat:
+    pattern: /gencat
+    defaults: { _controller: DrufonyCoreBundle:Contact:gencatForm }
+
 drufony_contact:
     pattern: /contact/{contactType}
     defaults: { _controller: DrufonyCoreBundle:Contact:contactForm }

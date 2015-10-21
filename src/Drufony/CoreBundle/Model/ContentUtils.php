@@ -20,6 +20,7 @@ use Drufony\CoreBundle\Model\Page;
 use Drufony\CoreBundle\Model\Product;
 use Drufony\CoreBundle\Entity\Comment;
 use Drufony\CoreBundle\Form\ContactFormType;
+use Drufony\CoreBundle\Form\GencatFormType;
 use Drufony\CoreBundle\Exception\ContentTypeNotFound;
 
 // Class constants
@@ -1692,6 +1693,12 @@ class ContentUtils
         return $form;
     }
 
+    public static function getGencatForm($action) {
+        $gencatForm = new GencatFormType();
+        $form        = $action->createForm($gencatForm,array());
+
+        return $form;
+    }
     /**
      * Process contact form and send and email
      *
@@ -1734,6 +1741,40 @@ class ContentUtils
         return $success;
     }
 
+    public static function processGencatForm($action, $email, $POST, $lang) {
+        $success     = True;
+        $contactForm = new ContactFormType();
+        $form        = $action->createForm($contactForm, array());
+
+        $form->handleRequest($POST);
+
+        if($form->isValid()) {
+            $formData = $form->getData();
+
+            //TODO: define subject and body for contact form
+            $subject    = 'Nova Comanda Gencat';
+            $template   = 'email-gencat-form.html.twig';
+
+            if (!is_null($formData['attachment'])) {
+                $fileName   = uniqid() . '.' . $formData['attachment']->guessExtension();
+                $attachment = $formData['attachment']->move(FILES_BASE . SUBPATH_CONTACT_ATTACHMENTS, $fileName);
+            }
+
+            $attachments  = isset($attachment) ? array($attachment->getPathName()) : array();
+	    $products=CommerceUtils::getCartItemsAJAX();
+            $customParams = array('lang'=>$lang,'store' => $formData['stores'], 'email' => $formData['email'],
+                                'body' => $formData['message'],'products'=>$products);
+
+            Mailing::sendMail($email, $subject, $template, $customParams,
+                            DEFAULT_EMAIL_ADDRESS, 'text/html', $attachments);
+        }
+        else{
+            //TODO: what to do if form is not valid
+            $success = False;
+        }
+
+        return $success;
+    }
     /**
      * Retrive all the contents in database and in what languages have been translated
      *

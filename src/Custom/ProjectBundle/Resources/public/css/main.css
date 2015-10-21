@@ -120,7 +120,7 @@ ul { list-style-type:none; }
 #orderList{line-height:25px; height: 320px }
 #titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal }
 #logo { position:relative;top: 20px;  height:100px;z-index:1 }
-#contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden; max-width:980px; display:inline-block}
+#contenedor1{ position:relative;top:60px;width:100%; margin-bottom:200px;visibility: hidden; width:980px; display:inline-block}
 #contenedor1_mob{ position:relative;top:0px;width:100%; margin-bottom:200px;visibility: hidden; max-width:975px}
 #orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:45;background-color: white; }
 .loginStyle { position:absolute; top:0px; padding-left:40px;display: inline-block; width:920px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }

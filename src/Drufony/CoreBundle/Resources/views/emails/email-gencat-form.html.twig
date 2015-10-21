@@ -1,0 +1,15 @@
+<html>
+<body>
+<div>
+    <p>
+	Un usuari de la generalitat ha fet una comanda amb els següents productes:
+    </p>
+    {% if customParams.phone %}
+    <p> Phone number: {{customParams.phone}} </p>
+    {% endif %}
+    <p>
+        {{customParams.body}}
+    </p>
+</div>
+</body>
+</html>

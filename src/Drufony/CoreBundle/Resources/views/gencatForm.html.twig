@@ -1,0 +1,32 @@
+
+{% include "CustomProjectBundle::header.html.twig" %}
+
+<div id="contenedor1">
+
+	<div id="fotoRow">
+		<br>
+		<div class="pad15 wd50 radius5 center">
+			{{ form_start(form) }}
+			<div class="align-left pad15">
+			Seleccion la botiga per anar a recollir la roba
+			{{ form_widget(form.stores,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="align-left pad15">
+			Introdueixi opcionalment el mail per ser informat.
+			{{ form_widget(form.email,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="align-left pad15">
+			Si ho desitja deixi un comentari.
+			{{ form_widget(form.message,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
+			</div>
+			<div class="wd95 mg-vertical10 center">
+			  {{ form_widget(form.send, { 'attr': {'class': 'action-button' }}) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+</div>
+
+
+{% include "CustomProjectBundle::footer.html.twig" %}
