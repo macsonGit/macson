@@ -275,6 +275,11 @@ class CommerceController extends DrufonyController
                 }
             }
 
+	    if($user->getEmail()=='gencat@macson.es'){
+		 return $this->redirect($this->generateUrl('drufony_gencat', array('lang' => $urlLang)));
+	    }
+
+
             return $this->redirect($this->generateUrl('drufony_checkout_load_previous_info', array('lang' => $urlLang)));
 
 

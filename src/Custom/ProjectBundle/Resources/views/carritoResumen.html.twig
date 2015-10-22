@@ -70,13 +70,22 @@
 		</div>
 	    </div>
 		<div>
+{% if app.user is not null %}
+	{% if 'gencat@macson.es' in app.user.email %}
+			<a href={{ path('drufony_gencat',{'lang': lang} ) }}><div type="submit" class="button width200">Realiza el pedido</div></a>				
+	{% else %}	
 			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
 				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
 			</form>
-			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>		
+	{% endif %}
+{% else %}	
+			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
+				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
+			</form>
+{% endif %}	
+			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>
 		</div>
 	</div>
-
 
 {% else  %}
 	<div id="listaCarritoResumen" class="listaCarritoClass table pad10 border inline">
@@ -93,10 +102,20 @@
 		</div>
 	    </div>
 		<div>
+{% if app.user is not null %}
+	{% if 'gencat@macson.es' in app.user.email %}
+			<a href={{ path('drufony_gencat',{'lang': lang} ) }}><div type="submit" class="button width200">Realiza el pedido</div></a>				
+	{% else %}	
 			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
 				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
 			</form>
-			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>		
+	{% endif %}
+{% else %}	
+			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
+				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
+			</form>
+{% endif %}	
+			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>
 		</div>
 	</div>
 {% endif %}

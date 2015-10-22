@@ -4,12 +4,31 @@
     <p>
 	Un usuari de la generalitat ha fet una comanda amb els següents productes:
     </p>
-    {% if customParams.phone %}
-    <p> Phone number: {{customParams.phone}} </p>
-    {% endif %}
     <p>
-        {{customParams.body}}
+{% for item in customParams.products %}
+<p>
+	<tr>
+		<td align:"center">{{ item.count }}.ud</td>
+		<td align:"center">
+			{{ item.product.sgu  }}
+		</td>
+		<td align:"center">
+			{{ item.product.title }}
+		</td>
+		<td align:"center">{{ item.product.size }}</td>
+</p>
+	</tr>
+{% endfor %}
     </p>
+<p>
+	Entregar a : {{ customParams.store }}
+</p>
+<p>
+        Observacions: {{customParams.body}}
+</p>
+<p>
+        Informeu de comanda preparada a: {{customParams.email}}
+</p>
 </div>
 </body>
 </html>

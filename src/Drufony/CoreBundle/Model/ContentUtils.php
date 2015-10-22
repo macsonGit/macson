@@ -17,6 +17,7 @@ use Drufony\CoreBundle\Model\Locale;
 use Drufony\CoreBundle\Model\Section;
 use Drufony\CoreBundle\Model\Item;
 use Drufony\CoreBundle\Model\Page;
+use Drufony\CoreBundle\Model\CommerceUtils;
 use Drufony\CoreBundle\Model\Product;
 use Drufony\CoreBundle\Entity\Comment;
 use Drufony\CoreBundle\Form\ContactFormType;
@@ -1741,24 +1742,20 @@ class ContentUtils
         return $success;
     }
 
-    public static function processGencatForm($action, $email, $POST, $lang) {
+    public static function processGencatForm($formData, $email,  $lang) {
         $success     = True;
-        $contactForm = new ContactFormType();
-        $form        = $action->createForm($contactForm, array());
 
-        $form->handleRequest($POST);
-
-        if($form->isValid()) {
-            $formData = $form->getData();
 
             //TODO: define subject and body for contact form
             $subject    = 'Nova Comanda Gencat';
             $template   = 'email-gencat-form.html.twig';
 
+	    $formData['attachment']='';
+
             if (!is_null($formData['attachment'])) {
-                $fileName   = uniqid() . '.' . $formData['attachment']->guessExtension();
-                $attachment = $formData['attachment']->move(FILES_BASE . SUBPATH_CONTACT_ATTACHMENTS, $fileName);
+                $fileName   = uniqid() . '.' ;
             }
+
 
             $attachments  = isset($attachment) ? array($attachment->getPathName()) : array();
 	    $products=CommerceUtils::getCartItemsAJAX();
@@ -1767,11 +1764,8 @@ class ContentUtils
 
             Mailing::sendMail($email, $subject, $template, $customParams,
                             DEFAULT_EMAIL_ADDRESS, 'text/html', $attachments);
-        }
-        else{
-            //TODO: what to do if form is not valid
-            $success = False;
-        }
+
+	   CommerceUtils::emptyCart(); 
 
         return $success;
     }

@@ -89,10 +89,10 @@ class ContactController extends DrufonyController
             $form->handleRequest($request);
 
             $formData = $form->getData();
-            $success = ContentUtils::processGencatForm($this, GENCAT_EMAIL_ADDRESS, $request,$lang);
+            $success = ContentUtils::processGencatForm($formData, GENCAT_EMAIL_ADDRESS,$lang);
 
             if($success) {
-                return $this->redirect($this->generateUrl('drufony_home_url', array('lang' => $lang)));
+                return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
             }
 
 

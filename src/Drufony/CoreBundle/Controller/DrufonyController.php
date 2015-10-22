@@ -14,6 +14,7 @@ use Drufony\CoreBundle\Form\RegisterFormType;
 use Drufony\CoreBundle\Form\LoginFormType;
 use Drufony\CoreBundle\Entity\User;
 use Drufony\CoreBundle\Model\UserUtils;
+use Drufony\CoreBundle\Model\Mailing;
 use Drufony\CoreBundle\Model\Profile;
 
 /**
@@ -87,7 +88,9 @@ class DrufonyController extends Controller
                     $data['username'] = $data['email'];
                     $data['roles'] = array(User::ROLE_FOR_NEW_USERS);
 
+
                     $uid = User::save($data);
+		    //Mailing::sendRegisterEmail($data['email']);
 
                     if ($uid && !is_null($fullName)) {
                         $profile = new Profile($uid);

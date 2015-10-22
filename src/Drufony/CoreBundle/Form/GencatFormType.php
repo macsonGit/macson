@@ -11,6 +11,7 @@ use Custom\ProjectBundle\Model\Store;
 class GencatFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
 	$stores = Store::getStoreNames();
 
 
@@ -19,10 +20,10 @@ class GencatFormType extends AbstractType
 
 	foreach($stores as $row ){
 	    if($row['name']){
-	    	$stores_column[] = $row['city']." ".$row['address']." ".$row['name'] ;
+	    	$stores_column[$row['city']." ".$row['address']." ".$row['name']] = $row['city']." ".$row['address']." ".$row['name'] ;
 	    }
 	    else{
-	    	$stores_column[] = $row['city']." ".$row['address'];
+	    	$stores_column[$row['city']." ".$row['address']." ".$row['name']] = $row['city']." ".$row['address'];
 	    }
 
 	}	
@@ -31,6 +32,7 @@ class GencatFormType extends AbstractType
 	    ->add('stores', 'choice', array(
                 'label'      => t('Store'),
     		'choices'  => $stores_column,
+                'required'   => TRUE,
 	    ))
             ->add('email', 'email', array(
                 'label'      => t('Email'),
