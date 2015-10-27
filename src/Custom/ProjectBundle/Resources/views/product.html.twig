@@ -62,7 +62,7 @@
 			</div>	
 {% if tipoPag >  1%}		
 			<div id="foto1" class="magnify">
-				<div class="large">{{'Click to open'|t}}</div>
+				<div class="large"></div>
 				<img class="fotoLarge1 fotoImg1 small" alt={{contentData.title}} src='{{ image1 }}'>
 			</div>
 {% else %}
@@ -73,20 +73,25 @@
 		</div>
 		<div class="fotoProd">
 			<div id="foto2" class="magnify">
-				<div id="idLarge2" class="large">{{'Click to open'|t}}</div>
+				<div id="idLarge2" class="large"></div>
 				<img id="idSmall2" class="fotoLarge2 fotoImg2 small"  alt={{contentData.title}} src='{{ image2 }}'>
 			</div>
-{% if tipoPag ==  3%}		
-			<div id="foto3" class="magnify">
-				<div id="idLarge3" class="large">{{'Click to open'|t}}</div>
-				<img class="fotoLarge3 fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
-			</div>
-{% endif %}	
 		</div>
 		<div class="fotoProd">
+{% if tipoPag ==  3%}		
+			<div id="masInfo">
+				{{ "PRODUCT INFO" | t}} +
+			</div>	
+			<div id="foto3" class="magnify">
+				<div id="idLarge3" class="large"></div>
+				<img class="fotoLarge3 fotoImg3 small"  alt={{contentData.title}} src='{{ image3 }}'>
+			</div>
+{% else %}	
 			<div class="foto_blank">	
 				<img  src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 			</div>
+
+{% endif %}	
 {% include "CustomProjectBundle::info_panel.html.twig" %}		
 		</div>		
 {% include "CustomProjectBundle::info_panel_mob.html.twig" %}		

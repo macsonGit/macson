@@ -1,9 +1,10 @@
 
-
-
-{% if outlet is defined %}
+{% if menuType is not defined %}
+	{% set menuType = 'normal' %}
+{% endif %}
+{% if menuType == 'outlet' %}
 	{% set route = 'macson_category_outlet' %}
-{% elseif mujer is defined %} 
+{% elseif menuType == 'mujer' %}
 	{% set route = 'macson_category_mujer' %} 
 {% else %}
 	{% set route = 'macson_category' %} 
@@ -24,9 +25,9 @@
 {% endif %}
 
 	<ul class="pad15">
-{% if outlet is defined %}
+{% if menuType == 'outlet' %}
 	<div class="fs18 pad10 blacktext">OUTLET</div>
-{% elseif mujer is defined %}
+{% elseif menuType == 'mujer' %}
 	<div class="fs18 pad10 blacktext">{{'WOMEN'|t}}</div>
 {% else %}
 	<a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'New Collection' | t}}</li></a> 

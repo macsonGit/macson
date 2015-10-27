@@ -82,11 +82,13 @@ class ProductController extends DrufonyController
 	
 	//-------------------VARABLE MENU
 
-	$mujer='';
-	$outlet='';
 
 	if(strpos($product->getBrand(),'OUTLET')){
 
+		$menuType='oulet';
+
+
+		$outlet=TRUE;
 		if ($menu = $this->get('cache')->fetch('menuOutlet'.$lang)) {
 		}	 
 		else {
@@ -106,7 +108,7 @@ class ProductController extends DrufonyController
 	}
 	elseif(strpos($product->getBrand(),'MUJER')){
 
-		$mujer = TRUE;
+		$menuType='mujer';
 
 		if ($menu = $this->get('cache')->fetch('menuMujer'.$lang)) {
 		}	 
@@ -127,8 +129,7 @@ class ProductController extends DrufonyController
 	}
 	
 	else{
-		$outlet=TRUE;
-
+		$menuType='normal';
 		if ($menu = $this->get('cache')->fetch('menu'.$lang)) {
 		} 
 		else {
@@ -141,6 +142,7 @@ class ProductController extends DrufonyController
 			$menuList = Vocabulary::vocabularyListSelected($menu,$category);
     			$this->get('cache')->save('menuList'.$lang.'-'.$category, $menuList);
 		}
+
 	}
 
 	//-------------------VARABLE MENU LIST
@@ -175,7 +177,7 @@ class ProductController extends DrufonyController
             'orders'    	=> $orders,
 	    'user'=>$user,
 	    'type'=>'product',
-            'mujer'   => $mujer,
+            'menuType'   => $menuType,
         )));
         return $response;
     }

@@ -1,14 +1,23 @@
 
 {% include 'DrufonyCoreBundle::emails/mailBase.html.twig' %}
 
-<p>{{ 'Hello :username' | t({ ':username': customParams.username }, customParams.lang) }}</p>
+<table>
 
+<p>{{ 'Welcome to Macson Web Page' | t }}</p>
 <p>{{ 'Thanks for sign up.' | t(0, customParams.lang) }}</p>
-<p>{{ 'Welcome to Macson Web Page' | t(0, customParams.lang) }}</p>
+<p>{{ 'Your user name is :username' | t({ ':username': customParams.username }, customParams.lang) }}</p>
+<p>
+
+{{ 'You can enter and modify your password, see your orders or edit your information by clicking' | t(0, customParams.lang) }}
+<a href='{{path('drufony_profile_edit',{'id' : customParams.uid , 'lang': lang} ) }}'>
+
+
+</p>
 {% if customParams.newsletter %}
 <p>{{ 'Shortly you will receive news about fashion, offers and special events ' | t(0, customParams.lang) }}</p>
 {% endif %}
-<div><img src='{{ asset('bundles/customproject/images/portada1.jpg') }}'/></div>
+<div><img src='{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/customproject/images/portada1.jpg') }}'/></div>
+</table>
 
 
 

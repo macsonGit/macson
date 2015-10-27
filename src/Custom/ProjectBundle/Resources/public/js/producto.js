@@ -475,9 +475,9 @@ $(document).ready(function(){
 	}		
 
 	if($("#tipoPagina").text() == 'prod3'){
+		$("#infoPanel").hide();
 		$("#menu_mob").hide();
 		$("#menu ul").hide();
-		$("#foto3").hide();
 		showMenu=false;
 	}
 			
