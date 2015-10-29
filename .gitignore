@@ -6,6 +6,7 @@ app/config/parameters.yml
 app/config/parameters.yml.dist
 app/cache/*
 app/logs/*
+/logs/*
 vendor/*
 web/bundles/*
 web/css/*
