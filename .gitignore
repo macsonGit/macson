@@ -11,10 +11,7 @@ web/bundles/*
 web/css/*
 web/js/*
 web/uploads/*
-scr/Custom/ProjectBundle/Resources/public/images/Product/Original/*
-src/Custom/ProjectBundle/Resources/public/images/Product/Standard/*
-src/Custom/ProjectBundle/Resources/public/images/Product/Small/*
-src/Custom/ProjectBundle/Resources/public/images/Product/Thumb/*
+src/Custom/ProjectBundle/Resources/public/images/Product/*
 
 
 

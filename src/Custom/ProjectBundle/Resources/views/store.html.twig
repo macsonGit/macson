@@ -7,6 +7,24 @@
 <div id="tipoPagina">sto</div>
 <div id="contenedor1">
 
+	<div id="selectStorePanel">
+
+	{{"Select Zone"|t}}
+		
+	 <select id="selectZone">
+{% for store in ball %}
+	{% if  antProvince !=  store.bou_provincia %}
+  		<option value={{store.bou_provincia}}>{{store.bou_provincia}}</option>
+	{% endif %}
+        {% set antProvince=store.bou_provincia %}
+{% endfor %} 
+</select> 
+
+	</div>
+
+	<div id="storePanel">
+
+
 	<div>	
 			<div class="storeDummy">
 				{% include "CustomProjectBundle::login.html.twig" %}			
@@ -32,7 +50,7 @@
 		
 	{% set contador=contador+1 %} 
         {% set antProvince=store.bou_provincia %}
-			<div class="store margin10">
+			<div province="{{store.bou_provincia}}" class="store margin10">
 
 				<div  class="cell_store align-left inline wd30 fs12 height30">
 					<b>{{store.bou_poblacion}}</b>
@@ -56,6 +74,7 @@
 
 {% endfor %}
 	</div>	
+	</div>
 </div>	
 
 {% include 'DrufonyCoreBundle::block-cookie.html.twig' %}
