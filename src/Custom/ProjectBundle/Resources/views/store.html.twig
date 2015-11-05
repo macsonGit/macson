@@ -7,7 +7,7 @@
 <div id="tipoPagina">sto</div>
 <div id="contenedor1">
 
-	<div id="selectStorePanel">
+	<div class="pad10 fs18" id="selectStorePanel">
 
 	{{"Select Zone"|t}}
 		
@@ -40,7 +40,7 @@
 		 
 	</div>
 	<b>
-	<div class="center  wd100 mg-top20 mg-bottom20 height30 fs18 borderBottom verticalcenter30">
+	<div province="{{store.bou_provincia}}" class="province center  wd100 mg-top20 mg-bottom20 height30 fs18 borderBottom verticalcenter30">
 		{{store.bou_provincia}}
 	</div>
 	</b>
@@ -50,7 +50,7 @@
 		
 	{% set contador=contador+1 %} 
         {% set antProvince=store.bou_provincia %}
-			<div province="{{store.bou_provincia}}" class="store margin10">
+			<div province="{{store.bou_provincia}}" class="cursorpointer store margin10">
 
 				<div  class="cell_store align-left inline wd30 fs12 height30">
 					<b>{{store.bou_poblacion}}</b>

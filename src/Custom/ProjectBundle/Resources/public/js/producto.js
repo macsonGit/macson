@@ -7,6 +7,7 @@ $(document).ready(function(){
 
 
 	$("#infoPanel_mob").hide();
+	$("#payment_method").hide();
 	$("#menu_boton_mob").hide();
 	$(".tallasStyle_mob").hide();
 	$(".portada_main").hide();
@@ -423,6 +424,7 @@ $(document).ready(function(){
 		$("#back").hide();	
 		$("#menu ul").css('position', 'absolute');
 		$(".listDesplegaFooter").css('background-color', 'white');
+		$("#payment_method").show();
 
 	}	
 
@@ -587,6 +589,20 @@ $(document).ready(function(){
 			$(this).addClass("underline"); 	
 			$("#sizeImg").attr("src",replaced);
 		}
+	);
+
+
+
+	$("#selectZone").change(
+
+		function(){
+
+			$('.store').hide();			
+			$('.province').hide();
+			objects='*[province="'+$(' #selectZone option:selected ' ).text()+'"]'; 			
+			$(objects).show();
+		}
+
 	);
 
 	

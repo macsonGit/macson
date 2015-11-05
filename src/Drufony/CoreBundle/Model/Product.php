@@ -186,15 +186,27 @@ class Product extends Content
 
 
     static public  function updateStockVariety($value,$varietyId) {
+	
+	$sql ='SELECT product.sgu AS sgu, varietiesByProduct.varietyId AS variety FROM product 
+		INNER JOIN varietiesByProduct  ON varietiesByProduct.productId=product.id 
+		INNER JOIN stockByVariety ON stockByVariety.productId=varietiesByProduct.id WHERE stockByVariety.productId=?';
+ 	$result1 = db_fetchAssoc($sql,array($varietyId));
 
-	$newValue=self::getStockVariety($varietyId)+$value;
-	l('INFO','ACTUALIZAR '.$newValue);
-	db_update('stockByVariety',array('stock'=>$newValue),array('productId'=>$varietyId));
-	//	l('INFO',$varietyId.' not found');	
-	//}
-	//else{
-	//	l('INFO',$varietyId.' stock modified');	
-	//}
+	$sql ='SELECT varietiesByProduct.id AS variety FROM varietiesByProduct 
+		INNER JOIN product ON varietiesByProduct.productId=product.id 
+		WHERE product.sgu=? AND varietiesByProduct.varietyId=?';
+
+ 	$result2 = db_fetchAll($sql,array($result1['sgu'],$result1['variety']));
+	
+	foreach ($result2 as $variety){
+
+		$newValue=self::getStockVariety($variety['variety'])+$value;
+
+		l('INFO','ACTUALIZAR'.$newValue);	
+
+		db_update('stockByVariety',array('stock'=>$newValue),array('productId'=>$variety['variety']));
+	
+	}
 
 	return $newValue;
 

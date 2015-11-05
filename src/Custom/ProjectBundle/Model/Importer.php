@@ -63,7 +63,7 @@ class Importer {
 		$prod = array();
 		//procesamos campos varieties
 		//Seteamos todos los campos
-		$prod['url']=$item['reference'].'-'.$item['url_ES'];
+		$prod['url']=$item['url_ES']."/".$item['reference'];;
 		$prod['title']=$item['shortDescription_ES'];
 		$prod['lang']='es';
 		$prod['body']=$item['longDescription_ES'];
@@ -99,9 +99,6 @@ class Importer {
 
 		$prod['published']=1;
 		
-		if ($item["statusProduct"]=="00_INACTIVO"){
-			$prod['published']=0;
-		}		
 	
 		$prod['brand']=$item["statusProduct"];
 		
@@ -130,7 +127,7 @@ class Importer {
 		$result = db_fetchAssoc($sqlGetPid,array($nid));
 		$pid_es=$result['id'];
 
-		$prod['url']=$item['reference'].'-'.$item['url_EN'];
+		$prod['url']=$item['url_EN']."/".$item['reference'];
 		$prod['title']=$item['shortDescription_EN'];
 		$prod['lang']='en';
 		$prod['body']=$item['longDescription_EN'];

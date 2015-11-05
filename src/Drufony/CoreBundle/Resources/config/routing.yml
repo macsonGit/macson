@@ -7,7 +7,7 @@ macson_importer:
     defaults: {_controller: CustomProjectBundle:Importer:index}
 
 macson_category:
-    pattern:  /category/{category}-{categorynames}
+    pattern:  /category/{categorynames}/{category}
     defaults: { _controller: CustomProjectBundle:Category:index }
 
 macson_category_shoponline:
@@ -19,7 +19,7 @@ macson_category_outlet_home:
     defaults: { _controller: CustomProjectBundle:Category:outlet }
 
 macson_category_outlet:
-    pattern:  /outlet/category/{category}-{categorynames}
+    pattern:  /outlet/category/{categorynames}/{category}
     defaults: { _controller: CustomProjectBundle:Category:outletcategory }
 
 macson_category_mujer_home:
@@ -27,7 +27,7 @@ macson_category_mujer_home:
     defaults: { _controller: CustomProjectBundle:Category:mujer }
 
 macson_category_mujer:
-    pattern:  /mujer/category/{category}-{categorynames}
+    pattern:  /mujer/category/{categorynames}/{category}
     defaults: { _controller: CustomProjectBundle:Category:mujercategory }
 
 macson_category_news:

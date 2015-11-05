@@ -34,17 +34,17 @@
 {% endif %}
 {% for subitem1 in menu.sons if subitem1.show %}
 	{% if not subitem1.selected %}
-<a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class='item1'>{{subitem1.namecat}}</li></a>
+<a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class='item1'>{{subitem1.namecat|capitalize}}</li></a>
 	{% else %}
-<a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class="selected item1">{{subitem1.namecat}}</li></a>		
+<a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class="selected item1">{{subitem1.namecat|capitalize}}</li></a>		
 	{% endif %}
 	{% if subitem1.sons is defined %}
 		{% for subitem2 in subitem1.sons if (subitem2.show and subitem1.selected) %}
 
 			{% if not subitem2.selected %}
-	<a href='{{ path(route,{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li class='item2'>{{subitem2.namecat}}</li></a>
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li class='item2'>{{subitem2.namecat|capitalize}}</li></a>
 			{% else %}
-	<a href='{{ path(route,{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li class="selected item2">{{subitem2.namecat}}</li></a>		
+	<a href='{{ path(route,{'lang' : lang , 'category' :subitem2.name, 'categorynames' :subitem2.url|toUrl} ) }}'><li class="selected item2">{{subitem2.namecat|capitalize}}</li></a>		
 			{% endif %}
 			{% if subitem2.sons is defined %}
 				{% for subitem3 in subitem2.sons if (subitem3.show and subitem2.selected) %}
