@@ -1,3 +1,7 @@
+web_sitemap:
+    pattern:  /sitemap.{_format}
+    defaults: { _controller: CustomProjectBundle:Sitemap:sitemap, _format: xml }
+
 macson_chart: 
     pattern: /chart/{ope}-{pid}-{vid}
     defaults: {_controller: CustomProjectBundle:CartOpe:index} 

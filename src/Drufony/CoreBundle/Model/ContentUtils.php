@@ -1968,4 +1968,22 @@ class ContentUtils
         return Menu::getMenu(MENU_TYPE_HEADER, $menuType);
     }
 
+
+   static public function getAllNodeUrls($type){
+
+	$sql= "SELECT target AS url, lang FROM url_friendly 
+
+	INNER JOIN ".$type." ON url_friendly.oid=".$type.".id
+
+	WHERE url_friendly.module='".$type."' AND url_friendly.expirationDate IS NULL" ;
+	
+        $query = db_fetchAll($sql, array());
+
+        return $query;
+
+
+
+   }
+
+
 }

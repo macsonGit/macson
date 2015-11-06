@@ -50,7 +50,7 @@ class Importer {
 	
 	foreach ($query as $item){
 
-	if(($item['stock']<>0 or $item['productSize']=='00_AGOTADO') and file_exists($path.'Original/'.strtolower($item['reference'].'_1.jpg'))){
+	if(file_exists($path.'Original/'.strtolower($item['reference'].'_1.jpg'))){
 
 		
 		$i++;

@@ -117,11 +117,28 @@ class Vocabulary {
   }
 
 
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 
+
+
+
+public static function getAllCategories($lang){
+
+
+    $sql= 'SELECT *, name_'.$lang.' AS namecat, url_'.$lang.' AS url FROM categorysource';
+
+    $query = db_fetchAll($sql, array());
+
+    return $query;
+
+
+}
 
 
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
+
 
 
   public static function vocabularyList($lang,$type = 'NORMAL'){
