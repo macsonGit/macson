@@ -50,9 +50,13 @@
 			<div class="cell  wd10 pad-horizontal10">{{ order.total|number_format(2) }} €</div>
 		</a>
 			<div class="cell underline wd10 pad-horizontal10">
+			{% if order.paymentStatus>1 %}
 				<a  href={{ path('drufony_user_invoice',{'id' : order.orderId, 'lang': lang} ) }}>
 					<b>{{ 'Invoice'|t }}</b>
 				</a>
+			{% else %}
+					<b>{{ 'Uncompleted'|t }}</b>
+			{% endif %}
 			</div>
 		</div>
 		{% endfor %}

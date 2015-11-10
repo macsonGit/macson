@@ -654,6 +654,7 @@ class CommerceUtils
                             'orderStatus'       => $checkoutData['orderStatus'],
                             'paymentHash'       => $checkoutData['paymentHash'],
                             'lastModification'  => date('Y-m-d H:i:s', strtotime("now")),
+			    'invoiceNumber'     => $checkoutData['invoiceNumber'],
                         );
 
         if(!array_key_exists('orderId', $checkoutData)) {
@@ -1740,6 +1741,18 @@ class CommerceUtils
 
 
 
+    static public function assignInvoiceNumber () {
+
+
+	$sql ="SELECT COUNT(*) As invoices FROM `order` WHERE paymentStatus=?";
+	
+	$result = db_fetchAssoc($sql, array(PAYMENT_STATUS_PAID));
+
+	var_dump($result);
+
+
+        return $result["invoices"]+SHIFT_INVOICE_NUMBER;
+    }
 
 
 }

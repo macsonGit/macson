@@ -176,6 +176,9 @@ define('PAYPAL_CLIENT_SECRET', 'EAatNBB2fueZg-J3msDAMNO7C6GPNZ0p1opr58ioB8N7_rlP
 define('PAYPAL_MODE', 'sandbox');
 
 
+define('SHIFT_INVOICE_NUMBER',100);
+
+
 
 //STRIPE
 //FIXME: You need to set your own keys

@@ -31,6 +31,7 @@ class Order
     private $orderStatus;
     private $comments;
     private $couponId;
+    private $invoiceNumber;
 
     /**
      * Getters methods
@@ -56,6 +57,7 @@ class Order
     public function getOrderStatus() { return $this->orderStatus; }
     public function getComments() { return $this->comments; }
     public function getCouponId() { return $this->couponId; }
+    public function getInvoiceNumber() { return $this->invoiceNumber; }
 
     /**
      * Construct a order object
@@ -191,6 +193,7 @@ class Order
                 $this->comments = $order['comments'];
                 $this->orderStatus = $order['orderStatus'];
                 $this->couponId = $order['couponId'];
+                $this->invoiceNumber = $order['invoiceNumber'];
             }
             else {
                 throw \Exception("Order $orderId does not exist");
