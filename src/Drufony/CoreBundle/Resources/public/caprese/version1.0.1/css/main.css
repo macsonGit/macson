@@ -22,8 +22,6 @@ html, body, div, section, header, footer, article, hr {
 }
 body {
   background: #f2f2f2;
-  font-family: 'Times new roman', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  color: #404040;
 }
 h1, h2, h3, h4, h5, h6, p {
   display: block;
@@ -52,24 +50,9 @@ form, input, select, textarea, button {
   border: 0;
   outline: none;
   background: none;
-  font-family: 'Times new roman', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 button {
   cursor: pointer;
-}
-a {
-  outline: none;
-  text-decoration: none;
-  color: #262626;
-  transition: color 0.3s;
-  -o-transition: color 0.3s;
-  -ms-transition: color 0.3s;
-  -moz-transition: color 0.3s;
-  -webkit-transition: color 0.3s;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 .clearfix:after {
   content: '';
@@ -1136,18 +1119,13 @@ a:hover {
 .button {
   float: right;
   height: 48px;
-  padding: 0 36px;
+  padding: 10px 36px;
   border-radius: 4px;
-  background: #c40303;
-  font-family: 'HelveticaNeue-CondensedBold', 'Arial Narrow', 'Helvetica Neue', 'Helvetica', 'Arial Narrow', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 48px;
-  font-weight: 700;
   font-stretch: condensed;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #fff;
+  color: white;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
   -o-transition: background 0.3s, color 0.3s;
@@ -1158,6 +1136,28 @@ a:hover {
 .button:hover {
   background: #000;
   text-decoration: none;
+  color:black
+}
+.button-buy {
+  height: 48px;
+  padding: 10px 36px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 48px;
+  font-stretch: condensed;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  -o-transition: background 0.3s, color 0.3s;
+  -ms-transition: background 0.3s, color 0.3s;
+  -moz-transition: background 0.3s, color 0.3s;
+  -webkit-transition: background 0.3s, color 0.3s;
+}
+.button-buy:hover {
+  background: #000;
+  text-decoration: none;
+  color:black
 }
 .button-small {
   height: 36px;
@@ -1183,7 +1183,7 @@ a.button-ok, button.button-ok{
   background:#46629B;
   color: #fff;
 }
-a.button-ok:hover, button.button-ok:hover{
+a.button-ok:hover, button.button-ok{
   background: #364C78;
   color: #fff;
 }
@@ -4283,9 +4283,6 @@ a.fl-link-secondary:hover{
 .cart .clearfix .right-col {
   float: right;
   width: 336px;
-}
-.cart .clearfix .discount {
-  color: #0d6e1a;
 }
 .cart .clearfix .total {
   padding: 33px 18px 36px 0;

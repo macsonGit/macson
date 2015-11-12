@@ -139,7 +139,7 @@ button:hover { cursor: pointer; }
 /* like css reset */
 /* LAYOUT */
 .flash-error,
-.flash-ok { padding: 15px; border-radius: 5px; -moz-border-radius: 5px; margin-bottom: 10px; }
+.flash-ok { padding: 15px; border-radius: 5px; -moz-border-radius: 5px; margin-top: 50px; }
 .flash-error { background-color: #BD362F; color: #fff; border: 1px solid #BD362F }
 .flash-ok { background-color: #8BBF61; color: #fff; border: 1px solid #8BBF61 }
 .close { font-weight: bold; color: #fff; }

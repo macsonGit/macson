@@ -11,6 +11,7 @@ $(document).ready(function(){
 	$("#menu_boton_mob").hide();
 	$(".tallasStyle_mob").hide();
 	$(".portada_main").hide();
+	$("#buyLoginPanel").hide();
 
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
@@ -171,6 +172,11 @@ $(document).ready(function(){
 			$("#login").hide(200);
 			$(".carrito").hide(200);
 			showMascara=false;
+		}
+	);	
+	$('#buyLogin').click(
+		function zoomImageOut(){
+			$('#buyLoginPanel').show();
 		}
 	);	
 

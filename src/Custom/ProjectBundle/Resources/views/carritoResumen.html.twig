@@ -80,10 +80,14 @@
 	{% endif %}
 {% else %}	
 			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
-				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
+				<button type="submit" class="button width200"> 
+					{{ 'Proceed to check out'|t }}
+				</button>
 			</form>
 {% endif %}	
-			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>
+			<button id="continue" class="button width200 cursorpointer">
+				{{'Continue Shopping'|t}}				
+			</button>
 		</div>
 	</div>
 
@@ -112,10 +116,14 @@
 	{% endif %}
 {% else %}	
 			<form action="{{ path('drufony_checkout_shipping_info', {'lang': lang} ) }}">
-				<input type="submit" class="button width200" value="{{ 'Proceed to check out'|t }}">				
+				<button type="submit" class="button width200"> 
+					{{ 'Proceed to check out'|t }}
+				</button>
 			</form>
 {% endif %}	
-			<div id="continue" class="width200 pad10 cursorpointer underline">{{'Continue Shopping'|t}}</div>
+			<button id="continue" class="height35 button width200  cursorpointer">
+				{{'Continue Shopping'|t}}				
+			</button>
 		</div>
 	</div>
 {% endif %}

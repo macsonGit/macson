@@ -64,22 +64,27 @@
 	    </li>
 {% endif %}		
             <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
-		{{'shops'|t}} | </a>
+		{{'Stores'|t}} | </a>
 	    </li>
+	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'Shop On-line' | t }} |</a> </li>  
+
+
+	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | </a></li>  
+{% if app.user is not null %}
+	{% if 'gencat@macson.es' in app.user.email %}
+	    <li><a href={{ path('macson_category_mujer_home',{ 'lang': lang} ) }}> {{ 'Women' | t }} | </a></li>  
+	{% endif %}
+{% endif %}
 {% if lang == 'es' %}
-	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> english<a><li>  
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}>English<a></li>
 {% endif %}
 {% if lang == 'en' %}
-	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> español<a><li>  
+	    <li><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}>Español<a></li>
 {% endif %}
         </ul>
 	</div>
 
-{% if homePage is defined %}
-<div id="logo"><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'></div> 
-{% else %}
 <div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'></a></div> 
-{% endif %}
 
 
 <div id="mascara"></div>

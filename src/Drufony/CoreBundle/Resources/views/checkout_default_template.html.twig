@@ -15,32 +15,35 @@
 {% if checkoutStep !=  'checkoutMethod' %}
 <div id="menucommerce">
 {% if checkoutStep == 'shippingInformation' %}
-	<div class="titleCheck inline pad15 zindex10 underline">
+	<div class="titleCheck inline pad15 zindex10 underline sinEfectos">
 {% else %}
 	<div class="titleCheck inline pad15 zindex10 graytext">
 {% endif %}
 		<a href='{{ path('drufony_checkout_shipping_info', { 'lang' : lang})}}'>1. {{'Shipping'|t}}</a>
 	</div>
 {% if checkoutStep == 'billingInformation' %}
-	<div class="titleCheck inline pad15 zindex10 underline">
+	<div class="titleCheck inline pad15 zindex10 underline sinEfectos">
 {% else %}
 	<div class="titleCheck inline pad15 zindex10 graytext">
 {% endif %}
 		<a href='{{ path('drufony_checkout_billing_info', { 'lang' : lang})}}'>2. {{'Billing'|t}}</a>
 	</div>
 {% if checkoutStep == 'shippingMethod' %}
-	<div class="titleCheck inline pad15 zindex10 underline">
+	<div class="titleCheck inline pad15 zindex10 underline sinEfectos">
 {% else %}
 	<div class="titleCheck inline pad15 zindex10 graytext">
 {% endif %}
 		<a href='{{ path('drufony_checkout_shipping_method', { 'lang' : lang})}}'>3. {{'Summary'|t}}</a>
 	</div>
 {% if checkoutStep == 'selectPaymentMethod' %}
-	<div class="titleCheck inline pad15 zindex10 underline">
+	<div class="titleCheck inline pad15 zindex10 underline sinEfectos">
 {% else %}
 	<div class="titleCheck inline pad15 zindex10 graytext">
 {% endif %}
       		<a href='{{ path('drufony_checkout_review_payment', { 'lang' : lang})}}'>4. {{'Payment'|t}}</a>
+	</div>
+	<div class="button button-ok fs14 pad5">
+      		<a href='{{ path('macson_category_shoponline', { 'lang' : lang})}}'><div class="textButton">{{'Add more products to the cart'|t}}</div></a>
 	</div>
 	<div class="clear"></div>
 </div>
@@ -51,10 +54,13 @@
 <section id="" class="checkout">
       {% set step = step + 1 %}
 	 <div class="wd90">
-	     <div class="center pad15 fs16">
-			{{ "Login to quick buy or"|t }} <a class="underline" href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'"><b>{{ "click here and create a new user" | t }}</b></a>
+	     <div class="button-ok pad15 fs24 sinEfectos">
+			<a  href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'"><b>{{ "Buy without login" | t }}</b></a>
 	    </div>	
-	    <div class="wd40 center">
+	     <div id="buyLogin" class="button-ok fs24 pad15 cursorpointer">
+			<b>{{ "Fast buy login" | t }}</b>
+	    </div>	
+	    <div id="buyLoginPanel" class="wd40 center">
             {{ form_start(loginForm) }}
             {{ form_errors(loginForm) }}
               <label class="label" style="margin-bottom:10px">
