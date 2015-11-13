@@ -30,7 +30,7 @@ class ContactController extends DrufonyController
 
             $formData = $form->getData();
             
-            if($formData['contactType'] == 'customer'){
+	    if($formData['contactType'] == 'customer'){
             	$success = ContentUtils::processContactForm($this, COMUNICACION_EMAIL_ADDRESS, $request,$lang);
 	    }
             if($formData['contactType'] == 'hr'){
@@ -41,8 +41,8 @@ class ContactController extends DrufonyController
 	    }
             if($formData['contactType'] == 'uniforms'){
             	$success = ContentUtils::processContactForm($this, UNIFORMS_EMAIL_ADDRESS, $request,$lang);
-	    }
- 
+	    } 
+
             $success = ContentUtils::processContactForm($this, DEFAULT_EMAIL_ADDRESS, $request,$lang);
 
             if($success) {

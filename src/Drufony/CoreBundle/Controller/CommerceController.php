@@ -1211,6 +1211,7 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
         $shipping = CommerceUtils::getStepData(SHIPPING_INFO);
         $shippingMethod = CommerceUtils::getStepData(SHIPPING_METHOD);
         $payment = CommerceUtils::getStepData(PAYMENT_METHOD);
+	$exportZone = CommerceUtils::shippedToExportZone($shipping);
 
         $shippingPrice = CommerceUtils::getShippingPrice($shippingMethod,$shipping);
 
@@ -1228,7 +1229,9 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
             'cardCountry' => '', 'orderStatus' => ORDER_STATUS_NEW,
             'cartItems' => $cart['cartItems'],
             'paymentHash' => isset($payment['hash']) ? $payment['hash'] : null,
-	    'invoiceNumber' => $paymentStatus == PAYMENT_STATUS_PAID ? CommerceUtils::assignInvoiceNumber():0,
+	    'invoiceNumber' => $paymentStatus == PAYMENT_STATUS_PAID ? CommerceUtils::assignInvoiceNumber($exportZone):0,
+	    'ticketNumber' => $paymentStatus == PAYMENT_STATUS_PAID ? CommerceUtils::assignTicketNumber():0,
+            'exportZone' => $exportZone,
         );
 
         $existOrderStep = CommerceUtils::existStep(ORDER_SAVED);

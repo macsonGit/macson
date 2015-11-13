@@ -25,6 +25,7 @@ $(document).ready(function(){
 		$("#menu_size").attr('id', 'menu_size_mob');
 		$("#contenedor1").attr('id', 'contenedor1_mob');
 		$("#header").attr('id', 'header_mob');
+		$("#header_socialmedia").attr('id', 'header_socialmedia_mob');
 		$(".loginStyle").attr('class', 'loginStyle_mob');
 		$("#logo").attr('id', 'logo_mob');
 		$(".second-column").attr('class', 'mg-top10');
@@ -436,19 +437,14 @@ $(document).ready(function(){
 
 	if($("#tipoPagina").text() == 'cat' || $("#tipoPagina").text() == 'con' || $("#tipoPagina").text() == 'cat_main'){
 		$("#menu ul").css('background-image', 'none');
-	    $(".tagName").hide();
 
 	    $('.foto').hover(
 			function () {
 			    var foto = $(this);
-			    foto.children( '.tagPrice' ).hide();
-			    foto.children( '.tagName' ).show();
 			    foto.find( '.fotoImg' ).fadeOut(700);
 			},
 			function () {
 			    var foto = $(this);
-			    foto.children( '.tagPrice' ).show();
-			    foto.children( '.tagName' ).hide();
 			    foto.find( '.fotoImg' ).fadeIn(700);
 			}
 			

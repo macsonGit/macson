@@ -73,10 +73,10 @@ define('COMMENT_DEFAULT_STATUS', 2);
 
 //CORREOS ELECTRÓNICOS
 define ('DEFAULT_EMAIL_ADDRESS','gfuset@macson.es');
-define ('HR_EMAIL_ADDRESS','rrhh@macson.es');
-define ('COMUNICACION_EMAIL_ADDRESS','comunicacion@macson.es');
-define ('UNIFORMS_EMAIL_ADDRESS','uniformes@macson.es');
-define ('FRANCHISES_EMAIL_ADDRESS','franquicias@macson.es');
+define ('HR_EMAIL_ADDRESS','gfuset@macson.es');
+define ('COMUNICACION_EMAIL_ADDRESS','gfuset@macson.es');
+define ('UNIFORMS_EMAIL_ADDRESS','gfuset@macson.es');
+define ('FRANCHISES_EMAIL_ADDRESS','gfuset@macson.es');
 define ('GENCAT_EMAIL_ADDRESS','gfuset@macson.es');
 //email base template
 define ('DRUFONY_EMAIL_TEMPLATENAME','email-base-template.html.twig');
@@ -152,7 +152,7 @@ define('TPV_STRIPE_TYPE', 1);
 define('TPV_SERMEPA_TYPE', 2);
 define('TPV_PAYPAL_TYPE', 3);
 define('TPV_STRIPE', 'Stripe');
-define('TPV_SERMEPA', 'Visa/4B/Mastercard');
+define('TPV_SERMEPA', 'Visa/American Express/Mastercard');
 define('TPV_PAYPAL', 'Paypal');
 define('TPV_GATEWAY', TPV_STRIPE);
 //Adds TPVs enabled to be used
@@ -176,6 +176,8 @@ define('PAYPAL_CLIENT_SECRET', 'EAatNBB2fueZg-J3msDAMNO7C6GPNZ0p1opr58ioB8N7_rlP
 define('PAYPAL_MODE', 'sandbox');
 
 
+define('SHIFT_TICKET_NUMBER',100);
+define('SHIFT_INVOICE_NUMBER_EXPORT',100);
 define('SHIFT_INVOICE_NUMBER',100);
 
 
@@ -234,6 +236,10 @@ define('PAYMENT_STATUS_PAID', 2);
 define('PAYMENT_STATUS_REFUND', 3);
 define('PAYMENT_STATUS_DISPUTE', 4);
 define('PAYMENT_STATUS_CHARGEBACK', 5);
+
+//Export Zone
+define('EXPORT_ZONE_EU', 1);
+define('EXPORT_ZONE_NO_EU', 10);
 
 //Menu types
 define('MENU_TYPE_HEADER', '1');

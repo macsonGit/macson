@@ -34,9 +34,7 @@
 			<div class="tagAgotado">{{'OUT OF STOCK'|t}}</div>
 	{% endif %}
 			<div class="tagName">
-				{{product.title}}
-			</div>
-			<div class="tagPrice">
+				{{product.title}} - 
 	{% if product.pricePVP == product.firstPrice %}		
 				{{ product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>
 	{% else %}

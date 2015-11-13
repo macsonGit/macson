@@ -7,7 +7,7 @@
 		{% if contactType=='customer' %}
 		<h1>{{ "Customer Service Contact" | t }}</h1>
 		<br>
-		<div>{{ 'Please insert your question or suggestion'| t }} </div>
+		<div>{{ 'Please contact with our Costumer Despartment for any question or suggestion'| t }} </div>
 		<br>
 		{% endif %} 
 		{% if contactType=='hr' %}
@@ -57,10 +57,10 @@
 			{{ form_widget(form.attachment,{ 'attr': { 'class': 'wd95 pad10 mg-bottom10 radius5'}}) }}
 			</div>
 			<div class="wd95 mg-vertical10 center">
-			  {{ form_widget(form.reset, { 'attr': {'class': 'action-button' }}) }}
+			  {{ form_widget(form.reset, { 'attr': {'class': 'button width100' }}) }}
 			</div>
 			<div class="wd95 mg-vertical10 center">
-			  {{ form_widget(form.send, { 'attr': {'class': 'action-button' }}) }}
+			  {{ form_widget(form.send, { 'attr': {'class': 'button width100' }}) }}
 			</div>
 			{{ form_end(form) }}
 		</div>

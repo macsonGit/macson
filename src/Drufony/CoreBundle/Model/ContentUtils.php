@@ -1732,7 +1732,13 @@ class ContentUtils
                                 'body' => $formData['message'], 'phone' => $formData['phone']);
 
             Mailing::sendMail($email, $subject, $template, $customParams,
+                            $formData['email'], 'text/html', $attachments);
+
+            $template   = 'email-contact-form-confirm.html.twig';
+            Mailing::sendMail($formData['email'], t("Your form  has been sent to Macson."), $template, $customParams,
                             DEFAULT_EMAIL_ADDRESS, 'text/html', $attachments);
+
+
         }
         else{
             //TODO: what to do if form is not valid

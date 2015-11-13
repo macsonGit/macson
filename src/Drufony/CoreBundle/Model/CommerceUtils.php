@@ -655,6 +655,8 @@ class CommerceUtils
                             'paymentHash'       => $checkoutData['paymentHash'],
                             'lastModification'  => date('Y-m-d H:i:s', strtotime("now")),
 			    'invoiceNumber'     => $checkoutData['invoiceNumber'],
+			    'ticketNumber'     => $checkoutData['ticketNumber'],
+			    'exportZone'     => $checkoutData['exportZone'],
                         );
 
         if(!array_key_exists('orderId', $checkoutData)) {
@@ -1741,18 +1743,35 @@ class CommerceUtils
 
 
 
-    static public function assignInvoiceNumber () {
+    static public function assignTicketNumber () {
 
 
 	$sql ="SELECT COUNT(*) As invoices FROM `order` WHERE paymentStatus=?";
 	
 	$result = db_fetchAssoc($sql, array(PAYMENT_STATUS_PAID));
 
-	var_dump($result);
-
-
-        return $result["invoices"]+SHIFT_INVOICE_NUMBER;
+        return $result["invoices"]+SHIFT_TICKET_NUMBER;
     }
 
+    static public function assignInvoiceNumber ($exportZone) {
 
+
+	$sql ="SELECT COUNT(*) As invoices FROM `order` WHERE paymentStatus=? AND exportZone=?";
+	
+	$result = db_fetchAssoc($sql, array(PAYMENT_STATUS_PAID, $exportZone));
+
+	$shiftNumber = $exportZone ==  EXPORT_ZONE_EU ? SHIFT_INVOICE_NUMBER : SHIFT_INVOICE_NUMBER_EXPORT;
+
+        return $result["invoices"]+$shiftNumber;
+    }
+
+    static public function shippedToExportZone ($shipping) {
+
+
+	$sql ="SELECT exportZone FROM country WHERE id=?";
+	
+	$result = db_fetchAssoc($sql, array($shipping['countryId']));
+
+        return $result["exportZone"];
+    }
 }

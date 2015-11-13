@@ -18,7 +18,7 @@ class BillingInfoFormType extends AbstractType
         $builder
             ->setMethod('POST')
             ->add('name', 'text', array(
-                'label'      => t('Name or Company'),
+                'label'      => t('Name'),
                 'max_length' => 255,
                 'data'       => !empty($options['data']['info']['name']) ? $options['data']['info']['name'] : '',
             ));

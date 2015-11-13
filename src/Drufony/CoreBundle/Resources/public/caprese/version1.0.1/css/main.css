@@ -1340,6 +1340,7 @@ a.fl-link-secondary:hover{
   margin: 0 auto;
   padding-bottom: 24px;
   font-size: 0;
+  margin-bottom: 50px;
 }
 .page-footer .col {
   display: inline-block;
@@ -4322,7 +4323,7 @@ a.fl-link-secondary:hover{
 .checkout {
   width: 100;
   margin-bottom: 18px;
-  border-bottom: 1px dashed #bfbfbf;
+  margin-top: 30px;
 }
 .checkout h2 {
   position: relative;

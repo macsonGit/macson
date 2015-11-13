@@ -32,6 +32,8 @@ class Order
     private $comments;
     private $couponId;
     private $invoiceNumber;
+    private $ticketNumber;
+    private $exportZone;
 
     /**
      * Getters methods
@@ -58,6 +60,8 @@ class Order
     public function getComments() { return $this->comments; }
     public function getCouponId() { return $this->couponId; }
     public function getInvoiceNumber() { return $this->invoiceNumber; }
+    public function getTicketNumber() { return $this->ticketNumber; }
+    public function getExportZone() { return $this->exportZoneNumber; }
 
     /**
      * Construct a order object
@@ -194,6 +198,8 @@ class Order
                 $this->orderStatus = $order['orderStatus'];
                 $this->couponId = $order['couponId'];
                 $this->invoiceNumber = $order['invoiceNumber'];
+                $this->ticketNumber = $order['ticketNumber'];
+                $this->exportZone = $order['exportZone'];
             }
             else {
                 throw \Exception("Order $orderId does not exist");
