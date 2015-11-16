@@ -21,7 +21,15 @@
 
 <body>
 
+
 	<div id='header' class="sinEfectos">
+
+		<div id='headerFreeShipping' class="inline">
+			<p class="margin-left-30">{{ 'SPAIN (PENINSULE AND BALEARIC ISLANDS): FREE SHIPPING' | t}} | {{'24-48H'|t}}</p>
+		</div>
+		<div id='headerInfo' class="inline">
+			<p class="margin-right-30">{{ 'COSTUMER CENTER'|t }}</p>
+		</div>
 
 {% set referUrl=app.request.headers.get('referer') %}
 {% if "www.macson" in referUrl %} 

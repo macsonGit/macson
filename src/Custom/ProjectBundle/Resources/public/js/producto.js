@@ -429,6 +429,7 @@ $(document).ready(function(){
 	if($("#tipoPagina").text() == 'hom'){
 
 		$("#back").hide();	
+		$("#headerAux").hide();	
 		$("#menu ul").css('position', 'absolute');
 		$(".listDesplegaFooter").css('background-color', 'white');
 		$("#payment_method").show();
