@@ -7,14 +7,16 @@ $(document).ready(function(){
 
 
 	$("#infoPanel_mob").hide();
+	$("#header_mob").hide();
+	$("#menu_header_mob").hide();
+	$("#logo_mob").hide();
 	$("#payment_method").hide();
-	$("#menu_boton_mob").hide();
 	$(".tallasStyle_mob").hide();
 	$(".portada_main").hide();
 	$("#buyLoginPanel").hide();
 
 
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|U|Opera Mini/i.test(navigator.userAgent) ) {
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/.test(navigator.userAgent) ) {
 
  		var mobile=true;
 		$('body').css({'letter-spacing': '2px'});
@@ -24,10 +26,7 @@ $(document).ready(function(){
 		$("#menu").attr('id', 'menu_mob');
 		$("#menu_size").attr('id', 'menu_size_mob');
 		$("#contenedor1").attr('id', 'contenedor1_mob');
-		$("#header").attr('id', 'header_mob');
-		$("#header_socialmedia").attr('id', 'header_socialmedia_mob');
 		$(".loginStyle").attr('class', 'loginStyle_mob');
-		$("#logo").attr('id', 'logo_mob');
 		$(".second-column").attr('class', 'mg-top10');
 		$(".third-column").attr('class', 'borderBottom');
 		$(".tallasStyle_mob").css({'letter-spacing':'1.5px'});
@@ -56,7 +55,16 @@ $(document).ready(function(){
 		$("#menucommerce .inline").removeClass('pad15');
 		$("#menucommerce .inline").removeClass('inline');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
-		$("#footer").hide();
+		$("#footer").hide();	
+		$("#menu_header_mob").show();
+		$("#header_mob").show();
+		$("#header").hide();
+		$("#headerInfo").hide();
+		$("#logo").hide();
+		$("#logo_mob").show();
+		$("#headerFreeShipping").css({'width': '100%'});
+		$("#headerFreeShipping").text('SPAIN:FREE SHIPPING');
+		$("#headerFreeShipping").css({'text-align':'center'});
 		$(".fotoImage2").hide();
 		$("#masInfo").hide();
 		$("#menuImg").remove();
@@ -64,7 +72,7 @@ $(document).ready(function(){
 		$(".foto_blank").hide();
 		$(".large").hide();
 		var alturaText=$("#menu_mob").height()+70;
-		$(".foto_blank1").css({'height': '70'});
+		$(".foto_blank1").css({'height': '0'});
 		$(".checkout .col").css({'width': '100%'});
 		$(".checkout .col").css({'float': 'none'});
 		$(".page-title").css({'height': '0px'});
@@ -83,31 +91,27 @@ $(document).ready(function(){
 		$("#infoPanel_mob").show();
 		$(".tallasStyle").hide();
 		$(".tallasStyle_mob").show();
-		$("#menu_boton_mob").show();
 		$("#menu_mob").hide();
 		$(".portada_main").show();
 
 
 		if($("#tipoPagina").text() == 'prod1'){
 			$("#foto1").hide();
-			$("#menu_boton_mob").hide();
-			$("#carritoId_mob").css({'top':'-300px'});
-			$(".loginStyle_mob").css({'top':'-300px'});
+			$("#carritoId_mob").css({'top':'0px'});
+			$(".loginStyle_mob").css({'top':'0px'});
 
 		}
 		if($("#tipoPagina").text() == 'prod2'){
 
 			$("#foto1").hide();
-			$("#menu_boton_mob").hide();
-			$("#carritoId_mob").css({'top':'-300px'});
-			$(".loginStyle_mob").css({'top':'-300px'});
+			$("#carritoId_mob").css({'top':'0px'});
+			$(".loginStyle_mob").css({'top':'0px'});
 
 		}
 		if($("#tipoPagina").text() == 'prod3'){
 
-			$("#menu_boton_mob").hide();
-			$("#carritoId_mob").css({'top':'-300px'});
-			$(".loginStyle_mob").css({'top':'-300px'});
+			$("#carritoId_mob").css({'top':'0px'});
+			$(".loginStyle_mob").css({'top':'0px'});
 
 		}
 
@@ -156,9 +160,10 @@ $(document).ready(function(){
 	var showMascara=false;
 
 
-	$('#cookie-out').click(
+	$('#cookie-button-m').click(
 		function zoomImageOut(){
 			$('#cookie-out').hide();
+			$('#cookie-container').hide();
 			$("#mascara").hide(200);
 			$("#login").hide(200);
 			$(".carrito").hide(200);
@@ -202,7 +207,7 @@ $(document).ready(function(){
 			ope='add';
 			//var route = "{{ path('macson_chart', { 'pid': 'PLACEHOLDER1' , 'vid':'PLACEHOLDER2' }) }}";
 			if (sizeSelected==1){
-				
+				$("html,body").scrollTop(0);
 				showMascara=true;
 				opeItem(ope,product,variety);
 			}
@@ -281,6 +286,18 @@ $(document).ready(function(){
 			return false;
 		}
 	);
+	$("#loginMenu_mob").click(
+
+		function showLogin_mob(){
+			$("html,body").scrollTop(0);
+			$(".carrito").hide();
+			$(".large").hide();
+			$("#login").show(200);
+			$("#mascara").show(200);
+			showMascara=true;
+			return false;
+		}
+	);
 	$("#orderOption").click(
 
 		function showLogin(){
@@ -292,6 +309,18 @@ $(document).ready(function(){
 	$("#carritoResumen").click(
 
 		function showCart(){
+			$("html,body").scrollTop(0);
+			$("#login").hide();
+			$(".carrito").show(200);
+			$(".large").hide();
+			$("#mascara").show(200);
+			showMascara=true;
+			return false;
+		}
+	);
+	$("#carritoResumen_mob").click(
+
+		function showCart_mob(){
 			$("html,body").scrollTop(0);
 			$("#login").hide();
 			$(".carrito").show(200);
@@ -516,14 +545,12 @@ $(document).ready(function(){
 		function showMenuA_mob(){
 			if(showMenu_mob){
 				showMenu_mob=false;
-				$("#menu_boton_mob").text("Menu +");
 				$("#menu_mob").hide(350);
-				$(".foto_blank1").css({'height': '70'});
+				$(".foto_blank1").css({'height': '0'});
 				$("#foto_blank1_mob").hide(0);
 			}
 			else{
 				showMenu_mob=true;
-				$("#menu_boton_mob").text("Menu -");
 				$(".foto_blank1").css({'height': alturaText});
 				$("#menu_mob").show(0);
 	

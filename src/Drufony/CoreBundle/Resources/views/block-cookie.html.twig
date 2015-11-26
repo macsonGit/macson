@@ -23,9 +23,9 @@ COOKIE-MODE constant must be defined in customConfig: 1 disabled,
             <p id='cookie-notice'>
                 {{ notice }}
             {% if constant('COOKIE_MODE') == 3 %}
-                <a href='#' id='cookie-button' data-cookie-domain='{% if isConstDefined('COOKIE_DOMAIN') %}{{constant('COOKIE_DOMAIN')}}{% endif %}'>
+                <p class='cursorpointer' id='cookie-button-m' data-cookie-domain='{% if isConstDefined('COOKIE_DOMAIN') %}{{constant('COOKIE_DOMAIN')}}{% endif %}'>
                     {{ 'Accept'|t }}  
-                </a>
+                </p>
             {% endif %}
             <a href='{{ path('drufony_cookie_terms_url', { 'lang': lang }) }}' id='cookie-terms-link' target='_blank'>
                 {{'Learn more'|t}}

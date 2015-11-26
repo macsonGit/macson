@@ -22,14 +22,48 @@
 <body>
 
 
+
+	<div id='header_mob'>
+
+	<div id='headerFreeShipping' class="inline">
+		<p class="margin-left-30">{{ 'SPAIN (PENINSULE AND BALEARIC ISLANDS): FREE SHIPPING' | t}} | {{'24-48H'|t}}</p>
+	</div>
+	<div id='headerInfo' class="inline">
+		<p class="margin-right-30">{{ 'COSTUMER CENTER'|t }}</p>
+	</div>
+	</div>
+
+	<div id='menu_header_mob' class="border">
+		<div id="menu_boton_mob" class="inline center height50 width33p">
+				<img src='{{ asset('bundles/customproject/images/menu_mob.png') }}'>
+		</div>
+		<div class="inline center height50 verticalcenter50 width33p">
+            	<span id="carritoResumen_mob"><img src='{{ asset('bundles/customproject/images/carrito.png') }}'></span>
+ 	    	<span id="sumItems_mob">
+	    		({{ sumItems }})
+	    	</span>
+		</div>
+		<div class="inline center verticalcenter50 width33p">
+            		<div id="loginMenu_mob">
+{% if app.user is not null %}
+	{% if app.user.profile.name is empty %}	
+   				{{app.user.email}} |
+	{% else %}
+   		{{app.user.profile.name}} |
+	{% endif %}
+{% else %}
+				{{ 'LOGIN'|t }}
+{% endif %}
+	    		</div>
+		</div>
+	
+	</div>
+
+
 	<div id='header' class="sinEfectos">
 
-		<div id='headerFreeShipping' class="inline">
-			<p class="margin-left-30">{{ 'SPAIN (PENINSULE AND BALEARIC ISLANDS): FREE SHIPPING' | t}} | {{'24-48H'|t}}</p>
-		</div>
-		<div id='headerInfo' class="inline">
-			<p class="margin-right-30">{{ 'COSTUMER CENTER'|t }}</p>
-		</div>
+
+
 
 {% set referUrl=app.request.headers.get('referer') %}
 {% if "www.macson" in referUrl %} 
@@ -126,8 +160,10 @@
 
 {% if homePage is defined %}
 <div id="logo"></div> 
+<div id="logo_mob"></div> 
 {% else %}
 <div id="logo"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img id="logoImg" alt="macson logo" src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
+<div id="logo_mob"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img id="logoImg" alt="macson logo" src='{{ asset('bundles/customproject/images/logoMacson.jpg') }}'><a></div> 
 {% endif %}
 
 <div id="mascara"><div id="cerrar" class="underline">[X]</div></div>

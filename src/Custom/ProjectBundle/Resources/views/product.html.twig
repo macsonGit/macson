@@ -48,7 +48,6 @@
 <div id="tipoPagina">prod{{ tipoPag }}</div>
 <div id="contenedor1">	
 
-{% include "CustomProjectBundle::tallas_mob.html.twig" %}		
 		<div class="fotoProd">
 {% include "CustomProjectBundle::login.html.twig" %}
 {% if 'OUTLET' in contentData.brand %}
@@ -94,6 +93,7 @@
 {% endif %}	
 {% include "CustomProjectBundle::info_panel.html.twig" %}		
 		</div>		
+{% include "CustomProjectBundle::tallas_mob.html.twig" %}		
 {% include "CustomProjectBundle::info_panel_mob.html.twig" %}		
 </div>
 
