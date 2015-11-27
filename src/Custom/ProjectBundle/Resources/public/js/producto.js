@@ -10,6 +10,8 @@ $(document).ready(function(){
 	$("#header_mob").hide();
 	$("#menu_header_mob").hide();
 	$("#logo_mob").hide();
+	$("#logoPortada_mob").hide();
+	$("#portada_mob").hide();
 	$("#payment_method").hide();
 	$(".tallasStyle_mob").hide();
 	$(".portada_main").hide();
@@ -19,10 +21,13 @@ $(document).ready(function(){
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/.test(navigator.userAgent) ) {
 
  		var mobile=true;
+		$("#footer").attr('id', 'footer_mob');
+		$(".listFooter").attr('class', 'listFooter_mob');
+		$(".desplegaFooter").attr('class', 'desplegaFooter_mob');
 		$('body').css({'letter-spacing': '2px'});
 		$('body').css({'min-width': '200px'});
-		$("#portada").attr('id', 'portada_mob');
-		$("#menuPortada").attr('id', 'menuPortada_mob');
+		$("#portada").hide();
+		$("#portada_mob").show();
 		$("#menu").attr('id', 'menu_mob');
 		$("#menu_size").attr('id', 'menu_size_mob');
 		$("#contenedor1").attr('id', 'contenedor1_mob');
@@ -52,14 +57,16 @@ $(document).ready(function(){
 		$(".fotoLarge2").attr('class', 'fotoLarge2_mob');
 		$(".fotoLarge3").attr('class', 'fotoLarge3_mob');
 		$(".itemSize").attr('class', 'itemSize_mob');
+		$("#menuPortada").attr('id', 'menu_mob');
 		$("#menucommerce .inline").removeClass('pad15');
 		$("#menucommerce .inline").removeClass('inline');
 		$(".precioDecimal").attr('class', 'precioDecimal_mob');
-		$("#footer").hide();	
 		$("#menu_header_mob").show();
 		$("#header_mob").show();
 		$("#header").hide();
 		$("#headerInfo").hide();
+		$("#logoPortada").hide();
+		$("#logoPortada_mob").show();
 		$("#logo").hide();
 		$("#logo_mob").show();
 		$("#headerFreeShipping").css({'width': '100%'});
@@ -93,6 +100,8 @@ $(document).ready(function(){
 		$(".tallasStyle_mob").show();
 		$("#menu_mob").hide();
 		$(".portada_main").show();
+
+		$(".fotoEmpty").hide();
 
 
 		if($("#tipoPagina").text() == 'prod1'){
@@ -161,7 +170,7 @@ $(document).ready(function(){
 
 
 	$('#cookie-button-m').click(
-		function zoomImageOut(){
+		function cookieOut(){
 			$('#cookie-out').hide();
 			$('#cookie-container').hide();
 			$("#mascara").hide(200);
@@ -172,7 +181,7 @@ $(document).ready(function(){
 	);	
 	
 	$('#mascara').click(
-		function zoomImageOut(){
+		function mascaraOut(){
 			$('#zoomContainer').hide();
 			$("#mascara").hide(200);
 			$("#login").hide(200);
@@ -181,7 +190,7 @@ $(document).ready(function(){
 		}
 	);	
 	$('#buyLogin').click(
-		function zoomImageOut(){
+		function butFunction(){
 			$('#buyLoginPanel').show();
 		}
 	);	
