@@ -8,8 +8,7 @@
 
 <div id="contenedor1">
 
-	<div id="fotoRow">
-		<div class="foto">
+		<div class="foto_blank1">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 {% include "CustomProjectBundle::login.html.twig" %}		
 {% include "CustomProjectBundle::menu.html.twig" %}		
@@ -19,23 +18,21 @@
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
      			<div class="border contenido">
 				<h2>{{ contentData.Title }}</h2>
-				<br>
 {% if contentData.getimages() %}	
-				<div class="wd40 inline">
+				<div class="fotoContenido wd40 inline">
 					{% include 'DrufonyCoreBundle::content_common_fields.html.twig' %}
 				</div>
 
-        			<div class="wd50 inline padleft15">{{ contentData.Body | raw}}</div>
+        			<div class="camposContenido wd50 inline padleft15">{{ contentData.Body | raw}}</div>
 {% else %}
 				
-        			<div class="inline padleft15">{{ contentData.Body | raw}}</div>
+        			<div class="camposContenido inline padleft15">{{ contentData.Body | raw}}</div>
 {% endif %}
 			</div>
 		</div>
 		<div class="foto">
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
-	</div>
 </div>
 
 
