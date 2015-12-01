@@ -110,7 +110,7 @@ a {text-decoration:none}
 .sinEfectos a:visited {text-decoration:none; color:black;}
 .sinEfectos a:hover {text-decoration:none;color:black;}
 .sinEfectos a:active {text-decoration:none;color:black;}
-.textButton {color:white; font-size:14px; text-decoration:none}
+.textButton {padding:5px;color:white; font-size:14px; text-decoration:none}
 .textButton:hover {color:black}
 .underline {text-decoration:underline;}
 .cursorpointer {cursor:pointer}
@@ -292,6 +292,8 @@ a {text-decoration:none}
 a.button-ok, button.button-ok{
   background:black;
   color: #fff;
+  padding-right:5px;
+  padding-left:5px;
 }
 a.button-ok:hover, button.button-ok:hover { 
   background: white;

@@ -104,6 +104,7 @@ $('html').click(function() {
 		$(".verticalcenter120").css({'line-height': 'normal'});
 		$(".col_mob").css({'float': 'none'});
 		$(".checkout .wd90").css({'width': '96%'});
+		$("#buyLoginPanel").css({'width':'80%'});
 		$(".titleCheck").css({'font-size': '18px'});
 		$("#carritoId").remove();
 		$("#listaCarritoResumen").remove();
@@ -423,11 +424,13 @@ $('html').click(function() {
 
 	}
 
-	if($("#tipoPagina").text()=="noLoginNoChart"){
+	if($("#tipoPagina").text()=="payPage"){
 		
 		$('#loginMenu').hide();
 		$('#carritoResumen').hide();
 		$('#sumItems').hide();
+		$('#footerBar').hide();
+		
 
 	}
 

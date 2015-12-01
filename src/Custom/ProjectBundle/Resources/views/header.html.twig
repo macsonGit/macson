@@ -46,11 +46,7 @@
 		<div class="inline center verticalcenter50 width33p">
             		<div id="loginMenu_mob">
 {% if app.user is not null %}
-	{% if app.user.profile.name is empty %}	
-   				{{app.user.email}} |
-	{% else %}
-   		{{app.user.profile.name}} |
-	{% endif %}
+   				{{ 'USER EDIT'|t }}
 {% else %}
 				{{ 'LOGIN'|t }}
 {% endif %}
