@@ -819,14 +819,26 @@ class CommerceController extends DrufonyController
         $cart = CommerceUtils::getCartInfo($shippingPrice);
         $totalPrice = round($cart['totalDiscounted'], 2) * 100;
 
+	$order_number=(string)date('ymdHis');
+	$code=base64_decode(SERMEPA_MERCHANT_KEY);
+	//$code=base64_decode("sq7HjrUOBfKmC576ILgskD5srU870gJ7");
+	//$order_number='144611755';
+	$bytes = array(0,0,0,0,0,0,0,0); //byte [] IV = {0, 0, 0, 0, 0, 0, 0, 0}
+	$iv = implode(array_map("chr", $bytes)); //PHP 4 >= 4.0.2
+	$key=mcrypt_encrypt(MCRYPT_3DES,$code,$order_number,MCRYPT_MODE_CBC,$iv);
+
         $sermepaForm = $this->createForm(new SermepaPaymentFormType(),
-                                        array('amount' => $totalPrice, 'order' => '',
+                                        array('amount' => $totalPrice, 'key' => $key,'order'=>$order_number,
                                             'titular' => $billing['name'], 'currency' => DEFAULT_CURRENCY, 'lang' => $lang));
 
         $existStep = CommerceUtils::existStep(SERMEPA_IN_PROGRESS);
-        CommerceUtils::saveStep(SERMEPA_IN_PROGRESS, array(), $existStep);
+        CommerceUtils::saveStep(SERMEPA_IN_PROGRESS, array('hash'=>$order_number), $existStep);
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::checkout_sermepa_payment.html.twig', array('sermepaForm' => $sermepaForm->createView())));
+	$view =  $sermepaForm->createView();	
+	
+	$render=$this->renderView('DrufonyCoreBundle::checkout_sermepa_payment.html.twig', array('sermepaForm' => $view));
+	
+        $response->setContent($render);
 
         return $response;
     }
@@ -870,7 +882,15 @@ class CommerceController extends DrufonyController
             return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
         }
 
+	$data=CommerceUtils::getStepData(SERMEPA_IN_PROGRESS);
+
         $existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
+
+
+        if(!($paymentHash==$data['hash'])){
+            $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
+            return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
+	}	
 
         CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep);
 

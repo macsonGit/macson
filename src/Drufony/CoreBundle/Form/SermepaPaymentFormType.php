@@ -22,6 +22,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Drufony\CoreBundle\Model\CommerceUtils;
 use Symfony\Component\Validator\Constraints\File as FileConstraint;
 
+
 class SermepaPaymentFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -33,53 +34,45 @@ class SermepaPaymentFormType extends AbstractType
         $currency = $options['data']['currency'];
 
         $currency = array_key_exists($currency, $sermepaCurrencies) ? $sermepaCurrencies[$currency] : $sermepaCurrencies['default'];
-        $firm = $options['data']['amount'] . date('ymdHis') . SERMEPA_MERCHANT_CODE . $currency . SERMEPA_MERCHANT_TRANSACTION_TYPE . SERMEPA_MERCHANT_KEY;
-        $firmHash = strtoupper(sha1($firm));
 
-        $router = getRouter();
+
+	$key=$options['data']['key'];
+	$order_number=$options['data']['order'];
+        
+	$hash= urlencode($key); 	
+
+	$router = getRouter();
+
+
+        $params = base64_encode(json_encode(array(
+                'DS_MERCHANT_AMOUNT' =>(string)$options['data']['amount'] ,
+                'DS_MERCHANT_ORDER'=> $order_number,
+                'DS_MERCHANT_MERCHANTCODE' => SERMEPA_MERCHANT_CODE,
+                'DS_MERCHANT_CURRENCY' => (string)$currency,
+                'DS_MERCHANT_TRANSACTIONTYPE'=>(string)SERMEPA_MERCHANT_TRANSACTION_TYPE,
+                'DS_MERCHANT_TERMINAL'=>(string)SERMEPA_MERCHANT_TERMINAL,
+                'DS_MERCHANT_MERCHANTURL'=>"http://www.macson.es",
+                'DS_MERCHANT_URLOK'=>$router->generate('drufony_payment_sermepa_success', array('lang' => $lang, 'paymentHash' =>$order_number ), true),
+                'DS_MERCHANT_URLKO'=> $router->generate('drufony_payment_sermepa_error', array('lang' => $lang), true),
+        )));
+
+
+
+
+	$signature=base64_encode(hash_hmac(SERMEPA_HASH_ALGORITHM,$params,$key,true));
 
         $builder
             ->setMethod('POST')
             ->setAction(SERMEPA_URL)
-            ->add('Ds_Merchant_Amount', 'hidden', array(
-                'data' => $options['data']['amount'],
-            ))
-            ->add('Ds_Merchant_Currency', 'hidden', array(
-                'data' => $currency,
-            ))
-            ->add('Ds_Merchant_Order', 'hidden', array(
-                'data' => date('ymdHis'),
-            ))
-            ->add('Ds_Merchant_Titular', 'hidden', array(
-                'data' => $options['data']['titular'],
-            ))
-            ->add('Ds_Merchant_MerchantCode', 'hidden', array(
-                'data' => SERMEPA_MERCHANT_CODE,
-            ))
-            ->add('Ds_Merchant_MerchantName', 'hidden', array(
-                'data' => SERMEPA_MERCHANT_NAME,
-            ))
-            ->add('Ds_Merchant_Terminal', 'hidden', array(
-                'data' => SERMEPA_MERCHANT_TERMINAL,
-            ))
-            ->add('Ds_Merchant_TransactionType', 'hidden', array(
-                'data' => SERMEPA_MERCHANT_TRANSACTION_TYPE,
-            ))
-            ->add('Ds_Merchant_MerchantURL', 'hidden', array(
-                'data' => null,
-            ))
-            ->add('Ds_Merchant_UrlOK', 'hidden', array(
-                'data' => $router->generate('drufony_payment_sermepa_success', array('lang' => $lang, 'paymentHash' => $firmHash), true),
-            ))
-            ->add('Ds_Merchant_UrlKO', 'hidden', array(
-                'data' => $router->generate('drufony_payment_sermepa_error', array('lang' => $lang), true),
-            ))
-            ->add('Ds_Merchant_MerchantSignature', 'hidden', array(
-                'data' => $firmHash,
-            ))
-            ->add('Ds_Merchant_ConsumerLanguage', 'hidden', array(
-                'data' => array_key_exists($lang, $sermepaLanguages) ? $sermepaLanguages[$lang] : $sermepaLanguages['default'],
-            ));
+	    ->add('Ds_SignatureVersion','hidden',array(
+		'data'=>'HMAC_SHA256_V1',
+	    ))
+	    ->add('Ds_MerchantParameters','hidden',array(
+		'data'=>$params,
+	    ))
+	    ->add('Ds_Signature','hidden',array(
+		'data'=>$signature,
+	    ));
     }
 
     public function getName() {
