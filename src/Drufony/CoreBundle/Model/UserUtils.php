@@ -812,8 +812,8 @@ class UserUtils
      * @return void
      */
     static public function saveProfile($profile) {
-        $profileData = $profile->__toArray();
-        //$profileData = $profile;
+        //$profileData = $profile->__toArray();
+        $profileData = $profile;
         unset($profileData['addresses']);
 
         if (isset($profileData['picture'])) {
@@ -898,7 +898,7 @@ class UserUtils
        $sqlUser = 'SELECT uid FROM users WHERE email=?';
 
        $query = db_fetchColumn($sqlUser,array($userInfo['email']));
-       if(!is_null($query)){
+       if($query){
 		$user['uid']=$query;
        }
 

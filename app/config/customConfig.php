@@ -73,11 +73,11 @@ define('COMMENT_DEFAULT_STATUS', 2);
 
 //CORREOS ELECTRÓNICOS
 define ('DEFAULT_EMAIL_ADDRESS','gfuset@macson.es');
-define ('HR_EMAIL_ADDRESS','gfuset@macson.es');
-define ('COMUNICACION_EMAIL_ADDRESS','gfuset@macson.es');
-define ('UNIFORMS_EMAIL_ADDRESS','gfuset@macson.es');
-define ('FRANCHISES_EMAIL_ADDRESS','gfuset@macson.es');
-define ('GENCAT_EMAIL_ADDRESS','gfuset@macson.es');
+define ('HR_EMAIL_ADDRESS','rrhh@macson.es');
+define ('COMUNICACION_EMAIL_ADDRESS','comunicacion@macson.es');
+define ('UNIFORMS_EMAIL_ADDRESS','uniformes@macson.es');
+define ('FRANCHISES_EMAIL_ADDRESS','franquicias@macson.es');
+define ('GENCAT_EMAIL_ADDRESS','comunicacion@macson.es');
 //email base template
 define ('DRUFONY_EMAIL_TEMPLATENAME','email-base-template.html.twig');
 // USER CONFIGURATION

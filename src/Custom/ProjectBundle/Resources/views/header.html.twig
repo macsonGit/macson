@@ -74,7 +74,7 @@
 	    <li><a href={{ path('macson_category_shoponline',{ 'lang': lang} ) }}> {{ 'Shop On-line' | t }} |</a> </li>  
 
 
-	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | </a></li>  
+{#	    <li><a href={{ path('macson_category_outlet_home',{ 'lang': lang} ) }}> {{ 'Outlet' | t }} | </a></li>  #}
 {% if app.user is not null %}
 	{% if 'gencat@macson.es' in app.user.email %}
 	    <li><a href={{ path('macson_category_mujer_home',{ 'lang': lang} ) }}> {{ 'Women' | t }} | </a></li>  

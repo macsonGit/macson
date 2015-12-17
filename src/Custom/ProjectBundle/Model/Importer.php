@@ -253,12 +253,12 @@ class Importer {
 		
 		UserUtils::saveProfile($profile);
 
- 		$sqlAddresses = 'SELECT * FROM addresssource WHERE id_customer=?';
+ 		$sqlAddresses = 'SELECT * FROM addresssource WHERE id_customer=? AND deleted=0';
 
 		$queryAddress = db_fetchAll($sqlAddresses,array($user['id_customer']));
 
 
-		/*foreach ($queryAddress as $address){
+		foreach ($queryAddress as $address){
 			
 			$newaddress = array(
 
@@ -278,7 +278,7 @@ class Importer {
 			UserUtils::saveAddress($newaddress);
 
 		
-		}*/
+		}
 
 
 	}

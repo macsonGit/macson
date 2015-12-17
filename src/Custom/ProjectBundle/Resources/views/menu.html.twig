@@ -27,7 +27,7 @@
 {% elseif menuType == 'mujer' %}
 	<div class="fs18 pad10 blacktext">{{'WOMEN'|t}}</div>
 {% else %}
-	<a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'NEW COLLECTION' | t}}</li></a> 
+	{# <a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'NEW COLLECTION' | t}}</li></a> #}
 {% endif %}
 {% for subitem1 in menu.sons if subitem1.show %}
 	{% if not subitem1.selected %}

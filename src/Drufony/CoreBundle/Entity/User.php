@@ -416,6 +416,7 @@ class User implements UserInterface, \Serializable
             unset($user['roles']);
         }
 
+
         if (empty($userData['password'])) {
             unset($user['password']);
         }

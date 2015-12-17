@@ -9,6 +9,14 @@
 			<img id="menuImg" src='{{ asset('bundles/customproject/images/espacio.png') }}'>
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
+{% if not ball %}
+	{{ "This category has no products" | t }}
+		<div class="foto">
+		</div>
+		<div class="foto">
+		</div>
+{% else %}
+
 {% for product in ball %}
 		<div class="foto">
 	{% if asset_exists( "bundles/customproject/images/Product/Standard/"~product.sgu~"_2.jpg" ) %}
@@ -49,6 +57,7 @@
 	{% endif %}	
 
 {% endfor %}
+{% endif %}
 			<img class="fotoEmpty" src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 			<img class="fotoEmpty "src='{{ asset('bundles/customproject/images/espacio.png') }}'>	
 </div>	
