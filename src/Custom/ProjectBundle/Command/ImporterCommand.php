@@ -1,44 +1,40 @@
 <?php
-namespace Custom\ProjectBundle\Model;
+namespace Custom\ProjectBundle\Command;
 
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 use Drufony\CoreBundle\Model\Utils;
 use Drufony\CoreBundle\Model\UserUtils;
 use Drufony\CoreBundle\Model\Product;
 
-/**
- * Represents a unique product from the site.
- *
- * It provides methods to ask for a product.
- */
 
-class Importer {
+class ImporterCommand extends ContainerAwareCommand{
+
+    protected function configure()
+    {
+        $this
+            ->setName('importer:products')
+            ->setDescription('Import all products from product source')
+        ;
+    }
 
 
-  /**
-   * Loads a product object if any of the supplied data matches with a registered
-   * product.
-   */
+  protected function execute(){
 
-  public function __construct() {
 
+	include ("/var/www/Symfony/app/config/customConfig.php");
 	
+        global $db;
+        $db = $this->getContainer()->get('database_connection');
 
- }
-
-//-------------------------------------------------------------------------
-//-------------------------------------------------------------------------
-
-  /*
-   * PUBLIC METHODS
-   */
-  /* Getters. */
-  public function getReference()                { return $this->reference; }
-  /*
-  */
-
-  public static function importer(){
+        global $logger;
+        $logger = $this->getContainer()->get('logger');
 
  	$sqlproduct = 'SELECT * FROM productsource';
+
 
 	$query = db_fetchAll($sqlproduct);
 	
@@ -230,56 +226,6 @@ class Importer {
 			}	 
 		}
 	}
-
-  }
-
-  public static function importerUser(){
-
-
- 	$sqlUser = 'SELECT * FROM customersource';
-
-	$query = db_fetchAll($sqlUser);
-
-	foreach ($query as $user){
-
-		$profile = array();
-
-		$profile['uid'] = UserUtils::createUser($user);
-
-		$profile['name']=$user['firstname'].' '.$user['lastname'];
-		
-		UserUtils::saveProfile($profile);
-
- 		$sqlAddresses = 'SELECT * FROM addresssource WHERE id_customer=? AND deleted=0';
-
-		$queryAddress = db_fetchAll($sqlAddresses,array($user['id_customer']));
-
-
-		foreach ($queryAddress as $address){
-			
-			$newaddress = array(
-
-				'address' => $address['address1'].' '.$address['address2'],
-				'countryId' => $address['id_country'],
-				'province' => $address['postcode'],
-				'postalCode' => $address['postcode'],
-				'city' => $address['city'],
-				'nif' => $address['dni'],
-				'name'=>$address['firstname'].' '.$address['lastname'],
-				'nif' => $address['dni'],
-				'phone' => $address['phone'],
-				'uid' => $profile['uid'],
-	
-			);
-			
-			UserUtils::saveAddress($newaddress);
-
-		
-		}
-
-
-	}
-
 
   }
 
