@@ -3,6 +3,7 @@ app/bootstrap.php.cache
 app/bootstrap_cache.php.cache
 app/config/parameters.ini
 app/config/parameters.yml
+app/config/customConfig.php
 app/config/parameters.yml.dist
 app/cache/*
 app/logs/*
