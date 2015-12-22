@@ -54,10 +54,10 @@
 <section id="" class="checkout">
       {% set step = step + 1 %}
 	 <div class="wd90">
-	     <div class="button-ok pad15 fs24 sinEfectos">
+	     <div class="button-ok pad15 fs24 sinEfectos border">
 			<a  href='{{ path('drufony_checkout_without_login', { 'lang' : lang, 'withoutlogin': true})}}'"><b>{{ "Buy without login" | t }}</b></a>
 	    </div>	
-	     <div id="buyLogin" class="button-ok fs24 pad15 cursorpointer">
+	     <div id="buyLogin" class="button-ok fs24 pad15 cursorpointer border">
 			<b>{{ "Fast buy login" | t }}</b>
 	    </div>	
 	    <div id="buyLoginPanel" class="wd40 center">

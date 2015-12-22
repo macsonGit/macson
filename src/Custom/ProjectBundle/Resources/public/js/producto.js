@@ -184,6 +184,16 @@ $('html').click(function() {
 	$(".carrito").hide();
 
 
+	$('#back').click(
+		function back(){
+			window.history.back();
+
+		}
+
+	);	
+	
+
+
 
 	
 	var showPanel=false;

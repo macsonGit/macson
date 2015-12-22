@@ -160,11 +160,10 @@ define('TPV_ENABLED', serialize(array(TPV_SERMEPA, TPV_PAYPAL)));
 define ('COMMERCE_MANAGEMENT_EMAIL', "gfuset@macson.es");
 //SERMEPA
 //Replace this URL in production mode (test: https://sis-t.redsys.es:25443/sis/realizarPago, production: https://sis.redsys.es/sis/realizarPago)
-define('SERMEPA_URL', 'https://sis-t.redsys.es:25443/sis/realizarPago');
+define('SERMEPA_URL', 'https://sis.redsys.es/sis/realizarPago');
 define('SERMEPA_MERCHANT_CODE', '327234068');
-
-define('SERMEPA_MERCHANT_KEY', 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
-//define('SERMEPA_MERCHANT_KEY', 'erjusrtjus45usestruh');
+//define('SERMEPA_MERCHANT_KEY', 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+define('SERMEPA_MERCHANT_KEY', 'erjusrtjus45usestruh');
 //define('SERMEPA_MERCHANT_KEY', 'qwertyasdf0123456789');
 
 define('SERMEPA_CURRENCY_EQUIVALENCE', serialize(array('EUR' => '978', 'default' => '978')));
@@ -178,7 +177,7 @@ define('SERMEPA_HASH_ALGORITHM', 'sha256');
 define('PAYPAL_CLIENT_ID', 'ARyXqxC39FAUvYnAYNL1O1VxJdRwAgGzICUo-l1DOMqfEgyLN_egRP4o4F1a');
 define('PAYPAL_CLIENT_SECRET', 'EAatNBB2fueZg-J3msDAMNO7C6GPNZ0p1opr58ioB8N7_rlPcWfIZeRisimM');
 //Set PAYPAL_MODE to sandbox for tests and live for production
-define('PAYPAL_MODE', 'sandbox');
+define('PAYPAL_MODE', 'live');
 
 
 define('SHIFT_TICKET_NUMBER',100);

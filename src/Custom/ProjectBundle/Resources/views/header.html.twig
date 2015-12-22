@@ -60,13 +60,7 @@
 
 
 
-
-{% set referUrl=app.request.headers.get('referer') %}
-{% if "www.macson" in referUrl %} 
-		<div id="back" class="inline padtop3"><a id="backLink" href="{{app.request.headers.get('referer')}}"><img src='{{ asset('bundles/customproject/images/back.png') }}'></a></div>
-{% else %}
-		<div id="back" class="inline padtop3"><a id="backLink" href="http://www.macson.es"><img src='{{ asset('bundles/customproject/images/back.png') }}'></a></div>
-{% endif %}
+	<div id="back" class="inline padtop3 cursor"><img src='{{ asset('bundles/customproject/images/back.png') }}'></div>
 	<ul class="verticalcenter30">
             <li> <a href={{ path('macson_stores',{ 'lang': lang} ) }}>
 		{{'Stores'|t}} | </a>
