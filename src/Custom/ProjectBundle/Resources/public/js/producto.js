@@ -126,7 +126,6 @@ $('html').click(function() {
 		}
 		if($("#tipoPagina").text() == 'prod2'){
 
-			$("#foto1").hide();
 			$("#carritoId_mob").css({'top':'0px'});
 			$(".loginStyle_mob").css({'top':'0px'});
 
