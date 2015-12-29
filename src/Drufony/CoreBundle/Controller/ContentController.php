@@ -42,8 +42,6 @@ class ContentController extends DrufonyController {
     const PREVIEW_ACTION = 'preview';
 
     function localeAction($route = '', $parameters = array()) {
-	
-        //defined('DEFAULT_LANG') or define('DEFAULT_LANG', $this->container->getParameter('locale'));
         define('DEFAULT_LANG', Geo::getUserLanguage());
         return $this->redirect(http_build_url(DEFAULT_LANG . '/' .  $route));
     }
@@ -70,7 +68,7 @@ class ContentController extends DrufonyController {
         }
 
         return $this->forward("DrufonyCoreBundle:Content:${controllerName}", array(
-            'request'     => $request,     'lang'   => $lang,  'id' => $id,
+				'request'     => $request,     'lang'   => $lang,  'id' => $id,
             'contentType' => $contentType, 'action' => $action, 'langToTranslate' => $langToTranslate,
         ));
     }

@@ -43,6 +43,9 @@ class CategoryController extends DrufonyController
 	if(!empty($user)){
 		$orders = CommerceUtils::getUserOrders($user->getUid());
 	}
+	
+	//phpinfo();
+
                               
        $widgets = array(
             'social' => array(

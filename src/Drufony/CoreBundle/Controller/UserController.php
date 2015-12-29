@@ -691,7 +691,7 @@ class UserController extends DrufonyController
 
 	UserUtils::removeAddress($id);
 
-	var_dump($id);
+	//var_dump($id);
 
 	//$a=$a;
 

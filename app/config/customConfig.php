@@ -3,7 +3,7 @@
 define('PROJECT_NAME', 'Drufony');
 
 //Sesión y cookies
-define('COOKIE_DOMAIN', 'macson.es'); //dominio de las cookies
+define('COOKIE_DOMAIN', 'www.macson.es'); //dominio de las cookies
 define('LANGUAGE_COOKIE', 'drufonylang'); //nombre de la cookie de idioma
 define('EXPIRY_TIME_COOKIE', 1); //tiempo de vida predeterminado de las cookies
 
@@ -157,7 +157,7 @@ define('TPV_PAYPAL', 'Paypal');
 define('TPV_GATEWAY', TPV_STRIPE);
 //Adds TPVs enabled to be used
 define('TPV_ENABLED', serialize(array(TPV_SERMEPA, TPV_PAYPAL)));
-define ('COMMERCE_MANAGEMENT_EMAIL', "gfuset@macson.es");
+define ('COMMERCE_MANAGEMENT_EMAIL', "pedidos@macson.es");
 //SERMEPA
 //Replace this URL in production mode (test: https://sis-t.redsys.es:25443/sis/realizarPago, production: https://sis.redsys.es/sis/realizarPago)
 define('SERMEPA_URL', 'https://sis.redsys.es/sis/realizarPago');

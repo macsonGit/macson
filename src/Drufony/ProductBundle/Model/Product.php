@@ -186,9 +186,9 @@ class Product {
           }
           else{
           $vocabularyListVals[$item['parent']]['shownode']=FALSE;
-          var_dump('nuevo');
-          var_dump($item['description']);
-          var_dump($vocabularyListVals[$item['parent']]['shownode']);             
+          //var_dump('nuevo');
+          //var_dump($item['description']);
+          //var_dump($vocabularyListVals[$item['parent']]['shownode']);             
             $item=$vocabularyListVals[$item['tid']]['items'][$level_index[$i]]; 
           }
 

@@ -26,6 +26,9 @@ class ImporterCommand extends ContainerAwareCommand{
 
 
 	include ("/var/www/Symfony/app/config/customConfig.php");
+
+	date_default_timezone_get('Europe/Madrid');
+
 	
         global $db;
         $db = $this->getContainer()->get('database_connection');

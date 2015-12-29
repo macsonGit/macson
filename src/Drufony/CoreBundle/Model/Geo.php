@@ -311,6 +311,8 @@ class Geo
 
     static public function  getUserLanguage($user = NULL)
     {
+
+
         $lang = NULL;
 
         // If the user exists check if it has a language stored in the DB
@@ -327,7 +329,7 @@ class Geo
                 $valid_languages = array_keys(unserialize(VALID_LANGUAGES));
                     //If there wasn't a matching lang, look at the users ip and get a language based on its location
                     //$geo_array = geoip_record_by_name($_SERVER['REMOTE_ADDR']); // FIX  ME: Is there any other way?.
-                    $geo_array = geoip_record_by_name('bbc.co.uk'); // FIX  ME: Is there any other way?.                
+                    $geo_array = geoip_record_by_name($_SERVER['REMOTE_ADDR']); // FIX  ME: Is there any other way?.     
                     $country_code = $geo_array['country_code'];
                     foreach($valid_languages as $language) {
                         $language_code = self::country_code_to_locale($country_code, $language);
@@ -338,14 +340,18 @@ class Geo
                     }
                                         $lang_array = explode('_', $language_code);
                     $lang = $lang_array[0];
+		
                     //It it does not match any valid language, return the preferred language
                     if(!in_array($lang, $valid_languages)) {
-                        $lang = PREFERRED_LANGUAGE;
+                        $lang = DEFAULT_LANGUAGE;
                     }
+		
+		    self::setLangCookie($lang);
+
                 
             }
         }
-        $geo_array = geoip_record_by_name('bbc.co.uk'); // FIXME: Is there any other way?.
+        $geo_array = geoip_record_by_name($_SERVER['REMOTE_ADDR']); // FIXME: Is there any other way?.
         $country_code = $geo_array['country_code'];
         locale_set_default($lang . '_' . $country_code); //FIXME ... get country code based on language
         return $lang;

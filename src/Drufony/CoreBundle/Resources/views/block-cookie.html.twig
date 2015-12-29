@@ -23,7 +23,7 @@ COOKIE-MODE constant must be defined in customConfig: 1 disabled,
             <p id='cookie-notice'>
                 {{ notice }}
             {% if constant('COOKIE_MODE') == 3 %}
-                <p class='cursorpointer' id='cookie-button-m' data-cookie-domain='{% if isConstDefined('COOKIE_DOMAIN') %}{{constant('COOKIE_DOMAIN')}}{% endif %}'>
+                <p class='cursorpointer' id='cookie-button' data-cookie-domain='{% if isConstDefined('COOKIE_DOMAIN') %}{{constant('COOKIE_DOMAIN')}}{% endif %}'>
                     {{ 'Accept'|t }}  
                 </p>
             {% endif %}

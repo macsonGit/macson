@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Drufony\CoreBundle\Model\Path;
 use Drufony\CoreBundle\Model\ContentUtils;
 use Drufony\CoreBundle\Model\Utils;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\Response;
+use Drufony\CoreBundle\Model\Geo;
 
 class GeneralUrlController extends DrufonyController
 {
@@ -21,6 +25,8 @@ class GeneralUrlController extends DrufonyController
      * @return void
      */
     public function indexAction($lang = DEFAULT_LANGUAGE, $url = 'index') {
+
+	
         $contentData = $this->_getContentData($lang, $url);
 	if($url=='index'){
 		$contentData['contentType']='page';
