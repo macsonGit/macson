@@ -245,8 +245,8 @@ a {text-decoration:none}
 #cuidados {cursor: pointer;z-index:20}
 .tallasStyle{position:absolute; bottom:-40px ; left:0px; font-size: 16px; display:inline ; text-align: left; height: 20px;width:948px; background-image:url('../images/menuBackground.png');padding:10px}
 .tallasStyle li {width:25px;}
-.tallasStyle ul li { display: inline; padding-left: 2px; padding-right: 2px;font-size:12px}
-.tallasStyle li:hover { background-color:#CCCCCC; cursor: pointer;}
+.tallasStyle ul li { display: inline; padding-left: 2px; padding-right: 2px;font-size:12px;letter-spacing: 1.1px}
+.tallasStyle li:hover { background-color:#CCCCCC; cursor: pointer;letter-spacing: 1.1px}
 .tallasStyle_mob{  font-size: 16px; padding:10px; margin-bottom:5px}
 .tallasStyle_mob ul li { display: inline; padding-left: 10px; padding-right: 10px;font-size:12px}
 #tituloCat{position:absolute; top:-25px ; left:3px; font-size: 12px ; letter-spacing: 2px; cursor: pointer;color:gray; z-index:10}
