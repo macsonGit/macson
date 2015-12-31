@@ -8,6 +8,7 @@ $(document).ready(function(){
 
 	$("#infoPanel_mob").hide();
 	$("#header_mob").hide();
+	$("#cartel_mob").hide();
 	$("#menu_header_mob").hide();
 	$("#logo_mob").hide();
 	$("#logoPortada_mob").hide();
@@ -36,6 +37,8 @@ $('html').click(function() {
 		$('body').css({'min-width': '200px'});
 		$("#portada").hide();
 		$("#portada_mob").show();
+		$("#cartel").hide();
+		$("#cartel_mob").show();
 		$("#menu").attr('id', 'menu_mob');
 		$("#menu_size").attr('id', 'menu_size_mob');
 		$(".contenido").attr('class', 'contenido_mob');
