@@ -214,10 +214,10 @@ a {text-decoration:none}
 .zoomContainerClass {position:absolute; top:30px;height:900px; width:700px; left:50%;margin-left: -350px; z-index:50; background-color: white;}
 .zoomContainerClass_mob {position:absolute; top:100px; z-index:50; background-color: white;width:100%; overflow-y:auto;overflow-x:auto}
 .fotoA {}
-.foto { position:relative;top:3%; margin-bottom:30px;display: inline-block; width:320px; vertical-align:top;height:411px; }
+.foto { position:relative;top:3%; margin-bottom:60px;display: inline-block; width:320px; vertical-align:top;height:411px; }
 .fotoProd { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .fotoProd_mob { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top; }
-.foto_mob { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px;margin-bottom:25px }
+.foto_mob { position:relative;top:3%; display: inline-block; width:320px; vertical-align:top;height:411px;margin-bottom:60px }
 .foto_main_mob { position:relative; margin-top:3px;top:3%; display: inline-block; width:320px; }
 .foto_blank { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
 .foto_blank1 { position:relative; top:3%; display: inline-block; width:320px; vertical-align:top;height:411px; }
@@ -225,14 +225,15 @@ a {text-decoration:none}
 .storeDummy { position:relative; ;display: inline-block; vertical-align: top;width:450px;  }
 .store_mob { position:relative; margin-top:10px; padding:5px}
 .tagPrice {position:absolute; bottom:0px; background-repeat: repeat; height: 30px; width: 100%; line-height:30px; font-size: 20px ; font-style: bold;text-align: center; z-index:4; background-image:url('../images/menuBackground.png')}
-.tagName {position:absolute; bottom:-30px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 100%; font-size: 14px; font-style:bold;  text-align: center; z-index:5}
-.tagName_mob {position:absolute; bottom:-30px;  line-height:30px;  text-align:center; margin-top:5px;background-repeat: repeat; height: 30px; width: 100%; font-size: 12px; font-style:bold;  text-align: center; z-index:5;letter-spacing: 1.1px}
+.tagName {position:absolute; bottom:-50px;line-height:20px; text-align:center; background-repeat: repeat; height: 40px; width: 100%; font-size: 14px; font-style:bold;  text-align: center; z-index:5}
+.tagName_mob {position:absolute; bottom:-50px;  line-height:20px;  text-align:center;;background-repeat: repeat; height: 40px; width: 100%; font-size: 12px; font-style:bold;  text-align: center; z-index:5;letter-spacing: 1.1px}
 #tagPriceProducto {position:absolute;right:120px;background-repeat: repeat; font-size: 16px ;text-align: right;z-index:4}
 #tagPriceProducto_mob { font-size: 22px ;z-index:5;padding:10px}
 .tagAgotado {background-color: red; color:white; padding-top:6px;position:absolute; bottom:200px; background-repeat: repeat; height: 30px; width: 100%; background-image:url('../images/menuBackground.png'); font-size: 20px ; font-style: bold;text-align: center;z-index:4}
 
 .titleCheck {font-weight:bold; font-size:24px;height:50px}
 
+.precio{font-weight:bold;color:#424242}
 .precioDecimal {font-size:11px}
 .precioDecimal_mob {font-size:10px}
 .thanksClass_mob{padding-top:30px;padding-bottom:30px}

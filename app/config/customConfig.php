@@ -160,7 +160,11 @@ define('TPV_ENABLED', serialize(array(TPV_SERMEPA, TPV_PAYPAL)));
 define ('COMMERCE_MANAGEMENT_EMAIL', "clientes@macson.es");
 //SERMEPA
 //Replace this URL in production mode (test: https://sis-t.redsys.es:25443/sis/realizarPago, production: https://sis.redsys.es/sis/realizarPago)
+
+
 define('SERMEPA_URL', 'https://sis.redsys.es/sis/realizarPago');
+//define('SERMEPA_URL', 'https://sis-t.redsys.es:25443/sis/realizarPago');
+
 define('SERMEPA_MERCHANT_CODE', '327234068');
 define('SERMEPA_MERCHANT_KEY', 'vQzswfl8rwefUO/bTvaHO8G0ulKVv0cT');
 //define('SERMEPA_MERCHANT_KEY', 'erjusrtjus45usestruh');
@@ -168,21 +172,24 @@ define('SERMEPA_MERCHANT_KEY', 'vQzswfl8rwefUO/bTvaHO8G0ulKVv0cT');
 
 define('SERMEPA_CURRENCY_EQUIVALENCE', serialize(array('EUR' => '978', 'default' => '978')));
 define('SERMEPA_MERCHANT_TERMINAL', '1');
-define('SERMEPA_MERCHANT_NAME', 'Pruebas');
+define('SERMEPA_MERCHANT_NAME', 'MACSON');
 define('SERMEPA_MERCHANT_TRANSACTION_TYPE', 0);
 define('SERMEPA_LANGUAGE_EQUIVALENCE', serialize(array('es' => '001', 'en' => '002', 'default' => '002')));
 define('SERMEPA_HASH_ALGORITHM', 'sha256');
 
 //PAYPAL
-define('PAYPAL_CLIENT_ID', 'ARyXqxC39FAUvYnAYNL1O1VxJdRwAgGzICUo-l1DOMqfEgyLN_egRP4o4F1a');
-define('PAYPAL_CLIENT_SECRET', 'EAatNBB2fueZg-J3msDAMNO7C6GPNZ0p1opr58ioB8N7_rlPcWfIZeRisimM');
 //Set PAYPAL_MODE to sandbox for tests and live for production
+//define('PAYPAL_CLIENT_ID', 'AeOI_PM5reUc1KPgIjhj2kdt0zmTxiw_wWMoYr0-OndXEx7q17uSzd4UUyENQJYKhYO05LxHmjPKbBtl');
+//define('PAYPAL_CLIENT_SECRET', 'ECX-7Qs0181RGiCmbY09dUVe_dBIiqMDPMr-2I0btUWvFEkPXkcXHkBkq_m8E_uWdcuaiTKx55rO5Wxm');
+//define('PAYPAL_MODE', 'sandbox');
+define('PAYPAL_CLIENT_ID', 'Ab9dRZzoCLM3fDujbf6u1FE9LpUb5oTGdjpRgPb0IgHAN8PWd-3T_ysrSio4HwMgx5pKS_jRP581Cyg0');
+define('PAYPAL_CLIENT_SECRET', 'EGrztsx1NtIAxjMnmDEOl1FPnoWgJbjV8qUyn8dQSZYnrHLsSbqpJCwzJaaQ2l58JyrB3-7KV7oyZFUc');
 define('PAYPAL_MODE', 'live');
 
 
 define('SHIFT_TICKET_NUMBER',100);
 define('SHIFT_INVOICE_NUMBER_EXPORT',100);
-define('SHIFT_INVOICE_NUMBER',100);
+define('SHIFT_INVOICE_NUMBER',971);
 
 
 

@@ -70,11 +70,11 @@ class ImporterCommand extends ContainerAwareCommand{
 			$prod['color']=$item['color_ES'];
 			$prod['firstPrice']=$item['price'];
 			if($item['price']<>$item['priceOffer']){
-				$prod['priceSubtotalNoVat']=$item['priceOffer']/(1+DEFAULT_VAT/100);
+				$prod['priceSubtotalNoVat']=round($item['priceOffer']/(1+DEFAULT_VAT/100),2);
 				$prod['pricePVP']=$item['priceOffer'];
 			}
 			else{
-				$prod['priceSubtotalNoVat']=$item['price']/(1+DEFAULT_VAT/100);			
+				$prod['priceSubtotalNoVat']=round($item['price']/(1+DEFAULT_VAT/100),2);			
 				$prod['pricePVP']=$item['price'];
 			}
 			$prod['priceVatPercentage']=3;

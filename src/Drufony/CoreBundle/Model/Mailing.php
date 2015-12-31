@@ -112,6 +112,7 @@ class Mailing {
 	$customParams['shipping_Info']['country']=Geo::getCountryNamebyId($customParams['shipping_Info']['countryId']);
  
 	$customParams['cart']= Order::getProductsFromDB($orderId);
+	$customParams['emailUser']=$userEmail;
         $subject = t('PEDIDO MACSON: @orderId', array('@orderId'=> $orderId));
         $template = 'email-management-order-completed.html.twig';
 

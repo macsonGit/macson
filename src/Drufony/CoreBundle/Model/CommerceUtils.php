@@ -231,6 +231,11 @@ class CommerceUtils
                 $count    =  $item->value;
                 $subtotal = $count * $product['priceSubtotalNoVat'];
 
+		$total = $count * $product['pricePVP'];
+
+
+		$tax= $total-$subtotal;
+
                 $productWeight = is_null($product['weight']) ? 0 : $product['weight'];
                 $weight   = $item->value * $productWeight;
                 $products[] = array(
@@ -239,6 +244,8 @@ class CommerceUtils
                     'subtotal' => $subtotal,
 		    'status'   => $item->status,
 		    'weight'   => $weight,
+		    'total' => $total,
+		    'tax' => $tax,
                 );
             } while (($item = $cart->next()) !== null);
         }
@@ -323,38 +330,30 @@ class CommerceUtils
 	$cartItems = CommerceUtils::getCartItemsAJAX();
 
         $subtotal = 0;
+	$total=0;
+	$tax=0;
         foreach ($cartItems as $item) {
             $subtotal += $item['subtotal'];
+            $total    += $item['total'];
+            $tax      += $item['tax'];
         }
 
-        // FIXME: Equal to 0 ???
+        $cartInfo['shippingFee']        = $additionalCosts;
+        $cartInfo['total']              = $total + $cartInfo['shippingFee'];	
+        $cartInfo['subtotal']               = $subtotal;
         $cartInfo['discount']               = 0;
         $cartInfo['couponDiscount']         = 0;
         $cartInfo['discountType']           = 0;
+        $cartInfo['totalDiscounted']    = $cartInfo['total'];
         $cartInfo['cartItems']              = $cartItems;
         $cartInfo['itemsCount']             = CommerceUtils::getCartItemsCount();
         $cartInfo['subtotalProducts']       = $subtotal;
         $cartInfo['subtotalProductsDisc']   = $subtotal;
-	
-
-
-	$coupon = self::getStepData(COUPON);
-
-        if ($coupon) {
-            list($cartInfo['discount'], $cartInfo['couponDiscount'], $cartInfo['discountType']) =
-              self::getCouponDiscountByCode($coupon['couponCode'], $cartInfo['subtotalProducts']);
-
-            $cartInfo['subtotalProductsDisc'] = $cartInfo['subtotalProducts'] - $cartInfo['discount'];
-       }
-        $cartInfo['taxProducts']                = $cartInfo['subtotalProductsDisc'] * (DEFAULT_VAT / 100);
-        $cartInfo['subtotalProductsTax']        = $cartInfo['subtotalProductsDisc'] + $cartInfo['taxProducts'];
-
-        $cartInfo['subtotal']           = $cartInfo['subtotalProductsDisc'];
-        $cartInfo['shippingFee']        = $additionalCosts;
+        $cartInfo['taxProducts']            = $tax;
+	$cartInfo['tax']		    = $tax;
+        $cartInfo['subtotalProductsTax']        = $tax;
         $cartInfo['totalBeforeTaxes']   = $cartInfo['subtotal'];
-        $cartInfo['tax']                = $cartInfo['totalBeforeTaxes'] * (DEFAULT_VAT / 100);
-        $cartInfo['total']              = $cartInfo['totalBeforeTaxes'] + $cartInfo['tax'] + $cartInfo['shippingFee'];
-        $cartInfo['totalDiscounted']    = $cartInfo['total'];
+	
 
         return $cartInfo;
     }

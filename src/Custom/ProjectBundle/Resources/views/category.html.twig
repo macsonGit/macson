@@ -42,11 +42,11 @@
 			<div class="tagAgotado">{{'OUT OF STOCK'|t}}</div>
 	{% endif %}
 			<div class="tagName">
-				{{product.title}} - 
+				{{product.title}} <br> 
 	{% if product.pricePVP == product.firstPrice %}		
-				{{ product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>
+			<span class="precio"><span class="tachado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>&nbsp;&nbsp {{ product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>&nbsp;&nbsp;<span class="tachado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp </span></span>
 	{% else %}
-			<a class="tachado">{{ product.firstPrice  | round(2,'common')}} €</a>    {{product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>
+			<span class="precio"><span class="tachado">&nbsp;&nbsp; </span>&nbsp;&nbsp<span class="tachado">{{ product.firstPrice  | round(2,'common')}} €</span>  &nbsp;&nbsp  {{product.pricePVP | round(0,'floor')}}<span class="precioDecimal">,{{ product.pricePVP | decimals  }} €</span>&nbsp;&nbsp;<span class="tachado">&nbsp;&nbsp;&nbsp </span></span>
 	{%endif%}
 			</div>
 		</div>
