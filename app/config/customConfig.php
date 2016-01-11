@@ -72,9 +72,9 @@ define('COMMENT_DEFAULT_STATUS', 2);
 // define('GOOGLE_ANALYTIC_CODE','THECODEHERE'); //descomentar en caso de usarse
 
 //CORREOS ELECTRÓNICOS
-define ('DEFAULT_EMAIL_ADDRESS','gfuset@macson.es');
+define ('DEFAULT_EMAIL_ADDRESS','clientes@macson.es');
 define ('HR_EMAIL_ADDRESS','rrhh@macson.es');
-define ('COMUNICACION_EMAIL_ADDRESS','comunicacion@macson.es');
+define ('COMUNICACION_EMAIL_ADDRESS','clientes@macson.es');
 define ('UNIFORMS_EMAIL_ADDRESS','uniformes@macson.es');
 define ('FRANCHISES_EMAIL_ADDRESS','franquicias@macson.es');
 define ('GENCAT_EMAIL_ADDRESS','comunicacion@macson.es');
