@@ -25,7 +25,7 @@ a {text-decoration:none}
 #header_mob { font-size:18px;  width: 100%; left:0px;top: 0px; z-index:100;border-style:solid;border-width:1px;border-color:gray;line-height:30px }
 #header_mob li {display:inline;cursor: pointer}
 
-#header_socialmedia {position:absolute; top:0px ;right:5px; padding-right:20px; float:right; padding-top:3px}
+#header_socialmedia {position:absolute; top:20px ;right:5px; padding-right:20px; float:right; padding-top:3px}
 #header_socialmedia_mob { padding-right:20px; padding-top:3px}
 #payment_method {position:absolute;  bottom: 0px; right:5px;  float:right}
 #payment_method_mob {position:relative;  bottom: 0px; right:5px;  float:right}
@@ -163,8 +163,8 @@ a {text-decoration:none}
 #menu_size_mob {  padding: 0px;font-size: 18px ;width: 100%;z-index:4}
 #menu_size { position:absolute; top:20px; padding: 0px;font-size: 18px ;width: 100%;z-index:4;height:100px}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;height:400px}
-#menu {text-align: left;z-index:5;width:321px}
-#menu ul {height:380px; background-image:url('../images/menuBackground.png')}
+#menu {text-align: left;z-index:5;width:290px}
+#menu ul {height:411px; background-image:url('../images/menuBackground.png')}
 #menu li:hover { color:black;cursor: pointer;}
 #menu a:link {text-decoration:none;color:black;}
 #menu a:visited {text-decoration:none; color:black;}
@@ -172,6 +172,7 @@ a {text-decoration:none}
 #menu a:active {text-decoration:none;color:black;}
 #menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: black;width: 320px;text-align: left;z-index:4;}
 #menuPortada {height:380px;text-align: left;z-index:5;width:321px}
+.menu_recuadro { height:411px}
 #menuPortada ul {height:380px}
 #menuPortada li:hover { font-weight:bold ;cursor: pointer;}
 #menuPortada a:link {text-decoration:none;color:black;}
@@ -315,6 +316,10 @@ a.button-ok:hover, button.button-ok:hover {
 #back{ margin-left:10px; cursor:pointer ; margin-right:10px }
 .listFooter  {display:inline; vertical-align: top;line-height:20px; cursor:pointer}
 .listFooter_mob  {}
+.tiendas_mob a:link {text-decoration:none;color:white;}
+.tiendas_mob a:visited {text-decoration:none; color:white;}
+.tiendas_mob a:hover {text-decoration:none;color:white;}
+.tiendas_mob a:active {text-decoration:none;color:white;}
 .desplegaFooter{position:absolute; display:none;bottom:30px;padding-bottom:3px; border-style:solid;border-width:1px}
 .desplegaFooter_mob{display:none;bottom:30px; border-style:solid; border-width:1px;border-color:gray}
 
@@ -339,7 +344,7 @@ a.button-ok:hover, button.button-ok:hover {
 {
 	position: absolute;
 	top: 0;
-	right: 0;
+	right: 14px;
 	width: 16px;
 	height: 100%;
 	background: blue;
@@ -369,6 +374,7 @@ a.button-ok:hover, button.button-ok:hover {
 {
 	background: #dde;
 	position: relative;
+	right:0px;
 }
 
 .jspDrag

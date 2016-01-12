@@ -8,6 +8,7 @@ $(document).ready(function(){
 
 	$("#infoPanel_mob").hide();
 	$("#header_mob").hide();
+	$(".tiendas_mob").hide();
 	$("#cartel_mob").hide();
 	$("#menu_header_mob").hide();
 	$("#logo_mob").hide();
@@ -39,6 +40,7 @@ $('html').click(function() {
 		$("#portada_mob").show();
 		$("#cartel").hide();
 		$("#cartel_mob").show();
+		$(".menu_bar").attr('class', 'menu_bar_mob');
 		$("#menu").attr('id', 'menu_mob');
 		$("#menu_size").attr('id', 'menu_size_mob');
 		$(".contenido").attr('class', 'contenido_mob');
@@ -171,6 +173,10 @@ $('html').click(function() {
 		$('.contenido').jScrollPane();
 	});
 
+	$(function()
+	{
+		$('.menu_bar').jScrollPane();
+	});
 
 	$("#tituloVolver").hide();
 	$('#zoomContainer').hide();
