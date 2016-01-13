@@ -726,16 +726,21 @@ class CommerceUtils
         db_delete('orders_by_product', array('orderId' => $orderId));
 
         foreach ($items as $item) {
-            $total_vat = ($item['subtotal'] * DEFAULT_VAT / 100);
-            $total     = $item['subtotal'] + $total_vat;
+            $total 	= $item['product']['pricePVP'];
+            $total_no_vat     = $item['product']['priceSubtotalNoVat'];
 
             $insertData = array(
                 'orderId'  => $orderId,
-		 'nid' => $item['product']['nid'],
+		'nid' => $item['product']['nid'],
+		'sgu' => $item['product']['sgu'],
+		'title' => $item['product']['title'],
 		'varieties' => $item['product']['size'],
-                'quantity' => $item['count'], 'total' => $total,
-                'currency' => DEFAULT_CURRENCY, 'total_vat' => $total_vat,
-                'subtotal_without_vat' => $item['subtotal'], 'percentage_vat' => DEFAULT_VAT);
+                'quantity' => $item['count'], 
+		'total' => $total,
+                'currency' => DEFAULT_CURRENCY, 
+		'total_vat' => $total-$total_vat,
+                'subtotal_without_vat' => $total_no_vat, 
+		'percentage_vat' => DEFAULT_VAT);
 
             db_insert('orders_by_product', $insertData);
         }
@@ -1571,12 +1576,11 @@ class CommerceUtils
     static public function getOrderProducts($id) {
         $sql  = 'SELECT * ';
         $sql .= 'FROM orders_by_product AS a '; 
-	$sql .= 'INNER JOIN product AS b ON a.nid=b.nid ';
-	$sql .= 'INNER JOIN url_friendly AS c ON b.id=c.oid ';
+	//$sql .= 'INNER JOIN product AS b ON a.nid=b.nid ';
+	//$sql .= 'INNER JOIN url_friendly AS c ON b.id=c.oid ';
         $sql .= 'WHERE a.orderId = ?';
 
         $result = db_fetchAll($sql, array($id));
-
 
         return $result;
     }

@@ -99,14 +99,22 @@
 					<td extends="celda">
 						{{ item.quantity }}
 					</td>
+	{% if item.sgu %}
 					<td extends="celda">{{ item.sgu  }}-{{item.varieties}}</td>
+	{% else %}
+					<td extends="celda">{{ item.nid  }}nid-{{item.varieties}}</td>
+	{% endif %}
 					<td extends="celda">
 						<stylesheet>
     							<attribute name="width" value="300px" />	
 						</stylesheet>
+	{% if item.title %}
 						{{ item.title}}
+	{% else %}
+						CommerceProduct- {{item.nid}}
+	{% endif %}
 					</td>
-					<td extends="celda">{{ item.pricePVP }} €</td>
+					<td extends="celda">{{ item.total|round(2) }} €</td>
 				</tr>
 	{% endfor %}
 	</table>
@@ -118,11 +126,11 @@
     			<attribute name="padding" value="10px" />	
 		</stylesheet>
 	{% set total_no_vat = (total_product_no_vat + shippingcost/(1+(percentage_vat/100))) %} 
-			<div>{{ 'Shipping Cost'|t }}: {{ shippingcost|number_format(2) }} €</div>
-			<div>{{ 'Total without VAT'|t }}: {{ total|number_format(2) }} €</div>
-			<div>{{ 'Taxable base'|t }}: {{ total_no_vat|number_format(2) }} €</div>
-			<div>{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} €</div>
-			<div><b>{{ 'Total'|t }}: {{ (total_product_no_vat*(1+percentage_vat/100))|number_format(2) }} €</b></div>
+			<div>{{ 'Shipping Cost'|t }}: {{ shippingcost|round(2) }} €</div>
+			<div>{{ 'Total without VAT'|t }}: {{ total_no_vat|round(2) }} €</div>
+			<div>{{ 'Taxable base'|t }}: {{ total_no_vat|round(2) }} €</div>
+			<div>{{ 'Vat'|t }}({{ percentage_vat }} %): {{ (total-total_no_vat)|round(2) }} €</div>
+			<div><b>{{ 'Total'|t }}: {{ total|round(2) }} €</b></div>
 		
 	</div>
 </div>
