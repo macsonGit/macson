@@ -91,7 +91,7 @@ class Mailing {
 	$customParams['shipping_Info']=unserialize($customParams['orderInfo']['shippingInfo']);
 	$customParams['shipping_Info']['country']=Geo::getCountryNamebyId($customParams['shipping_Info']['countryId']);
 
-	$customParams['cart']= Order::getProductsFromDB($orderId);
+	$customParams['cart']= Order::getProductsFromDBMail($orderId);
         
 	$subject = t('Macson. Order @orderId, completed successfully', array('@orderId'=> $orderId));
         $template = 'email-user-order-completed.html.twig';
@@ -111,12 +111,12 @@ class Mailing {
 	$customParams['shipping_Info']=unserialize($customParams['orderInfo']['shippingInfo']);
 	$customParams['shipping_Info']['country']=Geo::getCountryNamebyId($customParams['shipping_Info']['countryId']);
  
-	$customParams['cart']= Order::getProductsFromDB($orderId);
+	$customParams['cart']= Order::getProductsFromDBMail($orderId);
 	$customParams['emailUser']=$userEmail;
         $subject = t('PEDIDO MACSON: @orderId', array('@orderId'=> $orderId));
         $template = 'email-management-order-completed.html.twig';
 
-        self::sendMail($email, $subject, $template, $customParams,$userMail);
+        self::sendMail($email, $subject, $template, $customParams,$userEmail);
     }
 
     /**

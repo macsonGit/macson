@@ -108,8 +108,8 @@
 						<stylesheet>
     							<attribute name="width" value="300px" />	
 						</stylesheet>
-	{% if item.title %}
-						{{ item.title}}
+	{% if item.title_p %}
+						{{ item.title_p}}
 	{% else %}
 						CommerceProduct- {{item.nid}}
 	{% endif %}
@@ -129,7 +129,7 @@
 			<div>{{ 'Shipping Cost'|t }}: {{ shippingcost|round(2) }} €</div>
 			<div>{{ 'Total without VAT'|t }}: {{ total_no_vat|round(2) }} €</div>
 			<div>{{ 'Taxable base'|t }}: {{ total_no_vat|round(2) }} €</div>
-			<div>{{ 'Vat'|t }}({{ percentage_vat }} %): {{ (total-total_no_vat)|round(2) }} €</div>
+			<div>{{ 'Vat'|t }}({{ percentage_vat|number_format(2) }} %): {{ (total-total_no_vat)|number_format(2) }} €</div>
 			<div><b>{{ 'Total'|t }}: {{ total|round(2) }} €</b></div>
 		
 	</div>

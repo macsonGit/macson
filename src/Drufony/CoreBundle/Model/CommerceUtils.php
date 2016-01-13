@@ -733,12 +733,12 @@ class CommerceUtils
                 'orderId'  => $orderId,
 		'nid' => $item['product']['nid'],
 		'sgu' => $item['product']['sgu'],
-		'title' => $item['product']['title'],
+		'title_p' => $item['product']['title'],
 		'varieties' => $item['product']['size'],
                 'quantity' => $item['count'], 
 		'total' => $total,
                 'currency' => DEFAULT_CURRENCY, 
-		'total_vat' => $total-$total_vat,
+		'total_vat' => $total-$total_no_vat,
                 'subtotal_without_vat' => $total_no_vat, 
 		'percentage_vat' => DEFAULT_VAT);
 

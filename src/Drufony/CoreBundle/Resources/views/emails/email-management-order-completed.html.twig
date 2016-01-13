@@ -59,10 +59,10 @@ Newsletter: {{customParams.newsletter}}
 		{{ item.sgu  }}
 	</td>
 	<td align:"center">
-		{{ item.title }}
+		{{ item.title_p }}
 	</td>
 	<td align:"center">{{ item.varieties }}</td>
-	<td align:"center"><p>{{ item.pricePVP | round(0,'floor')}},{{ item.pricePVP | decimals  }} €</p></td>
+	<td align:"center"><p>{{ item.total | round(0,'floor')}},{{ item.total | decimals  }} €</p></td>
 </tr>
 
 {% endfor %}

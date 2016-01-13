@@ -108,8 +108,23 @@ class Order
     static public function getProductsFromDB($orderId) {
         $products = array();
 
-        $sql = 'SELECT quantity, varieties,title, sgu, pricePVP ';
+        $sql = 'SELECT quantity, varieties,title_p, sgu, pricePVP ';
         $sql .= 'FROM orders_by_product INNER JOIN product ON product.nid = orders_by_product.nid ';
+        $sql .= 'WHERE orderId = ?';
+
+        if($result = db_executeQuery($sql, array($orderId))) {
+            while($row = $result->fetch()) {
+                $products[] = $row;
+            }
+        }
+
+        return $products;
+    }
+    static public function getProductsFromDBMail($orderId) {
+        $products = array();
+
+        $sql = 'SELECT *  ';
+        $sql .= 'FROM orders_by_product ';
         $sql .= 'WHERE orderId = ?';
 
         if($result = db_executeQuery($sql, array($orderId))) {
