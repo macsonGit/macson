@@ -36,6 +36,7 @@ $('html').click(function() {
 		$(".listDesplegaFooter").attr('class', 'listDesplegaFooter_mob');
 		$('body').css({'letter-spacing': '2px'});
 		$('body').css({'min-width': '200px'});
+		$(".tiendas_mob").show();
 		$("#portada").hide();
 		$("#portada_mob").show();
 		$("#cartel").hide();

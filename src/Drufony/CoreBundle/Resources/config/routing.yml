@@ -364,6 +364,10 @@ drufony_payment_sermepa_success:
     pattern: /checkout/payment/sermepa/success/{paymentHash}
     defaults: { _controller: DrufonyCoreBundle:Commerce:sermepaPaymentSuccess }
 
+drufony_payment_sermepa_success_post:
+    pattern: /checkout/payment/sermepa/success_post
+    defaults: { _controller: DrufonyCoreBundle:Commerce:sermepaPaymentSuccessPost }
+
 drufony_payment_sermepa_error:
     pattern: /checkout/payment/sermepa/error
     defaults: { _controller: DrufonyCoreBundle:Commerce:sermepaPaymentError }

@@ -172,7 +172,7 @@ a {text-decoration:none}
 #menu a:active {text-decoration:none;color:black;}
 #menuPortada { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: black;width: 320px;text-align: left;z-index:4;}
 #menuPortada {height:380px;text-align: left;z-index:5;width:321px}
-.menu_recuadro { height:411px}
+.menu_recuadro { }
 #menuPortada ul {height:380px}
 #menuPortada li:hover { font-weight:bold ;cursor: pointer;}
 #menuPortada a:link {text-decoration:none;color:black;}

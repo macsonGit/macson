@@ -719,8 +719,8 @@ class CommerceController extends DrufonyController
                     $shipping = CommerceUtils::getStepData(SHIPPING_INFO);
                     $user = $this->__registerUser($shipping, $lang);
                     if (is_null($user)) {
-                        $this->get('session')->getFlashBag()->add(ERROR, t('This email already exists'));
-                        return $this->redirect($this->generateUrl('drufony_checkout_shipping_info', array('lang' => $lang)));
+                        //$this->get('session')->getFlashBag()->add(ERROR, t('This email already exists'));
+                        //return $this->redirect($this->generateUrl('drufony_checkout_shipping_info', array('lang' => $lang)));
                     }
                 }
 
@@ -821,8 +821,6 @@ class CommerceController extends DrufonyController
 
 	$order_number=(string)date('ymdHis');
 	$code=base64_decode(SERMEPA_MERCHANT_KEY);
-	//$code=base64_decode("sq7HjrUOBfKmC576ILgskD5srU870gJ7");
-	//$order_number='144611755';
 	$bytes = array(0,0,0,0,0,0,0,0); //byte [] IV = {0, 0, 0, 0, 0, 0, 0, 0}
 	$iv = implode(array_map("chr", $bytes)); //PHP 4 >= 4.0.2
 	$key=mcrypt_encrypt(MCRYPT_3DES,$code,$order_number,MCRYPT_MODE_CBC,$iv);
@@ -870,41 +868,63 @@ class CommerceController extends DrufonyController
 
     public function sermepaPaymentSuccessAction(Request $request, $lang, $paymentHash) {
         //Check checkouk it's completed
-        list($message, $target) = CommerceUtils::checkOrderStatus();
-        if(!is_null($message)) {
-            $this->get('session')->getFlashBag()->add(ERROR, $message);
-            return $this->redirect($this->generateUrl($target, array('lang' => $lang)));
-        }
-
-        $existStep = CommerceUtils::existStep(SERMEPA_IN_PROGRESS);
-        if (!$existStep) {
-            $this->get('session')->getFlashBag()->add(ERROR, t('Select payment method'));
-            return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
-        }
-
-	$data=CommerceUtils::getStepData(SERMEPA_IN_PROGRESS);
-
-        $existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
-
-
-        if(!($paymentHash==$data['hash'])){
-            $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
-            return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
-	}	
-
-        CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep);
-
-        $user = $this->getUser();
-
-        l(INFO, 'Payment processed successfully');
-
-        $this->__saveOrder(PAYMENT_STATUS_PAID);
-
         //TODO: redirect to the proper place
         $this->get('session')->getFlashBag()->add(INFO, t('Thanks for the purchase'));
         return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
     }
 
+    public function sermepaPaymentSuccessPostAction(Request $request, $lang) {
+
+	
+
+
+        //Check checkouk it's completed
+        if ($request->getMethod() == 'POST') {
+		list($message, $target) = CommerceUtils::checkOrderStatus();
+
+
+		if(!is_null($message)) {
+		    $this->get('session')->getFlashBag()->add(ERROR, $message);
+		}
+
+		$existStep = CommerceUtils::existStep(SERMEPA_IN_PROGRESS);
+		if (!$existStep) {
+		    $this->get('session')->getFlashBag()->add(ERROR, t('Select payment method'));
+		}
+
+		$data=CommerceUtils::getStepData(SERMEPA_IN_PROGRESS);
+
+		$existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
+
+        	$parameters = $request->headers->get('Ds_MerchantParameters'); 
+		$parameters=base64_decode($parameters);
+		$paymentHash = $request->headers->get('Ds_Signature');
+		$code=base64_decode(SERMEPA_MERCHANT_KEY);
+		$paymentHashGen=base64_encode(hash_hmac(SERMEPA_HASH_ALGORITHM,$parameters,$code,true));
+	
+		l(INFO,"Recibido:".$paymentHash." Generado:".$paymentHashGen);
+	
+		$parameters=json_decode($parameters,true);
+
+		$orderNumber=$parameters['Ds_Order'];
+
+		if(!($orderNumber==$data['hash'])){
+		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
+		}
+		else{	
+			CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep);
+
+			$user = $this->getUser();
+
+			l(INFO, 'Payment processed successfully');
+
+			$this->__saveOrder(PAYMENT_STATUS_PAID);
+		}	
+
+	}
+	return('Solo POST');
+
+    }
     /************************************/
     /***************PAYPAL***************/
     /************************************/
@@ -1225,7 +1245,12 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 
         $user = $this->getUser();
 
-        $uid = $user->getUid();
+	if (is_null($user)){
+		$uid=0;
+	}
+	else{
+        	$uid = $user->getUid();
+	}
 
         $billing = CommerceUtils::getStepData(BILLING_INFO);
         $shipping = CommerceUtils::getStepData(SHIPPING_INFO);

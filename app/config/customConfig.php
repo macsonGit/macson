@@ -162,13 +162,13 @@ define ('COMMERCE_MANAGEMENT_EMAIL', "clientes@macson.es");
 //Replace this URL in production mode (test: https://sis-t.redsys.es:25443/sis/realizarPago, production: https://sis.redsys.es/sis/realizarPago)
 
 
-define('SERMEPA_URL', 'https://sis.redsys.es/sis/realizarPago');
-//define('SERMEPA_URL', 'https://sis-t.redsys.es:25443/sis/realizarPago');
+//define('SERMEPA_URL', 'https://sis.redsys.es/sis/realizarPago');
+define('SERMEPA_URL', 'https://sis-t.redsys.es:25443/sis/realizarPago');
 
-define('SERMEPA_MERCHANT_CODE', '327234068');
-define('SERMEPA_MERCHANT_KEY', 'vQzswfl8rwefUO/bTvaHO8G0ulKVv0cT');
-//define('SERMEPA_MERCHANT_KEY', 'erjusrtjus45usestruh');
-//define('SERMEPA_MERCHANT_KEY', 'qwertyasdf0123456789');
+//define('SERMEPA_MERCHANT_CODE', '327234068');
+//define('SERMEPA_MERCHANT_KEY', 'vQzswfl8rwefUO/bTvaHO8G0ulKVv0cT');
+define('SERMEPA_MERCHANT_CODE', '999008881');
+define('SERMEPA_MERCHANT_KEY', 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
 define('SERMEPA_CURRENCY_EQUIVALENCE', serialize(array('EUR' => '978', 'default' => '978')));
 define('SERMEPA_MERCHANT_TERMINAL', '1');
@@ -176,6 +176,7 @@ define('SERMEPA_MERCHANT_NAME', 'MACSON');
 define('SERMEPA_MERCHANT_TRANSACTION_TYPE', 0);
 define('SERMEPA_LANGUAGE_EQUIVALENCE', serialize(array('es' => '001', 'en' => '002', 'default' => '002')));
 define('SERMEPA_HASH_ALGORITHM', 'sha256');
+define('SERMEPA_POST_URL', 'http://www.macson.es/es/checkout/payment/sermepa/success_post');
 
 //PAYPAL
 //Set PAYPAL_MODE to sandbox for tests and live for production

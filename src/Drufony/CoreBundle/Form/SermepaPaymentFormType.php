@@ -51,7 +51,7 @@ class SermepaPaymentFormType extends AbstractType
                 'DS_MERCHANT_CURRENCY' => (string)$currency,
                 'DS_MERCHANT_TRANSACTIONTYPE'=>(string)SERMEPA_MERCHANT_TRANSACTION_TYPE,
                 'DS_MERCHANT_TERMINAL'=>(string)SERMEPA_MERCHANT_TERMINAL,
-                'DS_MERCHANT_MERCHANTURL'=>"http://www.macson.es",
+                'DS_MERCHANT_MERCHANTURL'=>SERMEPA_POST_URL,
                 'DS_MERCHANT_URLOK'=>$router->generate('drufony_payment_sermepa_success', array('lang' => $lang, 'paymentHash' =>$order_number ), true),
                 'DS_MERCHANT_URLKO'=> $router->generate('drufony_payment_sermepa_error', array('lang' => $lang), true),
         )));
