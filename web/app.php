@@ -17,7 +17,7 @@ $loader->register(true);
 
 require_once __DIR__.'/../app/AppKernel.php';
 //require_once __DIR__.'/../app/AppCache.php';
-require_once '../app/config/customConfig.php';
+require_once '../app/config/customConfig_prod.php';
 
 $kernel = new AppKernel('prod', false);
 $kernel->loadClassCache();
