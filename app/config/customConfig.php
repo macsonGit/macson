@@ -165,10 +165,10 @@ define ('COMMERCE_MANAGEMENT_EMAIL', "clientes@macson.es");
 //define('SERMEPA_URL', 'https://sis.redsys.es/sis/realizarPago');
 define('SERMEPA_URL', 'https://sis-t.redsys.es:25443/sis/realizarPago');
 
-//define('SERMEPA_MERCHANT_CODE', '327234068');
-//define('SERMEPA_MERCHANT_KEY', 'vQzswfl8rwefUO/bTvaHO8G0ulKVv0cT');
-define('SERMEPA_MERCHANT_CODE', '999008881');
-define('SERMEPA_MERCHANT_KEY', 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+define('SERMEPA_MERCHANT_CODE', '327234068');
+define('SERMEPA_MERCHANT_KEY', 'vQzswfl8rwefUO/bTvaHO8G0ulKVv0cT');
+//define('SERMEPA_MERCHANT_CODE', '999008881');
+//define('SERMEPA_MERCHANT_KEY', 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
 define('SERMEPA_CURRENCY_EQUIVALENCE', serialize(array('EUR' => '978', 'default' => '978')));
 define('SERMEPA_MERCHANT_TERMINAL', '1');

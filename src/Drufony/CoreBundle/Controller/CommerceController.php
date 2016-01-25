@@ -919,8 +919,10 @@ class CommerceController extends DrufonyController
 			l(INFO, 'Payment processed successfully');
 
 			$this->__saveOrder(PAYMENT_STATUS_PAID);
+			return('Processed');
 		}	
 
+		return('Not confirmed');
 	}
 	return('Solo POST');
 
