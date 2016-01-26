@@ -925,8 +925,9 @@ class CommerceController extends DrufonyController
 		l(INFO,"paymentResult:".$paymentResult);
 		l(INFO,"paymentHash:".$paymentHash);
 		l(INFO,"paymentHashGen:".$paymentHashGen);
+		l(INFO,"hash:".$data['hash']);
 		
-		if($paymentHash!=$paymentHashGen){
+		if($orderNumber!=$data['hash']){
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
 		}
 		else{	
