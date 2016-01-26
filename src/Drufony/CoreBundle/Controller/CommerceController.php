@@ -905,16 +905,18 @@ class CommerceController extends DrufonyController
 		$code=base64_decode(SERMEPA_MERCHANT_KEY);
 		$paymentHashGen=base64_encode(hash_hmac(SERMEPA_HASH_ALGORITHM,$parameters,$code,true));
 	
-		l(INFO,"Recibido:".$paymentHash." Generado:".$paymentHashGen);
 	
 		$parameters=json_decode($parameters,true);
 
 		$orderNumber=$parameters['Ds_Order'];
 
+		l(INFO,"orderNumber:".$orderNumber." Generado:".$data['hash']);
+		
 		if(!($orderNumber==$data['hash'])){
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
 		}
 		else{	
+			l(INFO,"DentroElse AntesSaveStep:");
 			CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep, true);
 
 			$user = $this->getUser();
