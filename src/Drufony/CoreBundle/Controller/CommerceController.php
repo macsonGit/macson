@@ -912,7 +912,7 @@ class CommerceController extends DrufonyController
 
 		l(INFO,"orderNumber:".$orderNumber." Generado:".$data['hash']);
 		
-		if(!($orderNumber==$data['hash'])){
+		if(($orderNumber==$data['hash']){
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
 		}
 		else{	
