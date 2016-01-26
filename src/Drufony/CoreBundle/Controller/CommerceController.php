@@ -877,9 +877,9 @@ class CommerceController extends DrufonyController
     public function sermepaPaymentSuccessPostAction(Request $request, $lang, $sesId){
 
 	
-
         $session    = getSession();
-        $sessionId  = $session->setId($sesId);
+        $session->set('stepId',$sesId);
+
 	
         //Check checkouk it's completed
         if ($request->getMethod() == 'POST') {
@@ -915,7 +915,7 @@ class CommerceController extends DrufonyController
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
 		}
 		else{	
-			CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep);
+			CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep, true);
 
 			$user = $this->getUser();
 

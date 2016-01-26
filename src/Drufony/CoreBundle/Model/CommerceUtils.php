@@ -367,11 +367,14 @@ class CommerceUtils
      *
      * @return void
      */
-    static public function saveStep($stepString, $data, $update = false) {
+    static public function saveStep($stepString, $data, $update = false, $outSession=false ) {
         self::getInstance();
 
         $session    = getSession();
         $sessionId  = $session->getId();
+	if(!$outSession){
+        	$session->set('stepId',$sessionId);
+	}
 
         $insertData = array('step' => $stepString,
                             'sessId' => $sessionId,
@@ -417,7 +420,7 @@ class CommerceUtils
      * @return array
      */
     static public function getStepData($stepString) {
-        $sessionId = getSession()->getId();
+        $sessionId = getSession()->get('stepId');
 
         $sql  = 'SELECT data ';
         $sql .= 'FROM checkout ';
