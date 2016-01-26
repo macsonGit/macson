@@ -919,7 +919,7 @@ class CommerceController extends DrufonyController
 		$parameters_array=json_decode($parameters_dec,true);
 
 		$orderNumber=$parameters_array['Ds_Order'];
-		$paymentResult=$parameters_array['Ds_Response'];
+		$paymentResult=i(int)$parameters_array['Ds_Response'];
 
 		l(INFO,"orderNumber:".$orderNumber);
 		l(INFO,"paymentResult:".$paymentResult);
@@ -927,8 +927,8 @@ class CommerceController extends DrufonyController
 		l(INFO,"paymentHashGen:".$paymentHashGen);
 		l(INFO,"hash:".$data['hash']);
 		
-		if($orderNumber!=$data['hash']){
-		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
+		if($orderNumber!=$data['hash'] || $paymentResult>99){
+		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash or wrong transaction'));
 		}
 		else{	
 			CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep, true);
