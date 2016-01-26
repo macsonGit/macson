@@ -375,6 +375,9 @@ class CommerceUtils
 	if(!$outSession){
         	$session->set('stepId',$sessionId);
 	}
+	else{
+		$sessionId=$session->get('stepId');
+	}
 
         $insertData = array('step' => $stepString,
                             'sessId' => $sessionId,
