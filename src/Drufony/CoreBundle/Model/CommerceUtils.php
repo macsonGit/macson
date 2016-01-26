@@ -297,8 +297,8 @@ class CommerceUtils
      *
      * @return void
      */
-    static public function emptyCart() {
-        $cartItems = self::getCartItemsAJAX();
+    static public function emptyCart($sessionId) {
+        $cartItems = self::getCartItemsAJAX($sessionId);
 
         foreach ($cartItems as $item) {
             self::removeFromCart($item['product']['varProdId']);
