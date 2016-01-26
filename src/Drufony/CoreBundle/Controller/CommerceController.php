@@ -2,6 +2,7 @@
 
 namespace Drufony\CoreBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -873,11 +874,13 @@ class CommerceController extends DrufonyController
         return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
     }
 
-    public function sermepaPaymentSuccessPostAction(Request $request, $lang) {
+    public function sermepaPaymentSuccessPostAction(Request $request, $lang, $sesId)
 
 	
 
-
+        $session    = getSession();
+        $sessionId  = $session->setId($sesId);
+	
         //Check checkouk it's completed
         if ($request->getMethod() == 'POST') {
 		list($message, $target) = CommerceUtils::checkOrderStatus();
@@ -1319,8 +1322,8 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 
              l(INFO, 'All checkout steps removed');
             
-	     Mailing::sendUserOrderCompletedEmail($user->getEmail(), $orderId, $payment['name']);
-             Mailing::sendManagementOrderCompletedEmail(COMMERCE_MANAGEMENT_EMAIL, $user->getEmail(), $orderId, $payment['name'], $payment['hash']);
+	     Mailing::sendUserOrderCompletedEmail($shipping['email'], $orderId, $payment['name']);
+             Mailing::sendManagementOrderCompletedEmail(COMMERCE_MANAGEMENT_EMAIL, $shipping['email'], $orderId, $payment['name'], $payment['hash']);
         }
 
         return $orderId;

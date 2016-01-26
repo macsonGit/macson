@@ -17,6 +17,7 @@
 
 namespace Drufony\CoreBundle\Form;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Drufony\CoreBundle\Model\CommerceUtils;
@@ -26,6 +27,9 @@ use Symfony\Component\Validator\Constraints\File as FileConstraint;
 class SermepaPaymentFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        $session    = getSession();
+        $sessionId  = $session->getId();
 
         $sermepaCurrencies = unserialize(SERMEPA_CURRENCY_EQUIVALENCE);
         $sermepaLanguages = unserialize(SERMEPA_LANGUAGE_EQUIVALENCE);
@@ -51,7 +55,7 @@ class SermepaPaymentFormType extends AbstractType
                 'DS_MERCHANT_CURRENCY' => (string)$currency,
                 'DS_MERCHANT_TRANSACTIONTYPE'=>(string)SERMEPA_MERCHANT_TRANSACTION_TYPE,
                 'DS_MERCHANT_TERMINAL'=>(string)SERMEPA_MERCHANT_TERMINAL,
-                'DS_MERCHANT_MERCHANTURL'=>SERMEPA_POST_URL,
+                'DS_MERCHANT_MERCHANTURL'=>SERMEPA_POST_URL."/".$sessionId,
                 'DS_MERCHANT_URLOK'=>$router->generate('drufony_payment_sermepa_success', array('lang' => $lang, 'paymentHash' =>$order_number ), true),
                 'DS_MERCHANT_URLKO'=> $router->generate('drufony_payment_sermepa_error', array('lang' => $lang), true),
         )));
