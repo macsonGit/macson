@@ -919,7 +919,7 @@ class CommerceController extends DrufonyController
 		$parameters_array=json_decode($parameters_dec,true);
 
 		$orderNumber=$parameters_array['Ds_Order'];
-		$paymentResult=i(int)$parameters_array['Ds_Response'];
+		$paymentResult=(int)$parameters_array['Ds_Response'];
 
 		l(INFO,"orderNumber:".$orderNumber);
 		l(INFO,"paymentResult:".$paymentResult);
