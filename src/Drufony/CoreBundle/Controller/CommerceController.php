@@ -908,7 +908,7 @@ class CommerceController extends DrufonyController
         	$parameters_ini = $request->headers->get('Ds_MerchantParameters');
 
 
-		l(INFO,"orderNumber:".$parameters_ini);
+		l(INFO,"orderNumber:".$request);
  
 		$parameters_dec=base64_decode($parameters_ini);
 		$paymentHash = $request->headers->get('Ds_Signature');
