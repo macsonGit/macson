@@ -905,10 +905,10 @@ class CommerceController extends DrufonyController
 
 		$existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
 
-        	$parameters_ini = $request->headers->get('Ds_MerchantParameters');
+        	//$parameters_ini = $request->headers->get('Ds_MerchantParameters');
+		$parameters_ini = $this->get('request')->request->get('Ds_MerchantParameters');
 
-
-		l(INFO,"orderNumber:".$request);
+		l(INFO,"orderNumber:".$parameters_ini);
  
 		$parameters_dec=base64_decode($parameters_ini);
 		$paymentHash = $request->headers->get('Ds_Signature');
