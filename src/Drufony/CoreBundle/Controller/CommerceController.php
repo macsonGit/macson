@@ -908,20 +908,25 @@ class CommerceController extends DrufonyController
         	//$parameters_ini = $request->headers->get('Ds_MerchantParameters');
 		$parameters_ini = $this->get('request')->request->get('Ds_MerchantParameters');
 
-		l(INFO,"orderNumber:".$parameters_ini);
  
 		$parameters_dec=base64_decode($parameters_ini);
-		$paymentHash = $request->headers->get('Ds_Signature');
+		//$paymentHash = $request->headers->get('Ds_Signature');
+		$paymentHash = $this->get('request')->request->get('Ds_Signature');
 		$code=base64_decode(SERMEPA_MERCHANT_KEY);
 		$paymentHashGen=base64_encode(hash_hmac(SERMEPA_HASH_ALGORITHM,$parameters_dec,$code,true));
 	
 	
 		$parameters_array=json_decode($parameters_dec,true);
 
-		$orderNumber=$parameters['Ds_Order'];
+		$orderNumber=$parameters_array['Ds_Order'];
+		$paymentResult=$parameters_array['Ds_Response'];
 
+		l(INFO,"orderNumber:".$orderNumber);
+		l(INFO,"paymentResult:".$paymentResult);
+		l(INFO,"paymentHash:".$paymentHash);
+		l(INFO,"paymentHashGen:".$paymentHashGen);
 		
-		if($orderNumber!=$data['hash']){
+		if($paymentHash!=$paymentHashGen){
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
 		}
 		else{	
