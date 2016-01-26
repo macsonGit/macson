@@ -874,7 +874,7 @@ class CommerceController extends DrufonyController
         return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
     }
 
-    public function sermepaPaymentSuccessPostAction(Request $request, $lang, $sesId)
+    public function sermepaPaymentSuccessPostAction(Request $request, $lang, $sesId){
 
 	
 
