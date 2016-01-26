@@ -905,7 +905,11 @@ class CommerceController extends DrufonyController
 
 		$existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
 
-        	$parameters_ini = $request->headers->get('Ds_MerchantParameters'); 
+        	$parameters_ini = $request->headers->get('Ds_MerchantParameters');
+
+
+		l(INFO,"orderNumber:".$parameters_ini);
+ 
 		$parameters_dec=base64_decode($parameters_ini);
 		$paymentHash = $request->headers->get('Ds_Signature');
 		$code=base64_decode(SERMEPA_MERCHANT_KEY);
@@ -916,7 +920,6 @@ class CommerceController extends DrufonyController
 
 		$orderNumber=$parameters['Ds_Order'];
 
-		l(INFO,"orderNumber:".$parameters_dec." hash:".$data['hash']);
 		
 		if($orderNumber!=$data['hash']){
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
