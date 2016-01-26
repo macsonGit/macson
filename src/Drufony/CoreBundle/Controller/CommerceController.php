@@ -171,6 +171,9 @@ class CommerceController extends DrufonyController
 
     //FIXME: refactor login code accoding to UserController
     public function checkoutLoginAction(Request $request, $lang, $withoutlogin = false) {
+        $session    = getSession();
+        $session->set('stepId',$session->getId());
+
         $response = new Response();
         $user = $this->getUser();
         $uid = null;
@@ -701,6 +704,9 @@ class CommerceController extends DrufonyController
     //FIXME: prepare code to diferent payment methods
     public function checkoutReviewAndPaymentAction(Request $request, $lang) {
         $response = new Response();
+
+	
+
        $checkoutMethodCompleted = CommerceUtils::existStep(CHECKOUT_METHOD);
         //Check checkouk it's completed
         list($message, $target) = CommerceUtils::checkOrderStatus();
@@ -921,9 +927,9 @@ class CommerceController extends DrufonyController
 
 			$user = $this->getUser();
 
-			l(INFO, 'Payment processed successfully');
 
 			$this->__saveOrder(PAYMENT_STATUS_PAID);
+			l(INFO, 'Payment processed successfully');
 			return('Processed');
 		}	
 
@@ -1318,13 +1324,13 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
             $session    = getSession();
             $sessionId=$sessionId->get('stepId');
  
-	    CommerceUtils::updateStock($sessionId);
-            CommerceUtils::emptyCart($sessionId);
+	    CommerceUtils::updateStock();
+            CommerceUtils::emptyCart();
 
 
              l(INFO, 'All cart products removed');
 
-             CommerceUtils::emptyCheckout($sessionId);
+             CommerceUtils::emptyCheckout();
 
              l(INFO, 'All checkout steps removed');
             

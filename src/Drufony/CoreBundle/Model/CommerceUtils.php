@@ -70,9 +70,10 @@ class CommerceUtils
      * @return SessionPool
      */
     static private function getInstance() {
+
         if (!isset(self::$shoppingCart)) {
             $session   = getSession();
-            $sessionId = $session->getId();
+	    $sessionId=$session->get('stepId');
             self::$shoppingCart = new SessionPool(CART_NAME, $sessionId);
         }
 
@@ -297,16 +298,16 @@ class CommerceUtils
      *
      * @return void
      */
-    static public function emptyCart($sessionId) {
-        $cartItems = self::getCartItemsAJAX($sessionId);
+    static public function emptyCart() {
+        $cartItems = self::getCartItemsAJAX();
 
         foreach ($cartItems as $item) {
             self::removeFromCart($item['product']['varProdId']);
         }
     }
 
-    static public function updateStock($sessionId) {
-        $cartItems = self::getCartItemsAJAX($sessionId);
+    static public function updateStock() {
+        $cartItems = self::getCartItemsAJAX();
 
         foreach ($cartItems as $item) {
 	    $stockToRemove =$item['product']['value'];
@@ -371,13 +372,7 @@ class CommerceUtils
         self::getInstance();
 
         $session    = getSession();
-        $sessionId  = $session->getId();
-	if(!$outSession){
-        	$session->set('stepId',$sessionId);
-	}
-	else{
-		$sessionId=$session->get('stepId');
-	}
+	$sessionId=$session->get('stepId');
 
         $insertData = array('step' => $stepString,
                             'sessId' => $sessionId,
@@ -404,7 +399,7 @@ class CommerceUtils
      */
     static public function existStep($stepString) {
         $session   = getSession();
-        $sessionId = $session->getId();
+	$sessionId=$session->get('stepId');
 
         $sql  = 'SELECT id ';
         $sql .= 'FROM checkout ';
@@ -423,7 +418,8 @@ class CommerceUtils
      * @return array
      */
     static public function getStepData($stepString) {
-        $sessionId = getSession()->get('stepId');
+        $session   = getSession();
+        $sessionId = $session->get('stepId');
 
         $sql  = 'SELECT data ';
         $sql .= 'FROM checkout ';
@@ -527,7 +523,7 @@ class CommerceUtils
      */
     static public function deleteStep($step) {
         $session   = getSession();
-        $session->set('stepId',$sessionId);
+        $sessionId = $session->get('stepId');
         $deleteCriteria = array('sessId' => $sessionId,
                                 'step' => $step);
 
@@ -636,7 +632,7 @@ class CommerceUtils
      */
     static public function saveOrder($checkoutData) {
         $session    = getSession();
-        $sessionId  = $session->getId();
+	$sessionId=$session->get('stepId');
 
         $insertData = array('paymentMethod'     => $checkoutData['paymentMethod'],
                             'paymentStatus'     => $checkoutData['paymentStatus'],

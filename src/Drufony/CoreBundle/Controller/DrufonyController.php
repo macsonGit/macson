@@ -53,6 +53,10 @@ class DrufonyController extends Controller
         global $session;
         $session = $this->get('session');
         $session->start();
+	
+        $session->set('stepId',$session->getId());
+
+
 
         global $securityContext;
         $securityContext = $this->container->get('security.context');
