@@ -175,7 +175,7 @@ define('SERMEPA_MERCHANT_NAME', 'MACSON');
 define('SERMEPA_MERCHANT_TRANSACTION_TYPE', 0);
 define('SERMEPA_LANGUAGE_EQUIVALENCE', serialize(array('es' => '001', 'en' => '002', 'default' => '002')));
 define('SERMEPA_HASH_ALGORITHM', 'sha256');
-define('SERMEPA_POST_URL', 'http://www.macson.es/es/checkout/payment/sermepa/success_post');
+define('SERMEPA_POST_URL', 'http://www.macson.es/app_dev.php/es/checkout/payment/sermepa/success_post');
 
 //PAYPAL
 //Set PAYPAL_MODE to sandbox for tests and live for production
