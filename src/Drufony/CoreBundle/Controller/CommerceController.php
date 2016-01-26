@@ -1313,14 +1313,18 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 
             CommerceUtils::saveUserAddressIfNew($uid, $billing);
             CommerceUtils::saveUserAddressIfNew($uid, $shipping);
+
+	
+            $session    = getSession();
+            $sessionId=$sessionId->get('stepId');
  
-	    CommerceUtils::updateStock();
-            CommerceUtils::emptyCart();
+	    CommerceUtils::updateStock($sessionId);
+            CommerceUtils::emptyCart($sessionId);
 
 
              l(INFO, 'All cart products removed');
 
-             CommerceUtils::emptyCheckout();
+             CommerceUtils::emptyCheckout($sessionId);
 
              l(INFO, 'All checkout steps removed');
             

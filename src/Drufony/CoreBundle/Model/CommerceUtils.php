@@ -305,8 +305,8 @@ class CommerceUtils
         }
     }
 
-    static public function updateStock() {
-        $cartItems = self::getCartItemsAJAX();
+    static public function updateStock($sessionId) {
+        $cartItems = self::getCartItemsAJAX($sessionId);
 
         foreach ($cartItems as $item) {
 	    $stockToRemove =$item['product']['value'];
@@ -527,8 +527,7 @@ class CommerceUtils
      */
     static public function deleteStep($step) {
         $session   = getSession();
-        $sessionId = $session->getId();
-
+        $session->set('stepId',$sessionId);
         $deleteCriteria = array('sessId' => $sessionId,
                                 'step' => $step);
 
