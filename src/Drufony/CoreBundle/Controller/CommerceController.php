@@ -905,24 +905,23 @@ class CommerceController extends DrufonyController
 
 		$existPaymentStep = CommerceUtils::existStep(PAYMENT_METHOD);
 
-        	$parameters = $request->headers->get('Ds_MerchantParameters'); 
-		$parameters=base64_decode($parameters);
+        	$parameters_ini = $request->headers->get('Ds_MerchantParameters'); 
+		$parameters_dec=base64_decode($parameters_ini);
 		$paymentHash = $request->headers->get('Ds_Signature');
 		$code=base64_decode(SERMEPA_MERCHANT_KEY);
-		$paymentHashGen=base64_encode(hash_hmac(SERMEPA_HASH_ALGORITHM,$parameters,$code,true));
+		$paymentHashGen=base64_encode(hash_hmac(SERMEPA_HASH_ALGORITHM,$parameters_dec,$code,true));
 	
 	
-		$parameters=json_decode($parameters,true);
+		$parameters_array=json_decode($parameters_dec,true);
 
 		$orderNumber=$parameters['Ds_Order'];
 
-		l(INFO,"orderNumber:".$orderNumber." Generado:".$data['hash']);
+		l(INFO,"orderNumber:".$parameters_dec." hash:".$data['hash']);
 		
-		if($orderNumber==$data['hash']){
+		if($orderNumber!=$data['hash']){
 		    $this->get('session')->getFlashBag()->add(ERROR, t('Not coincident hash'));
 		}
 		else{	
-			l(INFO,"DentroElse AntesSaveStep:");
 			CommerceUtils::saveStep(PAYMENT_METHOD, array('cardLastDigits' => null, 'payment' => TPV_SERMEPA_TYPE, 'hash' => $paymentHash, 'name' => TPV_SERMEPA), $existPaymentStep, true);
 
 			$user = $this->getUser();
