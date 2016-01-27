@@ -6,8 +6,11 @@
  */
 
 namespace Drufony\CoreBundle\Model;
+
+use Drufony\CoreBundle\Model\Response;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
 /**
  * Retrieves countries, regions and provinces from database.
  *

@@ -135,34 +135,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {% if type is defined %}
 
 
-{% if type=="product" %}
+	{% if type=="product" %}
 
-<h1 id="titulo1" class="textwhite">	
-	{{ contentData.title }}			
-</h1>
+	<h1 id="titulo1" class="textwhite">	
+		{{ contentData.title }}			
+	</h1>
+
+	{% else %}
+
+
+	<h1 id="titulo1" class="textwhite"> 	
+		{% for word in categorynames | split("-") %}
+				{{ word }}
+		{% endfor %}
+	</h1>
+
+	{% endif %}
 
 {% else %}
 
 
-<h1 id="titulo1" class="textwhite">	
-	{% for word in urlSplit %}
-		{% if not loop.first and not loop.last %}
-			{{ word }}
-		{% endif %}
-	{% endfor %}
+<h1 id="titulo1" class="textwhite"> 	
+	{{ "Macson Man"|t }}	
 </h1>
 
 {% endif %}
 
-{% endif %}
-
-{% if type is not defined %}
-
-<div id="titulo1" class="textwhite">	
-	texto	
-</div>
-
-{% endif %}
 
 {% if homePage is defined %}
 <div id="logo"></div> 

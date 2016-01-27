@@ -382,6 +382,19 @@ class UserUtils
 
         return $uid;
     }
+    static public function getUidByEmail2($email) {
+        $uid   = false;
+
+        $sql   = "SELECT uid FROM users WHERE email = ?";
+        $query = db_executeQuery($sql, array($email));
+        $uid   = $query->fetchColumn();
+
+        if (is_null($uid)) {
+            return(0);
+        }
+
+        return $uid;
+    }
 
     /**
      * getUidByUsername

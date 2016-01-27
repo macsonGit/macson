@@ -43,7 +43,7 @@ a {text-decoration:none}
 .bgcolorgray{ background-color:#E6E6E6}
 .bgcolorblack{ background-color:black}
 .bgcolorblue{ background-color:blue}
-.textwhite {color:white}
+.textwhite {clip: rect(1px 1px 1px 1px);position: absolute !important;z-index:120}
 .floatright {float:right}
 .floatleft {float:left}
 .center { width: 50%; margin: 0 auto;}

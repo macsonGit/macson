@@ -1266,12 +1266,6 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 
         $user = $this->getUser();
 
-	if (is_null($user)){
-		$uid=0;
-	}
-	else{
-        	$uid = $user->getUid();
-	}
 
         $billing = CommerceUtils::getStepData(BILLING_INFO);
         $shipping = CommerceUtils::getStepData(SHIPPING_INFO);
@@ -1284,8 +1278,14 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
         $cart = CommerceUtils::getCartInfo($shippingPrice);	
 
 
+	if (is_null($user)){
+
+		$uid = UserUtils::getUidByEmail2($shipping['email']);
+	}
+	else{
+        	$uid = $user->getUid();
+	}
 	
-            l(INFO, 'Dentro de __saveOrder 1');
 
         $checkoutData = array('uid' => $uid, 'paymentMethod' => $payment['payment'],
 	    'paymentStatus' => $paymentStatus, 'discount' => 0,
@@ -1315,7 +1315,6 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
         $orderId = CommerceUtils::saveOrder($checkoutData);
 
 
-            l(INFO, 'Dentro de __saveOrder 2');
 
         CommerceUtils::saveStep(ORDER_SAVED, array('orderId' => $orderId), $existOrderStep);
 
@@ -1331,7 +1330,6 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 
 
 	
-            l(INFO, 'Dentro de __saveOrder 3');
 
             CommerceUtils::saveUserAddressIfNew($uid, $billing);
             CommerceUtils::saveUserAddressIfNew($uid, $shipping);
