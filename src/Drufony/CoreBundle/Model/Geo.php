@@ -7,6 +7,7 @@
 
 namespace Drufony\CoreBundle\Model;
 
+
 use Drufony\CoreBundle\Model\Response;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
