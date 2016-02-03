@@ -28,18 +28,52 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	    <meta name="description" content="{{'Men´s clothing'|t}}
-	{% for word in urlSplit %}
-		{% if not loop.first and not loop.last %}
-			{{ word }}
-		{% endif %}
-	{% endfor %}
+{% if type is defined %}
+
+
+	{% if type=="product" %}
+
+		{{ contentData.title }}			
+
+	{% else %}
+
+
+		{% for word in categorynames | split("-") %}
+				{{ word }}
+		{% endfor %}
+
+	{% endif %}
+
+{% else %}
+
+
+	{{ "Macson Man"|t }}	
+
+{% endif %}
 	   ">
             <title>{{"Men's clothing"|t }}   
-	{% for word in urlSplit %}
-		{% if not loop.first and not loop.last %}
-			{{ word }}
-		{% endif %}
-	{% endfor %}
+{% if type is defined %}
+
+
+	{% if type=="product" %}
+
+		{{ contentData.title }}			
+
+	{% else %}
+
+
+		{% for word in categorynames | split("-") %}
+				{{ word }}
+		{% endfor %}
+
+	{% endif %}
+
+{% else %}
+
+
+	{{ "Macson Man"|t }}	
+
+{% endif %}
 	   </title>
             {% include "CustomProjectBundle::styles.html.twig"  %}
             {% include "CustomProjectBundle::script.html.twig"  %}
