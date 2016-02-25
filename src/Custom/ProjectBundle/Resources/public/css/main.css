@@ -19,7 +19,7 @@ a {text-decoration:none}
 #header { position: fixed; width: 100%; left:0px;top: 0px; padding-left: 5px;; z-index:100;background-color:white; font-size:18px}
 #headerFreeShipping { width: 50%; height: 20px; z-index:100;background-color:black; color:white;font-size:18px; text-align:left ;font-size:12px; font-weight:bold; letter-spacing:1.3px}
 #headerInfo {  width: 50%; ; height: 20px; z-index:100;background-color:black; color:white;font-size:18px; text-align:right ; font-size:12px; font-weight:bold; letter-spacing:1.3px}
-#header ul {height:30px}
+#header ul {height:50px}
 #header li {display:inline;cursor: pointer;}
 
 #header_mob { font-size:18px;  width: 100%; left:0px;top: 0px; z-index:100;border-style:solid;border-width:1px;border-color:gray;line-height:30px }
@@ -146,11 +146,11 @@ a {text-decoration:none}
 #orderOption{cursor:pointer}
 #orderList{line-height:25px; height: 320px }
 #titulo1 { position:relative; text-align:right; top:0px; right:20px ; font-size:14px; font-weight:normal; height:10px }
-#logo { position:relative;top: 35px;  height:110px;z-index:1 }
+#logo { position:relative;top: 50px;  height:110px;z-index:1 }
 #logo_mob { z-index:1 }
-#logoPortada { position:relative;right:-100px;top: 50px;  height:110px;z-index:1 }
+#logoPortada { position:relative;left:-60px;top: 220px;  height:110px;z-index:1 }
 #logoPortada_mob { position:absolute ;width:100%;top:60px;z-index:1 }
-#contenedor1{ position:relative;top:40px;width:100%; margin-bottom:150px;visibility: hidden; width:980px; display:inline-block}
+#contenedor1{ position:relative;top:50px;width:100%; margin-bottom:150px;visibility: hidden; width:980px; display:inline-block}
 #contenedor1_mob{ position:relative;top:0px;width:100%; margin-bottom:20px;visibility: hidden; max-width:975px}
 #orderDetailList { position:absolute; top:0px; padding-left:40px;height: 0px;display: inline-block; width:920px; height:411px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:45;background-color: white; }
 .loginStyle { position:absolute; top:0px; padding-left:40px;display: inline-block; width:920px; color:black;top:0px;font-size: 16px ;text-align: left;z-index:50;background-color: white; }

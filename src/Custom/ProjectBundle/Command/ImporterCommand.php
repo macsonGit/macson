@@ -217,11 +217,11 @@ class ImporterCommand extends ContainerAwareCommand{
 						foreach ($imageVersions as $imageVersion) {
 
 						  $dest_image = @imagecreatetruecolor($imageVersion['imx'],$imageVersion['imy']);
-
+						  imageantialias($dest_image,true); 
 						  @imagecopyresampled($dest_image, $source_image, 0, 0, 0, 0, $imageVersion['imx'], 
 							$imageVersion['imy'],$source_imagex,$source_imagey);
 
-						  @imagejpeg($dest_image,$path.$imageVersion['name'].'/'.$item['reference'].'_'.$i.'.jpg');
+						  @imagejpeg($dest_image,$path.$imageVersion['name'].'/'.$item['reference'].'_'.$i.'.jpg',100);
 						}
 					}
 				}

@@ -1706,27 +1706,28 @@ class CommerceUtils
      */
     static public function getShippingCostByCountry($countryId, $weight) {
 
-            $sql = 'SELECT weight,price FROM countryShippingFee
+        $sql = 'SELECT weight,price FROM countryShippingFee
                 WHERE countryId = ? ORDER BY ABS(weight-?) LIMIT 1';
         $result = db_fetchAssoc($sql, array($countryId, $weight));
 
-        if (is_null($result['weight']) && is_null($result['price'])) {
-            $sql = 'SELECT weight,price FROM countryShippingFee
-                WHERE countryId = ? ORDER BY ABS(weight-?) LIMIT 1';
+	$cartInfo= CommerceUtils::getCartInfo();
 
-            $result = db_fetchAssoc($sql, array($countryId,$weight));
+	if($cartInfo['subtotal'] >=  THERESHOLD_SHIPPING_FEE &&  $countryId===218){  
+		return 0;
+	    }
+	    else{
 
-            if (is_null($result['weight']) && is_null($result['price'])) {
+	            if (is_null($result['weight']) && is_null($result['price'])) {
 
-                if ($countryId != DEFAULT_SHIPPING_FEE_ID) {
-                    $result['price'] = self::getShippingCostByCountry(DEFAULT_SHIPPING_FEE_ID, $weight);
-                }
+        	        if ($countryId != DEFAULT_SHIPPING_FEE_ID) {
+                	    $result['price'] = self::getShippingCostByCountry(DEFAULT_SHIPPING_FEE_ID, $weight);
+                	}
 
-                if (is_null($result['weight']) && is_null($result['price'])) {
-                    $result = array('price' => SHIPPING_FEE_DEFAULT_PRICE);
-                }
-            }
-        }
+	                if (is_null($result['weight']) && is_null($result['price'])) {
+        	            $result = array('price' => SHIPPING_FEE_DEFAULT_PRICE);
+                	}
+            	    }
+	    }
 
         return $result['price'];
     }
@@ -1734,12 +1735,19 @@ class CommerceUtils
     static public function getShippingPrice($shippingMethod, $shippingInfo) {
         $price = null;
 
+	$cartInfo= CommerceUtils::getCartInfo();
+
         if (SHIPPING_FEE_ENABLED == SHIPPING_FEE_GENERAL) {
             $shippingValue = CommerceUtils::getShippingInfo($shippingMethod['shipping']);
             $price = $shippingValue['price'];
         }
         else {
-            $price = self::getShippingCostByCountry($shippingInfo['countryId'], self::getCartWeight());
+	    if (($cartInfo['subtotal']) >=  THERESHOLD_SHIPPING_FEE &&  $shippingInfo['countryId']===218){  
+		$price=0;
+	    }
+	    else{
+            	$price = self::getShippingCostByCountry($shippingInfo['countryId'], self::getCartWeight());
+	    }
         }
 
         return $price;
