@@ -192,7 +192,7 @@ class ImporterCommand extends ContainerAwareCommand{
 
 			//Procesamos las imágenes
 			$item['Processed']= TRUE;
-			if (!file_exists ($path.'Standard/'.$item['reference'].'_1.jpg')){
+			//if (!file_exists ($path.'Standard/'.$item['reference'].'_1.jpg')){
 				for($i=1;$i<=3;$i++){
 					if(file_exists ($path.'Original/'.$item['reference'].'_'.$i.'.jpg')){
 						$source_image = @imagecreatefromjpeg($path.'Original/'.$item['reference'].'_'.$i.'.jpg');
@@ -226,7 +226,7 @@ class ImporterCommand extends ContainerAwareCommand{
 					}
 				}
 
-			}	 
+			//}	 
 		}
 	}
 

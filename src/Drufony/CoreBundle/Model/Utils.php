@@ -372,9 +372,9 @@ class Utils
 
     static public function createUrlFriendly($node) {
         //Set url
+        $target = empty($node['url']) ? self::_generateValidUrl($node) : self::_sanitizeUrl($node['url']);
         $sql    = "SELECT COUNT(1) FROM url_friendly WHERE oid = ? AND module = ?";
         $isNew  = db_fetchColumn($sql, array($node['id'], $node['contentType'])) == 0;
-        $target = empty($node['url']) ? self::_generateValidUrl($node) : self::_sanitizeUrl($node['url']);
 
         $urlRecord = array(
             'target' => $target,
@@ -382,16 +382,23 @@ class Utils
             'module' => $node['contentType'],
         );
 
+
         if ($isNew) {
             if (!self::_existRedirectUrl($urlRecord)) {
+		if (self::_existTarget($urlRecord)){
+			$urlRecord['target']=$urlRecord['target']."-".(int)rand(100);
+		}
+		var_dump("traza_1s");
                 if (db_insert('url_friendly', $urlRecord) === NULL) {
-                    l(ERROR, 'Error creating url friendly for this node');
+                  	l(ERROR, 'Error creating url friendly for this node');
                 }
                 else {
-                    l(INFO, 'Url alias ' . $urlRecord['target'] . ' created successfully');
+                    	l(INFO, 'Url alias ' . $urlRecord['target'] . ' created successfully');
                 }
+		
             }
             else {
+			var_dump("traza_2s");
                 $updateData = array('expirationDate' => null, 'oid' => $urlRecord['oid'], 'module' => $urlRecord['module']);
                 $updateCriteria = array('target' => $urlRecord['target']);
                 db_update('url_friendly', $updateData, $updateCriteria);
@@ -411,13 +418,17 @@ class Utils
 
         //If its a new url
         if ($oldTarget && $urlRecord['target'] != $oldTarget) {
-
-            //Checks if exists a redirection with same target for same content type
             if (!self::_existRedirectUrl($urlRecord)) {
+
+		if (self::_existTarget($urlRecord)){
+			$urlRecord['target']=$urlRecord['target']."-".(int)rand(100);
+		}
                 //Insert new one
+		var_dump("traza_3s");
                 db_insert('url_friendly', $urlRecord);
             }
             else {
+		var_dump("traza_4s");
                 //Update existing one as new target
                 $updateData = array('expirationDate' => null, 'oid' => $urlRecord['oid'], 'module' => $urlRecord['module']);
                 $updateCriteria = array('target' => $urlRecord['target']);
@@ -440,6 +451,14 @@ class Utils
         return ($count == 1);
     }
 
+    static private function _existTarget($urlRecord) {
+        $sql  = 'SELECT COUNT(1) FROM url_friendly ';
+        $sql .= 'WHERE target = ?';
+
+        $count = db_fetchColumn($sql, array($urlRecord['target']));
+
+        return ($count == 1);
+    }
     /**
      * Checks if an url exists for a different content
      *
