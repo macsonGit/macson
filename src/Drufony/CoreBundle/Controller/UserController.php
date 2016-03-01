@@ -295,7 +295,7 @@ class UserController extends DrufonyController
         return $response;
     }
 
-    function yourOrderAction (Request $request, $lang){
+    function yourOrderAction (Request $request, $lang, $orderId){
 
 	$response = new Response();
         $session     = getSession();
@@ -306,9 +306,11 @@ class UserController extends DrufonyController
 	
 	$orders = CommerceUtils::getUserOrders($user->getUid());
 
+	$order = CommerceUtils::getOrder($orderId);
+
 	$products=CommerceUtils::getCartItemsAJAX();
 
-	$orderProducts=array();
+	$orderProducts=CommerceUtils::getOrderProducts($orderId);
             
 	$registerForm = $this->_processRegisterForm($request);
             
@@ -341,7 +343,9 @@ class UserController extends DrufonyController
  	    'products'=>$products,
  	    'orders'=>$orders,
 	    'menu'=>$menu,
- 	    'orderProducts'=>$orderProducts,            'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
+ 	    'orderProducts'=>$orderProducts,           
+ 	    'order'=>$order,           
+	    'fbLoginUrl'    => UserUtils::getFBUrlForLogin(),
             'registerForm'  => $registerForm->createView(),
             'loginForm'     => $loginForm->createView(),
             'isLoginPath'   => FALSE 

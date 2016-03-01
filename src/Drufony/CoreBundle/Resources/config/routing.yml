@@ -182,7 +182,7 @@ drufony_manage_path:
     defaults: { _controller: DrufonyCoreBundle:Content:managePath }
 
 drufony_commerce_your_order:
-    pattern: /commerce/thanks_for_your_order
+    pattern: /commerce/thanks_for_your_order/{orderId}
     defaults: { _controller: DrufonyCoreBundle:User:yourOrder}
 
 
@@ -361,7 +361,7 @@ drufony_payment_stripe:
     defaults: { _controller: DrufonyCoreBundle:Commerce:stripePayment }
 
 drufony_payment_sermepa_success:
-    pattern: /checkout/payment/sermepa/success/{paymentHash}
+    pattern: /checkout/payment/sermepa/success/{paymentHash}/{orderId}
     defaults: { _controller: DrufonyCoreBundle:Commerce:sermepaPaymentSuccess }
 
 drufony_payment_sermepa_success_post:

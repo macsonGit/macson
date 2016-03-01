@@ -1552,6 +1552,16 @@ class CommerceUtils
 
         return $result;
     }
+    static public function getLastOrder($uid) {
+        $sql  = 'SELECT * ';
+        $sql .= 'FROM `order` ';
+        $sql .= 'ORDER BY orderDate DESC ';
+        $sql .= 'LIMIT 1';
+
+        $result = db_fetchAssoc($sql, array($uid));
+
+        return $result;
+    }
 
     static public function getOrder($id) {
         $sql  = 'SELECT * ';

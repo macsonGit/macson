@@ -42,6 +42,7 @@ class SermepaPaymentFormType extends AbstractType
 
 	$key=$options['data']['key'];
 	$order_number=$options['data']['order'];
+	$orderId=$options['data']['orderId'];
         
 	$hash= urlencode($key); 	
 
@@ -56,7 +57,7 @@ class SermepaPaymentFormType extends AbstractType
                 'DS_MERCHANT_TRANSACTIONTYPE'=>(string)SERMEPA_MERCHANT_TRANSACTION_TYPE,
                 'DS_MERCHANT_TERMINAL'=>(string)SERMEPA_MERCHANT_TERMINAL,
                 'DS_MERCHANT_MERCHANTURL'=>SERMEPA_POST_URL."/".$sessionId,
-                'DS_MERCHANT_URLOK'=>$router->generate('drufony_payment_sermepa_success', array('lang' => $lang, 'paymentHash' =>$order_number ), true),
+                'DS_MERCHANT_URLOK'=>$router->generate('drufony_payment_sermepa_success', array('lang' => $lang, 'paymentHash' =>$order_number,'orderId'=>$orderId ), true),
                 'DS_MERCHANT_URLKO'=> $router->generate('drufony_payment_sermepa_error', array('lang' => $lang), true),
         )));
 

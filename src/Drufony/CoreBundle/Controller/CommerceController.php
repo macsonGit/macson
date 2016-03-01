@@ -832,8 +832,13 @@ class CommerceController extends DrufonyController
 	$iv = implode(array_map("chr", $bytes)); //PHP 4 >= 4.0.2
 	$key=mcrypt_encrypt(MCRYPT_3DES,$code,$order_number,MCRYPT_MODE_CBC,$iv);
 
+        $user = $this->getUser();
+	$order=CommerceUtils::getLastUserOrder($user->getUid());
+	$orderId=$order['orderId']+1;
+
+
         $sermepaForm = $this->createForm(new SermepaPaymentFormType(),
-                                        array('amount' => $totalPrice, 'key' => $key,'order'=>$order_number,
+                                        array('amount' => $totalPrice, 'key' => $key,'order'=>$order_number,'orderId'=>$orderId,
                                             'titular' => $billing['name'], 'currency' => DEFAULT_CURRENCY, 'lang' => $lang));
 
         $existStep = CommerceUtils::existStep(SERMEPA_IN_PROGRESS);
@@ -844,6 +849,7 @@ class CommerceController extends DrufonyController
 	$render=$this->renderView('DrufonyCoreBundle::checkout_sermepa_payment.html.twig', array('sermepaForm' => $view));
 	
         $response->setContent($render);
+
 
         return $response;
     }
@@ -873,11 +879,11 @@ class CommerceController extends DrufonyController
         return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
     }
 
-    public function sermepaPaymentSuccessAction(Request $request, $lang, $paymentHash) {
+    public function sermepaPaymentSuccessAction(Request $request, $lang, $paymentHash, $orderId) {
         //Check checkouk it's completed
         //TODO: redirect to the proper place
         $this->get('session')->getFlashBag()->add(INFO, t('Thanks for the purchase'));
-        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
+        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang, 'orderId'=>$orderId)));
     }
 
     public function sermepaPaymentSuccessPostAction(Request $request, $lang, $sesId){
@@ -1035,10 +1041,10 @@ class CommerceController extends DrufonyController
 
         l(INFO, 'Payment processed successfully');
 
-        $this->__saveOrder(PAYMENT_STATUS_PAID);
+        $orderId=$this->__saveOrder(PAYMENT_STATUS_PAID);
 
         //TODO: redirect to the proper place
-        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
+        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang,'orderId'=>$orderId)));
         $this->get('session')->getFlashBag()->add(INFO, t('Thanks for the purchase'));
     }
 
@@ -1221,12 +1227,14 @@ class CommerceController extends DrufonyController
         
 	}
 
-       l(INFO, 'Payment processed successfully');
-	$this->__saveOrder(PAYMENT_STATUS_PAID);
+        l(INFO, 'Payment processed successfully');
+	$orderId = $this->__saveOrder(PAYMENT_STATUS_PAID);
+
+	
 
         //TODO: redirect to the proper place
         $this->get('session')->getflashbag()->add(info, t('thanks for the purchase'));
-        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang)));
+        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang, 'orderId'=>$orderId)));
     }
 
     private function __registerUser($userData, $lang) {
