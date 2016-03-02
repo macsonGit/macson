@@ -1722,7 +1722,7 @@ class CommerceUtils
 
 	$cartInfo= CommerceUtils::getCartInfo();
 
-	if($cartInfo['subtotal'] >=  THERESHOLD_SHIPPING_FEE &&  $countryId===218){  
+	if((float)($cartInfo['subtotal']) >=  THERESHOLD_SHIPPING_FEE &&  (int)$countryId===218){  
 		return 0;
 	    }
 	    else{

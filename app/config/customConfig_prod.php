@@ -70,6 +70,7 @@ define('COMMENT_DEFAULT_STATUS', 2);
 
 // GOOGLE ANALYTICS
 // define('GOOGLE_ANALYTIC_CODE','THECODEHERE'); //descomentar en caso de usarse
+define('GOOGLE_ANALYTIC','UA-74237338-1'); //descomentar en caso de usarse
 
 //CORREOS ELECTRÓNICOS
 define ('DEFAULT_EMAIL_ADDRESS','clientes@macson.es');

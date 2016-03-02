@@ -115,7 +115,6 @@ class Mailing {
 	$customParams['emailUser']=$userEmail;
         $subject = t('PEDIDO MACSON: @orderId', array('@orderId'=> $orderId));
         $template = 'email-management-order-completed.html.twig';
-
         self::sendMail($email, $subject, $template, $customParams,$userEmail);
     }
 

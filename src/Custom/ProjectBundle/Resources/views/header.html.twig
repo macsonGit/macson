@@ -27,8 +27,39 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-74237338-1', 'auto');
+  ga('create', '{{constant('GOOGLE_ANALYTIC')}}', 'auto');
   ga('send', 'pageview');
+
+{% if yourOrder is defined %}
+
+ga('require', 'ecommerce');
+
+ga('ecommerce:addTransaction', {
+  'id': '{{order.orderId}}',                     // Transaction ID. Required.
+  'affiliation': 'Macson Shop',   // Affiliation or store name.
+  'revenue': '{{order.total|number_format(2,'.')}}',               // Grand Total.
+  'shipping': '{{order.shippingValue|number_format(2,'.')|number_format(2,'.')}}',                  // Shipping.
+  'tax': '{{ (order.total-order.total/1.21)|round(2)}}',                     // Tax.
+  'currency': 'EUR' 
+});
+
+{% for product in orderProducts %}
+
+ga('ecommerce:addItem', {
+  'id': '{{order.orderId}}',                     // Transaction ID. Required.
+  'name': '{{product.title_p}}',    // Product name. Required.
+  'sku': '{{product.sgu}}',                 // SKU/code.
+{% set cat=product.title_p|split(" ") %}
+  'category': '{{cat[0]}}',         // Category or variation.
+  'price': '{{product.total|number_format(2,'.')}}',                 // Unit price.
+  'quantity': '{{product.quantity}}'                   // Quantity.
+});
+
+{% endfor %}
+
+ga('ecommerce:send');
+
+{% endif %}
 
 </script>
 
