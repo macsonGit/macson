@@ -236,6 +236,12 @@ $('html').click(function() {
 		}
 	);	
 
+	$('#video').click(
+		function zoomImage(){
+			$('#video').fadeOut(100);
+			$('#portada').show();
+		}
+	);		
 	$("#boton1").click(  
 		function addItem(){
 			ope='add';
@@ -514,8 +520,12 @@ $('html').click(function() {
 		$("#menu ul").css('position', 'absolute');
 		$(".listDesplegaFooter").css('background-color', 'white');
 		$("#payment_method").show();
+		$("#logoPortada").hide();
+		$("#portada").show().delay(1500).fadeOut(10000).delay(42000).fadeIn(10000);	
 
 	}	
+
+	
 
 	if($("#tipoPagina").text() == 'cat' || $("#tipoPagina").text() == 'con' || $("#tipoPagina").text() == 'cat_main'){
 		$("#menu ul").css('background-image', 'none');
