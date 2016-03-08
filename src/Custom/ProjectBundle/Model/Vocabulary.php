@@ -154,6 +154,7 @@ public static function getAllCategories($lang){
     $node['description']='';    
     $node['sons']=array();
     $node['name']='ini';
+    $node['show']=TRUE;
     $node['selected']=FALSE;
     $parent=$node['entityID'];
     $query = db_fetchAll($sql, array($parent));
@@ -173,7 +174,32 @@ public static function getAllCategories($lang){
         $node=$query[0]; 
         $node['next'] =0;        
         $node['parent']=$previous;
+      
+	$category=$node['name'];
+      
+      $sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
+     
+       if ($type == 'OUTLET'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
+      }
+     
+       if ($type == 'MUJER'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%MUJER" AND brand NOT LIKE "%NOVEDAD"';
+      }
+
+      $querycat = db_fetchAll($sqlcat, array($category));
+
+      if (empty($querycat)){
+
         $node['show']=FALSE;
+
+      }
+      else{
+
+        $node['show']=TRUE;
+
+      }
+        //$node['show']=FALSE;
         $node['selected']=FALSE;
 
         $parent=$node['entityID'];
@@ -187,7 +213,7 @@ public static function getAllCategories($lang){
       $sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
      
        if ($type == 'OUTLET'){
-      	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD"';
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
       }
      
        if ($type == 'MUJER'){
@@ -196,7 +222,12 @@ public static function getAllCategories($lang){
 
       $querycat = db_fetchAll($sqlcat, array($category));
 
-      if (!empty($querycat)){
+      if (empty($querycat)){
+
+        $node['show']=FALSE;
+
+      }
+      else{
 
         $node['show']=TRUE;
 
@@ -206,39 +237,63 @@ public static function getAllCategories($lang){
       $node=$node['parent'];
       if($node['show']===FALSE){
           $node['show']=$previous['show'];
-      }  
+      } 
+ 
       $node['sons'][$node['next']]=$previous; 
       $node['next']=$node['next']+1;
       
       while(!isset($node['sons'][$node['next']])){ 
+
         if($node['parent']=='root'){
+
             $fin=TRUE;
+
             break;            
+
         }
 
         $previous=$node; 
-
         $node=$node['parent'];
-
         if($node['show']===FALSE){
           $node['show']=$previous['show'];
-        }        
+	}        
         $node['sons'][$node['next']]=$previous;
-
         $node['next']=$node['next']+1;
       }
+
       if($fin){
         break;
       }
 
       $previous=$node;
-
       $node=$node['sons'][$node['next']];
       $node['parent']=$previous;
-      $node['show']=FALSE;
       $node['selected']=FALSE;       
 
+      $category=$node['name'];
+      
+      $sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
+     
+       if ($type == 'OUTLET'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
+      }
+     
+       if ($type == 'MUJER'){
+      	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%MUJER" AND brand NOT LIKE "%NOVEDAD"';
+      }
 
+      $querycat = db_fetchAll($sqlcat, array($category));
+
+      if (empty($querycat)){
+
+        $node['show']=FALSE;
+
+      }
+      else{
+
+        $node['show']=TRUE;
+
+      }
       $node['next'] =0;  
       $parent=$node['entityID'];
       $query = db_fetchAll($sql, array($parent));
@@ -261,7 +316,7 @@ public static function getAllCategories($lang){
     $node['selected']=FALSE;
 
 
-    while($j<1000){
+    while($j<2000){
     
       $j++;
 

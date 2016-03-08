@@ -50,6 +50,8 @@ class ImporterCommand extends ContainerAwareCommand{
 		if(file_exists($path.'Original/'.strtolower($item['reference'].'_1.jpg'))){
 
 			
+//	date_default_timezone_get('Europe/Berlin');
+			var_dump($i."-".$item['reference']);
 			$i++;
 			//var_dump($item);
 	 
@@ -190,43 +192,6 @@ class ImporterCommand extends ContainerAwareCommand{
 			
 			
 
-			//Procesamos las imágenes
-			$item['Processed']= TRUE;
-			if (!file_exists ($path.'Standard/'.$item['reference'].'_1.jpg')){
-				for($i=1;$i<=3;$i++){
-					if(file_exists ($path.'Original/'.$item['reference'].'_'.$i.'.jpg')){
-						$source_image = @imagecreatefromjpeg($path.'Original/'.$item['reference'].'_'.$i.'.jpg');
-						$source_imagex = @imagesx($source_image);
-						$source_imagey = @imagesy($source_image);
-
-						$imageVersions[0]=array(  //PONER CONSTANTES EN CONFIG
-						  'name' => 'Standard',
-						  'imx' => '320',
-						  'imy' => '411');
-
-						$imageVersions[1]=array(  //PONER CONSTANTES EN CONFIG
-						  'name' => 'Small',
-						  'imx' => '160',
-						  'imy' => '205');
-
-						$imageVersions[2]=array(  //PONER CONSTANTES EN CONFIG
-						  'name' => 'Thumb',
-						  'imx' => '80',
-						  'imy' => '102');
-
-						foreach ($imageVersions as $imageVersion) {
-
-						  $dest_image = @imagecreatetruecolor($imageVersion['imx'],$imageVersion['imy']);
-						  //imageantialias($dest_image,true); 
-						  @imagecopyresampled($dest_image, $source_image, 0, 0, 0, 0, $imageVersion['imx'], 
-							$imageVersion['imy'],$source_imagex,$source_imagey);
-
-						  @imagejpeg($dest_image,$path.$imageVersion['name'].'/'.$item['reference'].'_'.$i.'.jpg',100);
-						}
-					}
-				}
-
-			}	 
 		}
 	}
 

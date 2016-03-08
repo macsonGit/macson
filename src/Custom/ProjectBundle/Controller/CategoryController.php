@@ -73,6 +73,10 @@ class CategoryController extends DrufonyController
     		$this->get('cache')->save('menu'.$lang, $menu);
 	}
 
+        	$menu= Vocabulary::vocabularyList($lang); //VARIABLE A GUARDAR EN MEMCACHED
+
+
+
 	//-------------------VARABLE MENU LIST
 
 	if ($menuList = $this->get('cache')->fetch('menuList'.$lang.'-'.$category)) {
@@ -81,9 +85,11 @@ class CategoryController extends DrufonyController
 		$menuList = Vocabulary::vocabularyListSelected($menu,$category);
     		$this->get('cache')->save('menuList'.$lang.'-'.$category, $menuList);
 	}
+	$menuList = Vocabulary::vocabularyListSelected($menu,$category);
 
         $menuList['selected']=$category;
 
+	
 
 	//-------------------VARABLE CATEGORYBALL
 
