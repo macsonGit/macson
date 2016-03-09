@@ -7,6 +7,7 @@ $(document).ready(function(){
 
 
 	$("#infoPanel_mob").hide();
+	$("#stopMusic").hide();
 	$("#header_mob").hide();
 	$(".tiendas_mob").hide();
 	$("#cartel_mob").hide();
@@ -236,10 +237,25 @@ $('html').click(function() {
 		}
 	);	
 
-	$('#video').click(
+	$('#closeVideo').click(
 		function zoomImage(){
-			$('#video').fadeOut(100);
+			$('#logoPortada').show();
 			$('#portada').show();
+			player.mute();
+		}
+	);		
+	$('#stopMusic').click(
+		function zoomImage(){
+			player.mute();
+			$('#playMusic').show();
+			$('#stopMusic').hide();
+		}
+	);		
+	$('#playMusic').click(
+		function zoomImage(){
+			player.unMute();
+			$('#playMusic').hide();
+			$('#stopMusic').show();
 		}
 	);		
 	$("#boton1").click(  
@@ -515,14 +531,16 @@ $('html').click(function() {
 
 	if($("#tipoPagina").text() == 'hom'){
 
+		var vid = document.getElementById("video");
+		vid.muted = true;
 		$("#back").hide();	
 		$("#headerAux").hide();	
 		$("#menu ul").css('position', 'absolute');
 		$(".listDesplegaFooter").css('background-color', 'white');
 		$("#payment_method").show();
-		$("#logoPortada").hide();
-		$("#portada").show().delay(1500).fadeOut(10000).delay(42000).fadeIn(10000);	
-
+		$("#logoPortada").show().delay(500).fadeOut(5000).delay(39000).fadeIn(10000);
+		$("#portada").show().delay(1000).fadeOut(10000).delay(39000).fadeIn(10000);	
+		$("#video").show().delay(2000).data('muted',true);
 	}	
 
 	

@@ -25,6 +25,7 @@ class ImporterCommand extends ContainerAwareCommand{
   protected function execute(){
 
 
+
 	include ("/var/www/Symfony/app/config/customConfig.php");
 
 	date_default_timezone_get('Europe/Madrid');
