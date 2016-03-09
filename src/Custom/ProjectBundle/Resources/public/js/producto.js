@@ -39,6 +39,8 @@ $('html').click(function() {
 		$('body').css({'min-width': '200px'});
 		$(".tiendas_mob").show();
 		$("#portada").hide();
+		$("#video").attr('id', 'video_mob');
+		$("#video_mob").hide();
 		$("#portada_mob").show();
 		$("#cartel").hide();
 		$("#cartel_mob").show();
@@ -57,6 +59,7 @@ $('html').click(function() {
 		$(".stiches").css({'width':'100%'});
 		$("#tituloVolver").attr('id', 'tituloVolver_mob');
 		$(".zoomContainerClass").attr('class', 'zoomContainerClass_mob');
+		$(".magnify").attr('class', 'magnify_mob');
 		$("#login").attr('width', '100%');
 		$(".palitroque").hide();
 		$(".block-title").attr('class', 'block-title_mob');
