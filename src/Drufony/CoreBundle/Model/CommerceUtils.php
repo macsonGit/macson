@@ -1752,7 +1752,7 @@ class CommerceUtils
             $price = $shippingValue['price'];
         }
         else {
-	    if (($cartInfo['subtotal']) >=  THERESHOLD_SHIPPING_FEE &&  (int)$shippingInfo['countryId']===218){  
+	    if ((float)($cartInfo['subtotal']) >=  THERESHOLD_SHIPPING_FEE &&  (int)$shippingInfo['countryId']===218){  
 		$price=0;
 	    }
 	    else{
