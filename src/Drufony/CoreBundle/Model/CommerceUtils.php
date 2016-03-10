@@ -1722,9 +1722,7 @@ class CommerceUtils
 
 	$cartInfo= CommerceUtils::getCartInfo();
 
-	    var_dump($cartInfo['subtotal']);
-	$a=$a;
-	if((float)($cartInfo['subtotal']) >=  THERESHOLD_SHIPPING_FEE &&  (int)$countryId===218){  
+	if((float)($cartInfo['subtotal'])*(1+ DEFAULT_VAT/100) >=  THERESHOLD_SHIPPING_FEE &&  (int)$countryId===218){  
 		return 0;
 	    }
 	    else{
@@ -1754,9 +1752,7 @@ class CommerceUtils
             $price = $shippingValue['price'];
         }
         else {
-	    var_dump($cartInfo['subtotal']);
-	$a=$a;
-	    if ((float)($cartInfo['subtotal']) >=  THERESHOLD_SHIPPING_FEE &&  (int)$shippingInfo['countryId']===218){  
+	    if ((float)($cartInfo['subtotal'])*(1+ DEFAULT_VAT/100) >=  THERESHOLD_SHIPPING_FEE &&  (int)$shippingInfo['countryId']===218){  
 		$price=0;
 	    }
 	    else{
