@@ -330,6 +330,7 @@ class CommerceUtils
         
 	$cartItems = CommerceUtils::getCartItemsAJAX();
 
+
         $subtotal = 0;
 	$total=0;
 	$tax=0;
@@ -339,17 +340,28 @@ class CommerceUtils
             $tax      += $item['tax'];
         }
 
+        $shippingMethodFields = null;
+	$discount=0.0;
+        if(CommerceUtils::existStep(SHIPPING_METHOD)) {
+            $shippingMethodFields = CommerceUtils::getStepData(SHIPPING_METHOD);
+	    $discountCoupon= $shippingMethodFields['discountCoupon'];
+
+	    if (CommerceUtils::getCouponStatus($discountCoupon) === COUPON_VALID){
+		$discount = round(CommerceUtils::getCouponDiscountByCode($discountCoupon,$subtotal),2);
+	    }
+        
+	}
         $cartInfo['shippingFee']        = $additionalCosts;
-        $cartInfo['total']              = $total + $cartInfo['shippingFee'];	
         $cartInfo['subtotal']               = $subtotal;
-        $cartInfo['discount']               = 0;
+        $cartInfo['discount']               = $discount;
+        $cartInfo['total']              = $total + $cartInfo['shippingFee'] - $discount;	
         $cartInfo['couponDiscount']         = 0;
         $cartInfo['discountType']           = 0;
         $cartInfo['totalDiscounted']    = $cartInfo['total'];
         $cartInfo['cartItems']              = $cartItems;
         $cartInfo['itemsCount']             = CommerceUtils::getCartItemsCount();
         $cartInfo['subtotalProducts']       = $subtotal;
-        $cartInfo['subtotalProductsDisc']   = $subtotal;
+        $cartInfo['subtotalProductsDisc']   = $subtotal-$discount;
         $cartInfo['taxProducts']            = $tax;
 	$cartInfo['tax']		    = $tax;
         $cartInfo['subtotalProductsTax']        = $tax;
@@ -470,17 +482,12 @@ class CommerceUtils
             $progress['comments']       = $shippingMethod['comments'];
             $progress['status']         = true;
 
-
-            if (SHIPPING_FEE_ENABLED == SHIPPING_FEE_GENERAL) {
-                $shippingMethodPrice        = $progress['shippingMethod']['price'];
-            }
-            else if (isset($progress['shippingInfo']['countryId'])) {
-                $shippingMethodPrice        = self::getShippingCostByCountry($progress['shippingInfo']['countryId'], self::getCartWeight());
-            }
-
-
         }
 
+
+        if (isset($shippingInfo['countryId'])) {
+	    $shippingMethodPrice        = self::getShippingCostByCountry($shippingInfo['countryId'], self::getCartWeight());
+        }
         $cartInfo = CommerceUtils::getCartInfo($shippingMethodPrice);
         $progress = $progress + $cartInfo;
 
@@ -1433,7 +1440,23 @@ class CommerceUtils
             $discount = $coupon['value'];
         }
 
-        return array($discount, $coupon['value'], $coupon['isPercentage']);
+        //return array($discount, $coupon['value'], $coupon['isPercentage']);
+	return $discount;
+    }
+    
+    static public function getCouponDiscountValue($couponCode, $amount) {
+        $discount = 0;
+        $coupon   = self::getCouponByCode($couponCode);
+
+        if($coupon['isPercentage']) {
+            $discount = $amount * ($coupon['value'] / 100);
+        }
+        else {
+            $discount = $coupon['value'];
+        }
+
+        //return array($discount, $coupon['value'], $coupon['isPercentage']);
+	return $discount;
     }
 
     /**

@@ -42,8 +42,8 @@
 
 	{% if progress.discount > 0 %}
               	<div class="row wd90 height20 fs14">
-                	<div class="cell align-right wd80">{{ "Disccount" | t }}:</div>
-                	<div class="cell align-right">{{ progress.discount | number_format(2) }} {{discountClarification}}€</div><br>
+                	<div class="cell align-right wd80">{{ "Discount" | t }}:</div>
+                	<div class="cell align-right">-{{ progress.discount | round(0,'floor') }}<font size="1">,{{ progress.discount | decimals }}€</font></b></div><br>
 		</div>
 	{% endif %}
               	<div class="row wd90 height20 fs14">
@@ -97,6 +97,19 @@
           </div>
         </div>
       {% endif %}
+
+      {% if form.discountCoupon is defined %}
+        <label class="label">
+          {{ form_label(form.discountCoupon) }}
+          {% if form.discountCoupon.vars.required %}
+            <span>*</span>
+          {% endif %}
+        </label>
+        {{ form_errors(form.discountCoupon) }}
+        <label class="height25">
+          {{ form_widget(form.discountCoupon) }}
+        </label>
+	{% endif %}
         <label class="label">
           {{ form_label(form.comments) }}
           {% if form.comments.vars.required %}

@@ -36,12 +36,20 @@ class ShippingMethodFormType extends AbstractType
                     'data' => null
                 ));
             }
+	    $builder
+		->add('discountCoupon', 'text', array(
+		'label' => t('Discount Code'),
+		'data'=>$options['data']['info']['discountCoupon'],
+		'required' => false,
+	    ));
+
             $builder
 		->add('comments', 'textarea', array(
                 'label' => t('Comments'),
                 'data' => (!empty($options['data']['info']['comments'])) ? $options['data']['info']['comments'] : '',
                 'required' => false,
             ))
+
             ->add('send', 'submit', array(
                 'label' => t('Continue'),
             ));

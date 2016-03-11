@@ -655,9 +655,21 @@ class CommerceController extends DrufonyController
                 $updateStep = CommerceUtils::existStep(SHIPPING_METHOD);
                 CommerceUtils::saveStep(SHIPPING_METHOD, $data, $updateStep);
 
-                l(INFO, 'Shipping method saved successfully');
 
-                return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
+                l(INFO, 'Shipping method saved successfully');
+		
+
+		if (!empty($data['discountCoupon']) && !$updateStep    ){
+                	return $this->redirect($this->generateUrl('drufony_checkout_shipping_method', array('lang' => $lang)));
+		
+		}
+
+		else{
+
+                	return $this->redirect($this->generateUrl('drufony_checkout_review_payment', array('lang' => $lang)));
+
+		}
+
             }
         }
 
@@ -689,7 +701,7 @@ class CommerceController extends DrufonyController
                                                 'breadCrumb' => $breadCrumb,
 						'info' => $info,
 						'products' => $products,
-						 'orders'=>$orders,
+						'orders'=>$orders,
             					'registerForm'  => $registerForm->createView(),
             					'loginForm'     => $loginForm->createView(),
             					'isLoginPath'   => FALSE,
@@ -824,7 +836,7 @@ class CommerceController extends DrufonyController
         $shippingPrice = CommerceUtils::getShippingPrice($shippingMethod,$shipping);
 
         $cart = CommerceUtils::getCartInfo($shippingPrice);
-        $totalPrice = round($cart['totalDiscounted'], 2) * 100;
+        $totalPrice = round($cart['total'], 2) * 100;
 
 	$order_number=(string)date('ymdHis');
 	$code=base64_decode(SERMEPA_MERCHANT_KEY);
