@@ -159,6 +159,12 @@ $('html').click(function() {
 		$(".titleCheck").css({'height': '25px'});
 		$("#carritoId_mob").remove();
 		$("#listaCarritoResumen_mob").remove();
+		if($("#tipoPagina").text() == 'hom'){
+
+			$("#logoPortada").show().delay(500).fadeOut(5000).delay(39000).fadeIn(10000);
+			$("#portada").show().delay(1000).fadeOut(10000).delay(39000).fadeIn(10000);	
+			$("#video").show().delay(2000).data('muted',true);
+		}		
 	}
 
 	$(".fotoEmpty").hide();
@@ -535,15 +541,12 @@ $('html').click(function() {
 	if($("#tipoPagina").text() == 'hom'){
 
 		var vid = document.getElementById("video");
-		vid.muted = true;
+		//vid.muted = true;
 		$("#back").hide();	
 		$("#headerAux").hide();	
 		$("#menu ul").css('position', 'absolute');
 		$(".listDesplegaFooter").css('background-color', 'white');
 		$("#payment_method").show();
-		$("#logoPortada").show().delay(500).fadeOut(5000).delay(39000).fadeIn(10000);
-		$("#portada").show().delay(1000).fadeOut(10000).delay(39000).fadeIn(10000);	
-		$("#video").show().delay(2000).data('muted',true);
 	}	
 
 	
