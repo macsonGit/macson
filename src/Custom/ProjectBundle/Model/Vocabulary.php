@@ -46,7 +46,7 @@ class Vocabulary {
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET" AND product.brand NOT LIKE "%MUJER" )		 
+		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET" AND product.brand NOT LIKE "%MUJER" )	 
 		GROUP BY product.sku';
 
    if ($type =='OUTLET'){
@@ -125,13 +125,11 @@ class Vocabulary {
 
 public static function getAllCategories($lang){
 
-
-    $sql= 'SELECT *, name_'.$lang.' AS namecat, url_'.$lang.' AS url FROM categorysource';
+    $sql= 'SELECT DISTINCT url_'.$lang.' as url,  name_'.$lang.' as name  FROM categorysource INNER JOIN product ON product.category=categorysource.name WHERE product.brand NOT LIKE "%INACTIVO"';
 
     $query = db_fetchAll($sql, array());
 
     return $query;
-
 
 }
 

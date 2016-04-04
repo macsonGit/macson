@@ -4,6 +4,7 @@
 				<div class="h2 bold-text">{{contentData.title}} </div> 
 				<div class="pad10 fs24">
 				<ul id="listaTallas">
+{% if contentData.varieties is not empty %}
 {%if contentData.varieties[0].value!= '00_AGOTADO'%}
 	{% for size in contentData.varieties if size.stock > 0 %}	
 		{%if loop.first%}
@@ -19,6 +20,9 @@
 {% else %}
 	{{ 'OUT OF STOCK'|t }}
 
+{% endif %}
+{% else %}
+	{{ 'OUT OF STOCK'|t }}
 {% endif %}
 				</ul>
 				</div>		

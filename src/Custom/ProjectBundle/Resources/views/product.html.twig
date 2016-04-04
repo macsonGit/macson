@@ -36,15 +36,20 @@
 	var urlImg3 = "{{ asset('bundles/customproject/images/Product/Original/'~contentData.__get('sgu')~'_3.jpg') }}";
 	{% endif %}
 {% endif %}
-
+{% if contentData.varieties is defined %}
 	var product = {{contentData.__get('id')}};
 	var varieties = [ {% for size in contentData.varieties %}{% if loop.last %}{{size.varProdId}}]{% else %}{{size.varProdId}}, {% endif %}{% endfor %};
 	var varietiesVal = [ {% for size in contentData.varieties %}{% if loop.last %}'{{size.value}}']{% else %}'{{size.value}}', {% endif %}{% endfor %};
+	var sizeSelected = 0;
+{% else %}
+	var product = {{contentData.__get('id')}};
+	var varieties = '';
+	var varietiesVal = 'AGOTADO';
 	var sizeSelected = 0;	
+{% endif %}
 
 </script>
 <div id="zoomContainer" class="zoomContainerClass"></div>
-
 <div id="tipoPagina">prod{{ tipoPag }}</div>
 <div id="contenedor1">	
 

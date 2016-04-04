@@ -10,9 +10,9 @@
         {# comprueba que hostname no esté ya incluido en url #}
         <loc>
             {% if url.loc|replace({hostname:''}) == url.loc %}
-                {{ hostname }}{{ url.loc }}
+                {{ hostname }}{{ url.loc | lower}}
             {% else %}
-                {{ url.loc }}
+                {{ url.loc | lower  }}
             {% endif %}
         </loc>
         {% if url.lastmod is defined %}

@@ -21,18 +21,18 @@
 		<div class="foto">
 	{% if asset_exists( "bundles/customproject/images/Product/Standard/"~product.sgu~"_2.jpg" ) %}
 			<div class="fotoImage2">
-				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
+				<a href={{ path('drufony_general_url',{'url' : product.target , 'lang': lang} )  }}>
 					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_2.jpg') }}" alt="{{ product.title }} - {{'Backside'|t}}" />
 				</a>
 			</div>
 			<div class="fotoImg">
-				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
+				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} )  }}>
 					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
 				</a>
  			</div>
 	{% else %}
 			<div class="fotoImgSingle">
-				<a href={{ path('drufony_general_url',{'url' : product.target, 'lang': lang} ) }}>
+				<a href={{ path('drufony_general_url',{'url' : product.target , 'lang': lang} ) }}>
 					<img class="fotoA" src="{{ asset('bundles/customproject/images/Product/Standard/'~product.sgu~'_1.jpg') }}" alt="{{ product.title }}" />
 				</a>
  			</div>

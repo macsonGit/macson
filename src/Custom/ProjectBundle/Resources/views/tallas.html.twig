@@ -2,7 +2,8 @@
 			<div id="tallas" class="tallasStyle">
 				<div class="h2 inline bold-text">{{contentData.title}} &nbsp;&nbsp; | &nbsp;&nbsp;       </div> 
 				<ul id="listaTallas" class="inline">
-{%if contentData.varieties[0].value!= '00_AGOTADO'%}
+{% if contentData.varieties is not empty %}
+{% if contentData.varieties[0].value!= '00_AGOTADO' %}
 	{% for size in contentData.varieties if size.stock > 0 %}	
 		{%if loop.first%}
 			{%if contentData.varieties|length > 1%}
@@ -15,9 +16,12 @@
 	{% endfor %}
 
 					<li class="itemTalla sinEfectos"><a href={{ path('macson_size',{ 'lang': lang} ) }}><b>{{ 'Size Guide'|t }}</a></b></li> |							
+	{% else %}
+		{{ 'OUT OF STOCK'|t }}
+	{% endif %}
+
 {% else %}
 	{{ 'OUT OF STOCK'|t }}
-
 {% endif %}
 				</ul>		
 				<div id="tagPriceProducto" class="inline bold-text">

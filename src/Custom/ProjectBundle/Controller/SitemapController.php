@@ -27,7 +27,7 @@ class SitemapController extends DrufonyController
 
         // incluye url página inicial
         $urls[] = array(
-            'loc' => $this->get('router')->generate('drufony_home_url'), 
+            'loc' => self::stripAccents(urldecode($this->get('router')->generate('drufony_home_url'))), 
             'changefreq' => 'weekly', 
             'priority' => '1.0'
         );
@@ -39,32 +39,32 @@ class SitemapController extends DrufonyController
         // incluye urls multiidioma
         foreach($languages as $lang => $desc) {
             $urls[] = array(
-                'loc' => $this->get('router')->generate('macson_stores', array(
+                'loc' => self::stripAccents(urldecode($this->get('router')->generate('macson_stores', array(
                     'lang' => $lang
-                )), 
+                )))), 
                 'changefreq' => 'monthly', 
                 'priority' => '0.3'
             );
 
             $urls[] = array(
-                'loc' => $this->get('router')->generate('macson_size', array(
+                'loc' => self::stripAccents(urldecode($this->get('router')->generate('macson_size', array(
                     'lang' => $lang
-                )), 
+                )))), 
                 'changefreq' => 'monthly', 
                 'priority' => '0.3'
             );
 
             $urls[] = array(
-                'loc' => $this->get('router')->generate('macson_category_shoponline', array(
+                'loc' => self::stripAccents(urldecode($this->get('router')->generate('macson_category_shoponline', array(
                     'lang' => $lang
-                )), 
+                )))), 
                 'changefreq' => 'monthly', 
                 'priority' => '0.3'
             );
             $urls[] = array(
-                'loc' => $this->get('router')->generate('macson_category_outlet_home', array(
+                'loc' => self::stripAccents(urldecode($this->get('router')->generate('macson_category_outlet_home', array(
                     'lang' => $lang
-                )), 
+                )))), 
                 'changefreq' => 'monthly', 
                 'priority' => '0.3'
             );
@@ -76,11 +76,11 @@ class SitemapController extends DrufonyController
 		$categorias = Vocabulary::getAllCategories($lang);
 		foreach ($categorias as $item) {
 		    $urls[] = array(
-			'loc' => $this->get('router')->generate('macson_category', array(
+			'loc' => self::stripAccents(urldecode($this->get('router')->generate('macson_category', array(
 			    'lang' => $lang,
 			    'category'=>$item['name'],
 			    'categorynames'=>$item['url'],
-			)), 
+			)))), 
 			'priority' => '0.5'
 		    );
 		}
@@ -89,10 +89,10 @@ class SitemapController extends DrufonyController
         $productos = ContentUtils::getAllNodeUrls('product');
         foreach ($productos as $item) {
             $urls[] = array(
-                'loc' => $this->get('router')->generate('drufony_general_url', array(
+                'loc' => self::stripAccents(urldecode($this->get('router')->generate('drufony_general_url', array(
                     'lang'=>$item['lang'],
 		    'url'=>$item['url'], 
-                )), 
+                )))), 
                 'priority' => '0.5'
             );
         }
@@ -100,10 +100,10 @@ class SitemapController extends DrufonyController
         $pages = ContentUtils::getAllNodeUrls('page');
         foreach ($pages as $item) {
             $urls[] = array(
-                'loc' => $this->get('router')->generate('drufony_general_url', array(
+                'loc' => self::stripAccents(urldecode($this->get('router')->generate('drufony_general_url', array(
                     'lang'=>$item['lang'],
 		    'url'=>$item['url'], 
-                )), 
+                )))), 
                 'priority' => '0.3'
             );
         }
@@ -112,4 +112,12 @@ class SitemapController extends DrufonyController
             'hostname' => $hostname
         ));
     }
+
+    private function stripAccents($string){
+	$string = str_replace('ó','o',$string);
+	$string=   strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝñ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUYn');
+	return $string;
+	
+    }
+
 }

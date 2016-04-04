@@ -1056,7 +1056,7 @@ class CommerceController extends DrufonyController
         $orderId=$this->__saveOrder(PAYMENT_STATUS_PAID);
 
         //TODO: redirect to the proper place
-        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang,'orderId'=>$orderId)));
+        return $this->redirect($this->generateUrl('drufony_commerce_your_order', array('lang' => $lang,'orderId'=>$orderId-1)));
         $this->get('session')->getFlashBag()->add(INFO, t('Thanks for the purchase'));
     }
 
@@ -1308,7 +1308,7 @@ private function __saveOrder($paymentStatus = PAYMENT_STATUS_PENDING) {
 	
 
         $checkoutData = array('uid' => $uid, 'paymentMethod' => $payment['payment'],
-	    'paymentStatus' => $paymentStatus, 'discount' => 0,
+	    'paymentStatus' => $paymentStatus, 'discount' => $cart['discount'],
             'total' => $cart['total'], 'paymentPlataform' => $payment['payment'],
             'shippingStatus' => ORDER_STATUS_NEW, 'billingInfo' => $billing,
             'comments' => $shippingMethod['comments'], 'shippingInfo' => $shipping,

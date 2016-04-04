@@ -32,6 +32,8 @@
 
 {% if yourOrder is defined %}
 
+{% if order.orderId is defined %}
+
 ga('require', 'ecommerce');
 
 ga('ecommerce:addTransaction', {
@@ -59,6 +61,7 @@ ga('ecommerce:addItem', {
 
 ga('ecommerce:send');
 
+{% endif %}
 {% endif %}
 
 </script>

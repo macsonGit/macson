@@ -127,7 +127,7 @@ class ImporterCommand extends ContainerAwareCommand{
 			$result = db_fetchAssoc($sqlGetPid,array($nid));
 			$pid_es=$result['id'];
 
-			$prod['url']=$item['url_EN']."/".$item['reference'];
+			$prod['url']=self::stripAccents($item['url_EN']."/".$item['reference']);
 			$prod['title']=$item['shortDescription_EN'];
 			$prod['lang']='en';
 			$prod['body']=$item['longDescription_EN'];
@@ -198,4 +198,11 @@ class ImporterCommand extends ContainerAwareCommand{
 
   }
 
+    private function stripAccents($string){
+	$string = str_replace('ó','o',$string);
+	$string=   strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝñ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUYn');
+	$string= strtolower ($string);
+	return $string;
+	
+    }
 }

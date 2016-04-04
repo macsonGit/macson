@@ -382,27 +382,16 @@ class Utils
             'module' => $node['contentType'],
         );
 
-
         if ($isNew) {
-            if (!self::_existRedirectUrl($urlRecord)) {
 		if (self::_existTarget($urlRecord)){
 			$urlRecord['target']=$urlRecord['target']."-".(int)rand(100);
 		}
-		var_dump("traza_1s");
                 if (db_insert('url_friendly', $urlRecord) === NULL) {
                   	l(ERROR, 'Error creating url friendly for this node');
                 }
                 else {
                     	l(INFO, 'Url alias ' . $urlRecord['target'] . ' created successfully');
-                }
-		
-            }
-            else {
-			var_dump("traza_2s");
-                $updateData = array('expirationDate' => null, 'oid' => $urlRecord['oid'], 'module' => $urlRecord['module']);
-                $updateCriteria = array('target' => $urlRecord['target']);
-                db_update('url_friendly', $updateData, $updateCriteria);
-            }
+                }	
         }
         else {
 
@@ -416,30 +405,36 @@ class Utils
         $sql      .= "WHERE oid = ? AND module = ? AND expirationDate is NULL";
         $oldTarget = db_fetchColumn($sql, array($urlRecord['oid'], $urlRecord['module']));
 
+	var_dump('rand:'.rand(10,100));
         //If its a new url
-        if ($oldTarget && $urlRecord['target'] != $oldTarget) {
+        if ($urlRecord['target'] != $oldTarget) {
             if (!self::_existRedirectUrl($urlRecord)) {
-
+		var_dump('1');
 		if (self::_existTarget($urlRecord)){
-			$urlRecord['target']=$urlRecord['target']."-".(int)rand(100);
+			$urlRecord['target']=$urlRecord['target']."-".rand(0,100000);
 		}
-                //Insert new one
-		var_dump("traza_3s");
-                db_insert('url_friendly', $urlRecord);
+                if (db_insert('url_friendly', $urlRecord) === NULL) {
+                  	l(ERROR, 'Error creating url friendly for this node');
+                }
+                else {
+                    	l(INFO, 'Url alias ' . $urlRecord['target'] . ' created successfully');
+                }
+		
             }
             else {
-		var_dump("traza_4s");
+		var_dump("3");
                 //Update existing one as new target
-                $updateData = array('expirationDate' => null, 'oid' => $urlRecord['oid'], 'module' => $urlRecord['module']);
-                $updateCriteria = array('target' => $urlRecord['target']);
-                db_update('url_friendly', $updateData, $updateCriteria);
+            	$updateData = array('expirationDate' => null, 'oid' => $urlRecord['oid'], 'module' => $urlRecord['module']);
+            	$updateCriteria = array('target' => $urlRecord['target']);
+            	db_update('url_friendly', $updateData,$updateCriteria);
             }
-
-            //Update existing one with expirationDate
             $validityDate = date('Y-m-d H:i:s', strtotime("now +" . URL_REDIRECT_VALIDITY . " day"));
             $updateData = array('target' => $oldTarget, 'module' => $urlRecord['module']);
             db_update('url_friendly', array('expirationDate' => $validityDate), $updateData);
+
+            //Update existing one with expirationDate
         }
+	var_dump('4');
     }
 
     static private function _existRedirectUrl($urlRecord) {
@@ -930,6 +925,7 @@ class Utils
             'á'  => 'a',
             'é'  => 'e',
             'í'  => 'i',
+            'ó'  => 'o',
             'ú'  => 'u',
             'à'  => 'a',
             'è'  => 'e',
