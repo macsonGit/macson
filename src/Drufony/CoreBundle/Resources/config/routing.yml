@@ -38,6 +38,10 @@ macson_category_news:
     pattern:  /new_collection
     defaults: { _controller: CustomProjectBundle:Category:news }
 
+macson_category_specialprice:
+    pattern:  /special-prices
+    defaults: { _controller: CustomProjectBundle:Category:specialPrices }
+
 macson_importer_user:
     pattern: /importeruser
     defaults: {_controller: CustomProjectBundle:Importer:user}

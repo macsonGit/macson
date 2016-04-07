@@ -47,6 +47,7 @@ class BillingInfoFormType extends AbstractType
                 'data'     => !empty($options['data']['info']['countryId']) ? $options['data']['info']['countryId'] : '',
                 'empty_value' => t('Select a country'),
                 'choices'  => $countries,
+		'preferred_choices' => array(218,188,78,86,249),
             ))
             ->add('province', 'text', array(
                 'label' => t('Province/Region'),

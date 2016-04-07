@@ -71,8 +71,13 @@ ga('ecommerce:send');
 
 	<div id='header_mob'>
 
-	<div id='headerFreeShipping' class="inline">
-		<p class="margin-left-30">{{ 'SPAIN (PENINSULE AND BALEARIC ISLANDS) DELIVERY TIME:' | t}} | {{'24-48H'|t}}</p>
+	<div id='headerFreeShipping' class="inline sinEfectoswhite verticalcenter30">
+{% if lang == 'es' %}
+	    <p><a href={{ path('drufony_home_url',{ 'lang': 'en'} ) }}> English</a></p>  
+{% endif %}
+{% if lang == 'en' %}
+	    <p><a href={{ path('drufony_home_url',{ 'lang': 'es'} ) }}> Español</a></p>  
+{% endif %}
 	</div>
 	<div id='headerInfo' class="inline">
 		<p class="margin-right-30">{{ 'COSTUMER CENTER'|t }}</p>
@@ -102,7 +107,7 @@ ga('ecommerce:send');
 	</div>
 
 
-	<div id='header' class="sinEfectos">
+ 	<div id='header' class="sinEfectos">
 
 
 	<div id='headerFreeShipping' class="inline">
@@ -111,6 +116,7 @@ ga('ecommerce:send');
 	<div id='headerInfo' class="inline sinEfectoswhite">
 		<a href="{{path('drufony_contact',{'contactType':'customer'})}}"><p class="margin-right-30">{{ 'COSTUMER CENTER'|t }}</p></a>
 	</div>
+
 
 	<div id="back" class="inline padtop3 cursor"><img src='{{ asset('bundles/customproject/images/back.png') }}'></div>
 	<ul class="verticalcenter30">

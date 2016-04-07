@@ -28,6 +28,7 @@
 	<div class="fs18 pad10 blacktext">{{'WOMEN'|t}}</div>
 {% else %}
 	{# <a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'NEW COLLECTION' | t}}</li></a> #}
+	<b><a href='{{ path('macson_category_specialprice',{'lang' : lang} ) }}'><li class='item1'>{{ 'MID SEASON SALES' | t}}</li></a></b>
 {% endif %}
 {% for subitem1 in menu.sons if subitem1.show  %}
 	{% if not subitem1.selected %}

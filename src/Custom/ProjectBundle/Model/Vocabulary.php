@@ -46,8 +46,22 @@ class Vocabulary {
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET" AND product.brand NOT LIKE "%MUJER" )	 
+		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET" AND product.brand NOT LIKE "%MUJER" and product.brand NOT LIKE "%GENERALITAT") AND url_friendly.expirationDate IS NULL 
 		GROUP BY product.sku';
+
+   
+    $query = db_fetchAll($sqlproduct, array($category,$lang));
+
+   if ($type =='GENERALITAT'){
+   	$sqlproduct = 'SELECT *  FROM 
+		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
+		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
+		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
+		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET") AND url_friendly.expirationDate IS NULL 
+	 
+		GROUP BY product.sku';
+    	$query = db_fetchAll($sqlproduct, array($category,$lang));
+   }
 
    if ($type =='OUTLET'){
 
@@ -55,8 +69,10 @@ class Vocabulary {
 			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-			WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO"  AND product.brand LIKE "%OUTLET")		 
+			WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO"  AND product.brand LIKE "%OUTLET") AND url_friendly.expirationDate IS NULL 
+		 
 			GROUP BY product.sku';
+    	$query = db_fetchAll($sqlproduct, array($category,$lang));
    }
 
    if ($type =='MUJER'){
@@ -65,8 +81,10 @@ class Vocabulary {
 			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-			WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand LIKE "%MUJER")		 
+			WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand LIKE "%MUJER") AND url_friendly.expirationDate IS NULL 
+		 
 			GROUP BY product.sku';
+   	 $query = db_fetchAll($sqlproduct, array($category,$lang));
    }
 
    if ($type =='NOVEDAD'){
@@ -75,13 +93,13 @@ class Vocabulary {
 			((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 			INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 			INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-			WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand LIKE "%NOVEDAD")		 
+			WHERE (product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand LIKE "%NOVEDAD") AND url_friendly.expirationDate IS NULL  
 			GROUP BY product.sku';
+	    $query = db_fetchAll($sqlproduct, array($lang));
    }
 
 
 
-    $query = db_fetchAll($sqlproduct, array($category,$lang));
 
 
     $sqlcatname = 'SELECT * FROM categorysource WHERE name=?'; 
@@ -175,8 +193,9 @@ public static function getAllCategories($lang){
       
 	$category=$node['name'];
       
-      $sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
-     
+      $sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand NOT LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER" and brand NOT LIKE "%GENERALITAT"';
+    
+ 
        if ($type == 'OUTLET'){
       	$sqlcat = 'SELECT category FROM product WHERE category=? AND product.brand NOT LIKE "%INACTIVO" AND brand LIKE "%OUTLET" AND brand NOT LIKE "%NOVEDAD" AND brand NOT LIKE "%MUJER"';
       }

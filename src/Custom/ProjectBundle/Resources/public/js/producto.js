@@ -93,7 +93,7 @@ $('html').click(function() {
 		$("#logo").hide();
 		$("#logo_mob").show();
 		$("#headerFreeShipping").css({'width': '100%'});
-		$("#headerFreeShipping").text('SPAIN:FREE SHIPPING');
+		$("#headerFreeShipping").css({'height': '30px'});
 		$("#headerFreeShipping").css({'text-align':'center'});
 		$(".fotoImage2").hide();
 		$("#masInfo").hide();
