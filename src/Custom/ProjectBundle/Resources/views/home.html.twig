@@ -3,8 +3,11 @@
 {% include "CustomProjectBundle::header.html.twig" %}
 
 
-<img id="portada" src='{{ asset('bundles/customproject/images/portada1.jpg') }}'/>
-<img id="portada_mob" src='{{ asset('bundles/customproject/images/portada1_mob.jpg') }}'/>
+{# <img id="portada" src='{{ asset('bundles/customproject/images/portada1.jpg') }}'/> #} 
+{# <img id="portada_mob" src='{{ asset('bundles/customproject/images/portada1_mob.jpg') }}'/> #}
+ <a href={{ path('macson_category_specialprice',{'lang':lang}) }}> 
+ <img id="portada_mob" src='{{ asset('bundles/customproject/images/midseason.jpg') }}'/> 
+</a>
 <div id="tipoPagina">hom</div>
 <div id="contenedor1">	
 		<div class="foto_blank1">
@@ -15,6 +18,10 @@
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
 		<div class="foto_blank">
+{% include "CustomProjectBundle::video.html.twig" %}
+  		<a href={{ path('macson_category_specialprice',{'lang':lang}) }}> 
+<img id="cartel" class="center" src='{{ asset('bundles/customproject/images/midseason.jpg') }}'/>
+	</a>
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
 		<div class="foto_blank">
@@ -24,7 +31,6 @@
 </div>	
 
 
-{% include "CustomProjectBundle::video.html.twig" %}
 
 
 

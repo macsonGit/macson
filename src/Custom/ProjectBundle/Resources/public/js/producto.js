@@ -161,9 +161,7 @@ $('html').click(function() {
 		$("#listaCarritoResumen_mob").remove();
 		if($("#tipoPagina").text() == 'hom'){
 
-			$("#logoPortada").show().delay(500).fadeOut(5000).delay(39000).fadeIn(10000);
-			$("#portada").show().delay(1000).fadeOut(10000).delay(39000).fadeIn(10000);	
-			$("#video").show().delay(2000).data('muted',true);
+			$("#video").show().delay(2000).data('muted',true).delay(45000).fadeOut(1000);
 		}		
 	}
 
@@ -250,6 +248,7 @@ $('html').click(function() {
 		function zoomImage(){
 			$('#logoPortada').show();
 			$('#portada').show();
+			$('#video').hide();
 			player.mute();
 		}
 	);		
