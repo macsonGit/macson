@@ -335,11 +335,10 @@ class UserController extends DrufonyController
 		$orderProducts = CommerceUtils::getOrderProducts($id);
 	}
 
-        $response->setContent($this->renderView('DrufonyCoreBundle::base-registration.html.twig', array(
+        $response->setContent($this->renderView('DrufonyCoreBundle::yourOrder.html.twig', array(
             'lang'              => $lang,
             'user'              => $user,
             'itemConfigMenu'    => 'yourOrder',
-            'mainContent'       => 'DrufonyCoreBundle::yourOrder.html.twig',
  	    'products'=>$products,
  	    'orders'=>$orders,
 	    'menu'=>$menu,
