@@ -5,8 +5,12 @@
 
 {# <img id="portada" src='{{ asset('bundles/customproject/images/portada1.jpg') }}'/> #} 
 {# <img id="portada_mob" src='{{ asset('bundles/customproject/images/portada1_mob.jpg') }}'/> #}
- <a href={{ path('macson_category_specialprice',{'lang':lang}) }}> 
- <img id="portada_mob" src='{{ asset('bundles/customproject/images/midseason.jpg') }}'/> 
+{% if lang is sameas('es') %}
+		<a href="{{path('drufony_general_url',{'url':'macson-oxfam-intermon','lang':lang})}}">
+{% else %}
+		<a href="{{path('drufony_general_url',{'url':'en-macson-oxfam-intermon','lang':lang})}}">
+{% endif %}
+ <img id="portada_mob" src='{{ asset('bundles/customproject/images/oxfam-intermon.jpg') }}'/> 
 </a>
 <div id="tipoPagina">hom</div>
 <div id="contenedor1">	
@@ -19,8 +23,12 @@
 		</div>
 		<div class="foto_blank">
 {% include "CustomProjectBundle::video.html.twig" %}
-  		<a href={{ path('macson_category_specialprice',{'lang':lang}) }}> 
-<img id="cartel" class="center" src='{{ asset('bundles/customproject/images/midseason.jpg') }}'/>
+{% if lang is sameas('es') %}
+		<a href="{{path('drufony_general_url',{'url':'macson-oxfam-intermon','lang':lang})}}">
+{% else %}
+		<a href="{{path('drufony_general_url',{'url':'en-macson-oxfam-intermon','lang':lang})}}">
+{% endif %}
+<img id="cartel" class="center" src='{{ asset('bundles/customproject/images/oxfam-intermon.jpg') }}'/>
 	</a>
 			<img src='{{ asset('bundles/customproject/images/espacio.png') }}'>		
 		</div>
