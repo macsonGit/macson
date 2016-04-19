@@ -302,7 +302,9 @@ class UserController extends DrufonyController
         $user        = $this->getUser();
         $rememberme  = FALSE;
 	
-            $user = $this->getUser();
+        $user = $this->getUser();
+
+	sleep(8);
 	
 	$orders = CommerceUtils::getUserOrders($user->getUid());
 

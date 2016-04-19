@@ -34,9 +34,6 @@
 
 {% if order.orderId is defined %}
 
-var delay=10000; //1 second
-
-setTimeout(function() {
 
 ga('require', 'ecommerce');
 
@@ -68,7 +65,6 @@ ga('ecommerce:send');
 {% endif %}
 {% endif %}
 
-}, delay);
 </script>
 
 
