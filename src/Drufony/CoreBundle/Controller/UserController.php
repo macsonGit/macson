@@ -331,9 +331,6 @@ class UserController extends DrufonyController
         $menuList['selected']='';
 
 
-	if(isset($id)){
-		$orderProducts = CommerceUtils::getOrderProducts($id);
-	}
 
         $response->setContent($this->renderView('DrufonyCoreBundle::yourOrder.html.twig', array(
             'lang'              => $lang,
