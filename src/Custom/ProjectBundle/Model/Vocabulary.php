@@ -53,12 +53,12 @@ class Vocabulary {
     $query = db_fetchAll($sqlproduct, array($category,$lang));
 
    if ($type =='GENERALITAT'){
+	
    	$sqlproduct = 'SELECT *  FROM 
 		((product INNER JOIN url_friendly ON product.id=url_friendly.oid)
 		INNER JOIN varietiesByProduct ON product.id=varietiesByProduct.productId)
 		INNER JOIN variety ON varietiesByProduct.varietyId=variety.id 
-		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET") AND url_friendly.expirationDate IS NULL 
-	 
+		WHERE (product.category=? AND product.lang=? AND product.brand NOT LIKE "%INACTIVO" AND product.brand NOT LIKE "%OUTLET" AND product.brand NOT LIKE "%MUJER") AND url_friendly.expirationDate IS NULL  
 		GROUP BY product.sku';
     	$query = db_fetchAll($sqlproduct, array($category,$lang));
    }

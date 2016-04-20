@@ -103,14 +103,14 @@ class CategoryController extends DrufonyController
 
 	if (!empty($user)){
 
-	if($user->getEmail()=='gencat@macson.es'){
-		if ($categoryBall = $this->get('cache')->fetch('categoryBallGene'.$lang.'-'.$category)) {
-		} 
-		else {
-			$categoryBall = Vocabulary::getCategoryBall($category,$lang,"GENERALITAT");
-    			$this->get('cache')->save('categoryBallGene'.$lang.'-'.$category, $categoryBall);
+		if($user->getEmail()=='gencat@macson.es'){
+			if ($categoryBall = $this->get('cache')->fetch('categoryBallGene'.$lang.'-'.$category)) {
+			} 
+			else {
+				$categoryBall = Vocabulary::getCategoryBall($category,$lang,"GENERALITAT");
+				$this->get('cache')->save('categoryBallGene'.$lang.'-'.$category, $categoryBall);
+			}
 		}
-	}
 
 	}
 
