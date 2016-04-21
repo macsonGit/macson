@@ -27,20 +27,19 @@
 {% elseif menuType == 'mujer' %}
 	<div class="fs18 pad10 blacktext">{{'WOMEN'|t}}</div>
 {% else %}
-	{# <a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'NEW COLLECTION' | t}}</li></a> #}
-
-
-{% if lang is sameas('es') %}
+	{% if lang is sameas('es') %}
 		<a href="{{path('drufony_general_url',{'url':'macson-oxfam-intermon','lang':lang})}}">
-{% else %}
+	{% else %}
 		<a href="{{path('drufony_general_url',{'url':'en-macson-oxfam-intermon','lang':lang})}}">
+	{% endif %}
+
+	<b><li class='item1'>{{ 'OXFAM INTERMON CAMPAIGN' | t}}</li></a></b>
+
+	<a href='{{ path('macson_category_news',{'lang' : lang} ) }}'><li class='item1'>{{ 'NEW' | t}}</li></a>
+
+
 {% endif %}
 
-
-
-<b><li class='item1'>{{ 'OXFAM INTERMON CAMPAIGN' | t}}</li></a></b>
-
-{% endif %}
 {% for subitem1 in menu.sons if subitem1.show  %}
 	{% if not subitem1.selected %}
 <a href='{{ path(route,{'lang' : lang , 'category' :subitem1.name, 'categorynames' :subitem1.url|toUrl} ) }}'><li class='item1'>{{subitem1.namecat|upper}}</li></a>
