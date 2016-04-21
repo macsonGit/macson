@@ -1575,13 +1575,13 @@ class CommerceUtils
 
         return $result;
     }
-    static public function getLastOrder($uid) {
+    static public function getLastOrder() {
         $sql  = 'SELECT * ';
         $sql .= 'FROM `order` ';
         $sql .= 'ORDER BY orderDate DESC ';
         $sql .= 'LIMIT 1';
 
-        $result = db_fetchAssoc($sql, array($uid));
+        $result = db_fetchAssoc($sql, array());
 
         return $result;
     }

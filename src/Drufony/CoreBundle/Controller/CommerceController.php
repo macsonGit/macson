@@ -844,8 +844,7 @@ class CommerceController extends DrufonyController
 	$iv = implode(array_map("chr", $bytes)); //PHP 4 >= 4.0.2
 	$key=mcrypt_encrypt(MCRYPT_3DES,$code,$order_number,MCRYPT_MODE_CBC,$iv);
 
-        $user = $this->getUser();
-	$order=CommerceUtils::getLastUserOrder($user->getUid());
+	$order=CommerceUtils::getLastOrder();
 	$orderId=$order['orderId']+1;
 
 
