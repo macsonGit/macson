@@ -182,7 +182,7 @@ define('SERMEPA_POST_URL', 'http://www.macson.es/app_dev.php/es/checkout/payment
 //PAYPAL
 //Set PAYPAL_MODE to sandbox for tests and live for production
 define('PAYPAL_CLIENT_ID', 'AeOI_PM5reUc1KPgIjhj2kdt0zmTxiw_wWMoYr0-OndXEx7q17uSzd4UUyENQJYKhYO05LxHmjPKbBtl');
-define('PAYPAL_CLIENT_SECRET', 'ECX-7Qs0181RGiCmbY09dUVe_dBIiqMDPMr-2I0btUWvFEkPXkcXHkBkq_m8E_uWdcuaiTKx55rO5Wxm');
+define('PAYPAL_CLIENT_SECRET', 'EC-ycaW4C4xlfe8peBpMx33xYm8LDfmaycxNWt3LglHL87AcfGWZ0yDFDa8rGXKXUnNXdzyOUMs8TeRZ');
 define('PAYPAL_MODE', 'sandbox');
 //define('PAYPAL_CLIENT_ID', 'Ab9dRZzoCLM3fDujbf6u1FE9LpUb5oTGdjpRgPb0IgHAN8PWd-3T_ysrSio4HwMgx5pKS_jRP581Cyg0');
 //define('PAYPAL_CLIENT_SECRET', 'EGrztsx1NtIAxjMnmDEOl1FPnoWgJbjV8qUyn8dQSZYnrHLsSbqpJCwzJaaQ2l58JyrB3-7KV7oyZFUc');

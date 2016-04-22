@@ -47,6 +47,7 @@ $('html').click(function() {
 		$(".menu_bar").attr('class', 'menu_bar_mob');
 		$("#menu").attr('id', 'menu_mob');
 		$("#menu_size").attr('id', 'menu_size_mob');
+		$("#selectOption").hide();
 		$(".contenido").attr('class', 'contenido_mob');
 		$(".fotoContenido").attr('class', 'fotoContenido_mob');
 		$(".camposContenido").attr('class', 'camposContenido_mob');
@@ -713,6 +714,8 @@ $('html').click(function() {
 			$(".itemSize").removeClass("underline");
 			$(this).addClass("underline"); 	
 			$("#sizeImg").attr("src",replaced);
+			$("#selectOption").hide();
+			$("#menu_size").css({"top":"20px"});
 		}
 	);
 
@@ -723,6 +726,8 @@ $('html').click(function() {
 			$(".itemSize_mob").removeClass("underline");
 			$(this).addClass("underline"); 	
 			$("#sizeImg").attr("src",replaced);
+			$("#selectOption").hide();
+			$("#menu_size").css({"top":"20px"});
 		}
 	);
 

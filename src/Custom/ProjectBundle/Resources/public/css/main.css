@@ -170,7 +170,7 @@ a {text-decoration:none}
 .borrarArticulo {color:red; text-decoration:none;cursor: pointer;}
 
 #menu_size_mob {  padding: 0px;font-size: 18px ;width: 100%;z-index:4}
-#menu_size { position:absolute; top:20px; padding: 0px;font-size: 18px ;width: 100%;z-index:4;height:100px}
+#menu_size { position:absolute; top:150px; padding: 0px;font-size: 18px ;width: 100%;z-index:4;height:100px}
 #menu { position:absolute; top:0px; padding: 0px;font-size: 16px ;color: white;width: 320px;text-align: left;z-index:4;height:400px}
 #menu {text-align: left;z-index:5;width:290px}
 #menu ul {height:411px; background-image:url('../images/menuBackground.png')}
@@ -206,6 +206,7 @@ a {text-decoration:none}
 #menuPortada_mob a:active {text-decoration:none;color:black}
 #menutitle_mob{ background:none;padding:0px;height: 20px;margin-left:0px; margin-top:0px; font-size:12px }
 #menucommerce{ width : 90% }
+#selectOption {font-size:36px;line-height:200px } 
 .itemSize {font-size: 18px;  font-weight:bold; display:inline; cursor:pointer}
 .itemSize_mob {font-size: 18px;  font-weight:bold; display:inline; cursor:pointer}
 .item1 {padding-left:10px;font-size: 16px; padding-top: 3px; padding-bottom: 3px;}
