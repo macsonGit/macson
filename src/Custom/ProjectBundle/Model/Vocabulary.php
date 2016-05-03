@@ -143,7 +143,7 @@ class Vocabulary {
 
 public static function getAllCategories($lang){
 
-    $sql= 'SELECT DISTINCT url_'.$lang.' as url,  name_'.$lang.' as name  FROM categorysource INNER JOIN product ON product.category=categorysource.name WHERE product.brand NOT LIKE "%INACTIVO"';
+    $sql= 'SELECT DISTINCT url_'.$lang.' as url, name  FROM categorysource INNER JOIN product ON product.category=categorysource.name WHERE product.brand NOT LIKE "%INACTIVO"';
 
     $query = db_fetchAll($sql, array());
 
