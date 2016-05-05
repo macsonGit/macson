@@ -347,13 +347,21 @@ $('html').click(function() {
 	);
 	//Hide Show In panel-------------------------------------------------
 	
-	if ($(".has-error").length>0){
+	if ($(".has-error").length>0 && checkout!=true){
 
 			$("#login").show(200);
 			$("#mascara").show(200);
 			showMascara=true;
+			$('#buyLoginPanel').show();
 
 	}
+	if ($(".has-error").length>0 && checkout==true){
+
+			$('#buyLoginPanel').show();
+
+	}
+
+
 
 	$("#loginMenu").click(
 
