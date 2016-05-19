@@ -30,7 +30,7 @@
 {% if contentData.pricePVP == contentData.firstPrice%}		
 					{{ contentData.pricePVP | round (0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font>
 {% else %}
-					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>    {{contentData.pricePVP | round(0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font> 
+					<a class="tachado">{{ contentData.firstPrice | round (2,'common') }} €</a>  <span class="redtext">  {{contentData.pricePVP | round(0,'floor')}}<font size="2">,{{ contentData.pricePVP | decimals  }} €</font></span> 
 {%endif%}
 				</div>			
 				<div id="buyBoton">								
