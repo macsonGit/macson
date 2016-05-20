@@ -1,4 +1,4 @@
-<?phE
+<?php
 //Nombre de la página web
 define('PROJECT_NAME', 'Drufony');
 
