@@ -409,4 +409,14 @@ public static function getAllCategories($lang){
     return $node;
 
   }
+
+
+ public static function getCategoryInfo($lang,$category){
+
+      $sqlcat = 'SELECT title_'.$lang.' As title FROM categorysource WHERE name=?';
+      $catInfo = db_fetchAll($sqlcat, array($category));
+
+      return $catInfo[0];
+ }
+
 }

@@ -143,7 +143,7 @@ src="https://www.facebook.com/tr?id=1076793639027471&ev=PageView&noscript=1"
 {% endif %}
 
 
-            <title>{{"Men's clothing"|t }}   
+            <title> 
 {% if type is defined %}
 
 
@@ -153,9 +153,17 @@ src="https://www.facebook.com/tr?id=1076793639027471&ev=PageView&noscript=1"
 
 	{% else %}
 
-		{% for word in categorynames | split("-") %}
+		{% if type=="category" %}
+
+			{{ catInfo.title }}			
+
+		{% else %}
+
+			{% for word in categorynames | split("-") %}
 				{{ word }}
-		{% endfor %}
+			{% endfor %}
+
+		{% endif %}
 
 	{% endif %}
 

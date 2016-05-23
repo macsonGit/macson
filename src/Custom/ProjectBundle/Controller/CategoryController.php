@@ -113,6 +113,7 @@ class CategoryController extends DrufonyController
 		}
 
 	}
+	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
@@ -129,6 +130,7 @@ class CategoryController extends DrufonyController
             'orders'    	=> $orders,
 	    'user'=>$user,
 	    'categorynames'=>$categorynames,
+	    'catInfo'=>$catInfo,
 	    'type'=>'category',
         )));
         return $response;        
@@ -199,6 +201,8 @@ class CategoryController extends DrufonyController
 	}
 
 
+	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
+	
 	$products=CommerceUtils::getCartItemsAJAX();
 
         $response->setContent($this->renderView("CustomProjectBundle::category.html.twig", array(
@@ -215,6 +219,7 @@ class CategoryController extends DrufonyController
 	    'orders'=>$orders,
 	    'menuType'=>'outlet',
 	    'categorynames'=>$categorynames,
+	    'catInfo'=>$catInfo,
 	    'type'=>'category',
 
         )));
@@ -272,6 +277,7 @@ class CategoryController extends DrufonyController
 	$menuList=$menu;
 
 
+	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
 	//-------------------VARABLE CATEGORYBALL
 
 	$products=CommerceUtils::getCartItemsAJAX();
@@ -287,6 +293,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
 	    'user'=>$user,
             'orders'    	=> $orders,
+	    'catInfo'=>$catInfo,
 	    'menuType'=>'outlet',
 
         )));
@@ -358,6 +365,7 @@ class CategoryController extends DrufonyController
     		$this->get('cache')->save('categoryBallMujer'.$lang.'-'.$category, $categoryBall);
 	}
 
+	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
@@ -375,6 +383,7 @@ class CategoryController extends DrufonyController
 	    'orders'=>$orders,
 	    'menuType'=>'mujer',
 	    'categorynames'=>$categorynames,
+	    'catInfo'=>$catInfo,
 	    'type'=>'category',
 
         )));
@@ -428,6 +437,7 @@ class CategoryController extends DrufonyController
 
 	//-------------------VARABLE MENU LIST
 
+	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
 
 	$menuList=$menu;
 
@@ -447,6 +457,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
 	    'user'=>$user,
             'orders'    	=> $orders,
+	    'catInfo'=>$catInfo,
 	    'menuType'=>'mujer',
 
         )));
