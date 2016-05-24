@@ -161,17 +161,20 @@ src="https://www.facebook.com/tr?id=1076793639027471&ev=PageView&noscript=1"
 		{% else %}
 
 			{% if type=="category" %}
+			
+			     	{% if menuType is defined %}
+	
+					{% if menuType == 'outlet' %}
+
+						Outlet | {{ catInfo.title }}			
+
+					{% endif %}
 				
-				{% if menuType == 'outlet' %}
-
-					Outlet | {{ catInfo.title }}			
-
 				{% else %}
 	
 					{{ catInfo.title }}			
 
 				{% endif %}
-
 
 			{% else %}
 
