@@ -30,14 +30,11 @@ class PageController extends DrufonyController
 
 	$response = new Response();
         $page = new Page($oid, $lang);
-	if($oid==17696){
-		$template='home';
-	}
 
-            $registerForm = $this->_processRegisterForm($request);
+        $registerForm = $this->_processRegisterForm($request);
 
             
-                $loginForm = $this->_processLoginForm($request);
+        $loginForm = $this->_processLoginForm($request);
             
 
         $session = getSession();
@@ -82,6 +79,13 @@ class PageController extends DrufonyController
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
+	$title = $page->getTitle() ;
+
+	if($oid==17696){
+		$template='home';
+		$title = constant("TITLE_".strtoupper($lang)) ;
+		
+	}
         $response->setContent($this->renderView("CustomProjectBundle::${template}.html.twig", array(
             'lang' => $lang,
             'contentData' => $page,
@@ -96,6 +100,7 @@ class PageController extends DrufonyController
 	    'menu'=>$menu,
 	    'products'=>$products,
             'orders'    	=> $orders,
+	    'title'=>$title,
 	    'user'=>$user,
         )));
 

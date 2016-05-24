@@ -296,3 +296,25 @@ define('DEFAULT_VAT_TYPE', '3');
 
 //Free tags, vocabulary name
 define('FREE_TAGS', 'freeTags');
+
+
+define ('TITLE_ES','Trajes, camisas y moda para hombre | Tienda online Macson');
+
+define ('TITLE_EN',"Suits, shirts and men's fashion |  Macson online shop");
+
+define ('TITLE_OUTLET_ES','Trajes, camisas y moda para hombre | Outlet  Macson');
+
+define ('TITLE_OUTLET_EN',"Suits, shirts and men's fashion | Outlet Macson");
+
+define ('TITLE_NEWS_ES','Nueva Colección moda para hombre | Macson');
+
+define ('TITLE_NEWS_EN',"News collection men's fashion | Macson");
+
+define ('TITLE_SHOP_ES','Compra on line moda para hombre | Macson Shop');
+
+define ('TITLE_SHOP_EN',"Buy on line men's fashion | Macson Shop");
+
+define ('TITLE_SPECIAL_ES','Campaña Especial moda hombre | Macson');
+
+define ('TITLE_SPECIAL_EN',"Special Prices men's fashion| Macson");
+

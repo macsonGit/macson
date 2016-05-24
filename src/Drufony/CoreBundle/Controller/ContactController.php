@@ -61,6 +61,9 @@ class ContactController extends DrufonyController
         $this->_processFBLogin($request);
         $form = ContentUtils::getContactForm($this);
 	$products=CommerceUtils::getCartItemsAJAX();
+
+	$title = t('Contact').' '.t($contactType).' | Macson' ;
+
         $response->setContent($this->renderView('DrufonyCoreBundle::contactForm.html.twig',
                               array('lang' => $lang,
                                     'form' => $form->createView(),
@@ -71,6 +74,7 @@ class ContactController extends DrufonyController
             			    'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    			    'products'	    =>$products,
             			    'orders'        => $orders,
+				    'title'	    => $title,
 			)));
 				
         return $response;
@@ -116,6 +120,7 @@ class ContactController extends DrufonyController
             			    'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    			    'products'	    =>$products,
             			    'orders'        => $orders,
+				    'title'	    => $title,
 			)));
 				
         return $response;

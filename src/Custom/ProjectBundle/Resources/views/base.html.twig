@@ -59,9 +59,6 @@
 
 {% if commerce is defined %}
 
-
-    <title>{{'Shipping and Payment'|t}}</title>
-    
     
     <!-- styles -->
     <link rel="stylesheet" href="/bundles/drufonycore/caprese/version1.0.1/css/main.css">
@@ -146,63 +143,15 @@ src="https://www.facebook.com/tr?id=1076793639027471&ev=PageView&noscript=1"
 
             <title> 
 
-{% if homePage is defined %}
+{% if commerce is defined %}
 
-	{{ "Suits, shirts and men's fashion |  Macson online shop"|t }}
+
+    {{'Shipping and Payment'|t}}
+
 
 {% else %}
-	
-	{% if type is defined %}
 
-		{% if type=="product" %}
-
-			{{ contentData.title }}			
-
-		{% else %}
-
-			{% if type=="category" %}
-			
-			     	{% if menuType is defined %}
-	
-					{% if menuType == 'outlet' %}
-
-						Outlet | {{ catInfo.title }}			
-
-					{% endif %}
-				
-				{% else %}
-	
-					{{ catInfo.title }}			
-
-				{% endif %}
-
-			{% else %}
-
-				{{ "Macson Man"|t }}	
-
-			{% endif %}
-		
-		{% endif %}
-
-	{% else %}
-		
-		{% if outletHome is defined %}
-
-			{{ "Suits, shirts and men's fashion | Outlet Macson"|t }}
-
-		{% else %}
-
-			{% for word in categorynames | split("-") %}
-		
-				{{ word }}
-	
-			{% endfor %}
-
-		{% endif %}
-
-	{% endif %}
-
-	
+    {{ title }}
 
 {% endif %}
 

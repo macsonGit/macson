@@ -117,6 +117,8 @@ class CategoryController extends DrufonyController
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
+	$title=$catInfo['title'];
+
         $response->setContent($this->renderView("CustomProjectBundle::category.html.twig", array(
             'lang' => $lang,
             'widget' => $widgets,
@@ -130,7 +132,7 @@ class CategoryController extends DrufonyController
             'orders'    	=> $orders,
 	    'user'=>$user,
 	    'categorynames'=>$categorynames,
-	    'catInfo'=>$catInfo,
+	    'title'=>$title,
 	    'type'=>'category',
         )));
         return $response;        
@@ -203,6 +205,8 @@ class CategoryController extends DrufonyController
 
 	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
 	
+	$title=$catInfo['title'];
+	
 	$products=CommerceUtils::getCartItemsAJAX();
 
         $response->setContent($this->renderView("CustomProjectBundle::category.html.twig", array(
@@ -219,7 +223,7 @@ class CategoryController extends DrufonyController
 	    'orders'=>$orders,
 	    'menuType'=>'outlet',
 	    'categorynames'=>$categorynames,
-	    'catInfo'=>$catInfo,
+	    'title'=>$title,
 	    'type'=>'category',
 
         )));
@@ -277,8 +281,7 @@ class CategoryController extends DrufonyController
 	$menuList=$menu;
 
 
-	$catInfo=Array();
-
+	$title = constant("TITLE_OUTLET_".strtoupper($lang)); ;
 
 	//-------------------VARABLE CATEGORYBALL
 
@@ -295,7 +298,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
 	    'user'=>$user,
             'orders'    	=> $orders,
-	    'outletHome'=>1,
+	    'title'=>$title,
 	    'menuType'=>'outlet',
 
         )));
@@ -369,6 +372,8 @@ class CategoryController extends DrufonyController
 
 	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
 
+	$title=$catInfo["title"];
+
 	$products=CommerceUtils::getCartItemsAJAX();
 
         $response->setContent($this->renderView("CustomProjectBundle::category.html.twig", array(
@@ -385,7 +390,7 @@ class CategoryController extends DrufonyController
 	    'orders'=>$orders,
 	    'menuType'=>'mujer',
 	    'categorynames'=>$categorynames,
-	    'catInfo'=>$catInfo,
+	    'title'=>$title,
 	    'type'=>'category',
 
         )));
@@ -439,7 +444,8 @@ class CategoryController extends DrufonyController
 
 	//-------------------VARABLE MENU LIST
 
-	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
+
+	$title="MUJER MACSON";
 
 	$menuList=$menu;
 
@@ -459,7 +465,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
 	    'user'=>$user,
             'orders'    	=> $orders,
-	    'catInfo'=>$catInfo,
+	    'title'=>$title,
 	    'menuType'=>'mujer',
 
         )));
@@ -519,6 +525,8 @@ class CategoryController extends DrufonyController
 	}
 
 	$menuList=$menu;
+	
+	$title = constant("TITLE_NEWS_".strtoupper($lang));
 
 	//-------------------VARABLE CATEGORYBALL
 
@@ -536,6 +544,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
             'orders'    	=> $orders,
 	    'user'=>$user,
+	    'title'=>$title,
 	    'novedad'=>true,
 
         )));
@@ -594,6 +603,8 @@ class CategoryController extends DrufonyController
 	}
 
 	$menuList=$menu;
+	
+	$title = constant("TITLE_SPECIAL_".strtoupper($lang));
 
 	//-------------------VARABLE CATEGORYBALL
 
@@ -611,6 +622,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
             'orders'    	=> $orders,
 	    'user'=>$user,
+	    'title'=>$title,
 	    'novedad'=>true,
 
         )));
@@ -664,6 +676,8 @@ class CategoryController extends DrufonyController
 
 
 	$menuList=$menu;
+	
+	$title = constant("TITLE_SHOP_".strtoupper($lang)); 
 
 	//-------------------VARABLE CATEGORYBALL
 
@@ -679,6 +693,7 @@ class CategoryController extends DrufonyController
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
             'orders'    	=> $orders,
+	    'title'=>$title,
 	    'user'=>$user,
 
         )));

@@ -154,6 +154,8 @@ class ProductController extends DrufonyController
 
 	$kernel = $this->get('kernel');
 
+	$title=$product->getTitle();
+
         $path = $kernel->locateResource('@CustomProjectBundle/Resources/public/images/Product/Standard/');
         $numImages['im1'] = file_exists($path.$product->__get('sgu').'_1.jpg');
         $numImages['im2'] = file_exists($path.$product->__get('sgu').'_2.jpg');
@@ -177,6 +179,7 @@ class ProductController extends DrufonyController
             'orders'    	=> $orders,
 	    'user'=>$user,
 	    'type'=>'product',
+	    'title'=>$title,
             'menuType'   => $menuType,
         )));
         return $response;
