@@ -413,7 +413,7 @@ public static function getAllCategories($lang){
 
  public static function getCategoryInfo($lang,$category){
 
-      $sqlcat = 'SELECT title_'.$lang.' As title FROM categorysource WHERE name=?';
+      $sqlcat = 'SELECT title_'.$lang.' As title, title_Outlet_'.$lang.' As title_outlet FROM categorysource WHERE name=?';
       $catInfo = db_fetchAll($sqlcat, array($category));
 
       return $catInfo[0];

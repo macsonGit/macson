@@ -42,17 +42,18 @@
 
 
 		{% for word in categorynames | split("-") %}
-				{{ word }}
+			{{ word }}
 		{% endfor %}
 
 	{% endif %}
+	
 
 {% else %}
-
 
 	{{ "Macson Man"|t }}	
 
 {% endif %}
+
 	   ">
 
 
@@ -144,37 +145,64 @@ src="https://www.facebook.com/tr?id=1076793639027471&ev=PageView&noscript=1"
 
 
             <title> 
-{% if type is defined %}
+
+{% if homePage is defined %}
+
+	{{ "Suits, shirts and men's fashion |  Macson online shop"|t }}
+
+{% else %}
+	
+	{% if type is defined %}
+
+		{% if type=="product" %}
+
+			{{ contentData.title }}			
+
+		{% else %}
+
+			{% if type=="category" %}
+				
+				{% if menuType == 'outlet' %}
+
+					Outlet | {{ catInfo.title }}			
+
+				{% else %}
+	
+					{{ catInfo.title }}			
+
+				{% endif %}
 
 
-	{% if type=="product" %}
+			{% else %}
 
-		{{ contentData.title }}			
+				{{ "Macson Man"|t }}	
+
+			{% endif %}
+		
+		{% endif %}
 
 	{% else %}
+		
+		{% if outletHome is defined %}
 
-		{% if type=="category" %}
-
-			{{ catInfo.title }}			
+			{{ "Suits, shirts and men's fashion | Outlet Macson"|t }}
 
 		{% else %}
 
 			{% for word in categorynames | split("-") %}
+		
 				{{ word }}
+	
 			{% endfor %}
 
 		{% endif %}
 
 	{% endif %}
 
-{% else %}
-
-
-
-
-	{{ "Macson Man"|t }}	
+	
 
 {% endif %}
+
 	   </title>
 
 

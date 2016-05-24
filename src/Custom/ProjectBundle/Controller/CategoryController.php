@@ -277,7 +277,9 @@ class CategoryController extends DrufonyController
 	$menuList=$menu;
 
 
-	$catInfo=Vocabulary::getCategoryInfo($lang,$category);
+	$catInfo=Array();
+
+
 	//-------------------VARABLE CATEGORYBALL
 
 	$products=CommerceUtils::getCartItemsAJAX();
@@ -293,7 +295,7 @@ class CategoryController extends DrufonyController
 	    'products'=>$products,
 	    'user'=>$user,
             'orders'    	=> $orders,
-	    'catInfo'=>$catInfo,
+	    'outletHome'=>1,
 	    'menuType'=>'outlet',
 
         )));
