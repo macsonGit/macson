@@ -318,3 +318,10 @@ define ('TITLE_SPECIAL_ES','Campaña Especial moda hombre | Macson');
 
 define ('TITLE_SPECIAL_EN',"Special Prices men's fashion| Macson");
 
+define ('TITLE_STORES_ES','Tiendas, direcciones y teléfonos | Macson');
+
+define ('TITLE_STORES_EN',"Stores, addresses and phone numbers | Macson");
+
+define ('TITLE_SIZE_ES','Guía de Tallas | Macson');
+
+define ('TITLE_SIZE_EN',"Size Chart | Macson");

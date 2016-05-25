@@ -78,6 +78,8 @@ class SizeController extends DrufonyController
 
 	$products=CommerceUtils::getCartItemsAJAX();
 
+	$title = constant("TITLE_SIZE_".strtoupper($lang)) ;	
+
         $response->setContent($this->renderView("CustomProjectBundle::size.html.twig", array(
             'lang' => $lang,
             'widget' => $widgets,
@@ -88,6 +90,7 @@ class SizeController extends DrufonyController
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
             'orders'    	=> $orders,
+	    'title' => $title,
 	    'user'=>$user,
 
         )));

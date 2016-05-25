@@ -81,6 +81,7 @@ class StoreController extends DrufonyController
 	}
 
 
+	$title = constant("TITLE_STORES_".strtoupper($lang)) ;
 
         $menu['selected']=0;
 
@@ -97,6 +98,7 @@ class StoreController extends DrufonyController
             'isLoginPath'   => $request->attributes->get('_route') == 'drufony_login' ? TRUE : FALSE,
 	    'products'=>$products,
             'orders'    	=> $orders,
+	    'title'=>$title,
 	    'user'=>$user,
 
         )));
