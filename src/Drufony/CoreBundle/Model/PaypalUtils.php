@@ -134,6 +134,7 @@ class PaypalUtils
             ->setTransactions(array($transaction));
 
         try {
+
             $payment->create($apiContext);
 
         } catch (PayPal\Exception\PPConnectionException $ex) {
@@ -156,9 +157,11 @@ class PaypalUtils
     }
 
     static public function executePayment($paymentId, $payerId) {
+	
+	$a=$a;
         $apiContext = self::getApitContext();
-        $payment = Payment::get($paymentId, $apiContext);
-
+        
+		$payment = Payment::get($paymentId, $apiContext);
         $execution = new PaymentExecution();
         $execution->setPayerId($payerId);
 

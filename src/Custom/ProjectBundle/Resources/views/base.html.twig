@@ -151,7 +151,13 @@ src="https://www.facebook.com/tr?id=1076793639027471&ev=PageView&noscript=1"
 
 {% else %}
 
-    {{ title }}
+	{% if title is defined %}
+
+    		{{ title }}
+
+	{% else %}
+
+	{% endif %}
 
 {% endif %}
 

@@ -13,8 +13,10 @@
  {#  <img id="portada_mob" src='{{ asset('bundles/customproject/images/oxfam-intermon.jpg') }}'/> #} 
  {# </a>#} 
 <div id="tipoPagina">hom</div>
-<div id="contenedor1">	
+<div id="contenedor1">
+		<div id="cartel">REBAJAS</div>	
 		<div class="foto_blank1">
+		<div id="cartel_mob">REBAJAS</div>
 <div id="logoPortada"><a href={{ path('drufony_home_url',{ 'lang': lang} ) }}><img alt="macson logo" src='{{ asset('bundles/customproject/images/LogoMacson.png') }}'><a></div> 
 {% include "CustomProjectBundle::login.html.twig" %}		
 {% include "CustomProjectBundle::carritoResumen.html.twig" %}		
@@ -22,7 +24,7 @@
 {% include "CustomProjectBundle::menu.html.twig" %}
 		</div>
 		<div class="foto_blank">
-{% include "CustomProjectBundle::video.html.twig" %}
+{#{% include "CustomProjectBundle::video.html.twig" %}#}
 {#{% if lang is sameas('es') %}#} 
 	{#	<a href="{{path('drufony_general_url',{'url':'macson-oxfam-intermon','lang':lang})}}">#} 
  {#{% else %}#}

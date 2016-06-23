@@ -974,7 +974,8 @@ class CommerceController extends DrufonyController
             $this->get('session')->getFlashBag()->add(ERROR, $message);
             return $this->redirect($this->generateUrl($target, array('lang' => $lang)));
          }
- 
+
+	 
         $billing = CommerceUtils::getStepData(BILLING_INFO);
         $shipping = CommerceUtils::getStepData(SHIPPING_INFO);
         $shippingMethod = CommerceUtils::getStepData(SHIPPING_METHOD);
@@ -983,6 +984,7 @@ class CommerceController extends DrufonyController
 
         $cart = CommerceUtils::getCartInfo($shippingPrice);
 
+            $paymentInfo = PaypalUtils::createPayment($cart, $shipping);
         try {
             $paymentInfo = PaypalUtils::createPayment($cart, $shipping);
         } catch (\Exception $e) {
