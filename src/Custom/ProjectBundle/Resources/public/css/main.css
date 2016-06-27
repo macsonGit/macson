@@ -33,7 +33,7 @@ a {text-decoration:none}
 
 #tipoPagina {color: white;visibility:hidden;height:1px}
 #portada {position: fixed;left:0px;top: 0px;z-index:1; width:100%;}
-#portada_mob {position:absolute; left:0px;top: 200px;z-index:1; width:100%;}
+#portada_mob {position:absolute; left:0px;top: 70px;z-index:1; width:100%;}
 #cartel{position:absolute;font-size: 42px;bottom:2px; font-weight:bold; width:100%;background:black; color:white; z-index:1}
 #cartel_mob{position:absolute;font-size: 42px; font-weight:bold; background:black; color:white; bottom:150px; width:100%; text-align:center; z-index:1 }
 #video{position:absolute;top:-40px;left:-100px;width:700px; height:400px;z-index:10}
